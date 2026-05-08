@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?><PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+  <Metadata>
+    <Creator>laypa</Creator>
+    <Created>2026-05-05T16:48:46</Created>
+    <LastChange>2026-05-05T15:20:43</LastChange>
+  </Metadata>
+  <Page imageFilename="0552_0179_0142.jpg" imageWidth="2098" imageHeight="2540">
+    <ReadingOrder>
+      <OrderedGroup id="orderedgroup_aea68b49-3698-45b0-a4bd-7822c1838081">
+        <RegionRefIndexed index="0" regionRef="fc490e60-0ccc-4d3c-b108-e8afa08b340b"/>
+      </OrderedGroup>
+    </ReadingOrder>
+    <TextRegion id="fc490e60-0ccc-4d3c-b108-e8afa08b340b" custom="readingOrder {index:0;} structure {type:Text;}">
+      <Coords points="1963,75 2096,75 2096,2393 1963,2393"/>
+      <TextLine id="line_2095d356-ad7a-4452-b9be-12d2267febc3" custom="readingOrder {index:0;}">
+        <Coords points="1972,79 1996,75 2017,94 2040,102 2064,110 2087,102 2096,109 2096,151 2040,152 2020,165 1990,165 1972,152"/>
+        <Baseline points="1993,140 2043,141 2097,141"/>
+        <TextEquiv conf="0.9761496186256409">
+          <PlainText>and</PlainText>
+          <Unicode>and</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_2067b1af-3957-49c4-ae54-41aad5c33c7c" custom="readingOrder {index:1;}">
+        <Coords points="1967,184 1991,165 2021,164 2036,152 2069,157 2096,177 2096,220 2076,231 2053,231 2028,251 2004,232 1983,244 1967,243"/>
+        <Baseline points="1988,213 2097,210"/>
+        <TextEquiv conf="0.7584335207939148">
+          <PlainText>vys.</PlainText>
+          <Unicode>vys.</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="ca8016e4-e3c8-4aec-814b-3923cf218076" custom="readingOrder {index:2;}">
+        <Coords points="1965,244 2006,235 2027,252 2064,228 2096,246 2096,288 2031,300 2011,292 1985,313 1965,311"/>
+        <Baseline points="1986,285 2036,279 2097,278"/>
+        <TextEquiv conf="0.916339635848999">
+          <PlainText>gehee</PlainText>
+          <Unicode>gehee</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="dd0d4791-c5c8-418b-80b9-451fff3960e6" custom="readingOrder {index:3;}">
+        <Coords points="1965,311 1985,313 2011,291 2024,299 2051,299 2069,287 2096,308 2096,352 2067,367 2031,355 2017,359 2008,351 1988,359 1965,347"/>
+        <Baseline points="1986,341 2036,345 2097,342"/>
+        <TextEquiv conf="0.9561260938644409">
+          <PlainText>en 60</PlainText>
+          <Unicode>en 60</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="a29d69cf-0faf-4ef9-b433-08852d77e155" custom="readingOrder {index:4;}">
+        <Coords points="1966,344 1990,359 1997,352 2019,361 2025,355 2036,363 2047,358 2096,378 2096,421 2090,427 2055,420 2048,427 2027,424 1994,450 1977,451 1966,443"/>
+        <Baseline points="1987,413 2097,410"/>
+        <TextEquiv conf="0.6272283792495728">
+          <PlainText>Ge</PlainText>
+          <Unicode>Ge</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="d697c111-7901-4a9e-bdc9-932cf1655bea" custom="readingOrder {index:5;}">
+        <Coords points="1964,444 1981,439 2000,447 2023,428 2033,435 2052,420 2079,420 2096,435 2096,480 2090,486 2038,494 2016,505 1992,498 1976,504 1964,497"/>
+        <Baseline points="1985,470 2097,469"/>
+        <TextEquiv conf="0.9667283892631531">
+          <PlainText>dito</PlainText>
+          <Unicode>dito</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_28b25677-83c6-45c4-bf16-de0f619dc3b3" custom="readingOrder {index:6;}">
+        <Coords points="1969,498 1979,505 1987,498 2028,503 2038,494 2067,499 2079,491 2096,500 2096,543 2078,557 2031,542 2006,555 1977,544 1969,548"/>
+        <Baseline points="1990,533 2097,532"/>
+        <TextEquiv conf="0.9505883455276489">
+          <PlainText>verl</PlainText>
+          <Unicode>verl</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="ba86efdc-8557-4e93-ba32-d79e02bb8e63" custom="readingOrder {index:7;}">
+        <Coords points="1973,563 1995,548 2007,555 2021,544 2047,543 2066,559 2096,561 2096,605 2088,613 2070,605 2029,609 2018,603 1981,637 1973,633"/>
+        <Baseline points="1994,593 2097,594"/>
+        <TextEquiv conf="0.8594132661819458">
+          <PlainText>van</PlainText>
+          <Unicode>van</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="d9a0832e-64f2-4fdd-9352-1b0fb8c04b0f" custom="readingOrder {index:8;}">
+        <Coords points="1966,638 1983,638 2019,603 2069,603 2096,624 2096,669 2087,678 2020,668 1966,694"/>
+        <Baseline points="1987,660 2097,658"/>
+        <TextEquiv conf="0.8404334187507629">
+          <PlainText>Palc</PlainText>
+          <Unicode>Palc</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_734097de-7540-4dd9-b0b6-c6aef62ac8f0" custom="readingOrder {index:9;}">
+        <Coords points="1964,693 2017,669 2084,677 2096,689 2096,734 2082,748 2044,736 2025,750 2005,744 1979,767 1972,760 1964,767"/>
+        <Baseline points="1985,726 2097,723"/>
+        <TextEquiv conf="0.94404137134552">
+          <PlainText>dele</PlainText>
+          <Unicode>dele</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_4f513580-dc1a-4394-bb66-ab6b14e76e20" custom="readingOrder {index:10;}">
+        <Coords points="1963,766 1976,767 2012,742 2030,758 2074,758 2087,766 2096,756 2096,799 2056,822 2044,814 2031,818 2018,806 1977,814 1963,800"/>
+        <Baseline points="1984,790 2034,792 2097,789"/>
+        <TextEquiv conf="0.6990084052085876">
+          <PlainText>tera</PlainText>
+          <Unicode>tera</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="f30d7dba-d2fd-45a5-a43c-ab4a0cdad519" custom="readingOrder {index:11;}">
+        <Coords points="1963,799 1983,816 2007,805 2024,820 2044,813 2071,832 2087,822 2096,829 2092,873 2084,870 2074,879 2018,873 1991,892 1974,881 1963,885"/>
+        <Baseline points="1984,860 2034,862 2097,861"/>
+        <TextEquiv conf="0.5583599805831909">
+          <PlainText>oorl</PlainText>
+          <Unicode>oorl</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_6bc4c299-8acd-4c09-94e0-e1c635002079" custom="readingOrder {index:12;}">
+        <Coords points="1974,884 1989,892 2017,873 2035,873 2060,877 2087,904 2096,899 2096,941 2080,943 2068,955 2047,945 2025,950 2018,943 2003,958 1974,959"/>
+        <Baseline points="1995,930 2097,931"/>
+        <TextEquiv conf="0.7202649712562561">
+          <PlainText>sen</PlainText>
+          <Unicode>sen</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_757b169b-cf67-4042-a1c7-9c03ab253eb0" custom="readingOrder {index:13;}">
+        <Coords points="1983,1002 2020,970 2045,970 2075,950 2096,962 2093,1010 2063,1030 2050,1019 2043,1026 2017,1022 1983,1048"/>
+        <Baseline points="2004,1000 2054,996 2097,996"/>
+        <TextEquiv conf="0.8300125002861023">
+          <PlainText>wil</PlainText>
+          <Unicode>wil</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_931cc776-21bd-44b2-9818-47b4e6519371" custom="readingOrder {index:14;}">
+        <Coords points="1981,1016 2008,1024 2034,1019 2053,1032 2067,1028 2096,1042 2096,1085 2068,1112 2059,1105 2046,1109 2012,1085 1981,1091"/>
+        <Baseline points="2002,1073 2097,1074"/>
+        <TextEquiv conf="0.7069448232650757">
+          <PlainText>27</PlainText>
+          <Unicode>27</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_8e0d2a6a-0fdb-41ec-ba6f-d18b553828b0" custom="readingOrder {index:15;}">
+        <Coords points="1979,1092 1992,1089 2010,1107 2025,1092 2052,1110 2086,1100 2096,1105 2096,1149 2044,1160 2016,1182 1993,1188 1979,1180"/>
+        <Baseline points="2000,1142 2050,1142 2097,1139"/>
+        <TextEquiv conf="0.7451798915863037">
+          <PlainText>hie</PlainText>
+          <Unicode>hie</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="f2d6533a-e231-4739-a124-78821112d137" custom="readingOrder {index:16;}">
+        <Coords points="1982,1161 2004,1150 2032,1156 2047,1151 2054,1158 2071,1150 2096,1171 2096,1216 2069,1243 2039,1224 1982,1261"/>
+        <Baseline points="2003,1207 2097,1205"/>
+        <TextEquiv conf="0.9905731678009033">
+          <PlainText>dig</PlainText>
+          <Unicode>dig</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="bdea1d39-a693-45b7-9ffb-515dc4c4c7ce" custom="readingOrder {index:17;}">
+        <Coords points="1987,1235 1995,1239 2028,1215 2071,1246 2096,1244 2091,1294 2059,1291 2005,1326 1987,1315"/>
+        <Baseline points="2008,1280 2097,1278"/>
+        <TextEquiv conf="0.9439592957496643">
+          <PlainText>doo</PlainText>
+          <Unicode>doo</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_88ee8a95-84ba-4e63-b65b-7ffa96b298a7" custom="readingOrder {index:18;}">
+        <Coords points="1993,1349 2058,1292 2096,1309 2093,1357 2073,1357 2063,1367 2048,1360 2022,1379 1993,1379"/>
+        <Baseline points="2014,1349 2097,1343"/>
+        <TextEquiv conf="0.9980624914169312">
+          <PlainText>10</PlainText>
+          <Unicode>10</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="c07f3e2a-3bc2-4345-be52-b79b528f31e7" custom="readingOrder {index:19;}">
+        <Coords points="1988,1386 2020,1381 2043,1359 2065,1371 2083,1366 2096,1379 2094,1426 2056,1435 2013,1423 1988,1439"/>
+        <Baseline points="2009,1413 2097,1413"/>
+        <TextEquiv conf="0.6991589069366455">
+          <PlainText>ne</PlainText>
+          <Unicode>ne</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_89aab913-5c52-4a7d-83c6-d62099d80074" custom="readingOrder {index:20;}">
+        <Coords points="1989,1422 2002,1432 2015,1422 2031,1422 2096,1456 2092,1503 2083,1497 2051,1511 2019,1505 2000,1515 1989,1512"/>
+        <Baseline points="2010,1487 2097,1488"/>
+        <TextEquiv conf="0.9846591949462891">
+          <PlainText>de</PlainText>
+          <Unicode>de</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_9b5bb5a3-1827-4e31-bcde-ad0f607f69c4" custom="readingOrder {index:21;}">
+        <Coords points="1993,1547 2003,1547 2034,1523 2046,1529 2059,1517 2090,1528 2096,1522 2096,1565 2074,1565 2046,1580 1993,1591"/>
+        <Baseline points="2014,1557 2097,1555"/>
+        <TextEquiv conf="0.9299423098564148">
+          <PlainText>we</PlainText>
+          <Unicode>we</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="b3246e11-f447-4163-ad85-1ac524cb21de" custom="readingOrder {index:22;}">
+        <Coords points="1994,1597 2004,1601 2020,1585 2047,1587 2081,1609 2096,1597 2096,1642 2085,1653 2064,1645 2005,1684 1994,1675"/>
+        <Baseline points="2015,1631 2097,1631"/>
+        <TextEquiv conf="0.803693950176239">
+          <PlainText>mo</PlainText>
+          <Unicode>mo</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_3806d0ba-d3e8-4e9b-a283-fddecf888b21" custom="readingOrder {index:23;}">
+        <Coords points="1993,1674 2011,1681 2033,1662 2063,1650 2096,1675 2091,1723 2052,1718 2015,1746 1993,1743"/>
+        <Baseline points="2014,1705 2097,1707"/>
+        <TextEquiv conf="0.9764070510864258">
+          <PlainText>die</PlainText>
+          <Unicode>die</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_8d5ed81c-888e-45fb-9126-2a5e7de2cc74" custom="readingOrder {index:24;}">
+        <Coords points="1994,1746 2021,1746 2043,1729 2063,1734 2083,1753 2096,1748 2096,1791 2071,1814 2033,1826 1994,1814"/>
+        <Baseline points="2015,1779 2097,1780"/>
+        <TextEquiv conf="0.566696047782898">
+          <PlainText>re</PlainText>
+          <Unicode>re</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_13f9bdff-8a38-40bb-89a6-45e4f2ec83e3" custom="readingOrder {index:25;}">
+        <Coords points="2002,1820 2041,1827 2080,1812 2096,1824 2094,1871 2087,1868 2071,1884 2058,1880 2023,1904 2002,1903"/>
+        <Baseline points="2023,1858 2097,1858"/>
+        <TextEquiv conf="0.09435701370239258">
+          <PlainText>1</PlainText>
+          <Unicode>1</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_62f4f795-1882-44b4-8549-5420e763f655" custom="readingOrder {index:26;}">
+        <Coords points="2000,1903 2052,1887 2060,1894 2076,1890 2096,1907 2096,1952 2086,1962 2060,1965 2044,1980 2000,1984"/>
+        <Baseline points="2021,1940 2097,1941"/>
+        <TextEquiv conf="0.6926186084747314">
+          <PlainText>20</PlainText>
+          <Unicode>20</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_8d54c578-89ab-42f3-b8e5-68cef46144f9" custom="readingOrder {index:27;}">
+        <Coords points="2008,1979 2031,1971 2044,1978 2063,1965 2072,1970 2096,1990 2096,2035 2081,2050 2064,2035 2024,2039 2008,2028"/>
+        <Baseline points="2029,2022 2097,2024"/>
+        <TextEquiv conf="0.6432676315307617">
+          <PlainText>B.</PlainText>
+          <Unicode>B.</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_7e852c18-ecfc-4e1e-92e0-6f3d93fd103a" custom="readingOrder {index:28;}">
+        <Coords points="2010,2043 2054,2050 2065,2061 2096,2070 2092,2117 2059,2114 2035,2121 2027,2114 2010,2125"/>
+        <Baseline points="2031,2100 2081,2103 2097,2102"/>
+        <TextEquiv conf="0.45239904522895813">
+          <PlainText>ce</PlainText>
+          <Unicode>ce</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_2e0c896c-4a8c-4bdf-bf11-f593383ea9d5" custom="readingOrder {index:29;}">
+        <Coords points="2023,2186 2066,2155 2096,2160 2096,2203 2040,2219 2023,2206"/>
+        <Baseline points="2044,2189 2097,2193"/>
+        <TextEquiv conf="0.15457338094711304">
+          <PlainText>c</PlainText>
+          <Unicode>c</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="line_62fe9c0e-7ce0-48ab-9d0e-7d254efc422d" custom="readingOrder {index:30;}">
+        <Coords points="2032,2223 2049,2222 2061,2231 2075,2225 2096,2239 2096,2284 2090,2290 2083,2283 2048,2287 2032,2299"/>
+        <Baseline points="2053,2276 2097,2273"/>
+        <TextEquiv conf="0.7094219923019409">
+          <PlainText>0</PlainText>
+          <Unicode>0</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+      <TextLine id="cccb7059-da0f-4837-ae04-224f5c55af4e" custom="readingOrder {index:31;}">
+        <Coords points="2036,2333 2045,2339 2071,2320 2096,2323 2096,2367 2075,2383 2036,2393"/>
+        <Baseline points="2057,2357 2083,2357"/>
+        <TextEquiv conf="0.27225491404533386">
+          <PlainText>e</PlainText>
+          <Unicode>e</Unicode>
+        </TextEquiv>
+        <TextStyle/>
+      </TextLine>
+    </TextRegion>
+  </Page>
+</PcGts>
