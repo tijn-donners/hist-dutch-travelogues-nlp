@@ -9,9 +9,9 @@ import ollama
 import os
 
 # Configuration
-GT_FILE = f"/scratch/{os.environ["USER"]}/hist-dutch-travelogues-nlp/data/GT_1816_processed.txt"
-PAGE_DIR = f"/scratch/{os.environ["USER"]}/hist-dutch-travelogues-nlp/data/page/"
-OUTPUT_DIR = f"/scratch/{os.environ["USER"]}/hist-dutch-travelogues-nlp/data/page_updated/"
+GT_FILE = f"/scratch/{os.environ['USER']}/hist-dutch-travelogues-nlp/data/GT_1816_processed.txt"
+PAGE_DIR = f"/scratch/{os.environ['USER']}/hist-dutch-travelogues-nlp/data/page/"
+OUTPUT_DIR = f"/scratch/{os.environ['USER']}/hist-dutch-travelogues-nlp/data/page_updated/"
 MODEL_NAME = "gemma4:31b"  # Change this to the preferred model available in Ollama
 
 # Point to your Ollama server if not the default (http://localhost:11434)
