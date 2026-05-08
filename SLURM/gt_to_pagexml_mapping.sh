@@ -16,7 +16,7 @@ module load Python/3.11.3-GCCcore-13.3.0
 export OLLAMA_MODELS=/scratch/$USER/ollama_models_scratch
 
 # Start Ollama server in background
-ollama serve
+ollama serve &
 sleep 15  # wait for server to start
 
 #ollama pull gemma4:31b
