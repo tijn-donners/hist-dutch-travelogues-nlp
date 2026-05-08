@@ -18,8 +18,8 @@ export OLLAMA_MODELS=/scratch/$USER/ollama_models_scratch
 # Start Ollama server in background
 ollama serve &
 sleep 15  # wait for server to start
-
-#ollama pull gemma4:31b
+ollama pull gemma4:31b
+ollama ls
 
 source $HOME/venvs/ollama/bin/activate
 pip install pandas ollama
