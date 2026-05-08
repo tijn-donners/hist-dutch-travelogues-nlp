@@ -10,19 +10,18 @@
 #SBATCH --time=01:00:00
 #SBATCH --gpus-per-node=1
 
-module load ollama/0.6.0-GCCcore-13.3.0-CUDA-12.6.0
-module load Python/3.11.3-GCCcore-13.3.0
+module Python/3.11.3-GCCcore-12.3.0
 
 export OLLAMA_MODELS=/scratch/$USER/ollama_models_scratch
 
-# Start Ollama server in background
-ollama serve &
+# Start Ollama (use the binary rather than the module, since it is very outdated)server in background
+/scratch/$USER/ollama/bin serve &
 sleep 15  # wait for server to start
-#ollama pull gemma4:31b
-ollama ls
+/scratch/$USER/ollama/bin pull gemma4:31b
+/scratch/$USER/ollama/bin ls
 
 echo "Loading model into GPU memory..."
-ollama run gemma4:31b "hello" --nowordwrap
+/scratch/$USER/ollama/bin run gemma4:31b "hello" --nowordwrap
 echo "Model loaded, starting Python script..."
 
 source $HOME/venvs/ollama/bin/activate
