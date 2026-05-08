@@ -14,7 +14,7 @@ module load ollama/0.6.0-GCCcore-12.3.0
 module load Python/3.11.3-GCCcore-12.3.0
 
 # Save models to scratch, not home
-export OLLAMA_MODELS=/scratch/$USER/ollama_models
+export OLLAMA_MODELS=/scratch/$USER/ollama_models_scratch
 
 # Start Ollama server in background
 ollama serve &
