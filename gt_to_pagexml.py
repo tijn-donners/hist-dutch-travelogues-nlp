@@ -11,7 +11,7 @@ import ollama
 GT_FILE = "/home/tijn-do/hist-dutch-travelogues-nlp/data/GT_1816_processed.txt"
 PAGE_DIR = "/home/tijn-do/hist-dutch-travelogues-nlp/data/page/"
 OUTPUT_DIR = "/home/tijn-do/hist-dutch-travelogues-nlp/data/page_updated/"
-MODEL_NAME = "gemma4:31b-cloud"  # Change this to the preferred model available in Ollama
+MODEL_NAME = "gemma4:31b"  # Change this to the preferred model available in Ollama
 
 # Point to your Ollama server if not the default (http://localhost:11434)
 # os.environ["OLLAMA_HOST"] = "http://localhost:11434"
