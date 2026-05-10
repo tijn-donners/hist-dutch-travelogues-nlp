@@ -6,8 +6,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=32G
-#SBATCH --time=04:00:00
+#SBATCH --mem=48G
+#SBATCH --time=10:00:00
 #SBATCH --gpus-per-node=1
 
 export OLLAMA_MODELS=/scratch/$USER/ollama_models_scratch
