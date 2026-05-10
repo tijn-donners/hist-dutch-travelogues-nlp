@@ -26,4 +26,5 @@ echo "Model loaded, starting Python script..."
 source $HOME/venvs/ollama/bin/activate
 #pip install pandas ollama
 
+cd /scratch/s6437265/hist-dutch-travelogues-nlp
 python3 -u /scratch/s6437265/hist-dutch-travelogues-nlp/gt_to_pagexml.py

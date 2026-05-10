@@ -9,9 +9,9 @@ import ollama
 import os
 
 # Configuration
-GT_FILE = f"/scratch/{os.environ['USER']}/hist-dutch-travelogues-nlp/data/GT_1816_processed.txt"
-PAGE_DIR = f"/scratch/{os.environ['USER']}/hist-dutch-travelogues-nlp/data/page/"
-OUTPUT_DIR = f"/scratch/{os.environ['USER']}/hist-dutch-travelogues-nlp/data/page_updated/"
+GT_FILE = f"data/GT_1816_processed.txt"
+PAGE_DIR = f"data/page/"
+OUTPUT_DIR = f"data/page_updated/"
 MODEL_NAME = "gemma4:31b"  # Change this to the preferred model available in Ollama
 
 # Point to your Ollama server if not the default (http://localhost:11434)
@@ -90,23 +90,35 @@ def map_gt_to_lines(htr_lines, labeled_context):
     numbered = "\n".join(f"[{i}] {line}" for i, line in enumerate(htr_lines))
     prompt = f'''
 You are an expert in historical Dutch text alignment.
-Below are HTR lines (noisy OCR) from a single page, and ground truth segments.
+Below are HTR lines (noisy OCR) from a single page, and the ground truth text for that page.
 
 === HTR lines ===
 {numbered}
 
-=== Ground Truth segments ===
+=== Ground Truth text (continuous prose — NO line breaks) ===
 {labeled_context}
 
-For each [i] HTR line, find its corrected text in the Ground Truth segments.
+The HTR lines above define the line boundaries. For each [i] HTR line, find the
+contiguous portion of the Ground Truth text that corresponds to it. Make sure to replace the entire HTR line with the the cooresponding part of the Ground Truth. Together, the
+matched portions should reconstruct the Ground Truth text in order, without gaps
+or overlap (except for HTR lines that have no GT equivalent — page numbers, garbage,
+etc.).
+
 Return a JSON object with two fields:
-- "lines": an object where keys are line numbers ("0", "1", ...) and values are the corrected text
+- "lines": an object where keys are line numbers ("0", "1", ...) and values are the
+  **exact substring** of the Ground Truth for that line (keeping original spelling
+  and punctuation)
 - "segments": a list of segment numbers that were used (e.g. [0] or [0, 1] or [2])
 
 Rules:
 - Match by content order, NOT by exact text (HTR is noisy)
-- If an HTR line has no GT equivalent (garbage, page number, etc.), skip it
-- Use the exact spelling and punctuation from the Ground Truth
+- The HTR lines define where each line begins and ends — the GT tells you the
+  correct spelling. Assign each HTR line only the GT text that belongs to it,
+  not the entire remaining page.
+- If an HTR line has no GT equivalent (garbage, page number, etc.), omit it
+- Use the exact spelling and punctuation from the Ground Truth!!!
+- lines with only short word are often noise from another page, and have to be ommited entirely 
+- One segment of ground truth equals one pageXML file. Make sure that all the ground truth from a segment is mapped to one pagexml
 - Report which Segment number(s) the matches came from
 
 Example:
