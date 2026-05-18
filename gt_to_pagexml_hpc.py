@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 import pandas as pd
 import ollama
+from ollama import Client 
 from difflib import SequenceMatcher
 
 # Configuration
@@ -127,6 +128,9 @@ def _parse_json_response(text):
 
 
 def query_ollama(prompt):
+
+    client = Client(timeout=1200.0)
+
     try:
         print(f"Prompting {MODEL_NAME}")
         response = ollama.generate(
@@ -134,7 +138,6 @@ def query_ollama(prompt):
             prompt=prompt,
             options={"temperature": 0},
             format="json",
-            timeout=1200 # 20 minutes
         )
         return _parse_json_response(response.response)
     except Exception as e:
