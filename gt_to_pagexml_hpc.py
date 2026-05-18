@@ -133,13 +133,13 @@ def query_ollama(prompt):
             model=MODEL_NAME,
             prompt=prompt,
             options={"temperature": 0},
-            format="json"
+            format="json",
+            timeout=1200 # 20 minutes
         )
         return _parse_json_response(response.response)
     except Exception as e:
         print(f"  Error querying Ollama: {e}")
         return None
-
 
 # ----------------------------------------------------------------------
 # Alignment with confidence score
