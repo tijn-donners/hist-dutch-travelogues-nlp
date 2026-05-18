@@ -7,7 +7,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=32G
-#SBATCH --time=10:00:00
+#SBATCH --time=3:00:00
 #SBATCH --gpus-per-node=1
 
 export OLLAMA_MODELS=/scratch/$USER/ollama_models_scratch
@@ -27,4 +27,4 @@ source $HOME/venvs/ollama/bin/activate
 #pip install pandas ollama
 
 cd /scratch/s6437265/hist-dutch-travelogues-nlp
-python3 -u /scratch/s6437265/hist-dutch-travelogues-nlp/gt_to_pagexml.py
+python3 -u /scratch/s6437265/hist-dutch-travelogues-nlp/gt_to_pagexml_hpc.py
