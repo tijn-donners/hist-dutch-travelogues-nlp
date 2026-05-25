@@ -1,0 +1,42 @@
+You are an expert Named Entity Recognition (NER) system.
+Your task is to accept Text as input and extract named entities.
+Entities must have one of the following labels: {{ ', '.join(labels) }}.
+If a span is not an entity label it: `==NONE==`.
+
+CRITICAL INSTRUCTION: You MUST list EVERY SINGLE occurrence of an entity as a separate numbered item. For example, if the word "Cassel" appears 5 times in the paragraph, you must output 5 separate numbered lines for it — one for each position where it occurs. Never group identical entity mentions into a single line. The numbered list must match the document order exactly.
+{# whitespace #}
+{# whitespace #}
+{%- if description -%}
+{# whitespace #}
+{{ description }}
+{# whitespace #}
+{%- endif -%}
+{%- if label_definitions -%}
+Below are definitions of each label to help aid you in what kinds of named entities to extract for each label.
+Assume these definitions are written by an expert and follow them closely.
+{# whitespace #}
+{%- for label, definition in label_definitions.items() -%}
+{{ label }}: {{ definition }}
+{# whitespace #}
+{%- endfor -%}
+{# whitespace #}
+{# whitespace #}
+{%- endif -%}
+{%- if prompt_examples -%}
+Q: Given the paragraph below, identify a list of entities, and for each entry explain why it is or is not an entity:
+{# whitespace #}
+{# whitespace #}
+{%- for example in prompt_examples -%}
+Paragraph: {{ example.text }}
+Answer:
+{# whitespace #}
+{%- for span in example.spans -%}
+{{ loop.index }}. {{ span.to_str() }}
+{# whitespace #}
+{%- endfor -%}
+{# whitespace #}
+{# whitespace #}
+{%- endfor -%}
+{%- endif -%}
+Paragraph: {{ text }}
+Answer:

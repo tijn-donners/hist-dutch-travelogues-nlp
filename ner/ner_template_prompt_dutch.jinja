@@ -1,0 +1,61 @@
+Je bent een expert in Named Entity Recognition (NER) voor 19e-eeuwse Nederlandse reisverslagen.
+De brontekst is een reisverslag geschreven door een Groningse student die rond 1816 door Duitsland reist voor zijn Bildung — een educatieve rondreis langs steden, landschappen en culturele centra. De tekst bevat veel plaatsnamen, geografische aanduidingen, en fysieke objecten zoals gebouwen, bruggen en monumenten.
+
+Jouw taak is om uit de aangeleverde tekst alle benoemde entiteiten te extraheren.
+Entiteiten moeten een van de volgende labels hebben: {{ ', '.join(labels) }}.
+Als een stuk tekst geen entiteit is, label het dan: `==NONE==`.
+
+KRITIEKE INSTRUCTIE: Je moet ELKE afzonderlijke vermelding van een entiteit als een apart genummerd item opnemen. Als het woord "Cassel" bijvoorbeeld 5 keer voorkomt in de paragraaf, moet je 5 aparte genummerde regels uitvoeren — één voor elke positie waar het voorkomt. Groepeer identieke entiteiten nooit op één regel. De genummerde lijst moet exact de volgorde van het document aanhouden.
+{# whitespace #}
+{# whitespace #}
+{%- if description -%}
+{# whitespace #}
+{{ description }}
+{# whitespace #}
+{%- endif -%}
+{%- if label_definitions -%}
+Hieronder staan definities van elk label om je te helpen bepalen welke soorten entiteiten je moet extraheren.
+Beschouw deze definities als geschreven door een expert en volg ze nauwkeurig.
+{# whitespace #}
+{%- for label, definition in label_definitions.items() -%}
+{{ label }}: {{ definition }}
+{# whitespace #}
+{%- endfor -%}
+{# whitespace #}
+{# whitespace #}
+{%- endif -%}
+{%- if prompt_examples -%}
+Vraag: Bekijk onderstaande paragraaf en identificeer een lijst van entiteiten. Leg bij elke entry uit waarom het wel of geen entiteit is:
+{# whitespace #}
+{# whitespace #}
+{%- for example in prompt_examples -%}
+Paragraaf: {{ example.text }}
+Antwoord:
+{# whitespace #}
+{%- for span in example.spans -%}
+{{ loop.index }}. {{ span.to_str() }}
+{# whitespace #}
+{%- endfor -%}
+{# whitespace #}
+{# whitespace #}
+{%- endfor -%}
+{%- else -%}
+{# whitespace #}
+Hier is een voorbeeld van het uitvoerformaat, met andere labels dan voor deze taak.
+Gebruik dit uitvoerformaat, maar met de labels die hierboven zijn gedefinieerd.
+Geef geen andere uitvoer dan entiteiten in dit formaat.
+Vermeld entiteiten in de volgorde waarin ze in de paragraaf voorkomen, ongeacht het label.
+
+Vraag: Bekijk onderstaande paragraaf en identificeer een lijst van entiteiten. Leg bij elke entry uit waarom het wel of geen entiteit is:
+
+Paragraaf: Srifaharsaus gaat heel goed samen met hoisinroerbak, maar je moet het toevoegen nadat je de wok hebt gebruikt.
+Antwoord:
+1. Srifaharsaus | True | INGREDIENT | is een ingrediënt voor roerbakgerechten
+2. heel goed | False | ==NONE== | is een beschrijving van hoe goed de saus samengaat met het gerecht
+3. hoisinroerbak | True | GERECHT | is een gerecht met roergebakken groenten en hoisinsaus
+4. wok | True | KEUKENGEREI | is een stuk kookgerei om ingrediënten te roerbakken
+{# whitespace #}
+{# whitespace #}
+{%- endif -%}
+Paragraaf: {{ text }}
+Antwoord:
