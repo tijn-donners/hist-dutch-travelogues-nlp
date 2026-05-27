@@ -1,0 +1,654 @@
+{
+  "letter_id": "BRF0003",
+  "tour_group": {
+    "id": "TG",
+    "label": "Tour Group Brief 3"
+  },
+  "events": [
+    {
+      "id": "RS0001",
+      "type": "translocation",
+      "label": "Rit van Paderborn naar Lichtenau met extrapost",
+      "moved_from": {
+        "text": "Paderborn",
+        "kb_id": "Q2971"
+      },
+      "moved_to": {
+        "text": "Lichtenau",
+        "kb_id": "Q183483"
+      },
+      "mode_of_transportation": "extrapost",
+      "falls_within": null,
+      "mentions_places": [
+        {
+          "text": "Dornhagen",
+          "kb_id": null
+        },
+        {
+          "text": "Grondsteinheim",
+          "kb_id": "Q1550705"
+        }
+      ]
+    },
+    {
+      "id": "RS0002",
+      "type": "stay",
+      "label": "Oponthoud en wisseling van paarden te Lichtenau",
+      "took_place_at": {
+        "text": "Lichtenau",
+        "kb_id": "Q183483"
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0003",
+      "type": "translocation",
+      "label": "Rit van Lichtenau naar Ossendorf met extrapost",
+      "moved_from": {
+        "text": "Lichtenau",
+        "kb_id": "Q183483"
+      },
+      "moved_to": {
+        "text": "Ossendorf",
+        "kb_id": "Q2034601"
+      },
+      "mode_of_transportation": "extrapost",
+      "falls_within": null,
+      "mentions_places": [
+        {
+          "text": "Kleinenberg",
+          "kb_id": "Q1746571"
+        },
+        {
+          "text": "Hardehauserwoud",
+          "kb_id": null
+        }
+      ]
+    },
+    {
+      "id": "RS0004",
+      "type": "stay",
+      "label": "Aankomst en kort oponthoud te Ossendorf",
+      "took_place_at": {
+        "text": "Ossendorf",
+        "kb_id": "Q2034601"
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0005",
+      "type": "translocation",
+      "label": "Wandeling van Ossendorf naar Warburg",
+      "moved_from": {
+        "text": "Ossendorf",
+        "kb_id": "Q2034601"
+      },
+      "moved_to": {
+        "text": "Warburg",
+        "kb_id": "Q968"
+      },
+      "mode_of_transportation": "walking",
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0006",
+      "type": "stay",
+      "label": "Overnachting en maaltijd in Gasthofe Desenburg te Warburg",
+      "took_place_at": {
+        "text": "Warburg",
+        "kb_id": "Q968"
+      },
+      "on_or_within": {
+        "text": "Gasthofe Desenburg",
+        "kb_id": "Q1200563"
+      },
+      "falls_within": null,
+      "sub_events": [
+        "RS0006_1"
+      ],
+      "mentions_places": []
+    },
+    {
+      "id": "RS0006_1",
+      "type": "outdoor_tour",
+      "label": "Avondwandeling rondom Warburg",
+      "took_place_at": {
+        "text": "Warburg",
+        "kb_id": "Q968"
+      },
+      "falls_within": "RS0006",
+      "mentions_places": []
+    },
+    {
+      "id": "RS0007",
+      "type": "translocation",
+      "label": "Rit van Warburg naar West-Uffelen met rytuig",
+      "moved_from": {
+        "text": "Warburg",
+        "kb_id": "Q968"
+      },
+      "moved_to": {
+        "text": "West-Uffelen",
+        "kb_id": null
+      },
+      "mode_of_transportation": "rytuig",
+      "falls_within": null,
+      "mentions_places": [
+        {
+          "text": "Dalheim",
+          "kb_id": "Q1157900"
+        },
+        {
+          "text": "Ehrings",
+          "kb_id": null
+        },
+        {
+          "text": "Libenau",
+          "kb_id": "Q505551"
+        },
+        {
+          "text": "Ober",
+          "kb_id": null
+        },
+        {
+          "text": "Nider Lichtingen",
+          "kb_id": null
+        },
+        {
+          "text": "Hessisch",
+          "kb_id": "Q1199"
+        }
+      ]
+    },
+    {
+      "id": "RS0008",
+      "type": "stay",
+      "label": "Maatlijd in West-Uffelen",
+      "took_place_at": {
+        "text": "West-Uffelen",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0009",
+      "type": "translocation",
+      "label": "Rit van West-Uffelen naar Cassel met rytuig",
+      "moved_from": {
+        "text": "West-Uffelen",
+        "kb_id": null
+      },
+      "moved_to": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "mode_of_transportation": "rytuig",
+      "falls_within": null,
+      "mentions_places": [
+        {
+          "text": "Meinbids",
+          "kb_id": null
+        },
+        {
+          "text": "Kalken",
+          "kb_id": null
+        }
+      ]
+    },
+    {
+      "id": "RS0010",
+      "type": "stay",
+      "label": "Aankomst en verblijf in logement de Kurfürst te Cassel",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "de Kurfürst",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0011",
+      "type": "indoor_tour",
+      "label": "Rondleiding door het Museum Fridericianum",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": null,
+      "sub_events": [
+        "RS0011_1",
+        "RS0011_2",
+        "RS0011_3",
+        "RS0011_4",
+        "RS0011_5",
+        "RS0011_6",
+        "RS0011_7",
+        "RS0011_8",
+        "RS0011_9",
+        "RS0011_10",
+        "RS0011_11"
+      ],
+      "mentions_places": [
+        {
+          "text": "Parys",
+          "kb_id": "Q90"
+        }
+      ]
+    },
+    {
+      "id": "RS0011_1",
+      "type": "indoor_tour",
+      "label": "Eerste kamer: vogeleieren, houtbibliotheek en wassen vruchten",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": [
+        {
+          "text": "Groningen",
+          "kb_id": "Q749"
+        }
+      ]
+    },
+    {
+      "id": "RS0011_2",
+      "type": "indoor_tour",
+      "label": "Tweede kamer: opgezette vogels",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": []
+    },
+    {
+      "id": "RS0011_3",
+      "type": "indoor_tour",
+      "label": "Derde kamer: viervoetige dieren en olifant",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": []
+    },
+    {
+      "id": "RS0011_4",
+      "type": "indoor_tour",
+      "label": "Galery met antiquen en beeldhouwkunst",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": [
+        {
+          "text": "Parys",
+          "kb_id": "Q90"
+        },
+        {
+          "text": "Tivoli",
+          "kb_id": "Q2437255"
+        }
+      ]
+    },
+    {
+      "id": "RS0011_5",
+      "type": "indoor_tour",
+      "label": "Kamer met versteeningen, mineralen en schelpen",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": []
+    },
+    {
+      "id": "RS0011_6",
+      "type": "indoor_tour",
+      "label": "Vertrek met oude penningen en edelgesteenten",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": []
+    },
+    {
+      "id": "RS0011_7",
+      "type": "indoor_tour",
+      "label": "Kamer met pretiosa en barnsteen",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": []
+    },
+    {
+      "id": "RS0011_8",
+      "type": "indoor_tour",
+      "label": "Vertrek met klokken en horloges",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": []
+    },
+    {
+      "id": "RS0011_9",
+      "type": "indoor_tour",
+      "label": "Laatste kamer beneden: mozaïeken",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": []
+    },
+    {
+      "id": "RS0011_10",
+      "type": "indoor_tour",
+      "label": "Bovenkamer met oude wapentuigen",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": [
+        {
+          "text": "Heilige Land",
+          "kb_id": "Q48175"
+        }
+      ]
+    },
+    {
+      "id": "RS0011_11",
+      "type": "indoor_tour",
+      "label": "Laatste zaal: wassen beelden van landgraven",
+      "took_place_at": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "on_or_within": {
+        "text": "Museum Fridericianum",
+        "kb_id": "Q449280"
+      },
+      "falls_within": "RS0011",
+      "mentions_places": []
+    },
+    {
+      "id": "RS0012",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de bibliotheek in hetzelfde gebouw",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "boekery",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0013",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de schilderijengalerij in paleis Bellevue",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "paleis Bellevue",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": [
+        {
+          "text": "Scheveningen",
+          "kb_id": "Q837211"
+        },
+        {
+          "text": "Parys",
+          "kb_id": "Q90"
+        }
+      ]
+    },
+    {
+      "id": "RS0014",
+      "type": "indoor_tour",
+      "label": "Bezoek aan het marmeren bad in de Orangerie",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "marmeren bad",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0015",
+      "type": "outdoor_tour",
+      "label": "Wandeling door de Aue-Garten",
+      "took_place_at": {
+        "text": "Aue",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0016",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Roomsche kerk",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "Roomsche kerk",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0017",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Brüder kerk",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "Brüder",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0018",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Domkerk",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "Domkerk",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0019",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Kweekschool voor onderwyzers",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "Kweekschool voor onderwyzers",
+        "kb_id": null
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0020",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Comedie",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "on_or_within": {
+        "text": "Comedie",
+        "kb_id": "Q153562"
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0021",
+      "type": "outdoor_tour",
+      "label": "Bijwonen van een militaire parade",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0022",
+      "type": "outdoor_tour",
+      "label": "Rondwandeling door Cassel langs pleinen en Wilhelmsbrug",
+      "took_place_at": {
+        "text": "Cassel",
+        "kb_id": "Q2865"
+      },
+      "falls_within": null,
+      "mentions_places": []
+    }
+  ],
+  "mentioned_only_places": [
+    {
+      "text": "Parys",
+      "kb_id": "Q90",
+      "reason": "herkomst en bestemming van kunstwerken, niet bezocht"
+    },
+    {
+      "text": "Groningen",
+      "kb_id": "Q749",
+      "reason": "vergelijkingspunt voor bibliotheek, niet bezocht"
+    },
+    {
+      "text": "Tivoli",
+      "kb_id": "Q2437255",
+      "reason": "locatie van nagemaakte ruïnes, niet bezocht"
+    },
+    {
+      "text": "Scheveningen",
+      "kb_id": "Q837211",
+      "reason": "onderwerp van schilderij, niet bezocht"
+    },
+    {
+      "text": "Heilige Land",
+      "kb_id": "Q48175",
+      "reason": "herkomst van een zwaard, niet bezocht"
+    },
+    {
+      "text": "Franryk",
+      "kb_id": "Q142",
+      "reason": "herkomst van Hugenoten, niet bezocht"
+    },
+    {
+      "text": "Göttingen",
+      "kb_id": "Q3033",
+      "reason": "toekomstige reisbestemming, nog niet bezocht"
+    },
+    {
+      "text": "Wilhelmshöhe",
+      "kb_id": "Q447441",
+      "reason": "toekomstig bezoek gepland, nog niet bezocht"
+    },
+    {
+      "text": "Munstersche",
+      "kb_id": "Q2742",
+      "reason": "herkomst van de postwagen, niet bezocht"
+    },
+    {
+      "text": "Duitschland",
+      "kb_id": null,
+      "reason": "vermeld in boektitel, niet bezocht"
+    },
+    {
+      "text": "Neuhaus",
+      "kb_id": "Q2242634",
+      "reason": "genoemd als vergelijking voor morsigheid, niet bezocht"
+    }
+  ]
+}

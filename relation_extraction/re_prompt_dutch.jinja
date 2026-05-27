@@ -1,0 +1,110 @@
+Je bent een expert in het analyseren van 19e-eeuwse Nederlandse reisverslagen en het modelleren van reisevenementen volgens de Academic Tourism Ontology (ATO), die gebaseerd is op CIDOC CRM.
+
+De brontekst is een reisverslag geschreven door een Groningse student die rond 1816 door Duitsland reist. In de tekst zijn Named Entities gemarkeerd met de volgende notatie: [entiteit tekst](LABEL, Wikidata_ID). Bijvoorbeeld: [Cassel](E53_Place, Q2865).
+
+Jouw taak is om uit de aangeleverde tekst ALLE reisevenementen (travel events) te extraheren en hun onderlinge relaties en relaties tot plaatsen te bepalen.
+
+## Event Types (ATO)
+
+Er zijn drie hoofdtypen evenementen:
+
+1. **translocation** — Een verplaatsing van de ene plaats naar de andere. Dit komt overeen met CIDOC CRM E9_Move.
+   - Heeft een startlocatie (P27_moved_from) en een eindlocatie (P26_moved_to)
+   - Kan een transportmiddel hebben (mode_of_transportation): "carriage", "walking", "post wagon", "extrapost", etc.
+   - Voorbeeld: "Wy reden uit Paderborn naar Cassel" → translocation van Paderborn naar Cassel met extrapost
+
+2. **tour** — Een bezoek aan of rondleiding door een locatie. Dit is een E7_Activity.
+   - **indoor**: Bezoek binnen een gebouw (kamers, zalen, bibliotheek, museum). Gekoppeld aan E19_Physical_Thing via P8_took_place_on_or_within.
+   - **outdoor**: Wandeling door park, tuin, stad. Gekoppeld aan E53_Place via P7_took_place_at.
+   - Kan sub-tours bevatten (bijv. een indoor tour in Wilhelmshöhe bevat tours door individuele kamers)
+
+3. **stay** — Een verblijf op een locatie (overnachting, maaltijd, rustpauze). Dit is een E7_Activity.
+   - Gekoppeld aan de locatie via P7_took_place_at
+   - Voorbeeld: overnachting in Gasthofe Desenburg, maaltijd in West-Uffelen
+
+## CRUCIALE REGEL: Visited vs. Merely Mentioned
+
+Dit is het belangrijkste onderscheid in de ATO:
+
+- **BEZOCHT (visited)**: De verteller is DAADWERKELIJK op deze locatie geweest. Dit blijkt uit:
+  - Werkwoorden van beweging: "wy reden naar...", "kwamen te...", "arriveerden te..."
+  - Verblijf: "wy bleven te...", "logeerden in...", "aten te..."
+  - Rondleiding: "wy bezochten...", "wy zagen...", "men bragt ons in..."
+  - Tijdsaanduidingen: "om 3 uur te...", "des avonds te..."
+
+- **VERMELD (merely mentioned)**: De verteller noemt de plaats alleen, maar is er NIET geweest. Dit blijkt uit:
+  - Toekomstige plannen: "wy zullen naar... gaan", "morgen gaan wy naar..."
+  - Historische of algemene verwijzingen: "de schilderijen kwamen uit Parys"
+  - Vergelijkingen of voorbeelden: "gelyk aan die te Amsterdam"
+  - Verwijzingen naar herkomst van objecten of personen
+
+De genoemde plaatsen moeten worden opgenomen in de "mentioned_only_places" lijst.
+
+## JSON Output Formaat
+
+Je MOET een geldig JSON object teruggeven. Geen markdown, geen code blocks, alleen het JSON object:
+
+```json
+{
+  "letter_id": "BRF0003",
+  "tour_group": {
+    "id": "TG",
+    "label": "Tour Group Brief 3"
+  },
+  "events": [
+    {
+      "id": "RS0001",
+      "type": "translocation",
+      "label": "Korte beschrijving van het evenement",
+      "moved_from": {"text": "Paderborn", "kb_id": "Q2971"},
+      "moved_to": {"text": "Cassel", "kb_id": "Q2865"},
+      "mode_of_transportation": "extrapost",
+      "falls_within": null,
+      "mentions_places": []
+    },
+    {
+      "id": "RS0002",
+      "type": "indoor_tour",
+      "label": "Bezoek aan het museum",
+      "took_place_at": {"text": "Museum Fridericianum", "kb_id": "Q449280"},
+      "on_or_within": {"text": "Museum Fridericianum", "kb_id": "Q449280"},
+      "falls_within": null,
+      "sub_events": ["RS0002_1", "RS0002_2"],
+      "mentions_places": [
+        {"text": "Parys", "kb_id": "Q90"}
+      ]
+    }
+  ],
+  "mentioned_only_places": [
+    {"text": "Parys", "kb_id": "Q90", "reason": "herkomst van schilderijen, niet bezocht"}
+  ]
+}
+```
+
+## Belangrijke regels
+
+1. **Elk evenement heeft een uniek ID** (RS0001, RS0002, etc.). Sub-evenementen krijgen ID's zoals RS0002_1, RS0002_2.
+2. **Chronologische volgorde**: Events moeten in de volgorde staan waarin ze in de tekst voorkomen.
+3. **falls_within**: Als een evenement onderdeel is van een groter evenement, verwijs naar het ID van het bovenliggende evenement. Anders null.
+4. **sub_events**: Als een evenement sub-evenementen bevat (zoals een tour door meerdere kamers), vermeld de ID's.
+5. **Alle entity referenties** moeten exact overeenkomen met de gemarkeerde entiteiten in de tekst. Gebruik dezelfde text, label en kb_id.
+6. **Alleen bezochte plaatsen** komen in moved_from/moved_to/took_place_at/on_or_within. Genoemde maar niet bezochte plaatsen in mentions_places of mentioned_only_places.
+7. **mode_of_transportation**: Alleen voor translocation events. Gebruik Nederlandse termen (extrapost, postwagen, wandelend, rijtuig).
+8. **Elke translocatie** moet een moved_from en moved_to hebben — ook als de startlocatie hetzelfde is als de eindlocatie van de vorige translocatie.
+
+{# whitespace #}
+{# whitespace #}
+{%- if prompt_examples -%}
+Hieronder volgen voorbeelden van correcte analyses:
+
+{%- for example in prompt_examples -%}
+Tekst: {{ example.text }}
+
+Analyse:
+{{ example.output }}
+
+{% endfor -%}
+{%- endif -%}
+Tekst: {{ text }}
+
+Analyse:

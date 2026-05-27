@@ -1,0 +1,121 @@
+# Few-shot examples for ATO relation extraction
+# Based on annotated data from ATO.rdf (Brief IV and V patterns)
+
+- text: |
+    [Wy](E21_Person, TG) reden dan Donderdag zynde den 4 om 1 uur met [Extrapost](E55_Type, aat:300248181) uit [Paderborn](E53_Place, Q2971) en kwamen om 8 uur te [Ossendorf](E53_Place, Q2034601) aan. De Kastelein toonde zich zeer gebelgd. Wy besloten naar [Warburg](E53_Place, Q968) te wandelen omdat wy aldaar oneindig beter logeeren konden. In [Warburg](E53_Place, Q968) hebben wy zeer goed gegeten in het [Gasthofe Desenburg](E19_Physical_Thing, Q1200563) en heerlyk geslapen.
+  output:
+    letter_id: "BRF0003"
+    tour_group:
+      id: "TG"
+      label: "Tour Group Brief 3"
+    events:
+      - id: "RS0001"
+        type: "translocation"
+        label: "Rit van Paderborn naar Ossendorf met extrapost"
+        moved_from: {"text": "Paderborn", "kb_id": "Q2971"}
+        moved_to: {"text": "Ossendorf", "kb_id": "Q2034601"}
+        mode_of_transportation: "extrapost"
+        falls_within: null
+        mentions_places: []
+      - id: "RS0002"
+        type: "translocation"
+        label: "Wandeling van Ossendorf naar Warburg"
+        moved_from: {"text": "Ossendorf", "kb_id": "Q2034601"}
+        moved_to: {"text": "Warburg", "kb_id": "Q968"}
+        mode_of_transportation: "walking"
+        falls_within: null
+        mentions_places: []
+      - id: "RS0003"
+        type: "stay"
+        label: "Overnachting en maaltijd in Gasthofe Desenburg te Warburg"
+        took_place_at: {"text": "Warburg", "kb_id": "Q968"}
+        on_or_within: {"text": "Gasthofe Desenburg", "kb_id": "Q1200563"}
+        falls_within: null
+        mentions_places: []
+    mentioned_only_places: []
+
+- text: |
+    De volgende morgen verlieten wy [Warburg](E53_Place, Q968) met een [rytuig](E22_Human-Made_Object, aat:300248181). Wy reden door het dorpje [Dalheim](E53_Place, Q1157900) en kwamen voorby [Ober](E53_Place, null) en door [Nider Lichtingen](E53_Place, null). Hier aten wy in der haast te [West-Uffelen](E53_Place, null) en waren weldra op weg naar [Cassel](E53_Place, Q2865). Kort aan de weg zagen wy ontzettende grote kudden varkens. Om 5 uur arriveerden wy te [Cassel](E53_Place, Q2865) en namen onze intrek in het [logement de Kurfürst](E19_Physical_Thing, null).
+  output:
+    letter_id: "BRF0003"
+    tour_group:
+      id: "TG"
+      label: "Tour Group Brief 3"
+    events:
+      - id: "RS0001"
+        type: "translocation"
+        label: "Rit van Warburg via Dalheim en andere dorpen naar West-Uffelen"
+        moved_from: {"text": "Warburg", "kb_id": "Q968"}
+        moved_to: {"text": "West-Uffelen", "kb_id": null}
+        mode_of_transportation: "rytuig"
+        falls_within: null
+        mentions_places:
+          - {"text": "Dalheim", "kb_id": "Q1157900"}
+          - {"text": "Ober", "kb_id": null}
+          - {"text": "Nider Lichtingen", "kb_id": null}
+      - id: "RS0002"
+        type: "stay"
+        label: "Maatlijd in West-Uffelen"
+        took_place_at: {"text": "West-Uffelen", "kb_id": null}
+        falls_within: null
+        mentions_places: []
+      - id: "RS0003"
+        type: "translocation"
+        label: "Rit van West-Uffelen naar Cassel"
+        moved_from: {"text": "West-Uffelen", "kb_id": null}
+        moved_to: {"text": "Cassel", "kb_id": "Q2865"}
+        mode_of_transportation: "rytuig"
+        falls_within: null
+        mentions_places: []
+      - id: "RS0004"
+        type: "stay"
+        label: "Aankomst en verblijf in logement de Kurfürst te Cassel"
+        took_place_at: {"text": "Cassel", "kb_id": "Q2865"}
+        on_or_within: {"text": "logement de Kurfürst", "kb_id": null}
+        falls_within: null
+        mentions_places: []
+    mentioned_only_places: []
+
+- text: |
+    [Cassel](E53_Place, Q2865) verdient gewis de opmerkzaamheid van elken reiziger. Alle kostbaarheden, zoo uit het [Museum Fridericianum](E19_Physical_Thing, Q449280) als schilderyen enz, uit [Parys](E53_Place, Q90) terug gekomen zyn voor ieder vreemde te zien. Ik zal een aanvang maken met gemeld museum. In het eerste vertrek vonden wy eene groote collectie vogeleyeren. De Tweede Kamer was geheel gevuld met opgezette vogels. By het openen der derde Kamer wierd het oog getroffen door een opgezette olyphant. Van daar kwamen wy in een soort van [galery](E53_Place, null) ondersteund door zuilen. Hier waren antiquen en voorwerpen van beeldhouwkunst, doch veele stukken waren beschadigt door hun reis naar [Parys](E53_Place, Q90).
+  output:
+    letter_id: "BRF0003"
+    tour_group:
+      id: "TG"
+      label: "Tour Group Brief 3"
+    events:
+      - id: "RS0001"
+        type: "indoor_tour"
+        label: "Rondleiding door het Museum Fridericianum"
+        took_place_at: {"text": "Cassel", "kb_id": "Q2865"}
+        on_or_within: {"text": "Museum Fridericianum", "kb_id": "Q449280"}
+        falls_within: null
+        sub_events: ["RS0001_1", "RS0001_2", "RS0001_3", "RS0001_4"]
+        mentions_places: []
+      - id: "RS0001_1"
+        type: "indoor_tour"
+        label: "Eerste kamer: vogeleieren collectie"
+        took_place_at: {"text": "galery", "kb_id": null}
+        falls_within: "RS0001"
+        mentions_places: []
+      - id: "RS0001_2"
+        type: "indoor_tour"
+        label: "Tweede kamer: opgezette vogels"
+        took_place_at: {"text": "galery", "kb_id": null}
+        falls_within: "RS0001"
+        mentions_places: []
+      - id: "RS0001_3"
+        type: "indoor_tour"
+        label: "Derde kamer: viervoetige dieren en olifant"
+        took_place_at: {"text": "galery", "kb_id": null}
+        falls_within: "RS0001"
+        mentions_places: []
+      - id: "RS0001_4"
+        type: "indoor_tour"
+        label: "Galery met antiquen en beeldhouwkunst"
+        took_place_at: {"text": "galery", "kb_id": null}
+        falls_within: "RS0001"
+        mentions_places:
+          - {"text": "Parys", "kb_id": "Q90"}
+    mentioned_only_places:
+      - {"text": "Parys", "kb_id": "Q90", "reason": "herkomst van schilderijen en bestemming van geroofde kunst, niet bezocht tijdens deze reis"}
