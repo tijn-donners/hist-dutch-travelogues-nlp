@@ -24,6 +24,7 @@ TAG_MAP = {
 
 
 def select_results_file() -> Path:
+    """Present a numbered menu of .spacy files in ner-results/ and return the chosen path."""
     spacy_files = sorted(RESULTS_DIR.glob("*.spacy"))
     if not spacy_files:
         print("No .spacy files found in ner-results/")
@@ -107,6 +108,7 @@ def assign_annotations_to_pages(
 
 
 def _spans_overlap(a_start: int, a_end: int, b_start: int, b_end: int) -> bool:
+    """Check whether two character-offset spans overlap."""
     return a_start < b_end and b_start < a_end
 
 
@@ -156,7 +158,12 @@ def classify_instances(
     pages_pred: list[list[tuple[int, int, str, str]]],
     page_numbers: list[int],
 ) -> tuple[list[dict], list[dict], list[dict]]:
-    """Per-page relaxed matching: classify each span as TP, FP, or FN."""
+    """Classify each gold and predicted span as TP, FP, or FN via relaxed overlap matching.
+
+    Each span tuple is (start_char, end_char, label, text). A gold span and a
+    pred span count as a true positive when they share a label and their character
+    offsets overlap. Returns three lists of dicts ready for CSV export.
+    """
     tp_instances = []
     fp_instances = []
     fn_instances = []
@@ -208,7 +215,7 @@ def write_errors_csv(
     fn_instances: list[dict],
     output_path: Path,
 ):
-    """Write classified instances to a CSV, sorted by page then type."""
+    """Write TP/FP/FN instances to a CSV file sorted by page number then error type."""
     fieldnames = [
         "type", "label", "page",
         "gold_text", "pred_text",
@@ -232,6 +239,12 @@ def write_errors_csv(
 
 
 def main():
+    """Evaluate NER predictions against Recogito gold annotations.
+
+    Matches predicted docs to pages via the full-text offset map, builds spaCy
+    Example objects for strict scoring, and computes relaxed (overlap-based)
+    P/R/F1 per label. Exports TP/FP/FN instances to a CSV.
+    """
     # 1. Select files
     spacy_file = select_results_file()
 

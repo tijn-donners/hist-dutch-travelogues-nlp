@@ -32,8 +32,29 @@ def _ollama_rerank(
     top_k: int = 3,
     ollama_url: str = "http://localhost:11434",
     model_name: str = "gemma4:31b-cloud",
+    ollama_headers: dict | None = None,
 ) -> list[dict]:
-    """Score all candidates in a single Ollama call and keep the top_k."""
+    """Score all candidates in a single Ollama call and keep the top_k.
+
+    Sends a batch scoring prompt asking the LLM to rate each candidate 0-10
+    for fit with the entity and context. Parses numbered scores from the
+    response with multi-format fallback logic.
+
+    Args:
+        entity_text: The entity surface form.
+        context: Surrounding text from the travelogue.
+        candidates: List of candidate dicts from Stage 1.
+        top_k: Number of top candidates to retain.
+        ollama_url: Ollama server base URL.
+        model_name: Ollama model name.
+        ollama_headers: Optional auth headers for cloud API.
+
+    Returns:
+        Top-k candidates sorted by rerank_score (descending).
+
+    Raises:
+        Exception: Propagated to caller for heuristic fallback.
+    """
     lines = []
     for i, cand in enumerate(candidates, 1):
         lines.append(
@@ -57,6 +78,7 @@ def _ollama_rerank(
                 "stream": False,
                 "options": {"temperature": 0.0, "num_predict": len(candidates) * 8},
             },
+            headers=ollama_headers,
             timeout=120,
         )
         data = resp.json()
@@ -107,8 +129,6 @@ def _heuristic_rerank(
     → "Paris", "Cassel" → "Kassel"). Weights context-description overlap
     and geographic domain signals over exact label matching.
     """
-    import re
-
     # Countries/regions in the travelogue's geographic domain
     domain_terms = {
         # Countries
@@ -209,6 +229,7 @@ def rerank_candidates(
     top_k: int = 3,
     ollama_url: str = "http://localhost:11434",
     model_name: str = "gemma4:31b-cloud",
+    ollama_headers: dict | None = None,
 ) -> list[dict]:
     """Rerank candidates for an entity mention.
 
@@ -231,7 +252,8 @@ def rerank_candidates(
     # Try Ollama reranker first
     try:
         result = _ollama_rerank(entity_text, context, candidates, top_k,
-                                ollama_url=ollama_url, model_name=model_name)
+                                ollama_url=ollama_url, model_name=model_name,
+                                ollama_headers=ollama_headers)
         print(f"  [Stage 2] Ollama reranked {len(candidates)} -> {len(result)}")
         for i, c in enumerate(result):
             print(f"    {i+1}. {c['id']} {c['label']} (score={c['rerank_score']:.3f})")

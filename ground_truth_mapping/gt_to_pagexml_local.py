@@ -1,3 +1,13 @@
+"""Correct HTR (Handwritten Text Recognition) output in PageXML files.
+
+Aligns noisy HTR line text with ground truth transcriptions using an Ollama LLM
+to map each HTR line to its correct GT substring. Pages without a scan→page
+mapping or without GT content are copied as-is. Produces corrected PageXML files
+and summary/unmatched-line CSV reports.
+
+Intended for local use with the Ollama cloud model (gemma4:31b-cloud).
+"""
+
 import re
 import time
 import shutil
@@ -14,8 +24,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 GT_FILE = str(ROOT_DIR / 'data/GT_1816_for_mapping.txt')
 PAGE_DIR = str(ROOT_DIR / "data/page/")
 OUTPUT_DIR = str(ROOT_DIR / "data/page_updated/")
-MODEL_NAME = "gemma4:31b-cloud"  # Change to your preferred Ollama model
-# os.environ["OLLAMA_HOST"] = "http://localhost:11434"  # If non‑default
+MODEL_NAME = "gemma4:31b-cloud"
 
 
 # ----------------------------------------------------------------------
@@ -129,6 +138,14 @@ def _parse_json_response(text):
 
 
 def query_ollama(prompt):
+    """Send a prompt to the Ollama model and return the parsed JSON response.
+
+    Args:
+        prompt: The full prompt string to send.
+
+    Returns:
+        Parsed JSON dict, or None if the call or parse fails.
+    """
     try:
         print(f"Prompting {MODEL_NAME}")
         response = ollama.generate(
@@ -207,12 +224,22 @@ def map_gt_to_lines(htr_lines, gt_text, page_label=None):
 
 
 def calculate_fuzzy_accuracy(original_gt, mapping):
+    """Compute similarity between the original GT and the reconstructed text from the mapping.
+
+    Concatenates mapped lines in index order and compares against the full
+    ground truth string using SequenceMatcher.ratio().
+
+    Args:
+        original_gt: The full ground truth text for the page.
+        mapping: Dict of {line_index: corrected_text} from the LLM.
+
+    Returns:
+        Similarity percentage (0-100), or 0.0 if mapping is empty.
+    """
     if not mapping:
         return 0.0
-    
+
     recovered_text = "".join([mapping[k] for k in sorted(mapping.keys())])
-    
-    # ratio() returns a float from 0 to 1 based on how similar the strings are
     return SequenceMatcher(None, original_gt, recovered_text).ratio() * 100
 
 
@@ -220,6 +247,16 @@ def calculate_fuzzy_accuracy(original_gt, mapping):
 # Update PageXML
 # ----------------------------------------------------------------------
 def update_pagexml(xml_path, line_mapping, output_path=None):
+    """Overwrite HTR line text in a PageXML file with corrected GT text.
+
+    Iterates TextLines in reading order and replaces the PlainText and Unicode
+    elements for each line index present in the mapping.
+
+    Args:
+        xml_path: Path to the original PageXML file.
+        line_mapping: Dict of {line_index: corrected_text}.
+        output_path: Where to write the updated XML (defaults to overwriting xml_path).
+    """
     if not line_mapping:
         return
     tree = ET.parse(xml_path)
@@ -255,6 +292,12 @@ def update_pagexml(xml_path, line_mapping, output_path=None):
 # Main processing
 # ----------------------------------------------------------------------
 def main():
+    """Run the full HTR-to-GT alignment pipeline.
+
+    Iterates all PageXML files, maps scan numbers to page numbers, retrieves
+    ground truth content, aligns HTR lines to GT via Ollama, writes corrected
+    PageXML, and produces summary CSV reports.
+    """
     xml_files = sorted(Path(PAGE_DIR).glob("*.xml"))
     output_dir = Path(OUTPUT_DIR)
     output_dir.mkdir(parents=True, exist_ok=True)

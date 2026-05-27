@@ -41,8 +41,8 @@
     - text: Gasthuis Desenburg
       is_entity: true
       label: E19_Physical_Thing
-      reasoning: is the name of a geographically identifiable named place, namely a 'gasthuis'. Not a political entity, so not E53_place.
+      reason: is the name of a geographically identifiable named place, namely a 'gasthuis'. Not a political entity, so not E53_place.
     - text: Desenberg
       is_entity: true
       label: E19_Physical_Thing
-      reasoning: is a mountain/hill, which is a landmark, and therefore a physical thing and not a E53_Place.
+      reason: is a mountain/hill, which is a landmark, and therefore a physical thing and not a E53_Place.

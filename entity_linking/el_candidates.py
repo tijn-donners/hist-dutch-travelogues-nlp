@@ -36,7 +36,15 @@ Antwoord uitsluitend met de valide JSON. Geen inleiding, geen markdown blocks, g
 
 
 def _wikidata_search(entity_text: str, lang: str = "nl") -> list[dict]:
-    """Search Wikidata for an entity string and return candidates."""
+    """Search Wikidata EntitySearch API for a raw entity string.
+
+    Args:
+        entity_text: The surface form to search for.
+        lang: Language code for the search (nl, en, or de).
+
+    Returns:
+        List of candidate dicts with id, label, description, source.
+    """
     url = "https://www.wikidata.org/w/api.php"
     params = {
         "action": "wbsearchentities",
@@ -68,11 +76,24 @@ def _predict_entity_profile(
     context: str,
     ollama_url: str,
     model_name: str,
+    ollama_headers: dict | None = None,
 ) -> dict | None:
-    """LLM-based Entity Profile Generation (EPG).
-    
-    Acts as our conceptual dense vector encoder, turning obscure 19th-century context
-    into a structured modern identity block for targeting.
+    """Use an LLM to predict a modern identity profile for an archaic entity mention.
+
+    Entity Profile Generation (EPG) turns a 19th-century surface form and its
+    surrounding context into a structured profile (modern_name, country_or_region,
+    type_keywords) that enables high-recall semantic search against KB APIs.
+
+    Args:
+        entity_text: The archaic entity surface form (e.g. "Cassel").
+        entity_label: NER label (E53_Place or E19_Physical_Thing).
+        context: Surrounding text from the travelogue.
+        ollama_url: Ollama server base URL.
+        model_name: Ollama model name.
+        ollama_headers: Optional auth headers for cloud API.
+
+    Returns:
+        Dict with modern_name, country_or_region, type_keywords, or None on failure.
     """
     cache_key = f"{entity_text}|{entity_label}|{context[:300]}"
     if cache_key in _llm_cache:
@@ -88,6 +109,7 @@ def _predict_entity_profile(
                 "stream": False,
                 "options": {"temperature": 0.1, "num_predict": 150},
             },
+            headers=ollama_headers,
             timeout=30,
         )
         raw_response = resp.json().get("response", "").strip()
@@ -104,11 +126,17 @@ def _predict_entity_profile(
 
 
 def _wikidata_hybrid_sparql_search(profile: dict) -> list[dict]:
-    """Targeted Wikidata search using the LLM-generated structural profile.
+    """Search Wikidata via SPARQL using the EPG-predicted modern name and location.
 
-    Searches by modern_name and filters results by location terms in the
-    description, avoiding the combined-string trap where "Leipziger Platz
-    Kassel" matches no label.
+    Uses Wikidata's mwapi:EntitySearch service inside a SPARQL query, filtered
+    by non-broad location terms from the profile's country_or_region field.
+    Broad terms like "Germany" are excluded to avoid over-matching.
+
+    Args:
+        profile: EPG profile dict with modern_name and country_or_region keys.
+
+    Returns:
+        List of candidate dicts with id, label, description, source.
     """
     modern_name = profile.get("modern_name", "")
     location_hint = profile.get("country_or_region", "")
@@ -175,11 +203,18 @@ def _wikidata_hybrid_sparql_search(profile: dict) -> list[dict]:
 
 
 def _wikipedia_search(profile: dict) -> list[dict]:
-    """Search Wikipedia full-text and resolve results to Wikidata IDs.
+    """Search English Wikipedia full-text and resolve results to Wikidata Q-IDs.
 
-    Wikipedia's full-text search handles multi-word queries better than
-    Wikidata's label-only EntitySearch, making it useful for EPG profiles
-    where the modern name + location form a natural search phrase.
+    Combines the EPG modern_name and country_or_region into a search phrase,
+    runs Wikipedia's full-text search, then batch-resolves page titles to
+    Wikidata IDs via the pageprops API.
+
+    Args:
+        profile: EPG profile dict with modern_name and country_or_region keys.
+
+    Returns:
+        List of candidate dicts with id (Q-ID), label (page title), description
+        (snippet), source="wikipedia_epg".
     """
     modern_name = profile.get("modern_name", "")
     location_hint = profile.get("country_or_region", "")
@@ -258,7 +293,15 @@ def _wikipedia_search(profile: dict) -> list[dict]:
 
 
 def _geonames_profile_search(profile: dict, username: str | None) -> list[dict]:
-    """Search GeoNames using modernized target profiles rather than archaic spellings."""
+    """Search GeoNames using the EPG-predicted modern name and location.
+
+    Args:
+        profile: EPG profile dict with modern_name and country_or_region keys.
+        username: GeoNames API username (None disables this lane).
+
+    Returns:
+        List of candidate dicts with id (gn:NNN), label, description, source="geonames_epg".
+    """
     if not username or not profile.get("modern_name"):
         return []
 
@@ -300,9 +343,29 @@ def generate_candidates(
     geonames_username: str | None = None,
     ollama_url: str = "http://localhost:11434",
     model_name: str = "gemma4:31b-cloud",
+    ollama_headers: dict | None = None,
     use_cache: bool = True,
 ) -> list[dict]:
-    """Generate candidate KB entries utilizing Hybrid EPG Generation."""
+    """Generate KB candidate entries for an entity mention using a multi-lane approach.
+
+    Stage 1 of the EL pipeline. Runs two lanes:
+      - Sparse lane: wikidata text search in nl/en/de against the raw surface form.
+      - Dense/EPG lane: LLM predicts a modern profile, then queries Wikidata SPARQL,
+        Wikipedia full-text, and GeoNames with the predicted modern name and location.
+
+    Args:
+        entity_text: The entity surface form (e.g. "Cassel").
+        entity_label: NER label (E53_Place or E19_Physical_Thing).
+        context: Surrounding text from the travelogue (enables EPG lane).
+        geonames_username: Optional GeoNames API username.
+        ollama_url: Ollama server base URL.
+        model_name: Ollama model name for EPG profile prediction.
+        ollama_headers: Optional auth headers for cloud API.
+        use_cache: Whether to return cached results for duplicate queries.
+
+    Returns:
+        Deduplicated list of candidate dicts across all search lanes.
+    """
     cache_key = f"{entity_text}|{entity_label}"
     if use_cache and cache_key in _cache:
         print(f"  [Stage 1] '{entity_text}' -> {len(_cache[cache_key])} candidates (cached)")
@@ -323,7 +386,7 @@ def generate_candidates(
     # 2. Dense/EPG Lane: Generate profile using surrounding context to unlock structural matches
     if context:
         profile = _predict_entity_profile(
-            entity_text, entity_label, context, ollama_url, model_name
+            entity_text, entity_label, context, ollama_url, model_name, ollama_headers
         )
         if profile:
             print(f"  [Stage 1] EPG Predicted Profile: {profile}")
@@ -366,6 +429,6 @@ def generate_candidates(
 
 
 def clear_cache() -> None:
-    """Clear all caches."""
+    """Clear the candidate and EPG profile caches (useful between runs on different letters)."""
     _cache.clear()
     _llm_cache.clear()

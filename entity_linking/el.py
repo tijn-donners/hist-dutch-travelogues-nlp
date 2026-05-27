@@ -12,7 +12,10 @@ import os
 from pathlib import Path
 
 import spacy
+from dotenv import load_dotenv
 from spacy.tokens import DocBin
+
+load_dotenv()
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,17 +25,30 @@ from el_selector import select_candidate
 
 # ── Configuration ──────────────────────────────────────────────────────────
 
-SPACY_FILE = str(ROOT_DIR / "ner" / "ner-results" / "1816_all_pages_gemma4:31b-cloud.spacy")
+SPACY_FILE = str(ROOT_DIR / "ner" / "ner-results" / "1816_all_pages_deepseek-v4-pro.spacy")
 MODEL_NAME = "gemma4:31b-cloud"
 GEONAMES_USERNAME = os.environ.get("GEONAMES_USERNAME")
 TOP_K_RERANK = 3
-OLLAMA_URL = "http://localhost:11434"
-OUTPUT = None  # None = auto-generate from SPACY_FILE name
 
-
+if os.environ.get("OLLAMA_API_KEY"):
+    OLLAMA_URL = "https://ollama.com"
+    OLLAMA_HEADERS = {"Authorization": f"Bearer {os.environ['OLLAMA_API_KEY']}"}
+else:
+    OLLAMA_URL = "http://localhost:11434"
+    OLLAMA_HEADERS = None
 def extract_context(doc_text: str, start_char: int, end_char: int,
                     window: int = 500) -> str:
-    """Extract surrounding context around an entity span."""
+    """Extract surrounding text window around a character-offset entity span.
+
+    Args:
+        doc_text: Full page text.
+        start_char: Start character offset of the entity.
+        end_char: End character offset of the entity.
+        window: Number of characters to include on each side (default 500).
+
+    Returns:
+        Context string with newlines replaced by spaces.
+    """
     ctx_start = max(0, start_char - window)
     ctx_end = min(len(doc_text), end_char + window)
     context = doc_text[ctx_start:ctx_end].replace('\n', ' ')
@@ -45,15 +61,17 @@ def link_entities(
     geonames_username: str | None = None,
     top_k_rerank: int = 3,
     ollama_url: str = "http://localhost:11434",
+    ollama_headers: dict | None = None,
 ) -> list:
     """Run the full EL pipeline on a .spacy file.
 
     Args:
         spacy_file: Path to the .spacy DocBin file with NER annotations.
-        model_name: Ollama model name for Stage 3 selection.
+        model_name: Ollama model name for Stage 2 reranking and Stage 3 selection.
         geonames_username: Optional GeoNames API username for Stage 1.
         top_k_rerank: Number of candidates to retain after reranking.
         ollama_url: Ollama server base URL.
+        ollama_headers: Optional auth headers for cloud API (Bearer token).
 
     Returns:
         List of updated spaCy Docs with kb_ids set on entities.
@@ -79,6 +97,7 @@ def link_entities(
                 geonames_username=geonames_username,
                 ollama_url=ollama_url,
                 model_name=model_name,
+                ollama_headers=ollama_headers,
             )
 
             if not candidates:
@@ -92,6 +111,7 @@ def link_entities(
                 top_k=top_k_rerank,
                 ollama_url=ollama_url,
                 model_name=model_name,
+                ollama_headers=ollama_headers,
             )
 
             # Stage 3: LLM Selection
@@ -100,7 +120,8 @@ def link_entities(
                 context,
                 reranked,
                 model_name=model_name,
-                ollama_base_url=ollama_url,
+                ollama_url=ollama_url,
+                ollama_headers=ollama_headers,
             )
 
             if selected_id != "NIL":
@@ -123,9 +144,15 @@ def link_entities(
 
 # ── Run ────────────────────────────────────────────────────────────────────
 
-if __name__ == "__main__":
+def main():
+    """Run the full Entity Linking pipeline and save results.
+
+    Prints configuration, clears caches, runs the three-stage pipeline on the
+    configured .spacy file, and writes the enriched DocBin to disk.
+    """
     print(f"Loading: {SPACY_FILE}")
     print(f"LLM: {MODEL_NAME}")
+    print(f"Ollama: {OLLAMA_URL} {'(cloud)' if OLLAMA_HEADERS else '(local)'}")
     print(f"GeoNames: {'enabled' if GEONAMES_USERNAME else 'disabled'}")
     print(f"Top-k rerank: {TOP_K_RERANK}")
     print()
@@ -138,9 +165,14 @@ if __name__ == "__main__":
         geonames_username=GEONAMES_USERNAME,
         top_k_rerank=TOP_K_RERANK,
         ollama_url=OLLAMA_URL,
+        ollama_headers=OLLAMA_HEADERS,
     )
 
-    output_path = OUTPUT or SPACY_FILE.replace(".spacy", "_el.spacy")
+    output_path = SPACY_FILE.replace(".spacy", "_el.spacy")
     merged_docbin = DocBin(docs=docs)
     merged_docbin.to_disk(output_path)
     print(f"\nSaved to: {output_path}")
+
+
+if __name__ == "__main__":
+    main()

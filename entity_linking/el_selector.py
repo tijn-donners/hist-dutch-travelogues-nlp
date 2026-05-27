@@ -25,11 +25,16 @@ Kies de kandidaat die het beste overeenkomt met het toponiem in de gegeven conte
 
 
 def _enrich_candidates(candidates: list[dict]) -> None:
-    """Fetch Wikipedia extracts for candidates and attach them in-place.
+    """Fetch Wikipedia intro extracts for Wikidata candidates and attach them in-place.
 
-    Resolves Wikidata Q-IDs to English Wikipedia sitelinks, then fetches
-    the intro extract for each. Already-enriched candidates and non-Wikidata
-    candidates are skipped.
+    Resolves Wikidata Q-IDs to English Wikipedia sitelinks via wbgetentities,
+    then fetches the summary extract for each matched page. Already-enriched
+    candidates and non-Wikidata entries (e.g. gn:*) are skipped. Extracts are
+    capped at ~300 words to keep LLM prompts manageable.
+
+    Args:
+        candidates: List of candidate dicts. Enrichment is added as a
+                    "wikipedia_extract" key on matching dicts in-place.
     """
     # Skip if already enriched or no candidates with Wikidata Q-IDs
     qids = [
@@ -91,7 +96,17 @@ def _enrich_candidates(candidates: list[dict]) -> None:
 
 
 def _format_candidates(candidates: list[dict]) -> str:
-    """Format candidates list for the LLM prompt."""
+    """Format a candidate list into a readable text block for the LLM prompt.
+
+    Each candidate is numbered and shows its ID, source tag, label, and
+    description. Wikipedia extracts are appended when available.
+
+    Args:
+        candidates: List of candidate dicts from Stage 2 reranking.
+
+    Returns:
+        Formatted multi-line string ready for interpolation into the prompt.
+    """
     lines = []
     for i, cand in enumerate(candidates, 1):
         source_tag = {
@@ -115,7 +130,8 @@ def select_candidate(
     context: str,
     candidates: list[dict],
     model_name: str = "gemma4:31b-cloud",
-    ollama_base_url: str = "http://localhost:11434",
+    ollama_url: str = "http://localhost:11434",
+    ollama_headers: dict | None = None,
 ) -> str:
     """Ask the LLM to select the best candidate for an entity.
 
@@ -124,7 +140,8 @@ def select_candidate(
         context: Surrounding text from the travelogue.
         candidates: Reranked candidate list from rerank_candidates().
         model_name: Ollama model name.
-        ollama_base_url: Ollama server URL.
+        ollama_url: Ollama server URL.
+        ollama_headers: Optional auth headers for cloud API.
 
     Returns:
         The selected candidate ID (e.g. "Q2861") or "NIL" if no match.
@@ -152,13 +169,14 @@ def select_candidate(
 
     try:
         resp = requests.post(
-            f"{ollama_base_url}/api/generate",
+            f"{ollama_url}/api/generate",
             json={
                 "model": model_name,
                 "prompt": prompt,
                 "stream": False,
                 "options": {"temperature": 0.0},
             },
+            headers=ollama_headers,
             timeout=180,
         )
         data = resp.json()
