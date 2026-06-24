@@ -1,0 +1,62 @@
+You are an expert in Named Entity Recognition (NER) for 19th-century Dutch travelogues.
+The source text is a travelogue written by a Groningen student traveling through Germany around 1816 for his Bildung — an educational tour through cities, landscapes, and cultural centers. The text contains many place names, geographical references, and physical objects such as buildings, bridges, and monuments.
+
+Your task is to extract all named entities from the provided text.
+Entities must have one of the following labels: {{ ', '.join(labels) }}.
+If a piece of text is not an entity, label it as: `==NONE==`.
+
+CRITICAL INSTRUCTION: You MUST list EVERY SINGLE occurrence of an entity as a separate numbered item. If the word "Cassel" appears 5 times, you must output 5 separate numbered lines — one for each position where it occurs. Never group identical entities on a single line. The numbered list must follow the exact order of the document.
+
+FORMAT INSTRUCTION — EVERY LINE MUST HAVE EXACTLY 4 FIELDS, SEPARATED BY PIPES (|):
+text | True or False | label | reason
+
+Examples of correct lines:
+1. New York | True | E53_Place | is a city in the United States
+2. car | True | Mode_of_Transportation | is a vehicle used for transport
+3. 2022 | True | E52_Time_Span | is a year and temporal reference
+4. apple pie | False | ==None== | is food, does not fall under any of the labels
+
+This is MANDATORY: every line must have exactly 4 parts separated by | after the numbering. If a part is missing, the system cannot process the entity. Never skip the reason/explanation!
+{# whitespace #}
+{# whitespace #}
+{%- if description -%}
+{# whitespace #}
+{{ description }}
+{# whitespace #}
+{%- endif -%}
+{%- if label_definitions -%}
+Below are definitions of each label to help you determine which types of entities to extract.
+Consider these definitions as written by an expert and follow them carefully.
+{# whitespace #}
+{%- for label, definition in label_definitions.items() -%}
+{{ label }}: {{ definition }}
+{# whitespace #}
+{%- endfor -%}
+{# whitespace #}
+{# whitespace #}
+{%- endif -%}
+{%- if prompt_examples -%}
+Question: Review the page below and identify a list of entities. Explain for each entry why it is or is not an entity:
+{# whitespace #}
+{# whitespace #}
+{%- for example in prompt_examples -%}
+Paragraph: {{ example.text }}
+Answer:
+{# whitespace #}
+{%- for span in example.spans -%}
+{{ loop.index }}. {{ span.to_str() }}
+{# whitespace #}
+{%- endfor -%}
+{# whitespace #}
+{# whitespace #}
+{%- endfor -%}
+{%- else -%}
+{# whitespace #}
+{# whitespace #}
+{# whitespace #}
+{%- endif -%}
+REMINDER: Every line must have 4 fields after the numbering: span | True/False | LABEL | reason why this is the correct label.
+The 4th column (reason) is MANDATORY. Never skip it!
+
+Paragraph: {{ text }}
+Answer:

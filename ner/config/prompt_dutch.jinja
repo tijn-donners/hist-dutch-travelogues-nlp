@@ -1,0 +1,62 @@
+Je bent een expert in Named Entity Recognition (NER) voor 19e-eeuwse Nederlandse reisverslagen.
+De brontekst is een reisverslag geschreven door een Groningse student die rond 1816 door Duitsland reist voor zijn Bildung — een educatieve rondreis langs steden, landschappen en culturele centra. De tekst bevat veel plaatsnamen, geografische aanduidingen, en fysieke objecten zoals gebouwen, bruggen en monumenten.
+
+Jouw taak is om uit de aangeleverde tekst alle benoemde entiteiten te extraheren.
+Entiteiten moeten een van de volgende labels hebben: {{ ', '.join(labels) }}.
+Als een stuk tekst geen entiteit is, label het dan: `==NONE==`.
+
+KRITIEKE INSTRUCTIE: Je moet ELKE afzonderlijke vermelding van een entiteit als een apart genummerd item opnemen. Als het woord "Cassel" bijvoorbeeld 5 keer voorkomt in de paragraaf, moet je 5 aparte genummerde regels uitvoeren — één voor elke positie waar het voorkomt. Groepeer identieke entiteiten nooit op één regel. De genummerde lijst moet exact de volgorde van het document aanhouden.
+
+FORMAT INSTRUCTIE — ELKE REGEL MOET PRECIES 4 VELDEN HEBBEN, GESCHEIDEN DOOR PIPES (|):
+text | True of False | label | reden
+
+Voorbeelden van correcte regels:
+1. New York | True | E53_Place | is een stad in de Verenigde Staten
+2. auto | True | Mode_of_Transportation | is een voertuig gebruikt voor transport
+3. 2022 | True | E52_Time_Span | is een jaartal en tijdsaanduiding
+4. appeltaart | False | ==None== | is eten, valt niet onder een van de labels
+
+Dit is VERPLICHT: elke regel moet de nummering precies 4 delen hebben gescheiden door |. Als er een deel ontbreekt, kan het systeem de entiteit niet verwerken. Sla nooit de reden/verklaring over!
+{# whitespace #}
+{# whitespace #}
+{%- if description -%}
+{# whitespace #}
+{{ description }}
+{# whitespace #}
+{%- endif -%}
+{%- if label_definitions -%}
+Hieronder staan definities van elk label om je te helpen bepalen welke soorten entiteiten je moet extraheren.
+Beschouw deze definities als geschreven door een expert en volg ze nauwkeurig.
+{# whitespace #}
+{%- for label, definition in label_definitions.items() -%}
+{{ label }}: {{ definition }}
+{# whitespace #}
+{%- endfor -%}
+{# whitespace #}
+{# whitespace #}
+{%- endif -%}
+{%- if prompt_examples -%}
+Vraag: Bekijk onderstaande pagina en identificeer een lijst van entiteiten. Leg bij elke entry uit waarom het wel of geen entiteit is:
+{# whitespace #}
+{# whitespace #}
+{%- for example in prompt_examples -%}
+Paragraaf: {{ example.text }}
+Antwoord:
+{# whitespace #}
+{%- for span in example.spans -%}
+{{ loop.index }}. {{ span.to_str() }}
+{# whitespace #}
+{%- endfor -%}
+{# whitespace #}
+{# whitespace #}
+{%- endfor -%}
+{%- else -%}
+{# whitespace #}
+{# whitespace #}
+{# whitespace #}
+{%- endif -%}
+HERINNERING: Elke regel moet NA de nummering 4 velden hebben: span | True/False | LABEL | reden waarom dit het goede label is. 
+De 4e kolom (reden) is VERPLICHT. Sla deze nooit over!
+
+Paragraaf: {{ text }}
+Antwoord:

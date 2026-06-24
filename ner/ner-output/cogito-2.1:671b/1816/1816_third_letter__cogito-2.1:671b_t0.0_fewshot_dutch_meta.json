@@ -1,0 +1,11 @@
+{
+  "model": "cogito-2.1:671b",
+  "mode": "fewshot",
+  "language": "dutch",
+  "temperature": 0.0,
+  "source_text": "data/1816_third_letter.txt",
+  "duration_seconds": 234.1,
+  "num_pages": 10,
+  "ollama_host": "cloud",
+  "failed_pages": []
+}

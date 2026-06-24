@@ -1,0 +1,12 @@
+spacy
+spacy-llm
+ollama
+httpx
+rdflib
+pyshacl
+jinja2
+pyyaml
+pandas
+rapidfuzz
+requests
+python-dotenv

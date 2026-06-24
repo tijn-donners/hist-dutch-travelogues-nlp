@@ -1,0 +1,11 @@
+{
+  "model": "kimi-k2.7-code",
+  "mode": "fewshot",
+  "language": "english",
+  "temperature": 0.0,
+  "source_text": "data/1816_third_letter.txt",
+  "duration_seconds": 1572.8,
+  "num_pages": 10,
+  "ollama_host": "cloud",
+  "failed_pages": []
+}

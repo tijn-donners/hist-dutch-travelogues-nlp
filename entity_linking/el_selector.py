@@ -6,11 +6,19 @@ Enriches top candidates with Wikipedia extracts for better disambiguation.
 """
 
 import re
+import sys
+from pathlib import Path
+
 import requests
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from ollama_utils import stream_ollama_chat
 
 HEADERS = {
     "User-Agent": "DutchTravelogueNLP/1.0 (https://github.com/tijn-do/hist-dutch-travelogues-nlp; research project)"
 }
+
+TEMPERATURE = 0.0
 
 
 _SELECTION_PROMPT = """Je beoordeelt kandidaat-matches voor een toponiem uit een 19e-eeuws Nederlands reisverslag. De auteur is een Groningse student die rond 1816 door Duitsland reist voor zijn Bildung. Alle entiteiten zijn locaties (steden, dorpen, rivieren, bergen, gebouwen, pleinen) voornamelijk in Duitsland, Nederland of aangrenzende gebieden.
@@ -21,7 +29,10 @@ Tekst rondom het toponiem: "{context}"
 Kandidaten:
 {candidates_text}
 
-Kies de kandidaat die het beste overeenkomt met het toponiem in de gegeven context. Antwoord ALLEEN met het ID van de gekozen kandidaat. Als geen enkele kandidaat past, antwoord dan: NIL"""
+Kies de kandidaat die het beste overeenkomt met het toponiem in de gegeven context.
+Antwoord ALLEEN met het ID van de gekozen kandidaat.
+De kandidaat-match mag GEEN generieke entiteit zijn, maar naar een SPECIFIEKE plaats verwijzen om zo het toponiem te disambigueren.
+Als geen enkele kandidaat past of het een generieke kandidaat-match is, antwoord dan: NIL"""
 
 
 def _enrich_candidates(candidates: list[dict]) -> None:
@@ -132,6 +143,7 @@ def select_candidate(
     model_name: str = "gemma4:31b-cloud",
     ollama_url: str = "http://localhost:11434",
     ollama_headers: dict | None = None,
+    think: bool | str | None = None,
 ) -> str:
     """Ask the LLM to select the best candidate for an entity.
 
@@ -142,6 +154,8 @@ def select_candidate(
         model_name: Ollama model name.
         ollama_url: Ollama server URL.
         ollama_headers: Optional auth headers for cloud API.
+        think: Thinking mode (True, False, "low", "medium", "high").
+               None uses the model's default.
 
     Returns:
         The selected candidate ID (e.g. "Q2861") or "NIL" if no match.
@@ -167,20 +181,20 @@ def select_candidate(
         candidates_text=candidates_text,
     )
 
+    api_key = None
+    if ollama_headers:
+        auth = ollama_headers.get("Authorization", "")
+        api_key = auth.replace("Bearer ", "") if auth.startswith("Bearer ") else None
     try:
-        resp = requests.post(
-            f"{ollama_url}/api/generate",
-            json={
-                "model": model_name,
-                "prompt": prompt,
-                "stream": False,
-                "options": {"temperature": 0.0},
-            },
-            headers=ollama_headers,
-            timeout=180,
-        )
-        data = resp.json()
-        answer = data.get("response", "").strip()
+        answer = stream_ollama_chat(
+            model=model_name,
+            prompt=prompt,
+            host=ollama_url,
+            api_key=api_key,
+            timeout=180.0,
+            temperature=TEMPERATURE,
+            think=think,
+        ).strip()
         print(f"  [Stage 3] LLM raw response: \"{answer[:200]}\"")
     except Exception as e:
         print(f"  [Stage 3] LLM call failed: {e}")

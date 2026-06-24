@@ -14,17 +14,21 @@ import shutil
 import json
 import xml.etree.ElementTree as ET
 from pathlib import Path
+import sys
+
 import pandas as pd
-import ollama
 from difflib import SequenceMatcher
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT_DIR))
+from ollama_utils import stream_ollama_chat
 
 # Configuration
 GT_FILE = str(ROOT_DIR / 'data/GT_1816_for_mapping.txt')
 PAGE_DIR = str(ROOT_DIR / "data/page/")
 OUTPUT_DIR = str(ROOT_DIR / "data/page_updated/")
 MODEL_NAME = "gemma4:31b"
+TEMPERATURE = 0.0
 
 
 # ----------------------------------------------------------------------
@@ -148,13 +152,16 @@ def query_ollama(prompt):
     """
     try:
         print(f"Prompting {MODEL_NAME}")
-        response = ollama.generate(
+        response = stream_ollama_chat(
             model=MODEL_NAME,
             prompt=prompt,
-            options={"temperature": 0},
+            host="http://localhost:11434",
+            api_key=None,
+            timeout=600.0,
+            temperature=TEMPERATURE,
             format="json",
         )
-        return _parse_json_response(response.response)
+        return _parse_json_response(response)
     except Exception as e:
         print(f"  Error querying Ollama: {e}")
         return None

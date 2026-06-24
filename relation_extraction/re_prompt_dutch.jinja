@@ -1,44 +1,153 @@
 Je bent een expert in het analyseren van 19e-eeuwse Nederlandse reisverslagen en het modelleren van reisevenementen volgens de Academic Tourism Ontology (ATO), die gebaseerd is op CIDOC CRM.
 
-De brontekst is een reisverslag geschreven door een Groningse student die rond 1816 door Duitsland reist. In de tekst zijn Named Entities gemarkeerd met de volgende notatie: [entiteit tekst](LABEL, Wikidata_ID). Bijvoorbeeld: [Cassel](E53_Place, Q2865).
+De brontekst is een reisverslag geschreven door een Groningse student die in 1816 door Duitsland reist. In de tekst zijn Named Entities gemarkeerd met de volgende notatie: [entiteit tekst](LABEL, mention_id). Bijvoorbeeld: [Cassel](E53_Place, e12). Het mention_id (e12) identificeert deze specifieke vermelding in de tekst: gebruik deze ID's in zowel je event-eigenschappen (moved_from, took_place_at, etc.) als in je citaties.
 
 Jouw taak is om uit de aangeleverde tekst ALLE reisevenementen (travel events) te extraheren en hun onderlinge relaties en relaties tot plaatsen te bepalen.
 
 ## Event Types (ATO)
 
-Er zijn drie hoofdtypen evenementen:
+Er zijn vier hoofdtypen evenementen:
 
-1. **translocation** — Een verplaatsing van de ene plaats naar de andere. Dit komt overeen met CIDOC CRM E9_Move.
+1. **translocation**: Een verplaatsing van de ene plaats naar de andere. Dit komt overeen met CIDOC CRM E9_Move.
    - Heeft een startlocatie (P27_moved_from) en een eindlocatie (P26_moved_to)
-   - Kan een transportmiddel hebben (mode_of_transportation): "carriage", "walking", "post wagon", "extrapost", etc.
+   - Heeft een transportmiddel (mode_of_transportation): gebruik het mention_id van een Mode_of_Transportation entiteit (bv. "e6" voor Extrapost)
    - Voorbeeld: "Wy reden uit Paderborn naar Cassel" → translocation van Paderborn naar Cassel met extrapost
+   - **near_places**: Locaties die de verteller VANAF EEN AFSTAND zag of noemde tijdens deze verplaatsing, maar niet fysiek betrad. De verteller was DICHTBIJ maar niet BINNEN de locatie. Gebruik het mention_id van een E53_Place of E18_Physical_Thing entiteit. Alleen voor locaties die daadwerkelijk zichtbaar of voelbaar aanwezig waren tijdens het evenement (niet voor hypothetische of herinnerde locaties — die zijn NO_REL).
+     - Voorbeeld: "wy zagen in de verte het [kasteel](E18_Physical_Thing, e9) liggen" tijdens een translocatie → `"near_places": ["e9"]`
 
-2. **tour** — Een bezoek aan of rondleiding door een locatie. Dit is een E7_Activity.
-   - **indoor**: Bezoek binnen een gebouw (kamers, zalen, bibliotheek, museum). Gekoppeld aan E19_Physical_Thing via P8_took_place_on_or_within.
-   - **outdoor**: Wandeling door park, tuin, stad. Gekoppeld aan E53_Place via P7_took_place_at.
-   - Kan sub-tours bevatten (bijv. een indoor tour in Wilhelmshöhe bevat tours door individuele kamers)
+2. **indoor_tour**: Een bezoek aan of rondleiding BINNEN een gebouw (kamers, zalen, bibliotheek, museum). Dit is een E7_Activity.
+   - Gekoppeld aan de stad/plaats via P7_took_place_at (E53_Place)
+   - Gekoppeld aan het gebouw via P8_took_place_on_or_within (E18_Physical_Thing)
+   - Kamers/vertrekken binnen het gebouw zijn E53_Place en worden gekoppeld via sections (P59_has_section)
 
-3. **stay** — Een verblijf op een locatie (overnachting, maaltijd, rustpauze). Dit is een E7_Activity.
+   **SUB-TOUR REGEL**: Wanneer een indoor_tour 2 of meer afzonderlijk beschreven KAMERS, VERTREKKEN, ZALEN of SECTIES bevat, geef ELK onderdeel een eigen sub-event:
+   - Museum met meerdere kamers → ELKE kamer een apart indoor_tour sub-event, met falls_within naar het museumbezoek.
+   - Bibliotheek in HETZELFDE gebouw als museum → sub-event van het museumbezoek.
+   - Alleen SEPARATE gebouwen (ander paleis, kerk, school) worden aparte top-level events.
+   - Ook kamers ZONDER eigen NER-entiteit krijgen een sub-event; gebruik dan het mention_id van het dichtstbijzijnde gebouw of de galery.
+
+3. **outdoor_tour**: Een wandeling door park, tuin, stad, laan, of ander buitenlocatie. Dit is een E7_Activity.
+   - Gekoppeld aan de locatie via P7_took_place_at (E53_Place)
+   - Heeft GEEN on_or_within (buitenlocaties zijn geen gebouwen)
+   - Kan sub-events hebben voor beschreven delen (laan, vijver, perk, tempeltje, badhuis)
+
+4. **stay**: Een verblijf op een locatie (overnachting, maaltijd, rustpauze). Dit is een E7_Activity.
    - Gekoppeld aan de locatie via P7_took_place_at
+   - Optioneel gekoppeld aan het gebouw via P8_took_place_on_or_within (E18_Physical_Thing)
    - Voorbeeld: overnachting in Gasthofe Desenburg, maaltijd in West-Uffelen
 
-## CRUCIALE REGEL: Visited vs. Merely Mentioned
+## Tijdsspanne (Time Span)
 
-Dit is het belangrijkste onderscheid in de ATO:
+Elk evenement kan een tijdsspanne hebben (`time_span`). Gebruik het mention_id van een E52_Time_Span entiteit.
+- Dagen van de week: "Donderdag" → time_span: ["e1"]
+- Datums: "den 4" → time_span: ["e2"]
+- Tijdstippen: "om 1 uur" → time_span: ["e3"]
+- Dagdelen: "des morgens", "des avonds" → time_span: mention_id van "des morgens"
+- Een evenement kan meerdere tijdsspannen hebben: zet ze allemaal in de time_span array.
+- De time_span verwijzing wordt ook als citation opgenomen met role: "time_span".
 
-- **BEZOCHT (visited)**: De verteller is DAADWERKELIJK op deze locatie geweest. Dit blijkt uit:
-  - Werkwoorden van beweging: "wy reden naar...", "kwamen te...", "arriveerden te..."
-  - Verblijf: "wy bleven te...", "logeerden in...", "aten te..."
-  - Rondleiding: "wy bezochten...", "wy zagen...", "men bragt ons in..."
-  - Tijdsaanduidingen: "om 3 uur te...", "des avonds te..."
+Voorbeeld: `"Wy reden Donderdag den 4 om 1 uur uit Paderborn"` heeft [Donderdag](E52_Time_Span, e1), [den 4](E52_Time_Span, e2) en [1 uur](E52_Time_Span, e3). Het translocation event krijgt `"time_span": ["e1", "e2", "e3"]` met citations voor elk.
 
-- **VERMELD (merely mentioned)**: De verteller noemt de plaats alleen, maar is er NIET geweest. Dit blijkt uit:
-  - Toekomstige plannen: "wy zullen naar... gaan", "morgen gaan wy naar..."
-  - Historische of algemene verwijzingen: "de schilderijen kwamen uit Parys"
-  - Vergelijkingen of voorbeelden: "gelyk aan die te Amsterdam"
-  - Verwijzingen naar herkomst van objecten of personen
+## F2_Expression (artistieke expressies) en bekeken objecten
 
-De genoemde plaatsen moeten worden opgenomen in de "mentioned_only_places" lijst.
+F2_Expression entiteiten zijn kunstwerken (mozaïeken, schilderijen, beelden, sculpturen) die de reiziger bezichtigde.
+E19_Physical_Object entiteiten zijn beweegbare niet-biologische objecten (versteeningen, mineralen, penningen, schelpen).
+E20_Biological_Object entiteiten zijn biologische specimens (vogeleieren, opgezette vogels, skeletten).
+E31_Document entiteiten zijn specifieke documenten of boeken.
+
+Deze worden bekeken tijdens een tour. Gebruik ze in `viewed_artifacts` van het sub-event waar ze werden gezien.
+- Als een kunstwerk/object in de tekst staat als iets dat men "zag" of "bewonderde", is dat een viewed_artifacts item.
+- VOORBEELD: "men zag de [vesting Rheinfels als mozaiek](F2_Expression, e5)" → voeg e5 toe aan viewed_artifacts van dat sub-event.
+
+## CRUCIALE REGEL: Ruimtelijke Relatie Classificatie van Toponiemen
+
+Classificeer ELK toponiem (E53_Place en E18_Physical_Thing) in de tekst volgens
+één van de volgende zes ruimtelijke relatiecategorieën (Soni et al., 2023).
+Elke E53_Place en E18_Physical_Thing entiteit krijgt precies één categorie.
+
+### 1. IN: De verteller bevindt zich BINNEN de grenzen van de locatie.
+De verteller is fysiek aanwezig op de locatie; stationair verblijf.
+- Signaalwoorden: in, te, binnen, op, bevond zich in, verbleef te, was in
+- Voorbeeld: "wy waren te [Cassel](E53_Place, e2)" → IN
+- Voorbeeld: "wy bezochten het [Museum Fridericianum](E18_Physical_Thing, e3)" → IN
+
+### 2. NEAR: De verteller is DICHTBIJ de locatie maar niet er binnen.
+De verteller ziet of noemt de locatie vanaf een afstand; niet fysiek binnen.
+- Signaalwoorden: nabij, dichtbij, in de buurt van, niet ver van, in de verte, aldaar
+- Voorbeeld: "het [paleis](E18_Physical_Thing, e5) aldaar is in eene bevallige smaak gebouwd" → NEAR
+  (de verteller is in de buurt van Weissenstein maar niet IN het paleis zelf)
+
+### 3. THRU: De verteller BEWEEGT DOOR de locatie; doorkruisen, passeren.
+De verteller passeert de locatie tijdens een verplaatsing; tijdelijk, in beweging.
+- Signaalwoorden: door, passeerden, doorkruisten, langs, over, doorheen
+- Voorbeeld: "wy passeerden [Dransfeld](E53_Place, e5)" → THRU
+- BELANGRIJK: THRU impliceert dat de verteller de locatie DAADWERKELIJK heeft aangedaan
+  (in tegenstelling tot NO_REL). De locatie is bezocht, maar alleen doorkruisend.
+
+### 4. TO: De verteller beweegt NAAR een bestemming die zeker BEREIKT is.
+De verteller arriveert op de locatie als eindpunt van een verplaatsing.
+- Signaalwoorden: naar, kwamen aan te, arriveerden te, bereikten, gingen naar
+- Voorbeeld: "wy kwamen te [Göttingen](E53_Place, e8) aan" → TO
+
+### 5. FROM: De verteller VERTREKT UIT een locatie waar hij WAS.
+De verteller verlaat de locatie als startpunt van een verplaatsing.
+- Signaalwoorden: uit, verlieten, vertrokken uit, reden uit, gingen van
+- Voorbeeld: "wy verlieten [Cassel](E53_Place, e3)" → FROM
+
+### 6. NO_REL: De locatie wordt ALLEEN GENOEMD; geen ruimtelijke relatie.
+De verteller is NIET op of bij de locatie geweest. Dit omvat:
+- Toekomstige plannen: "wy zullen naar... gaan", "morgen gaan wy naar..."
+- Herinneringen of historische verwijzingen: "de schilderijen kwamen uit Parys"
+- Herkomst van objecten of personen: "een standbeeld uit Rome"
+- Vergelijkingen of voorbeelden: "gelyk aan die te Amsterdam"
+- Hypothetische of conditionele vermeldingen
+- Voorbeeld: "de schilderijen kwamen uit [Parys](E53_Place, e4)" → NO_REL
+
+### Consistentie met events (BIDIRECTIONEEL / VERPLICHT)
+
+De categorie in `toponym_relations` MOET consistent zijn met de rol die de entiteit
+speelt in de events[], EN omgekeerd: elke entiteit met een VISITED categorie MOET
+ook daadwerkelijk in het corresponderende event-role veld voorkomen. Een VISITED
+entiteit die nergens in een event-role staat is een FOUT.
+
+Event-role → categorie (controle):
+- Een entiteit in `moved_from` → categorie FROM
+- Een entiteit in `moved_to` → categorie TO
+- Een entiteit in `took_place_at` → categorie IN
+- Een entiteit in `on_or_within` → categorie IN
+- Een entiteit in `via_points` → categorie THRU
+- Een entiteit in `near_places` → categorie NEAR
+
+Categorie → event-role (VERPLICHT, anders is de entiteit "dangling"):
+- IN → de entiteit MOET in `took_place_at` of `on_or_within` van een indoor_tour/outdoor_tour/stay (sub-)event staan
+- NEAR → de entiteit MOET in de `near_places` array van het (sub-)event waarin hij van dichtbij gezien/Genoemd werd
+- THRU → de entiteit MOET in de `via_points` array van een translocation event staan
+- TO → de entiteit MOET in `moved_to` van een translocation event staan
+- FROM → de entiteit MOET in `moved_from` van een translocation event staan
+- NO_REL → de entiteit komt in GEEN enkele event-role voor (alleen genoemd in de tekst)
+
+Elke VISITED entiteit moet bovendien een citation hebben met de bijbehorende `role`.
+Als je een entiteit als IN/NEAR/THRU/TO/FROM classificeert, zoek dan de specifieke
+(sub-)event waar hij bij hoort en vul de juiste event-role in, laat hem nooit
+alleen in `toponym_relations` staan zonder event-role koppeling. Een entiteit die
+nergens in een event past, is NO_REL, niet IN/NEAR/THRU/TO/FROM.
+
+LET OP: Alleen E53_Place en E18_Physical_Thing entiteiten krijgen een categorie.
+Andere entiteitstypen (Mode_of_Transportation, E52_Time_Span, F2_Expression,
+E19_Physical_Object, E20_Biological_Object, E31_Document) komen NIET in
+toponym_relations.
+
+## Sections: Gebouw→Kamer relaties (P59_has_section)
+
+Wanneer een indoor_tour kamers binnen een gebouw bezoekt, leg de relatie tussen gebouw en kamer vast:
+- Het gebouw is E18_Physical_Thing
+- Elke kamer/vertrek/zaal is E53_Place
+- Gebruik het `sections` veld om deze relaties te documenteren
+
+Voorbeeld: Wilhelmshöhe (E18_Physical_Thing, e2) heeft kamers zoals "kleed kamer" (E53_Place, e4):
+```json
+"sections": [{"room": "e4", "building": "e2"}]
+```
 
 ## JSON Output Formaat
 
@@ -56,41 +165,107 @@ Je MOET een geldig JSON object teruggeven. Geen markdown, geen code blocks, alle
       "id": "RS0001",
       "type": "translocation",
       "label": "Korte beschrijving van het evenement",
-      "moved_from": {"text": "Paderborn", "kb_id": "Q2971"},
-      "moved_to": {"text": "Cassel", "kb_id": "Q2865"},
-      "mode_of_transportation": "extrapost",
+      "moved_from": "e2",
+      "moved_to": "e7",
+      "mode_of_transportation": "e6",
+      "time_span": ["e1", "e3"],
       "falls_within": null,
-      "mentions_places": []
+      "via_points": ["e4", "e5"],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": ["e9"],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {"mention_id": "e2", "role": "moved_from"},
+        {"mention_id": "e7", "role": "moved_to"},
+        {"mention_id": "e6", "role": "mode_of_transportation"},
+        {"mention_id": "e1", "role": "time_span"},
+        {"mention_id": "e3", "role": "time_span"},
+        {"mention_id": "e4", "role": "via_points"},
+        {"mention_id": "e5", "role": "via_points"},
+        {"mention_id": "e9", "role": "near_places"}
+      ]
     },
     {
       "id": "RS0002",
       "type": "indoor_tour",
       "label": "Bezoek aan het museum",
-      "took_place_at": {"text": "Museum Fridericianum", "kb_id": "Q449280"},
-      "on_or_within": {"text": "Museum Fridericianum", "kb_id": "Q449280"},
+      "took_place_at": "e12",
+      "on_or_within": "e2",
+      "time_span": null,
       "falls_within": null,
-      "sub_events": ["RS0002_1", "RS0002_2"],
-      "mentions_places": [
-        {"text": "Parys", "kb_id": "Q90"}
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": ["RS0002.RS0001", "RS0002.RS0002"],
+      "citations": [
+        {"mention_id": "e12", "role": "took_place_at"},
+        {"mention_id": "e2", "role": "on_or_within"}
+      ]
+    },
+    {
+      "id": "RS0002.RS0001",
+      "type": "indoor_tour",
+      "label": "Eerste kamer: vogeleieren collectie",
+      "took_place_at": "e4",
+      "time_span": null,
+      "falls_within": "RS0002",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [{"room": "e4", "building": "e2"}],
+      "sub_events": [],
+      "citations": [
+        {"mention_id": "e4", "role": "took_place_at"}
+      ]
+    },
+    {
+      "id": "RS0002.RS0002",
+      "type": "indoor_tour",
+      "label": "Tweede kamer: opgezette vogels",
+      "took_place_at": "e4",
+      "time_span": null,
+      "falls_within": "RS0002",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {"mention_id": "e4", "role": "took_place_at"}
       ]
     }
   ],
-  "mentioned_only_places": [
-    {"text": "Parys", "kb_id": "Q90", "reason": "herkomst van schilderijen, niet bezocht"}
-  ]
+  "toponym_relations": {
+    "e2": "IN",
+    "e3": "FROM",
+    "e5": "THRU",
+    "e7": "NO_REL",
+    "e8": "TO",
+    "e9": "NEAR"
+  }
 }
 ```
 
 ## Belangrijke regels
 
-1. **Elk evenement heeft een uniek ID** (RS0001, RS0002, etc.). Sub-evenementen krijgen ID's zoals RS0002_1, RS0002_2.
+1. **Elk evenement heeft een uniek ID** (RS0001, RS0002, etc.). Sub-evenementen gebruiken dot-notatie: RS0002.RS0001, RS0002.RS0002. Diepere nesting: RS0002.RS0001.RS0001.
 2. **Chronologische volgorde**: Events moeten in de volgorde staan waarin ze in de tekst voorkomen.
-3. **falls_within**: Als een evenement onderdeel is van een groter evenement, verwijs naar het ID van het bovenliggende evenement. Anders null.
-4. **sub_events**: Als een evenement sub-evenementen bevat (zoals een tour door meerdere kamers), vermeld de ID's.
-5. **Alle entity referenties** moeten exact overeenkomen met de gemarkeerde entiteiten in de tekst. Gebruik dezelfde text, label en kb_id.
-6. **Alleen bezochte plaatsen** komen in moved_from/moved_to/took_place_at/on_or_within. Genoemde maar niet bezochte plaatsen in mentions_places of mentioned_only_places.
-7. **mode_of_transportation**: Alleen voor translocation events. Gebruik Nederlandse termen (extrapost, postwagen, wandelend, rijtuig).
-8. **Elke translocatie** moet een moved_from en moved_to hebben — ook als de startlocatie hetzelfde is als de eindlocatie van de vorige translocatie.
+3. **falls_within**: VERPLICHT voor sub-evenementen. Verwijs naar het ID van het bovenliggende evenement (bv. "RS0002"). Alleen top-level events krijgen null.
+4. **sub_events**: BIJ TOUR-evenementen met 2+ beschreven onderdelen MOETEN hier ALLE sub-event ID's in. Een museum met 11 kamers krijgt 11 sub-events. De sub-events staan ook in de events[] lijst met hun eigen ID en falls_within naar de parent.
+5. **Gebruik ALLEEN mention_id's** (zoals e2, e7) voor moved_from, moved_to, took_place_at, on_or_within, mode_of_transportation, via_points, viewed_artifacts, mentions_places, sections, en toponym_relations keys, nooit vrije tekst of kb_id's.
+6. **toponym_relations**: ALLE E53_Place en E18_Physical_Thing entiteiten MOETEN in toponym_relations voorkomen. Elke entiteit krijgt precies één categorie (IN, NEAR, THRU, TO, FROM, of NO_REL). De categorie MOET bidirectioneel consistent zijn met de event-roles: moved_from→FROM, moved_to→TO, took_place_at/on_or_within→IN, via_points→THRU, near_places→NEAR. **Omgekeerd:** elke entiteit met categorie IN/NEAR/THRU/TO/FROM MOET ook daadwerkelijk in het corresponderende event-role veld van een (sub-)event staan, mét een citation met de juiste role. Een VISITED entiteit die alleen in toponym_relations staat maar in geen event-role is een FOUT: koppel hem aan het juiste (sub-)event of herclassificeer naar NO_REL. Entiteiten die in geen enkel event thuishoren zijn NO_REL.
+7. **mode_of_transportation**: Alleen voor translocation events. Gebruik het mention_id van een Mode_of_Transportation entiteit (bv. "e6"), NIET een vrije tekst string.
+8. **time_span**: Gebruik een array van mention_id's van E52_Time_Span entiteiten. Als er geen tijdsaanduiding is, gebruik dan null. Dezelfde mention_id's moeten ook in de citations array met role "time_span".
+9. **Elke translocatie** moet een moved_from en moved_to hebben ook als de startlocatie hetzelfde is als de eindlocatie van de vorige translocatie.
+10. **citations**: Elk evenement moet een "citations" array bevatten. Elke citation verwijst naar het mention_id van de entiteit in de tekst die deze relatie ondersteunt. De role geeft aan of het om moved_from, moved_to, took_place_at, on_or_within, mode_of_transportation, time_span, via_points, viewed_artifacts, mentions_places, of near_places gaat. Gebruik ALLEEN mention_id's die daadwerkelijk in de gemarkeerde tekst voorkomen.
+11. **Alle nieuwe velden** (via_points, viewed_artifacts, sections, time_span, near_places) moeten aanwezig zijn in elk event, ook als ze leeg zijn (lege array of null).
+12. **near_places**: Elke mention_id in `near_places` moet ook een citation krijgen met `role: "near_places"`.
 
 {# whitespace #}
 {# whitespace #}

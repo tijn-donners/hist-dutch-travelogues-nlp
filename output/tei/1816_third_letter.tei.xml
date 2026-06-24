@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0">
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/"
+     xmlns:ato="http://academictourism.com/entity/"
+     xmlns:acadt="http://academictourism.com/academictourism#">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -16,15 +20,1082 @@
     <encodingDesc>
       <editorialDecl>
         <p>Diplomatic transcription of the manuscript.</p>
+        <p>Entity mentions carry xml:id attributes linking to CT.* citations in the standOff RDF.</p><p>Relation extraction triples (ATO/CIDOC CRM) are embedded as RDF/XML in <gi>standOff</gi>.</p>
       </editorialDecl>
     </encodingDesc>
   </teiHeader>
   <text>
     <body>
       <ab><pb n="16"/>Derde Brief.</ab>
-<ab><lb/><placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> den 7 July 1816.</ab>
+<ab><lb/><placeName type="E53_Place" xml:id="e1" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> den 7 July 1816.</ab>
 <ab><lb/>Amice!</ab>
-<ab><lb/>Juist zoo als ik gedagt had, dat wy niet in eene halve dag van <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2971" key="Q2971">Paderborn</placeName> herwaarts zouden ryden, is het ook uitgevallen; wy zyn dien nagt fraay en wel te <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> gebleven en niet voor de volgende avond 5 uuren alhier gearriveerd, doch verplaats u weder naar <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2971" key="Q2971">Paderborn</placeName> en ik zal u zoo kort mogelyk onze verdere reis mededeelen om zoo veel te langer <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> met u op het papier te kunnen rondwandelen. –<lb/>Wy reden dan Donderdag zynde den 4 om 1 uur met Extrapost uit <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2971" key="Q2971">Paderborn</placeName> en werden al aanstonds getroffen door het schoone gezicht even buiten de stad wanneer men de <rs type="E19_Physical_Thing">Hoxenberg</rs> beklommen heeft en voor het laatst zyne blikken naar het zioo heerlyk geleegene <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2971" key="Q2971">Paderborn</placeName> wendt; ik zeg voor het laatst, want hier is het terrein reeds zeer bergagtig en successivelyk komt men over 7 bergen heen de eene agter de andere gelegen: geheel in de diepte zagen wy in een bekoorlyke ligging aan de regterzyde het dorpje <placeName type="E53_Place">Dornhagen</placeName> &amp; een weinig verder aan de linkerzyde het boven alle beschryving schoone <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q1550705" key="Q1550705">Grondsteinheim</placeName> hetwelk tusschen hemelhooge eiken als verscholen eenslags voor den dag komt: langen tyd stonden wy met het rytuig hier stil &amp; konden ons niet met dit schoone gezicht, waarvan eene beschryving te geeven onmogelyk is, verzadigen. Zeer steil dalende reden wy om 3½ uur het in eene diepe vallei liggende stadje <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q183483" key="Q183483">Lichtenau</placeName> binnen hetwelk, wat de morsigheid betreft, volkomen waardig is met <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2242634" key="Q2242634">Neuhaus</placeName> en <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2971" key="Q2971">Paderborn</placeName> een tris te formeren, waarvan het misschien dan nog de Kroon zou spannen. Het was de eerste station en reeds hier ondervonden wy zulke tegenspoeden dat het onmogelijk was <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> tebereiken: verbeeld u de ongemaklykke en brutale postmeester hield ons hier meer dan vijf vieren deel uur op eerst door ons met geweld zes paarden te willen opdringen<pb n="17"/>daar wy oogluikend met 4 paarden waren vertrokken en verzuimd hadden by den postmeester te <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2971" key="Q2971">Paderborn</placeName> een bewys te vragen dat wy 7 sterk van daar gereden waren: [op linkerblad: voor eene enkele station had dit juist zoo veel niet uitgemaakt doch dan zouden wy genoodzaakt zyn geworden om op elke volgende station 6 paarden te nemen hetgeen een groot verschil in het finantiewezen zou uitmaken.] toen wy eindelyk met kragt van redeneren den man van zyne dwaling overtuigd hadden, kon hy ons geen wagen voor zeven personen leveren, kon ons ook geen twee van vier bezorgen: tot overmaat van droefheid haalde ons hier de <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2742" key="Q2742">Munstersche</placeName> wagen in dien wy verlaten hadden, en een der passagiers, die de vorige dag met ons op dezelve geweest was, vroeg met een schrampren glimlach: “sind sie noch da ich meinte sie hätten Extrapost genommen”: Eindelyk reden wy even voor 5 uur van daar in een wagen als een doofpot waarin men geheel krom moest zitten wyl dezelve niet hoog genoeg was terwyl 2 buiten op de koffers zich zoo goed mogelyk plaatsen moesten: wy hadden 4 jonge paarden die vry wat wild waren vooral toen wy om het hardst tegen een ander met 4 paarden bespannen rytuig reden, menigmaal dagt ik dat de voerman dezelve niet meer meester was en eens waren wy nog genoodzaakt ylings van de wagen te springen om hen by de kop de grypen toen zy by eene afgrond sterk stygerden; toen zy moede wierden ging het allengkens over. Eene beschryving te geven van de uitmuntende gzichten die wy zagen is volstrekt onmogelyk: dan eens op zeer hooge bergen zynde had men een ruim en onbelemmerd gezicht naar alle zyden, en dan weder geheel en al door bergen ingesloten wierd hetzelve van alle zyden beperkt &amp; genoodzaakt zich tot naderby zynde voorwerpen te bepalen: geen wonder dat wy opgetogen over de schoone natuurtoneelen ons weinig om het stoten onzer wagen, weinig over de vallende regen bekommerden, schoon hy, wiens beurt het was om buiten op de koffer te zitten, de regen maar al te zeer gewaar wierd. Na <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q1746571" key="Q1746571">Kleinenberg</placeName> gepasseerd te zyn kwamen wy in een uitgestrekt bosch indien zoo ik meen het <placeName type="E53_Place">Hardehauserwoud</placeName> geheten naar een klooster aan het eind van hetzelve gelegen; toen wy door hetzelve waren zagen wy de eerbiedwekkende kruin van den <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q1200563" key="Q1200563">Desenberg</rs> een uur agter <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> gelegen. Onder eene gestadige regen kwamen wy om 8 uur te<pb n="18"/><placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2034601" key="Q2034601">Ossendorf</placeName> zynde de tweede station aan: de Kastelein uit het <rs type="E19_Physical_Thing">posthuis</rs> toonde zich zeer gebelgd dat ik het dorp <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2034601" key="Q2034601">Ocksendorf</placeName> noemde want driftig antwoorde hy my: “es heist <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2034601" key="Q2034601">Ossendorf</placeName> mit zwei ss. verstehen sie.” Komtom hier te <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2034601" key="Q2034601">Ossen</placeName> of <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2034601" key="Q2034601">Ocksendorf</placeName>, zoo als men het dan verkiest, moesten wy ons bepalen om verder Extrapost te nemen, in onze postwagen, die ons inmiddels weder ingehaald had, te kruipen, of wel te blyven; zommigen inclineerden voor het een, andere voor het andere, en daar het toch op hetzelve uitkwam, volgden wy ieder onze zin, daar 3 in de postwagen gingen &amp; onzer aller bagagie medenamen terwyl ik met myne 3 Groninger reisgenoten in eene heerlyke avond naar <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName>, een groot uur van daar, wandelden omdat wy aldaar oneindig beter logeeren konden en het juist in onze route lag. En inderdaad ik heb er geen berouw van gehad, de andere Heeren hebben dien nagt weder doorgereden &amp; des morgens hier te <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> gekomen terwyl wy tot donkeren toe om <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> allerliefste wandelingen gedaan, zeer goed gegeten, en schoon slegte bedden hebbende heerlyk geslapen hebben. –<lb/>Met een zeer goed rytuig en een span beste paarden van onze Kastelein uit het <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q1200563" key="Q1200563">Gasthofe Desenburg</rs> verlieten wy de volgende morgen <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> wy reden door het dorpje <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q1157900" key="Q1157900">Dalheim</placeName> door eene bekoorlyke streek latende den <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q1200563" key="Q1200563">Desenberg</rs> aan de linkerhand liggen, [op linkerblad: Omtrend den <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q1200563" key="Q1200563">Desenberg</rs> zie men de geheele achtste brief der wandeling door een gedeelte van <placeName type="E53_Place">Duitschland</placeName> 1 deel van bladz: 125-136.] schilderachtig was het gezicht dat wy van hier rondom en voornaamlyk naar den kant van <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> hadden: bylangs de dorpen <placeName type="E53_Place">Ehrings</placeName> en <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q505551" key="Q505551">Libenau</placeName> rydende kwamen wy voorby Ober en door <placeName type="E53_Place">Nider Lichtingen</placeName>, toen wy ons reeds op <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q1199" key="Q1199">Hessisch</placeName> grondgebied bevonden en reden tot <placeName type="E53_Place">West-Uffelen</placeName> de derde en laatste station voor <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName>: hier aten wy in der haast, bestelden een ander rytuig en waren weldra op weg naar <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName>: kort aan de weg zagen wy hier ontzettende grote kudden varkens grootendeels bonten en zwarten om welke te hoeden verscheiden menschen waren. ter naauwernood waren wy <placeName type="E53_Place">Meinbids</placeName> en <placeName type="E53_Place">Kalken</placeName> gepasseerd toen wy door zulk eene hevige stortregen wierden verfrist dat wy weldra druipnat waren wyl onze wagen slechts half verdekt was en aan alle zyden lekte: lang voor wy <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> bereikten zagen wy de <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q321252" key="Q321252">Hercules</rs> op de <rs type="E19_Physical_Thing">octogoon van de Wilhelmhohe</rs>, wien wy deezen middag van naderby hopen<pb n="19"/>[Illustraties op linkerblad: <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName>]<lb/>te zien, en kort daarop de stad <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> zelve, alwaar wy om 5 uur in het voortreflyk waarlyk vorstlyk logement <rs type="E19_Physical_Thing">de Kurfürst</rs> onze intrek namen. –<lb/>Zoo heb ik u dan gelukkig tot <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> gebragt mijn Vriend, ik dagt het met weinige woorden te zullen doen en heb verscheiden pagina’s vol geklad zoo gaat het als men maar eens de pen heeft opgevat dan vloeyen de letters als vanzelve eruit. ik hoop dat my de tyd nu maar niet te kort zal vallen om u met <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> eenigzints bekend te maken. –<lb/>Door voortreflyke ligging, inwendige schoonheid en menigvuldige hier byeengebragte zeldzaamheden verdient <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> gewis de opmerkzaamheid van elken reiziger en thans zoo veel te meer daar alle kostbaarheden, zoo uit het <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q449280" key="Q449280">Museum Fridericianum</rs> als schilderyen enz, uit <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q90" key="Q90">Parys</placeName> terug gekomen &amp; voor ieder vreemde te zien zyn. Ik zal maar een aanvang maken met gemeld museum &amp; om u een zeer flaauwe schets ervan te geven uit iedere Kamer het een en ander opnoemen dat my als het zeldsaamste of beste is voorgekomen. – Voortby den ingang in het eerste vertrek vonden wy behalven veele dingen eene groote collectie vogeleyeren van alle grootte en figuur; de op verscheidene plaatsen (zie onder anderen de brieven voornoemd 1 deel bl 167, 168, 169) beschrevene houtbibliotheek zynde echter geheel anders ingericht als de enkele voorwerpen die wy op onze Academiesche boekery te <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q749" key="Q749">Groningen</placeName> bezitten, eene extra zware stam van eene lauwrierboom en eene groote verzameling van in was geboetzeerde vruchten zoo natuurlyk gekleurd als ik ooit iets gezien heb. De Tweede Kamer was geheel gevuld met opgezette vogels waaronder een groote Casuarus en eene geheele Kas vol paradysvogels; het geheel was naar het Lynnaeische Systema gerangschikt. By het openen der derde Kamer, waarin louter viervoetige dieren, wierd het oog terstond getroffen door een opgezette en een gesceletteerde olyphant zoo ik my niet bedrieg had dit dier hier in de diergaarde geleeft even als een leeuw, tyger, Kaapsche ezel, luipaard, drommedaris, wild zwyn en rendier alle hier voorhanden. Van daar kwamen wy in een soort van galery door eene ry van zuilen ondersteund hetgeen het eigenlyke vestibule van het geheele gebouw is en aan het schoone <rs type="E19_Physical_Thing">Frederikplein</rs> uitkomt hier waren antiquen en voorwerpen van de nieuwere beeldhouwkunst doch veele stukken waren vry wat beschadigt<pb n="20"/>door hun reis naar <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q90" key="Q90">Parys</placeName> hebbende de fatigues niet kunnen doorstaan; hier muntte inzonderheid eene <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q774967" key="Q774967">Venus de Medicis</rs> en twee worstelaars uit: onder de antiquen waren zeer schoone van Kurk nagemaakte ruines het <rs type="E19_Physical_Thing">Palazo di Maecenate</rs> te <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2437255" key="Q2437255">Tivoli</placeName>, het <rs type="E19_Physical_Thing">Bagno della nimfa Egeria</rs> enz, een Aristoteles voldeed ons hier ook zeer. Agter deeze zaalen is door Hieronymus in de gedaante van een halve circel een schoon gebouw voor de vergadering der standen of zoogenaamde états gebouwd in hetzelve was een troon voor de Koning als hy de vergadering bywoonde, doch thans wordt, volgens het getuigenis van onzen conducteur, geen gebruik meer van dit gedeelte gemaakt. Na nog eene kamer met versteeningen, mineralen en schelpen, waarin egter niets byzonders, gezien te hebben, bragt men ons in een vertrek met oude penningen zeer nettjes onder glazen geschikt, hier waren ook veele kleine beeldjes, antiquiteiten, en eene groote verzameling van edelgesteenten waaronder een groote Onyx byzonder uitmuntte. Dan wat wy eigenlyk in de daar aangrenzende kamer zagen kan ik u niet zeggen genoeg het waren loutere pretiosa het eene stuk kostbaarder als het andere, en op de verschillendste wyze in goud zilver of edelgesteentens bewerkt, men vond er eene kast vol van allerly dingen uit barnsteen gemaakt van het grootste tot het kleinste toe, in het midden der kamer zag men de <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q567643" key="Q567643">vesting Rheinfels</rs> als mozaiek. Hiernaast was een vertrek geheel met klokken pendules en horlogies gevuld waaronder van de allereerste uitvinding, zommige klokken deden by het slaan gehele schilderyen te voorschyn komen, een beeld waarin een uurwerk schoot op zekere tyden een pistool af en dergelyke meer: zoo waren wy tot de laatste kamer beneden gekomen waarin niets dan mosaiek men vond er aartige dingen onder. Nu bleef ons alleen boven nog twee kamers overig om te zien, werwaarts wy met onze Professor Matske langs een breede trap gingen: de eerste van deeze<pb n="21"/>was met oude wapentuigen gevuld een vyftigtal bogen trok onze aandagt meest alle wierden op verschillende wyze afgeschoten; onder de menigte van zwaarden was er een door Paus Innocentius de VIII by zyne terugkomst uit het <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q48175" key="Q48175">Heilige Land</placeName> aan de toen regeerende Landgraaf gegeven het is ontzettend groot en zeer ryk. Eindelyk aan de laatste zaal gekomen zagen wy in een half rond 19 landgraven &amp; landgravinnen, zoo men zegt zeer gelykend in was geboetseerd &amp; naar de costumes van die tyd gekleed, op stoelen zitten dit was een vreemd gezigt en daar de ry door Landgraaf Morits geopend en tot de jongst overledene Keurvorst ging kan men wel begrypen dat het verschil in kleding aanmerkelyk is. – Zie daar dan een kort verslag van eenige dingen welke wy in het <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q33506" key="Q33506">museum</rs> zagen, heeft het u voldaan dan zal ik in het vervolg u steeds op deeze manier iets omtrend cabinetten, verzamelingen enz mededeelen; zoo niet, meld het my dan in eene volgende brief en gy zult my vry wat moeite besparen terwyl ik u er niet meer meede lastig zal vallen, thans echter moet gy my naar de <rs type="E19_Physical_Thing">boekery</rs> vergezellen in het zelve <rs type="E19_Physical_Thing">gebouw</rs> voorhanden. Deeze is voortreflyk, zy bestaat uit ongeveer 50,000 banden, het locaal is ook zeer geschikt zynde 113 schreden lang en 17 breed: het is een groot agrement voor <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassels</placeName> ingezeetenen die er het volle gebruik van hebben, te meer daar men er zich op schynt toe te leggen, om alle nieuw uitkomende werken dadelyk te krygen zoo vonden wy toch reeds hier het 2de deel van de door de Heeren Tydeman &amp; van Campen uitgegevene Mnemosyne ’t welk niet lang voor onze afreis eerst van de pers is gekomen. Zeer doelmatig schynt my de inrigting der catalogus te zyn: deeze bestaat uit eene kleine of alphabetische van meer dan 100 banden en eene grootere of reaal catalogue van 54 banden in folio: in de alphabetische heeft ieder boek of schryver een los blad, zoo dat telkens als er een nieuw komt men er een blad kan tusschen leggen, dit blad bevat de titel van het boek en wyst verder naar den reaal catalogus met vermelding van het vak formaat &amp; Numero. Deeze reaal catalogus is overigens zeer onder-<pb n="22"/>scheiden ingerigt; dat is, de vakken zyn om het ligt wedervinden zoo veel mogelyk gesplitst en dan weder in ieder vak de onderscheiden formaten, die telkens met een nieuw Numero, dat er los ingelegd word, beginnen. Wat betreft de verzameling van schilderyen in het <rs type="E19_Physical_Thing">paleis Bellevue</rs> deeze is waarlyk uitmuntend, wy zagen er schoone stukken van Rubbens, Rembrand, van Dyk, Teniers, Holzbein, Frans Mieris, Kamphuizen, van Titiaan, Wouerman, Jan Steen, Ostade enz van de Italiaansche meesters Bellegrini, Morielli, Alex Veronese, Augelo Cararas en andere toonde men ons ook schoone stukken: van Raphaël was er slegts een stuk aan welks echtheid men reden heeft te twyfelen, een groot stuk van Potter waarop een stier voldeet my zeer als mede een klein strandgezicht van <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q837211" key="Q837211">Scheveningen</placeName> door A van der Velde geschilderd, hierop was een postillon die, hoe men zich ook plaatste, steeds naar eene andere kant scheen te ryden: het is jammer dat deeze schoone verzameling niet beter geplaatst is; te voren was zulks beter, toen viel het licht van boven er in, doch toen Hieronymus zag dat zyn Geliefde broeder de meeste en beste stukken na <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q90" key="Q90">Parys</placeName> meede nam, besloot hy deeze <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q1007870" key="Q1007870">gallery</rs>, die zeer hoog was, in 2 verdiepingen te verdelen van boven digt &amp; op zyde vengsters te maken zoo dat weldra uit de ruines van de <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q167314" key="Q167314">schildergallery</rs> eene pragtige <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q805353" key="Q805353">danszaal</rs> verrees: na de terugkomst van den Keurvorst is het zoo gebleven &amp; alle schilderyen zyn maar zoo wat heen gehangen doch het is te wenschen dat hier in weder voorzien worde. De opzichter verhaalde ons nog eene byzonderheid nopens eene Cleopatra die eenige tyd te <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q90" key="Q90">Parys</placeName> gelogeerd had: de Franschen te weten hadden er eene Ariadne van willen maken &amp; daarom de slang, die de vergiftige beet toebragt, een kleurtje over gedaan; na de terugkomst der stukken was Cleopatra weder boven gekomen &amp; de adder of slang door de eerste schilder van <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> weder by gemaakt. Dit <rs type="E19_Physical_Thing">paleis Belle vue</rs> is voor de Koningin bestemd en gemeubileerd geweest doch zy heeft er nimmer gebruik van gemaakt en by haar kortstondig verblyf alhier in ons logement de Keurvorst gelogeerd; de meubels, voor zoo verre die hier nog waren (want Jerome heeft byna alles medegenomen) waren ryk en kostbaar<pb n="23"/>vooral de groote spiegels; eene <rs type="E19_Physical_Thing">gallery</rs> van verschillende zoorten marmor deed ook een zeer goed effect. Doch wilt gy een meesterstuk der kunst zien gaat dan naar het zoogenaamde <rs type="E19_Physical_Thing">marmeren bad</rs> voorin de <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q2028180" key="Q2028180">Orangerie</rs>, nimmer heb ik iets prachtigers in die smaak gezien: <rs type="E19_Physical_Thing">Het gebouw</rs>, dat volgens onzen leidsman meer dan een miljoen guldens gekost heeft, is door de beroemden beeldhouwer P.S. Monnot gemaakt het is een vierkant vertrek waarvan de vloeren, muren en vercierselen uit verschillende soorten van zeldsaam marmer, uit jaspis agaat &amp; andere steenen bestaan. Het <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q785952" key="Q785952">bad</rs> zelf is in het midden, 5 trappen diep en 25 voeten in omtrek; acht Corintische pylaren ondersteunen de <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q12493" key="Q12493">koepel</rs> waardoor het licht invalt. doch wat behoef ik u hier verder over te spreken slaat de reizen van Profr van Swinderen open &amp; op bladzyde 162 en 163 zult gy veel vollediger beschryving vinden als ik in staat ben te geven: alleen voeg ik erby dat aan de buitenzyde een geheele hoek zerk van de deur was afgeschoten door een kanon kogel welke Cnernitschef den 30 September 1813 op de <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q4100" key="Q4100">stad</placeName> had afgezonden: gelukkig dat dit schoone <rs type="E19_Physical_Thing">gebouw</rs> niet meer beschadigd is geworden! Tot aandenken hieraan had voornoemde Generaal boven de uitgeschotene hoek de woorden 30 September 1813 geplaatst. Naby dit gebouw vind men de <placeName type="E53_Place">Aue</placeName> of <rs type="E19_Physical_Thing">Aue-Garten</rs> zynde een groote lap gronds die ongeveer 4,000 voet lang is eene lange <rs type="E19_Physical_Thing">linden allee</rs> van 140 voeten breed brengt u naar eene ontzetten groote <rs type="E19_Physical_Thing">vyver</rs> die volgens Bongard 8000 voeten omtrek zoude hebben hetgeen my toch wat vergroot voorkomt. Dan zoo zullen nu ook de <rs type="E19_Physical_Thing">kerken</rs> wel eens aan de beurt komen althans die geene welke wy zagen, in de eerste plaats de schoone <rs type="E19_Physical_Thing">Roomsche kerk</rs> vlak over ons logement gelegen. Zy bestaat uit een groot vierkant en eene daarmede verbonden ronden <rs type="E19_Physical_Thing">koepel</rs>, eene ry kolommen ondersteund eene rondgaande <rs type="E19_Physical_Thing">galery</rs> waarop het orgel geplaatst is: op deeze <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q648224" key="Q648224">galery</rs> is eene ry colommen welke het koepelvormige <rs type="E19_Physical_Thing">dak</rs> dragen terwyl het <rs type="E19_Physical_Thing">marmeren hoogaltaar</rs> op drie circelvormige trappen midden in de <rs type="E19_Physical_Thing">koepel</rs> is, dit alles vereenigd met eenige goede schilderyen van Tischbein maken deeze <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q16970" key="Q16970">kerk</rs> tot een der schoonste die ik gezien heb: behalve deeze zagen<pb n="24"/>wy nog de <rs type="E19_Physical_Thing">Brüder</rs> en de <rs type="E19_Physical_Thing">Domkerk</rs> in welke laatste eenige tombes zyn die goed bewerkt schenen; voorts hingen in dezelve 6 groote schilden waarop in vergulden letters de namen der in 1814 uitgetrokkene vrywilligers met het volgend opschrift<lb/><placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassels</placeName> söhne die sich im Jahre 1812 dem Vaterlande, unter anführung des tapferen Kurprinses, weiheten. –<lb/>De Keurprins had dan ook nog een zevende schild waarop zyne naam was. Van de <rs type="E19_Physical_Thing">Kweekschool voor onderwyzers</rs>, waarvan de Heer Knieriem thans directeur is, zal ik niets melden dan dat wy thans 32 Seminaristen vonden zynde er nog 20 buiten huis &amp; dat, door gebrek aan geld het <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q18655571" key="Q18655571">instituut</rs> zeer verminderd was volgens het oordeel van Porfr van Swinderen, die hier in 1809 ook geweest had en wiens brief gy lezen kunt in de meergemelde reis van bladzyde 170-188 van het eerste deel, alwaar ZHoog Gel: zeer omslagtig over deeze inrichting handelt. De directeur scheen ook in ’t geheel niet ingenomen met de Keurvorst, omtrend wien hy zich zeer vry tegen ons uit liet, ja zelf by gelegenheid dat wy in de <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q153562" key="Q153562">Comedie</rs> de maitres en eenige onechte kinderen van den Vorst in eene <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q1868004" key="Q1868004">loge</rs> aan het toneel zagen zitten, vertelde hy ons de gansche chronique scandaleuse van de Keurvorst. In ‘t algemeen schynt hy meer gehaat dan bemind te zyn hetgeen grootendeeld veroorzaakt wordt door zyne overdreven zucht om alles weder op den ouden voet te hebben: om zich hiervan te overtuigen, behoeft men slegts even als wy eene parade van het garnizoen by te woonen, dan kan men zich wel verbeelden een twintig jaar agteruit te zyn, hebbende alle militairen wit gepoederd haar met lange staarten, &amp; een groot driekantige hoed op het meestal 40 of 50 jarige hoofd, terwyl alle onderofficieren &amp; veele officieren vervaarlyke stokken in de hand hebben. Den Keurvorst voor de eerste reis ziende schrikte ik inderdaad voor hem daar hy een gezwel veel groter dan een zwane ey op zyn linker wang heeft het geen op zyn schouder gedeeltelyk rust doch onder het gaan gedurig op en neder wyst. Het <rs type="E19_Physical_Thing">observatorium</rs> hebben wy tot nu toe om verschillende redenen niet kunnen zien mogelyk zal het ons gedurende ons verblyf alhier nog geluk-<pb n="25"/>[illustratie linker blad: <rs type="E19_Physical_Thing">Wilhelms Brücke</rs> in <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName>]<lb/>ken en anders zullen wy ons in <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q3033" key="Q3033">Göttingen</placeName> daarvoor schadeloos stellen. Zoo verre ik weet heb ik nu <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> met u rondgeweest en zou dus deeze kunnen eindigen wilde ik u niet nog met eenige weinige woorden nog iets van de stad in het algemeen en van deszelfs schoone pleinen melden. –<lb/>De ligging der stad is alleraangenaamst; de <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q6434" key="Q6434">Fulda</placeName> doorsnydt dezelve in twee ongelyke deelen die door de fraaye <rs type="E19_Physical_Thing">Wilhelmsbrug</rs> (zie N° [open plek] zynde 103 schreden lang &amp; 20 breed onder Willem de IX in 1788 begonnen en in 1794 voltooid, verbonden worden. Onder de verschillende groote en kleine pleinen, waarmede <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> pronkt, munten voornaamlyk de volgende uit het <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q100507321" key="Q100507321">Leipsicher plein</rs> even binnen de <rs type="E19_Physical_Thing">Leipsicher poort</rs>, de <rs type="E19_Physical_Thing">paradeplaats</rs> en de <rs type="E19_Physical_Thing">Kasern plaats</rs>, een byna vierkante 540 voeten breede plaats, op de hoek van deeze pleinen vind men een voortreklyk coffyhuis uit een suite van 4 bovenkamers bestaande van waar men het heerlykste uitzigt van de wereld heeft, verder het <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q1430309" key="Q1430309">Frederiksplein</rs> zynde een groot langwerpig vierkant van 1000 voeten lang en 450 breed en omringd door eene dubbele linden allee, het <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q1796444" key="Q1796444">Koningsplein</rs> is circelrond, heeft 456 voeten midellyn en pronkt met veele schoone gebouwen, eindelyk het <rs type="E19_Physical_Thing" ref="http://www.wikidata.org/entity/Q100509241" key="Q100509241">Karelsplein</rs> dat juist niet zeer groot is doch merkwaardig wegens het daarop geplaatste marmeren beeld van den landgraaf Karel die op het einde der 17de Eeuw deeze zoogenaamde boven nieuw stad voor de uit <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q142" key="Q142">Franryk</placeName>, om de herroeping van het Edict van Nantes, gevlugte protestanten heeft laten aanleggen: op eenige der overige pleinen stonden weleer ook standbeelden van andere landgraven welke de Franschen alle hebben doen opmarscheren behalven alleen het hier boven gemelde. – Onder de straten van <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q2865" key="Q2865">Cassel</placeName> zyn de Konings en de <rs type="E19_Physical_Thing">Bellevue straat</rs> beide in de <placeName type="E53_Place">boven nieuwstad</placeName> gelegen verre weg de schoonste. –<lb/>Dan myn Vriend het wordt tyd dat ik deeze sluite zy is nu ook eens lang genoeg, myne volgende over <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q447441" key="Q447441">Wilhelmshöhe</placeName> en de reis naar <placeName type="E53_Place" ref="http://www.wikidata.org/entity/Q3033" key="Q3033">Göttingen</placeName> zoo wy die zonder tegenspoed volbrengen. –<lb/>Vale!</ab>
+<ab><lb/>Juist zoo als ik gedagt had, dat wy niet in eene halve dag van <placeName type="E53_Place" xml:id="e2" ref="http://www.wikidata.org/entity/Q2971 http://www.geonames.org/gn:6557655" key="Q2971">Paderborn</placeName> herwaarts zouden ryden, is het ook uitgevallen; wy zyn dien nagt fraay en wel te <placeName type="E53_Place" xml:id="e3" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> gebleven en niet voor de volgende avond 5 uuren alhier gearriveerd, doch verplaats u weder naar <placeName type="E53_Place" xml:id="e4" ref="http://www.wikidata.org/entity/Q2971 http://www.geonames.org/gn:6557655" key="Q2971">Paderborn</placeName> en ik zal u zoo kort mogelyk onze verdere reis mededeelen om zoo veel te langer <placeName type="E53_Place" xml:id="e5" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> met u op het papier te kunnen rondwandelen. –<lb/>Wy reden dan Donderdag zynde den 4 om 1 uur met <rs type="E22_Human-made_Object" xml:id="e6">Extrapost</rs> uit <placeName type="E53_Place" xml:id="e7" ref="http://www.wikidata.org/entity/Q2971 http://www.geonames.org/gn:6557655" key="Q2971">Paderborn</placeName> en werden al aanstonds getroffen door het schoone gezicht even buiten de stad wanneer men de <rs type="E18_Physical_Thing" xml:id="e8">Hoxenberg</rs> beklommen heeft en voor het laatst zyne blikken naar het zioo heerlyk geleegene <placeName type="E53_Place" xml:id="e9" ref="http://www.wikidata.org/entity/Q2971 http://www.geonames.org/gn:6557655" key="Q2971">Paderborn</placeName> wendt; ik zeg voor het laatst, want hier is het terrein reeds zeer bergagtig en successivelyk komt men over 7 bergen heen de eene agter de andere gelegen: geheel in de diepte zagen wy in een bekoorlyke ligging aan de regterzyde het dorpje <placeName type="E53_Place" xml:id="e10">Dornhagen</placeName> &amp; een weinig verder aan de linkerzyde het boven alle beschryving schoone <placeName type="E53_Place" xml:id="e11" ref="http://www.wikidata.org/entity/Q1550705 http://www.geonames.org/gn:2914314" key="Q1550705">Grondsteinheim</placeName> hetwelk tusschen hemelhooge eiken als verscholen eenslags voor den dag komt: langen tyd stonden wy met het <rs type="E22_Human-made_Object" xml:id="e12">rytuig</rs> hier stil &amp; konden ons niet met dit schoone gezicht, waarvan eene beschryving te geeven onmogelyk is, verzadigen. Zeer steil dalende reden wy om 3½ uur het in eene diepe vallei liggende stadje <placeName type="E53_Place" xml:id="e13" ref="http://www.wikidata.org/entity/Q183483 http://www.geonames.org/gn:2878134" key="Q183483">Lichtenau</placeName> binnen hetwelk, wat de morsigheid betreft, volkomen waardig is met <placeName type="E53_Place" xml:id="e14" ref="http://www.geonames.org/gn:2865144" key="gn:2865144">Neuhaus</placeName> en <placeName type="E53_Place" xml:id="e15" ref="http://www.wikidata.org/entity/Q2971 http://www.geonames.org/gn:6557655" key="Q2971">Paderborn</placeName> een tris te formeren, waarvan het misschien dan nog de Kroon zou spannen. Het was de eerste station en reeds hier ondervonden wy zulke tegenspoeden dat het onmogelijk was <placeName type="E53_Place" xml:id="e16" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> tebereiken: verbeeld u de ongemaklykke en brutale postmeester hield ons hier meer dan vijf vieren deel uur op eerst door ons met geweld zes <rs type="E22_Human-made_Object" xml:id="e17">paarden</rs> te willen opdringen <pb n="17"/>daar wy oogluikend met 4 <rs type="E22_Human-made_Object" xml:id="e18">paarden</rs> waren vertrokken en verzuimd hadden by den postmeester te <placeName type="E53_Place" xml:id="e19" ref="http://www.wikidata.org/entity/Q2971 http://www.geonames.org/gn:6557655" key="Q2971">Paderborn</placeName> een bewys te vragen dat wy 7 sterk van daar gereden waren: [op linkerblad: voor eene enkele station had dit juist zoo veel niet uitgemaakt doch dan zouden wy genoodzaakt zyn geworden om op elke volgende station 6 <rs type="E22_Human-made_Object" xml:id="e20">paarden</rs> te nemen hetgeen een groot verschil in het finantiewezen zou uitmaken.] toen wy eindelyk met kragt van redeneren den man van zyne dwaling overtuigd hadden, kon hy ons geen <rs type="E22_Human-made_Object" xml:id="e21">wagen</rs> voor zeven personen leveren, kon ons ook geen twee van vier bezorgen: tot overmaat van droefheid haalde ons hier de <rs type="E22_Human-made_Object" xml:id="e22">Munstersche wagen</rs> in dien wy verlaten hadden, en een der passagiers, die de vorige dag met ons op dezelve geweest was, vroeg met een schrampren glimlach: “sind sie noch da ich meinte sie hätten <rs type="E22_Human-made_Object" xml:id="e23">Extrapost</rs> genommen”: Eindelyk reden wy even voor 5 uur van daar in een <rs type="E22_Human-made_Object" xml:id="e24">wagen</rs> als een doofpot waarin men geheel krom moest zitten wyl dezelve niet hoog genoeg was terwyl 2 buiten op de koffers zich zoo goed mogelyk plaatsen moesten: wy hadden 4 jonge <rs type="E22_Human-made_Object" xml:id="e25">paarden</rs> die vry wat wild waren vooral toen wy om het hardst tegen een ander met 4 <rs type="E22_Human-made_Object" xml:id="e26">paarden</rs> bespannen <rs type="E22_Human-made_Object" xml:id="e27">rytuig</rs> reden, menigmaal dagt ik dat de voerman dezelve niet meer meester was en eens waren wy nog genoodzaakt ylings van de <rs type="E22_Human-made_Object" xml:id="e28">wagen</rs> te springen om hen by de kop de grypen toen zy by eene afgrond sterk stygerden; toen zy moede wierden ging het allengkens over. Eene beschryving te geven van de uitmuntende gzichten die wy zagen is volstrekt onmogelyk: dan eens op zeer hooge bergen zynde had men een ruim en onbelemmerd gezicht naar alle zyden, en dan weder geheel en al door bergen ingesloten wierd hetzelve van alle zyden beperkt &amp; genoodzaakt zich tot naderby zynde voorwerpen te bepalen: geen wonder dat wy opgetogen over de schoone natuurtoneelen ons weinig om het stoten onzer <rs type="E22_Human-made_Object" xml:id="e29">wagen</rs>, weinig over de vallende regen bekommerden, schoon hy, wiens beurt het was om buiten op de koffer te zitten, de regen maar al te zeer gewaar wierd. Na <placeName type="E53_Place" xml:id="e30" ref="http://www.wikidata.org/entity/Q1746571 http://www.geonames.org/gn:2889462" key="Q1746571">Kleinenberg</placeName> gepasseerd te zyn kwamen wy in een uitgestrekt bosch indien zoo ik meen het <placeName type="E53_Place" xml:id="e31">Hardehauserwoud</placeName> geheten naar een klooster aan het eind van hetzelve gelegen; toen wy door hetzelve waren zagen wy de eerbiedwekkende kruin van den <rs type="E18_Physical_Thing" xml:id="e32" ref="http://www.wikidata.org/entity/Q1200563 http://www.geonames.org/gn:8379240" key="Q1200563">Desenberg</rs> een uur agter <placeName type="E53_Place" xml:id="e33" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> gelegen. Onder eene gestadige regen kwamen wy om 8 uur te <pb n="18"/><placeName type="E53_Place" xml:id="e34" ref="http://www.wikidata.org/entity/Q2034601 http://www.geonames.org/gn:2856857" key="Q2034601">Ossendorf</placeName> zynde de tweede station aan: de Kastelein uit het <rs type="E18_Physical_Thing" xml:id="e35">posthuis</rs> toonde zich zeer gebelgd dat ik het dorp <placeName type="E53_Place" xml:id="e36" ref="http://www.wikidata.org/entity/Q2034601 http://www.geonames.org/gn:2856857" key="Q2034601">Ocksendorf</placeName> noemde want driftig antwoorde hy my: “es heist <placeName type="E53_Place" xml:id="e37" ref="http://www.wikidata.org/entity/Q2034601 http://www.geonames.org/gn:2856857" key="Q2034601">Ossendorf</placeName> mit zwei ss. verstehen sie.” Komtom hier te <placeName type="E53_Place" xml:id="e38" ref="http://www.wikidata.org/entity/Q2034601 http://www.geonames.org/gn:2856857" key="Q2034601">Ossen</placeName> of <placeName type="E53_Place" xml:id="e39" ref="http://www.wikidata.org/entity/Q2034601 http://www.geonames.org/gn:2856857" key="Q2034601">Ocksendorf</placeName>, zoo als men het dan verkiest, moesten wy ons bepalen om verder <rs type="E22_Human-made_Object" xml:id="e40">Extrapost</rs> te nemen, in onze <rs type="E22_Human-made_Object" xml:id="e41">postwagen</rs>, die ons inmiddels weder ingehaald had, te kruipen, of wel te blyven; zommigen inclineerden voor het een, andere voor het andere, en daar het toch op hetzelve uitkwam, volgden wy ieder onze zin, daar 3 in de <rs type="E22_Human-made_Object" xml:id="e42">postwagen</rs> gingen &amp; onzer aller bagagie medenamen terwyl ik met myne 3 Groninger reisgenoten in eene heerlyke avond naar <placeName type="E53_Place" xml:id="e43" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName>, een groot uur van daar, wandelden omdat wy aldaar oneindig beter logeeren konden en het juist in onze route lag. En inderdaad ik heb er geen berouw van gehad, de andere Heeren hebben dien nagt weder doorgereden &amp; des morgens hier te <placeName type="E53_Place" xml:id="e44" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> gekomen terwyl wy tot donkeren toe om <placeName type="E53_Place" xml:id="e45" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> allerliefste wandelingen gedaan, zeer goed gegeten, en schoon slegte bedden hebbende heerlyk geslapen hebben. –<lb/>Met een zeer goed <rs type="E22_Human-made_Object" xml:id="e46">rytuig</rs> en een span beste <rs type="E22_Human-made_Object" xml:id="e47">paarden</rs> van onze Kastelein uit het <rs type="E18_Physical_Thing" xml:id="e48">Gasthofe Desenburg</rs> verlieten wy de volgende morgen <placeName type="E53_Place" xml:id="e49" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> wy reden door het dorpje <placeName type="E53_Place" xml:id="e50" ref="http://www.wikidata.org/entity/Q1157900 http://www.geonames.org/gn:2939320" key="Q1157900">Dalheim</placeName> door eene bekoorlyke streek latende den <rs type="E18_Physical_Thing" xml:id="e51" ref="http://www.wikidata.org/entity/Q1200563 http://www.geonames.org/gn:8379240" key="Q1200563">Desenberg</rs> aan de linkerhand liggen, [op linkerblad: Omtrend den <rs type="E18_Physical_Thing" xml:id="e52" ref="http://www.wikidata.org/entity/Q1200563 http://www.geonames.org/gn:8379240" key="Q1200563">Desenberg</rs> zie men de geheele achtste brief der wandeling door een gedeelte van <placeName type="E53_Place" xml:id="e53" ref="http://www.wikidata.org/entity/Q183 http://www.geonames.org/gn:2921044" key="Q183">Duitschland</placeName> 1 deel van bladz: 125-136.] schilderachtig was het gezicht dat wy van hier rondom en voornaamlyk naar den kant van <placeName type="E53_Place" xml:id="e54" ref="http://www.wikidata.org/entity/Q968" key="Q968">Warburg</placeName> hadden: bylangs de dorpen <placeName type="E53_Place" xml:id="e55" ref="http://www.geonames.org/gn:2932791" key="gn:2932791">Ehrings</placeName> en <placeName type="E53_Place" xml:id="e56" ref="http://www.wikidata.org/entity/Q505551 http://www.geonames.org/gn:2877979" key="Q505551">Libenau</placeName> rydende kwamen wy voorby <placeName type="E53_Place" xml:id="e57">Ober</placeName> en door <placeName type="E53_Place" xml:id="e58">Nider Lichtingen</placeName>, toen wy ons reeds op <placeName type="E53_Place" xml:id="e59" ref="http://www.wikidata.org/entity/Q1199 http://www.geonames.org/gn:2905331" key="Q1199">Hessisch</placeName> grondgebied bevonden en reden tot <placeName type="E53_Place" xml:id="e60">West-Uffelen</placeName> de derde en laatste station voor <placeName type="E53_Place" xml:id="e61" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName>: hier aten wy in der haast, bestelden een ander <rs type="E22_Human-made_Object" xml:id="e62">rytuig</rs> en waren weldra op weg naar <placeName type="E53_Place" xml:id="e63" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName>: kort aan de weg zagen wy hier ontzettende grote kudden varkens grootendeels bonten en zwarten om welke te hoeden verscheiden menschen waren. ter naauwernood waren wy <placeName type="E53_Place" xml:id="e64">Meinbids</placeName> en <placeName type="E53_Place" xml:id="e65" ref="http://www.wikidata.org/entity/Q31463877" key="Q31463877">Kalken</placeName> gepasseerd toen wy door zulk eene hevige stortregen wierden verfrist dat wy weldra druipnat waren wyl onze <rs type="E22_Human-made_Object" xml:id="e66">wagen</rs> slechts half verdekt was en aan alle zyden lekte: lang voor wy <placeName type="E53_Place" xml:id="e67" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:6547484" key="Q2865">Cassel</placeName> bereikten zagen wy de <rs type="E18_Physical_Thing" xml:id="e68">Hercules</rs> op de <rs type="E18_Physical_Thing" xml:id="e69" ref="http://www.wikidata.org/entity/Q447441 http://www.geonames.org/gn:2808679" key="Q447441">octogoon van de Wilhelmhohe</rs>, wien wy deezen middag van naderby hopen <lb/><pb n="19"/>[Illustraties op linkerblad: <placeName type="E53_Place" xml:id="e70" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName>]<lb/>te zien, en kort daarop de stad <placeName type="E53_Place" xml:id="e71" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> zelve, alwaar wy om 5 uur in het voortreflyk waarlyk vorstlyk logement <rs type="E18_Physical_Thing" xml:id="e72">de Kurfürst</rs> onze intrek namen. –<lb/>Zoo heb ik u dan gelukkig tot <placeName type="E53_Place" xml:id="e73" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> gebragt mijn Vriend, ik dagt het met weinige woorden te zullen doen en heb verscheiden pagina’s vol geklad zoo gaat het als men maar eens de pen heeft opgevat dan vloeyen de letters als vanzelve eruit. ik hoop dat my de tyd nu maar niet te kort zal vallen om u met <placeName type="E53_Place" xml:id="e74" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> eenigzints bekend te maken. –<lb/>Door voortreflyke ligging, inwendige schoonheid en menigvuldige hier byeengebragte zeldzaamheden verdient <placeName type="E53_Place" xml:id="e75" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> gewis de opmerkzaamheid van elken reiziger en thans zoo veel te meer daar alle kostbaarheden, zoo uit het <rs type="E18_Physical_Thing" xml:id="e76" ref="http://www.wikidata.org/entity/Q449280" key="Q449280">Museum Fridericianum</rs> als schilderyen enz, uit <placeName type="E53_Place" xml:id="e77" ref="http://www.wikidata.org/entity/Q90" key="Q90">Parys</placeName> terug gekomen &amp; voor ieder vreemde te zien zyn. Ik zal maar een aanvang maken met gemeld museum &amp; om u een zeer flaauwe schets ervan te geven uit iedere Kamer het een en ander opnoemen dat my als het zeldsaamste of beste is voorgekomen. – Voortby den ingang in het eerste vertrek vonden wy behalven veele dingen eene groote collectie vogeleyeren van alle grootte en figuur; de op verscheidene plaatsen (zie onder anderen de brieven voornoemd 1 deel bl 167, 168, 169) beschrevene houtbibliotheek zynde echter geheel anders ingericht als de enkele voorwerpen die wy op onze Academiesche boekery te <placeName type="E53_Place" xml:id="e78" ref="http://www.wikidata.org/entity/Q749" key="Q749">Groningen</placeName> bezitten, eene extra zware stam van eene lauwrierboom en eene groote verzameling van in was geboetzeerde vruchten zoo natuurlyk gekleurd als ik ooit iets gezien heb. De Tweede Kamer was geheel gevuld met opgezette vogels waaronder een groote Casuarus en eene geheele Kas vol paradysvogels; het geheel was naar het Lynnaeische Systema gerangschikt. By het openen der derde Kamer, waarin louter viervoetige dieren, wierd het oog terstond getroffen door een opgezette en een gesceletteerde olyphant zoo ik my niet bedrieg had dit dier hier in de diergaarde geleeft even als een leeuw, tyger, Kaapsche ezel, luipaard, drommedaris, wild zwyn en rendier alle hier voorhanden. Van daar kwamen wy in een soort van galery door eene ry van zuilen ondersteund hetgeen het eigenlyke vestibule van het geheele gebouw is en aan het schoone <placeName type="E53_Place" xml:id="e79" ref="http://www.wikidata.org/entity/Q1430309" key="Q1430309">Frederikplein</placeName> uitkomt hier waren antiquen en voorwerpen van de nieuwere beeldhouwkunst doch veele stukken waren vry wat beschadigt <pb n="20"/>door hun reis naar <placeName type="E53_Place" xml:id="e80" ref="http://www.wikidata.org/entity/Q90" key="Q90">Parys</placeName> hebbende de fatigues niet kunnen doorstaan; hier muntte inzonderheid eene Venus de Medicis en twee worstelaars uit: onder de antiquen waren zeer schoone van <placeName type="E53_Place" xml:id="e81">Kurk</placeName> nagemaakte ruines het <rs type="E18_Physical_Thing" xml:id="e82" ref="http://www.wikidata.org/entity/Q272777 http://www.geonames.org/gn:2822071" key="Q272777">Palazo di Maecenate</rs> te <placeName type="E53_Place" xml:id="e83" ref="http://www.wikidata.org/entity/Q159605" key="Q159605">Tivoli</placeName>, het <rs type="E18_Physical_Thing" xml:id="e84">Bagno della nimfa Egeria</rs> enz, een Aristoteles voldeed ons hier ook zeer. Agter deeze zaalen is door Hieronymus in de gedaante van een halve circel een schoon gebouw voor de vergadering der standen of zoogenaamde états gebouwd in hetzelve was een troon voor de Koning als hy de vergadering bywoonde, doch thans wordt, volgens het getuigenis van onzen conducteur, geen gebruik meer van dit gedeelte gemaakt. Na nog eene kamer met versteeningen, mineralen en schelpen, waarin egter niets byzonders, gezien te hebben, bragt men ons in een vertrek met oude penningen zeer nettjes onder glazen geschikt, hier waren ook veele kleine beeldjes, antiquiteiten, en eene groote verzameling van edelgesteenten waaronder een groote Onyx byzonder uitmuntte. Dan wat wy eigenlyk in de daar aangrenzende kamer zagen kan ik u niet zeggen genoeg het waren loutere pretiosa het eene stuk kostbaarder als het andere, en op de verschillendste wyze in goud zilver of edelgesteentens bewerkt, men vond er eene kast vol van allerly dingen uit barnsteen gemaakt van het grootste tot het kleinste toe, in het midden der kamer zag men de <rs type="E18_Physical_Thing" xml:id="e85" ref="http://www.wikidata.org/entity/Q567643" key="Q567643">vesting Rheinfels</rs> als mozaiek. Hiernaast was een vertrek geheel met klokken pendules en horlogies gevuld waaronder van de allereerste uitvinding, zommige klokken deden by het slaan gehele schilderyen te voorschyn komen, een beeld waarin een uurwerk schoot op zekere tyden een pistool af en dergelyke meer: zoo waren wy tot de laatste kamer beneden gekomen waarin niets dan mosaiek men vond er aartige dingen onder. Nu bleef ons alleen boven nog twee kamers overig om te zien, werwaarts wy met onze Professor Matske langs een breede trap gingen: de eerste van deeze <pb n="21"/>was met oude wapentuigen gevuld een vyftigtal bogen trok onze aandagt meest alle wierden op verschillende wyze afgeschoten; onder de menigte van zwaarden was er een door Paus Innocentius de VIII by zyne terugkomst uit het <placeName type="E53_Place" xml:id="e86" ref="http://www.wikidata.org/entity/Q48175" key="Q48175">Heilige Land</placeName> aan de toen regeerende Landgraaf gegeven het is ontzettend groot en zeer ryk. Eindelyk aan de laatste zaal gekomen zagen wy in een half rond 19 landgraven &amp; landgravinnen, zoo men zegt zeer gelykend in was geboetseerd &amp; naar de costumes van die tyd gekleed, op stoelen zitten dit was een vreemd gezigt en daar de ry door Landgraaf Morits geopend en tot de jongst overledene Keurvorst ging kan men wel begrypen dat het verschil in kleding aanmerkelyk is. – Zie daar dan een kort verslag van eenige dingen welke wy in het <rs type="E18_Physical_Thing" xml:id="e87">museum</rs> zagen, heeft het u voldaan dan zal ik in het vervolg u steeds op deeze manier iets omtrend cabinetten, verzamelingen enz mededeelen; zoo niet, meld het my dan in eene volgende brief en gy zult my vry wat moeite besparen terwyl ik u er niet meer meede lastig zal vallen, thans echter moet gy my naar de <rs type="E18_Physical_Thing" xml:id="e88">boekery</rs> vergezellen in het zelve gebouw voorhanden. Deeze is voortreflyk, zy bestaat uit ongeveer 50,000 banden, het locaal is ook zeer geschikt zynde 113 schreden lang en 17 breed: het is een groot agrement voor <placeName type="E53_Place" xml:id="e89" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:6547484" key="Q2865">Cassels</placeName> ingezeetenen die er het volle gebruik van hebben, te meer daar men er zich op schynt toe te leggen, om alle nieuw uitkomende werken dadelyk te krygen zoo vonden wy toch reeds hier het 2de deel van de door de Heeren Tydeman &amp; van Campen uitgegevene Mnemosyne ’t welk niet lang voor onze afreis eerst van de pers is gekomen. Zeer doelmatig schynt my de inrigting der catalogus te zyn: deeze bestaat uit eene kleine of alphabetische van meer dan 100 banden en eene grootere of reaal catalogue van 54 banden in folio: in de alphabetische heeft ieder boek of schryver een los blad, zoo dat telkens als er een nieuw komt men er een blad kan tusschen leggen, dit blad bevat de titel van het boek en wyst verder naar den reaal catalogus met vermelding van het vak formaat &amp; Numero. Deeze reaal catalogus is overigens zeer onder- <pb n="22"/>scheiden ingerigt; dat is, de vakken zyn om het ligt wedervinden zoo veel mogelyk gesplitst en dan weder in ieder vak de onderscheiden formaten, die telkens met een nieuw Numero, dat er los ingelegd word, beginnen. Wat betreft de verzameling van schilderyen in het <rs type="E18_Physical_Thing" xml:id="e90" ref="http://www.wikidata.org/entity/Q130372726 http://www.geonames.org/gn:2951209" key="Q130372726">paleis Bellevue</rs> deeze is waarlyk uitmuntend, wy zagen er schoone stukken van Rubbens, Rembrand, van Dyk, Teniers, Holzbein, Frans Mieris, Kamphuizen, van Titiaan, Wouerman, Jan Steen, Ostade enz van de Italiaansche meesters Bellegrini, Morielli, Alex Veronese, Augelo Cararas en andere toonde men ons ook schoone stukken: van Raphaël was er slegts een stuk aan welks echtheid men reden heeft te twyfelen, een groot stuk van Potter waarop een stier voldeet my zeer als mede een klein strandgezicht van <placeName type="E53_Place" xml:id="e91" ref="http://www.wikidata.org/entity/Q837211" key="Q837211">Scheveningen</placeName> door A van der Velde geschilderd, hierop was een postillon die, hoe men zich ook plaatste, steeds naar eene andere kant scheen te ryden: het is jammer dat deeze schoone verzameling niet beter geplaatst is; te voren was zulks beter, toen viel het licht van boven er in, doch toen Hieronymus zag dat zyn Geliefde broeder de meeste en beste stukken na <placeName type="E53_Place" xml:id="e92" ref="http://www.wikidata.org/entity/Q90" key="Q90">Parys</placeName> meede nam, besloot hy deeze gallery, die zeer hoog was, in 2 verdiepingen te verdelen van boven digt &amp; op zyde vengsters te maken zoo dat weldra uit de ruines van de schildergallery eene pragtige danszaal verrees: na de terugkomst van den Keurvorst is het zoo gebleven &amp; alle schilderyen zyn maar zoo wat heen gehangen doch het is te wenschen dat hier in weder voorzien worde. De opzichter verhaalde ons nog eene byzonderheid nopens eene Cleopatra die eenige tyd te <placeName type="E53_Place" xml:id="e93" ref="http://www.wikidata.org/entity/Q90" key="Q90">Parys</placeName> gelogeerd had: de Franschen te weten hadden er eene Ariadne van willen maken &amp; daarom de slang, die de vergiftige beet toebragt, een kleurtje over gedaan; na de terugkomst der stukken was Cleopatra weder boven gekomen &amp; de adder of slang door de eerste schilder van <placeName type="E53_Place" xml:id="e94" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> weder by gemaakt. Dit <rs type="E18_Physical_Thing" xml:id="e95" ref="http://www.wikidata.org/entity/Q130372726 http://www.geonames.org/gn:2951209" key="Q130372726">paleis Belle vue</rs> is voor de Koningin bestemd en gemeubileerd geweest doch zy heeft er nimmer gebruik van gemaakt en by haar kortstondig verblyf alhier in ons logement de Keurvorst gelogeerd; de meubels, voor zoo verre die hier nog waren (want Jerome heeft byna alles medegenomen) waren ryk en kostbaar <pb n="23"/>vooral de groote spiegels; eene gallery van verschillende zoorten marmor deed ook een zeer goed effect. Doch wilt gy een meesterstuk der kunst zien gaat dan naar het zoogenaamde <rs type="E18_Physical_Thing" xml:id="e96" ref="http://www.geonames.org/gn:6955705" key="gn:6955705">marmeren bad</rs> voorin de <rs type="E18_Physical_Thing" xml:id="e97" ref="http://www.wikidata.org/entity/Q2028180 http://www.geonames.org/gn:6944084" key="Q2028180">Orangerie</rs>, nimmer heb ik iets prachtigers in die smaak gezien: Het gebouw, dat volgens onzen leidsman meer dan een miljoen guldens gekost heeft, is door de beroemden beeldhouwer P.S. Monnot gemaakt het is een vierkant vertrek waarvan de vloeren, muren en vercierselen uit verschillende soorten van zeldsaam marmer, uit jaspis agaat &amp; andere steenen bestaan. Het bad zelf is in het midden, 5 trappen diep en 25 voeten in omtrek; acht Corintische pylaren ondersteunen de koepel waardoor het licht invalt. doch wat behoef ik u hier verder over te spreken slaat de reizen van Profr van Swinderen open &amp; op bladzyde 162 en 163 zult gy veel vollediger beschryving vinden als ik in staat ben te geven: alleen voeg ik erby dat aan de buitenzyde een geheele hoek zerk van de deur was afgeschoten door een kanon kogel welke Cnernitschef den 30 September 1813 op de stad had afgezonden: gelukkig dat dit schoone gebouw niet meer beschadigd is geworden! Tot aandenken hieraan had voornoemde Generaal boven de uitgeschotene hoek de woorden 30 September 1813 geplaatst. Naby dit gebouw vind men de <placeName type="E53_Place" xml:id="e98" ref="http://www.geonames.org/gn:2892797" key="gn:2892797">Aue</placeName> of <rs type="E18_Physical_Thing" xml:id="e99" ref="http://www.geonames.org/gn:2892797" key="gn:2892797">Aue-Garten</rs> zynde een groote lap gronds die ongeveer 4,000 voet lang is eene lange linden allee van 140 voeten breed brengt u naar eene ontzetten groote vyver die volgens Bongard 8000 voeten omtrek zoude hebben hetgeen my toch wat vergroot voorkomt. Dan zoo zullen nu ook de kerken wel eens aan de beurt komen althans die geene welke wy zagen, in de eerste plaats de schoone <rs type="E18_Physical_Thing" xml:id="e100">Roomsche kerk</rs> vlak over ons logement gelegen. Zy bestaat uit een groot vierkant en eene daarmede verbonden ronden koepel, eene ry kolommen ondersteund eene rondgaande galery waarop het orgel geplaatst is: op deeze galery is eene ry colommen welke het koepelvormige dak dragen terwyl het <rs type="E18_Physical_Thing" xml:id="e101">marmeren hoogaltaar</rs> op drie circelvormige trappen midden in de koepel is, dit alles vereenigd met eenige goede schilderyen van Tischbein maken deeze kerk tot een der schoonste die ik gezien heb: behalve deeze zagen <pb n="24"/>wy nog de <rs type="E18_Physical_Thing" xml:id="e102">Brüder</rs> en de <rs type="E18_Physical_Thing" xml:id="e103">Domkerk</rs> in welke laatste eenige tombes zyn die goed bewerkt schenen; voorts hingen in dezelve 6 groote schilden waarop in vergulden letters de namen der in 1814 uitgetrokkene vrywilligers met het volgend opschrift<lb/><placeName type="E53_Place" xml:id="e104" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassels</placeName> söhne die sich im Jahre 1812 dem Vaterlande, unter anführung des tapferen Kurprinses, weiheten. –<lb/>De Keurprins had dan ook nog een zevende schild waarop zyne naam was. Van de <rs type="E18_Physical_Thing" xml:id="e105" ref="http://www.geonames.org/gn:2946447" key="gn:2946447">Kweekschool voor onderwyzers</rs>, waarvan de Heer Knieriem thans directeur is, zal ik niets melden dan dat wy thans 32 Seminaristen vonden zynde er nog 20 buiten huis &amp; dat, door gebrek aan geld het instituut zeer verminderd was volgens het oordeel van Porfr van Swinderen, die hier in 1809 ook geweest had en wiens brief gy lezen kunt in de meergemelde reis van bladzyde 170-188 van het eerste deel, alwaar ZHoog Gel: zeer omslagtig over deeze inrichting handelt. De directeur scheen ook in ’t geheel niet ingenomen met de Keurvorst, omtrend wien hy zich zeer vry tegen ons uit liet, ja zelf by gelegenheid dat wy in de <rs type="E18_Physical_Thing" xml:id="e106" ref="http://www.wikidata.org/entity/Q317908" key="Q317908">Comedie</rs> de maitres en eenige onechte kinderen van den Vorst in eene loge aan het toneel zagen zitten, vertelde hy ons de gansche chronique scandaleuse van de Keurvorst. In ‘t algemeen schynt hy meer gehaat dan bemind te zyn hetgeen grootendeeld veroorzaakt wordt door zyne overdreven zucht om alles weder op den ouden voet te hebben: om zich hiervan te overtuigen, behoeft men slegts even als wy eene parade van het garnizoen by te woonen, dan kan men zich wel verbeelden een twintig jaar agteruit te zyn, hebbende alle militairen wit gepoederd haar met lange staarten, &amp; een groot driekantige hoed op het meestal 40 of 50 jarige hoofd, terwyl alle onderofficieren &amp; veele officieren vervaarlyke stokken in de hand hebben. Den Keurvorst voor de eerste reis ziende schrikte ik inderdaad voor hem daar hy een gezwel veel groter dan een zwane ey op zyn linker wang heeft het geen op zyn schouder gedeeltelyk rust doch onder het gaan gedurig op en neder wyst. Het <rs type="E18_Physical_Thing" xml:id="e107" ref="http://www.wikidata.org/entity/Q62832 http://www.geonames.org/gn:2946447" key="Q62832">observatorium</rs> hebben wy tot nu toe om verschillende redenen niet kunnen zien mogelyk zal het ons gedurende ons verblyf alhier nog geluk- <lb/><pb n="25"/>[illustratie linker blad: <rs type="E18_Physical_Thing" xml:id="e108">Wilhelms Brücke</rs> in <placeName type="E53_Place" xml:id="e109" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName>]<lb/>ken en anders zullen wy ons in <placeName type="E53_Place" xml:id="e110" ref="http://www.wikidata.org/entity/Q3033 http://www.geonames.org/gn:6557373" key="Q3033">Göttingen</placeName> daarvoor schadeloos stellen. Zoo verre ik weet heb ik nu <placeName type="E53_Place" xml:id="e111" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> met u rondgeweest en zou dus deeze kunnen eindigen wilde ik u niet nog met eenige weinige woorden nog iets van de stad in het algemeen en van deszelfs schoone pleinen melden. –<lb/>De ligging der stad is alleraangenaamst; de <rs type="E18_Physical_Thing" xml:id="e112" ref="http://www.wikidata.org/entity/Q6434 http://www.geonames.org/gn:3208149" key="Q6434">Fulda</rs> doorsnydt dezelve in twee ongelyke deelen die door de fraaye <rs type="E18_Physical_Thing" xml:id="e113">Wilhelmsbrug</rs> (zie N° [open plek] zynde 103 schreden lang &amp; 20 breed onder Willem de IX in 1788 begonnen en in 1794 voltooid, verbonden worden. Onder de verschillende groote en kleine pleinen, waarmede <placeName type="E53_Place" xml:id="e114" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> pronkt, munten voornaamlyk de volgende uit het <rs type="E18_Physical_Thing" xml:id="e115" ref="http://www.wikidata.org/entity/Q100507321 http://www.geonames.org/gn:2892519" key="Q100507321">Leipsicher plein</rs> even binnen de <rs type="E18_Physical_Thing" xml:id="e116" ref="http://www.geonames.org/gn:2892519" key="gn:2892519">Leipsicher poort</rs>, de paradeplaats en de <rs type="E18_Physical_Thing" xml:id="e117">Kasern plaats</rs>, een byna vierkante 540 voeten breede plaats, op de hoek van deeze pleinen vind men een voortreklyk coffyhuis uit een suite van 4 bovenkamers bestaande van waar men het heerlykste uitzigt van de wereld heeft, verder het <rs type="E18_Physical_Thing" xml:id="e118" ref="http://www.wikidata.org/entity/Q1430309" key="Q1430309">Frederiksplein</rs> zynde een groot langwerpig vierkant van 1000 voeten lang en 450 breed en omringd door eene dubbele linden allee, het <rs type="E18_Physical_Thing" xml:id="e119" ref="http://www.wikidata.org/entity/Q1796444" key="Q1796444">Koningsplein</rs> is circelrond, heeft 456 voeten midellyn en pronkt met veele schoone gebouwen, eindelyk het <rs type="E18_Physical_Thing" xml:id="e120" ref="http://www.wikidata.org/entity/Q100509241" key="Q100509241">Karelsplein</rs> dat juist niet zeer groot is doch merkwaardig wegens het daarop geplaatste marmeren beeld van den landgraaf Karel die op het einde der 17de Eeuw deeze zoogenaamde <placeName type="E53_Place" xml:id="e121">boven nieuw stad</placeName> voor de uit <placeName type="E53_Place" xml:id="e122" ref="http://www.wikidata.org/entity/Q142" key="Q142">Franryk</placeName>, om de herroeping van het Edict van Nantes, gevlugte protestanten heeft laten aanleggen: op eenige der overige pleinen stonden weleer ook standbeelden van andere landgraven welke de Franschen alle hebben doen opmarscheren behalven alleen het hier boven gemelde. – Onder de straten van <placeName type="E53_Place" xml:id="e123" ref="http://www.wikidata.org/entity/Q2865 http://www.geonames.org/gn:2892519" key="Q2865">Cassel</placeName> zyn de Konings en de <rs type="E18_Physical_Thing" xml:id="e124">Bellevue straat</rs> beide in de <placeName type="E53_Place" xml:id="e125">boven nieuwstad</placeName> gelegen verre weg de schoonste. –<lb/>Dan myn Vriend het wordt tyd dat ik deeze sluite zy is nu ook eens lang genoeg, myne volgende over <rs type="E18_Physical_Thing" xml:id="e126" ref="http://www.wikidata.org/entity/Q447441 http://www.geonames.org/gn:2808679" key="Q447441">Wilhelmshöhe</rs> en de reis naar <placeName type="E53_Place" xml:id="e127" ref="http://www.wikidata.org/entity/Q3033 http://www.geonames.org/gn:6557373" key="Q3033">Göttingen</placeName> zoo wy die zonder tegenspoed volbrengen. –<lb/>Vale!</ab>
     </body>
   </text>
+  <standOff>
+    <xenoData>
+    <rdf:RDF
+   xmlns:academictourism="http://academictourism.com/academictourism#"
+   xmlns:cidoc-crm="http://www.cidoc-crm.org/cidoc-crm/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0014">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Wandeling door de Aue of Aue-Garten</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e98"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0015"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Aue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Kweekschool_voor_onderwyzers">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Kweekschool voor onderwyzers</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e105"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0011">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bezoek aan de bibliotheek in het Museum Fridericianum</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e88"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0012"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.boekery"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0010">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bezoek aan het Museum Fridericianum</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e73"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e75"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e76"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e77"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e78"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e79"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e81"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e82"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e83"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e84"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e85"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e86"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0011"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.Museum_Fridericianum"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Palazo_di_Maecenate">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Palazo di Maecenate</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e82"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q272777"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E9_Move"/>
+    <rdfs:label>Tour in letter 3</rdfs:label>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0001"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0002"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0003"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0004"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0005"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0007"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0008"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0009"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0011"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0012"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0013"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0014"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0015"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0016"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0017"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0018"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0019"/>
+    <cidoc-crm:P10_contains rdf:resource="http://academictourism.com/entity/BRF0003.RS0020"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/BRF0003"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e71">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Cassel' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0009"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Frederikplein">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Frederikplein</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e79"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q1430309"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Desenberg">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Desenberg</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e32"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e51"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q1200563"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e31">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Hardehauserwoud' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0002"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e51">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Desenberg' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Desenberg"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0001">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E9_Move"/>
+    <rdfs:label>Rit van Paderborn naar Lichtenau met extrapost</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e10"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e11"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e13"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e6"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e7"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P16_used_specific_object rdf:resource="http://academictourism.com/entity/LOC.Extrapost"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0002"/>
+    <cidoc-crm:P26_moved_to rdf:resource="http://academictourism.com/entity/LOC.Lichtenau"/>
+    <cidoc-crm:P27_moved_from rdf:resource="http://academictourism.com/entity/LOC.Paderborn"/>
+    <cidoc-crm:P2_has_type rdf:resource="http://vocab.getty.edu/page/aat/300248181"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0006">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E9_Move"/>
+    <rdfs:label>Rit van Warburg naar West-Uffelen met rytuig</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e46"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e49"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e50"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e51"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e55"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e56"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e57"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e58"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e60"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P16_used_specific_object rdf:resource="http://academictourism.com/entity/LOC.rytuig"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0007"/>
+    <cidoc-crm:P26_moved_to rdf:resource="http://academictourism.com/entity/LOC.West_Uffelen"/>
+    <cidoc-crm:P27_moved_from rdf:resource="http://academictourism.com/entity/LOC.Warburg"/>
+    <cidoc-crm:P2_has_type rdf:resource="http://vocab.getty.edu/page/aat/300248181"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.vesting_Rheinfels">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>vesting Rheinfels</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e85"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q567643"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Lichtenau">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Lichtenau</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e13"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q183483"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Duitschland">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Duitschland</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q183"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0013">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bezoek aan het marmeren bad in de Orangerie</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e96"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e97"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0014"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.marmeren_bad"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0008">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E9_Move"/>
+    <rdfs:label>Rit van West-Uffelen naar Cassel met rytuig</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e62"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e64"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e65"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e67"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P16_used_specific_object rdf:resource="http://academictourism.com/entity/LOC.rytuig"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0009"/>
+    <cidoc-crm:P26_moved_to rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P27_moved_from rdf:resource="http://academictourism.com/entity/LOC.West_Uffelen"/>
+    <cidoc-crm:P2_has_type rdf:resource="http://vocab.getty.edu/page/aat/300248181"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003">
+    <rdf:type rdf:resource="http://iflastandards.info/ns/lrm/lrmoo/F2_Expression"/>
+    <rdfs:label>Brief 3 — Cassel, July 1816</rdfs:label>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Bagno_della_nimfa_Egeria"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Bellevue_straat"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Dalheim"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Desenberg"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Dornhagen"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Duitschland"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Ehrings"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Franryk"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Frederikplein"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Fulda"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.G_ttingen"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Grondsteinheim"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Groningen"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Hardehauserwoud"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Heilige_Land"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Hessisch"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Kalken"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Karelsplein"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Kasern_plaats"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Kleinenberg"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Koningsplein"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Kurk"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Leipsicher_plein"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Leipsicher_poort"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Libenau"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Meinbids"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Neuhaus"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Nider_Lichtingen"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Ober"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Orangerie"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Palazo_di_Maecenate"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Parys"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Scheveningen"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Tivoli"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.Wilhelmsh_he"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.boven_nieuw_stad"/>
+    <cidoc-crm:P67_refers_to rdf:resource="http://academictourism.com/entity/LOC.vesting_Rheinfels"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Gasthofe_Desenburg">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Gasthofe Desenburg</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0009">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Verblijf in logement de Kurfürst te Cassel</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e70"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e71"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.logement_de_Kurf_rst"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e7">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Paderborn' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0001"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Paderborn"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Tivoli">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Tivoli</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e83"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q159605"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Ehrings">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Ehrings</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e55"/>
+    <skos:closeMatch rdf:resource="https://www.geonames.org/2932791"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.marmeren_bad">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>marmeren bad</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e96"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0004">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Wandelingen rond Warburg</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e45"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0005"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Warburg"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e62">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'rytuig' (E22_Human-made_Object)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0008"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0018">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bezoek aan de Kweekschool voor onderwyzers</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e105"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0019"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.Kweekschool_voor_onderwyzers"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e100">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Roomsche kerk' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0015"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.wagen">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E22_Human_Made_Object"/>
+    <rdfs:label>wagen</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e10">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Dornhagen' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0001"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Aue">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Aue</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e98"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0007">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Maatijd in West-Uffelen</rdfs:label>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0008"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.West_Uffelen"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Fulda">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Fulda</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q6434"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Heilige_Land">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Heilige Land</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e86"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q48175"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.rytuig">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E22_Human_Made_Object"/>
+    <rdfs:label>rytuig</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Parys">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Parys</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e77"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e92"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e93"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q90"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e57">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Ober' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e34">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Ossendorf' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0002"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Ossendorf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Domkerk">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Domkerk</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.boekery">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>boekery</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Dalheim">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Dalheim</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e50"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q1157900"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Franryk">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Franryk</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q142"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0017">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bezoek aan de Domkerk</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e103"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0018"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.Domkerk"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.boven_nieuw_stad">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>boven nieuw stad</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Museum_Fridericianum">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Museum Fridericianum</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e76"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q449280"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e49">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Warburg' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Warburg"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0016">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bezoek aan de Brüderkirche</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e102"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0017"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.Br_der"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e73">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Cassel' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e11">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Grondsteinheim' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0001"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Grondsteinheim"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e67">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Cassel' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0008"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e96">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'marmeren bad' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0013"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.marmeren_bad"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0002">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E9_Move"/>
+    <rdfs:label>Rit van Lichtenau naar Ossendorf in een wagen</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e24"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e30"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e31"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e32"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e34"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P16_used_specific_object rdf:resource="http://academictourism.com/entity/LOC.wagen"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0003"/>
+    <cidoc-crm:P26_moved_to rdf:resource="http://academictourism.com/entity/LOC.Ossendorf"/>
+    <cidoc-crm:P27_moved_from rdf:resource="http://academictourism.com/entity/LOC.Lichtenau"/>
+    <cidoc-crm:P2_has_type rdf:resource="http://vocab.getty.edu/page/aat/300248181"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e98">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Aue' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0014"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Aue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Groningen">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Groningen</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e78"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q749"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0012">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bezoek aan de schilderijengalerij in paleis Bellevue</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e90"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e91"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e92"/>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e93"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0013"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.paleis_Bellevue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e46">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'rytuig' (E22_Human-made_Object)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Meinbids">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Meinbids</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Dornhagen">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Dornhagen</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Warburg">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Warburg</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e43"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e45"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e49"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q968"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e81">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Kurk' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0020">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bijwonen van een parade van het garnizoen</rdfs:label>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Koningsplein">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Koningsplein</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q1796444"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e82">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Palazo di Maecenate' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Palazo_di_Maecenate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0005">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Overnachting en maaltijd in Gasthofe Desenburg te Warburg</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e48"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Warburg"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.Gasthofe_Desenburg"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e48">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Gasthofe Desenburg' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0005"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0003">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E9_Move"/>
+    <rdfs:label>Wandeling van Ossendorf naar Warburg</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e43"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0004"/>
+    <cidoc-crm:P26_moved_to rdf:resource="http://academictourism.com/entity/LOC.Warburg"/>
+    <cidoc-crm:P27_moved_from rdf:resource="http://academictourism.com/entity/LOC.Ossendorf"/>
+    <cidoc-crm:P2_has_type rdf:resource="http://vocab.getty.edu/page/aat/300248181"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Nider_Lichtingen">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Nider Lichtingen</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Extrapost">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E22_Human_Made_Object"/>
+    <rdfs:label>Extrapost</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Orangerie">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Orangerie</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e97"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q2028180"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e105">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Kweekschool voor onderwyzers' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0018"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Kweekschool_voor_onderwyzers"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Grondsteinheim">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Grondsteinheim</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e11"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q1550705"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e65">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Kalken' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0008"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Kalken"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Kleinenberg">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Kleinenberg</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e30"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q1746571"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e50">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Dalheim' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Dalheim"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e83">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Tivoli' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Tivoli"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e56">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Libenau' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Libenau"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e58">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Nider Lichtingen' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Wilhelmsh_he">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Wilhelmshöhe</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q447441"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Scheveningen">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Scheveningen</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e91"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q837211"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e106">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Comedie' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0019"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Comedie"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Hardehauserwoud">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Hardehauserwoud</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Comedie">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Comedie</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e106"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q317908"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e64">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Meinbids' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0008"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Bellevue_straat">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Bellevue straat</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e84">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Bagno della nimfa Egeria' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Libenau">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Libenau</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e56"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q505551"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Hessisch">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Hessisch</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q1199"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e78">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Groningen' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Groningen"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Bagno_della_nimfa_Egeria">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Bagno della nimfa Egeria</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Leipsicher_plein">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Leipsicher plein</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q100507321"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e32">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Desenberg' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0002"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Desenberg"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e24">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'wagen' (E22_Human-made_Object)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0002"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e70">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Cassel' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0009"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0019">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bezoek aan de Comedie</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e106"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0020"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.Comedie"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Br_der">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Brüder</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Paderborn">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Paderborn</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e7"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q2971"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e93">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Parys' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0012"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Parys"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e85">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'vesting Rheinfels' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.vesting_Rheinfels"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/BRF0003.RS0015">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume"/>
+    <rdfs:label>Bezoek aan de Roomsche kerk</rdfs:label>
+    <academictourism:conveys rdf:resource="http://academictourism.com/entity/CT.BRF0003.e100"/>
+    <cidoc-crm:P10_falls_within rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P11_had_participant rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P12_occurred_in_the_presence_of rdf:resource="http://academictourism.com/entity/TG"/>
+    <cidoc-crm:P132_spatiotemporally_overlaps_with rdf:resource="http://academictourism.com/entity/BRF0003.RS"/>
+    <cidoc-crm:P183_ends_before_the_start_of rdf:resource="http://academictourism.com/entity/BRF0003.RS0016"/>
+    <cidoc-crm:P7_took_place_at rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+    <cidoc-crm:P8_took_place_on_or_within rdf:resource="http://academictourism.com/entity/LOC.Roomsche_kerk"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.G_ttingen">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Göttingen</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q3033"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Cassel">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Cassel</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e67"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e70"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e71"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e73"/>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e75"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q2865"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e92">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Parys' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0012"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Parys"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e76">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Museum Fridericianum' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Museum_Fridericianum"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e79">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Frederikplein' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Frederikplein"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/TG">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
+    <rdfs:label>Tour Group Brief 3</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e75">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Cassel' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Cassel"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Kurk">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Kurk</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e86">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Heilige Land' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Heilige_Land"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Ober">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Ober</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Kasern_plaats">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Kasern plaats</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e91">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Scheveningen' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0012"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Scheveningen"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e103">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Domkerk' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0017"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e43">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Warburg' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0003"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Warburg"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.logement_de_Kurf_rst">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>logement de Kurfürst</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.paleis_Bellevue">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>paleis Bellevue</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e90"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q130372726"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Roomsche_kerk">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Roomsche kerk</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Leipsicher_poort">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Leipsicher poort</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.geonames.org/2892519"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e13">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Lichtenau' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0001"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Lichtenau"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e6">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Extrapost' (E22_Human-made_Object)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0001"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Neuhaus">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Neuhaus</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.geonames.org/2865144"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e97">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Orangerie' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0013"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Orangerie"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e77">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Parys' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0010"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Parys"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e60">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'West-Uffelen' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Kalken">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Kalken</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e65"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q31463877"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e45">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Warburg' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0004"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Warburg"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e90">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'paleis Bellevue' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0012"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.paleis_Bellevue"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Karelsplein">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Karelsplein</rdfs:label>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q100509241"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e30">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Kleinenberg' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0002"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Kleinenberg"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.Ossendorf">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>Ossendorf</rdfs:label>
+    <cidoc-crm:P67i_is_referred_to_by rdf:resource="http://academictourism.com/entity/CT.BRF0003.e34"/>
+    <skos:closeMatch rdf:resource="https://www.wikidata.org/wiki/Q2034601"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e55">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Ehrings' (E53_Place)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0006"/>
+    <cidoc-crm:P129_is_about rdf:resource="http://academictourism.com/entity/LOC.Ehrings"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e102">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'Brüder' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0016"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/LOC.West_Uffelen">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
+    <rdfs:label>West-Uffelen</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://academictourism.com/entity/CT.BRF0003.e88">
+    <rdf:type rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
+    <rdfs:label>Citation: 'boekery' (E18_Physical_Thing)</rdfs:label>
+    <academictourism:is_conveyed_by rdf:resource="http://academictourism.com/entity/BRF0003.RS0011"/>
+  </rdf:Description>
+</rdf:RDF>
+
+    </xenoData>
+  </standOff>
 </TEI>

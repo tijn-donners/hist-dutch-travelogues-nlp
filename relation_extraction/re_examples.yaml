@@ -1,121 +1,413 @@
 # Few-shot examples for ATO relation extraction
-# Based on annotated data from ATO.rdf (Brief IV and V patterns)
+# Based on actual text from the fourth and fifth letters (BRF0004, BRF0005)
+# — different from the letter being analyzed (BRF0003, Brief 3).
+# Labels adapted to the pipeline tagset (E53_Place kept from source annotations,
+# Mode_of_Transportation, time spans and other labels added where appropriate).
+# Entity markers include mention IDs (e1, e2, ...) for citation provenance.
+# No persons (E21_Person, E74_Group) — the pipeline does not model them.
 
+# --- Example 1: Translocation (wandeling) with mode and time span ---
+# Source: Brief 4, lines 10-11: walking from Kassel to Weissenstein
 - text: |
-    [Wy](E21_Person, TG) reden dan Donderdag zynde den 4 om 1 uur met [Extrapost](E55_Type, aat:300248181) uit [Paderborn](E53_Place, Q2971) en kwamen om 8 uur te [Ossendorf](E53_Place, Q2034601) aan. De Kastelein toonde zich zeer gebelgd. Wy besloten naar [Warburg](E53_Place, Q968) te wandelen omdat wy aldaar oneindig beter logeeren konden. In [Warburg](E53_Place, Q968) hebben wy zeer goed gegeten in het [Gasthofe Desenburg](E19_Physical_Thing, Q1200563) en heerlyk geslapen.
+    Langs eene lange breede laan [gingen](Mode_of_Transportation, e1) wy [Zondag ll](E52_Time_Span, e2) van [Kassel](E53_Place, e3) naar het beroemde [Weissenstein](E53_Place, e4). Het [paleis](E18_Physical_Thing, e5) aldaar is in eene bevallige smaak gebouwd.
   output:
-    letter_id: "BRF0003"
+    letter_id: "BRF0004"
     tour_group:
       id: "TG"
-      label: "Tour Group Brief 3"
+      label: "Tour Group Brief 4"
     events:
       - id: "RS0001"
         type: "translocation"
-        label: "Rit van Paderborn naar Ossendorf met extrapost"
-        moved_from: {"text": "Paderborn", "kb_id": "Q2971"}
-        moved_to: {"text": "Ossendorf", "kb_id": "Q2034601"}
-        mode_of_transportation: "extrapost"
+        label: "Wandeling van Kassel naar Weissenstein"
+        moved_from: "e3"
+        moved_to: "e4"
+        mode_of_transportation: "e1"
+        time_span: ["e2"]
         falls_within: null
+        via_points: []
+        viewed_artifacts: []
         mentions_places: []
-      - id: "RS0002"
-        type: "translocation"
-        label: "Wandeling van Ossendorf naar Warburg"
-        moved_from: {"text": "Ossendorf", "kb_id": "Q2034601"}
-        moved_to: {"text": "Warburg", "kb_id": "Q968"}
-        mode_of_transportation: "walking"
-        falls_within: null
-        mentions_places: []
-      - id: "RS0003"
-        type: "stay"
-        label: "Overnachting en maaltijd in Gasthofe Desenburg te Warburg"
-        took_place_at: {"text": "Warburg", "kb_id": "Q968"}
-        on_or_within: {"text": "Gasthofe Desenburg", "kb_id": "Q1200563"}
-        falls_within: null
-        mentions_places: []
-    mentioned_only_places: []
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e3", "role": "moved_from"}
+          - {"mention_id": "e4", "role": "moved_to"}
+          - {"mention_id": "e1", "role": "mode_of_transportation"}
+          - {"mention_id": "e2", "role": "time_span"}
+    toponym_relations:
+      e3: "FROM"
+      e4: "TO"
+      e5: "NEAR"
 
+# --- Example 2: Indoor tour of Wilhelmshöhe palace with sub-events ---
+# Source: Brief 4, lines 27-38: rooms, gallery with paintings, library
 - text: |
-    De volgende morgen verlieten wy [Warburg](E53_Place, Q968) met een [rytuig](E22_Human-Made_Object, aat:300248181). Wy reden door het dorpje [Dalheim](E53_Place, Q1157900) en kwamen voorby [Ober](E53_Place, null) en door [Nider Lichtingen](E53_Place, null). Hier aten wy in der haast te [West-Uffelen](E53_Place, null) en waren weldra op weg naar [Cassel](E53_Place, Q2865). Kort aan de weg zagen wy ontzettende grote kudden varkens. Om 5 uur arriveerden wy te [Cassel](E53_Place, Q2865) en namen onze intrek in het [logement de Kurfürst](E19_Physical_Thing, null).
+    In het [paleis](E18_Physical_Thing, e1) te [Weissenstein](E53_Place, e2) zagen wy in eene [galery](E53_Place, e3) vele [schilderyen](F2_Expression, e4) van groote meesters. In de [kleedkamer](E53_Place, e5) en [slaapkamer](E53_Place, e6) was prachtig stoffage. Daarna gingen wy naar de [bibliotheek](E18_Physical_Thing, e7) alwaar de boeken prachtig ingebonden waren.
   output:
-    letter_id: "BRF0003"
+    letter_id: "BRF0004"
     tour_group:
       id: "TG"
-      label: "Tour Group Brief 3"
-    events:
-      - id: "RS0001"
-        type: "translocation"
-        label: "Rit van Warburg via Dalheim en andere dorpen naar West-Uffelen"
-        moved_from: {"text": "Warburg", "kb_id": "Q968"}
-        moved_to: {"text": "West-Uffelen", "kb_id": null}
-        mode_of_transportation: "rytuig"
-        falls_within: null
-        mentions_places:
-          - {"text": "Dalheim", "kb_id": "Q1157900"}
-          - {"text": "Ober", "kb_id": null}
-          - {"text": "Nider Lichtingen", "kb_id": null}
-      - id: "RS0002"
-        type: "stay"
-        label: "Maatlijd in West-Uffelen"
-        took_place_at: {"text": "West-Uffelen", "kb_id": null}
-        falls_within: null
-        mentions_places: []
-      - id: "RS0003"
-        type: "translocation"
-        label: "Rit van West-Uffelen naar Cassel"
-        moved_from: {"text": "West-Uffelen", "kb_id": null}
-        moved_to: {"text": "Cassel", "kb_id": "Q2865"}
-        mode_of_transportation: "rytuig"
-        falls_within: null
-        mentions_places: []
-      - id: "RS0004"
-        type: "stay"
-        label: "Aankomst en verblijf in logement de Kurfürst te Cassel"
-        took_place_at: {"text": "Cassel", "kb_id": "Q2865"}
-        on_or_within: {"text": "logement de Kurfürst", "kb_id": null}
-        falls_within: null
-        mentions_places: []
-    mentioned_only_places: []
-
-- text: |
-    [Cassel](E53_Place, Q2865) verdient gewis de opmerkzaamheid van elken reiziger. Alle kostbaarheden, zoo uit het [Museum Fridericianum](E19_Physical_Thing, Q449280) als schilderyen enz, uit [Parys](E53_Place, Q90) terug gekomen zyn voor ieder vreemde te zien. Ik zal een aanvang maken met gemeld museum. In het eerste vertrek vonden wy eene groote collectie vogeleyeren. De Tweede Kamer was geheel gevuld met opgezette vogels. By het openen der derde Kamer wierd het oog getroffen door een opgezette olyphant. Van daar kwamen wy in een soort van [galery](E53_Place, null) ondersteund door zuilen. Hier waren antiquen en voorwerpen van beeldhouwkunst, doch veele stukken waren beschadigt door hun reis naar [Parys](E53_Place, Q90).
-  output:
-    letter_id: "BRF0003"
-    tour_group:
-      id: "TG"
-      label: "Tour Group Brief 3"
+      label: "Tour Group Brief 4"
     events:
       - id: "RS0001"
         type: "indoor_tour"
-        label: "Rondleiding door het Museum Fridericianum"
-        took_place_at: {"text": "Cassel", "kb_id": "Q2865"}
-        on_or_within: {"text": "Museum Fridericianum", "kb_id": "Q449280"}
+        label: "Rondleiding door het paleis Weissenstein"
+        took_place_at: "e2"
+        on_or_within: "e1"
+        time_span: null
         falls_within: null
-        sub_events: ["RS0001_1", "RS0001_2", "RS0001_3", "RS0001_4"]
+        via_points: []
+        viewed_artifacts: []
         mentions_places: []
-      - id: "RS0001_1"
+        sections: []
+        sub_events: ["RS0001.RS0001", "RS0001.RS0002"]
+        citations:
+          - {"mention_id": "e2", "role": "took_place_at"}
+          - {"mention_id": "e1", "role": "on_or_within"}
+      - id: "RS0001.RS0001"
         type: "indoor_tour"
-        label: "Eerste kamer: vogeleieren collectie"
-        took_place_at: {"text": "galery", "kb_id": null}
+        label: "Galery met schilderyen"
+        took_place_at: "e3"
+        time_span: null
         falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: ["e4"]
         mentions_places: []
-      - id: "RS0001_2"
+        sections: [{"room": "e3", "building": "e1"}]
+        sub_events: []
+        citations:
+          - {"mention_id": "e3", "role": "took_place_at"}
+          - {"mention_id": "e4", "role": "viewed_artifacts"}
+      - id: "RS0001.RS0002"
         type: "indoor_tour"
-        label: "Tweede kamer: opgezette vogels"
-        took_place_at: {"text": "galery", "kb_id": null}
+        label: "Kleedkamer en slaapkamer"
+        took_place_at: "e5"
+        time_span: null
         falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
         mentions_places: []
-      - id: "RS0001_3"
+        sections: [{"room": "e5", "building": "e1"}]
+        sub_events: []
+        citations:
+          - {"mention_id": "e5", "role": "took_place_at"}
+    toponym_relations:
+      e1: "IN"
+      e2: "IN"
+      e3: "IN"
+      e5: "IN"
+      e6: "IN"
+      e7: "IN"
+
+# --- Example 3: Indoor tour of Löwenburg (castle) with many sub-events ---
+# Source: Brief 4, lines 61-107: chapel, armoury, dining hall, knights' hall, library
+- text: |
+    Wy [wandelden](Mode_of_Transportation, e1) naar den [Leeuwenburg](E18_Physical_Thing, e2), een in ouden smaak gebouwd kasteel. Men bragt ons in de [wapenkamer](E53_Place, e3) gevuld met harnassen. De [kapel](E19_Physical_Object, e4) hiernaast is in Gothische smaak. Aan de overzyde was de [eetzaal](E53_Place, e5) en de [ridderzaal](E53_Place, e6) daarboven. De [bibliotheek](E18_Physical_Thing, e7) was zeer klein en bestond meest uit ridderromans.
+  output:
+    letter_id: "BRF0004"
+    tour_group:
+      id: "TG"
+      label: "Tour Group Brief 4"
+    events:
+      - id: "RS0001"
         type: "indoor_tour"
-        label: "Derde kamer: viervoetige dieren en olifant"
-        took_place_at: {"text": "galery", "kb_id": null}
-        falls_within: "RS0001"
+        label: "Rondleiding door den Leeuwenburg"
+        took_place_at: null
+        on_or_within: "e1"
+        time_span: null
+        falls_within: null
+        via_points: []
+        viewed_artifacts: []
         mentions_places: []
-      - id: "RS0001_4"
+        sections: []
+        sub_events: ["RS0001.RS0001", "RS0001.RS0002", "RS0001.RS0003", "RS0001.RS0004", "RS0001.RS0005"]
+        citations:
+          - {"mention_id": "e1", "role": "on_or_within"}
+      - id: "RS0001.RS0001"
         type: "indoor_tour"
-        label: "Galery met antiquen en beeldhouwkunst"
-        took_place_at: {"text": "galery", "kb_id": null}
+        label: "Wapenkamer met harnassen"
+        took_place_at: "e2"
+        time_span: null
         falls_within: "RS0001"
-        mentions_places:
-          - {"text": "Parys", "kb_id": "Q90"}
-    mentioned_only_places:
-      - {"text": "Parys", "kb_id": "Q90", "reason": "herkomst van schilderijen en bestemming van geroofde kunst, niet bezocht tijdens deze reis"}
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: [{"room": "e2", "building": "e1"}]
+        sub_events: []
+        citations:
+          - {"mention_id": "e2", "role": "took_place_at"}
+      - id: "RS0001.RS0002"
+        type: "indoor_tour"
+        label: "Kapel in Gothische smaak"
+        took_place_at: null
+        on_or_within: "e3"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: [{"room": "e3", "building": "e1"}]
+        sub_events: []
+        citations:
+          - {"mention_id": "e3", "role": "on_or_within"}
+      - id: "RS0001.RS0003"
+        type: "indoor_tour"
+        label: "Eetzaal"
+        took_place_at: "e4"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: [{"room": "e4", "building": "e1"}]
+        sub_events: []
+        citations:
+          - {"mention_id": "e4", "role": "took_place_at"}
+      - id: "RS0001.RS0004"
+        type: "indoor_tour"
+        label: "Ridderzaal"
+        took_place_at: "e5"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: [{"room": "e5", "building": "e1"}]
+        sub_events: []
+        citations:
+          - {"mention_id": "e5", "role": "took_place_at"}
+      - id: "RS0001.RS0005"
+        type: "indoor_tour"
+        label: "Bezoek aan de bibliotheek"
+        took_place_at: null
+        on_or_within: "e6"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e6", "role": "on_or_within"}
+    toponym_relations:
+      e2: "IN"
+      e3: "IN"
+      e5: "IN"
+      e6: "IN"
+      e7: "IN"
+
+# --- Example 4: Outdoor tour at the Octogoon and Hercules ---
+# Source: Brief 4, lines 111-150: refreshments at the Octogoon, climbing to Hercules
+- text: |
+    Na alles rondgezien te hebben begaven wy ons naar de [herberg](E53_Place, e1) aan de voet der [Octogoon](E19_Physical_Object, e2) alwaar wy ons met een dronk verfristen. Daarna [klommen](Mode_of_Transportation, e3) wy naar den [Hercules](E19_Physical_Object, e4). Dit metalen beeld is 30 voet hoog naar den Hercules van Farnese vervaardigt.
+  output:
+    letter_id: "BRF0004"
+    tour_group:
+      id: "TG"
+      label: "Tour Group Brief 4"
+    events:
+      - id: "RS0001"
+        type: "outdoor_tour"
+        label: "Bezoek aan Octogoon en Hercules"
+        took_place_at: "e1"
+        time_span: null
+        falls_within: null
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: []
+        sub_events: ["RS0001.RS0001", "RS0001.RS0002"]
+        citations:
+          - {"mention_id": "e1", "role": "took_place_at"}
+      - id: "RS0001.RS0001"
+        type: "stay"
+        label: "Verfrissing by de Octogoon"
+        took_place_at: "e1"
+        on_or_within: "e2"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e1", "role": "took_place_at"}
+          - {"mention_id": "e2", "role": "on_or_within"}
+      - id: "RS0001.RS0002"
+        type: "outdoor_tour"
+        label: "Beklimming van den Hercules"
+        took_place_at: "e1"
+        on_or_within: "e4"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e1", "role": "took_place_at"}
+          - {"mention_id": "e4", "role": "on_or_within"}
+    toponym_relations:
+      e1: "IN"
+
+# --- Example 5: Translocation by rytuig with via-points and sub-event stays ---
+# Source: Brief 4, lines 240-273: journey from Kassel to Göttingen by rytuig
+- text: |
+    Wy verlieten [des morgens](E52_Time_Span, e1) met een [rytuig](Mode_of_Transportation, e2) [Cassel](E53_Place, e3). Te [Munden](E53_Place, e4) hielden wy ons een oogenblik op. Wy passeerden [Dransfeld](E53_Place, e5) en rustten by de [herberg Knalhutte](E18_Physical_Thing, e6). Des [voormiddags](E52_Time_Span, e7) kwamen wy te [Göttingen](E53_Place, e8) aan.
+  output:
+    letter_id: "BRF0004"
+    tour_group:
+      id: "TG"
+      label: "Tour Group Brief 4"
+    events:
+      - id: "RS0001"
+        type: "translocation"
+        label: "Rit van Cassel naar Göttingen met rytuig"
+        moved_from: "e3"
+        moved_to: "e8"
+        mode_of_transportation: "e2"
+        time_span: ["e1", "e7"]
+        falls_within: null
+        via_points: ["e4", "e5", "e6"]
+        viewed_artifacts: []
+        mentions_places: []
+        sections: []
+        sub_events: ["RS0001.RS0001", "RS0001.RS0002", "RS0001.RS0003", "RS0001.RS0004"]
+        citations:
+          - {"mention_id": "e3", "role": "moved_from"}
+          - {"mention_id": "e8", "role": "moved_to"}
+          - {"mention_id": "e2", "role": "mode_of_transportation"}
+          - {"mention_id": "e4", "role": "via_points"}
+          - {"mention_id": "e5", "role": "via_points"}
+          - {"mention_id": "e6", "role": "via_points"}
+          - {"mention_id": "e1", "role": "time_span"}
+          - {"mention_id": "e7", "role": "time_span"}
+      - id: "RS0001.RS0001"
+        type: "stay"
+        label: "Vertrek uit Cassel"
+        took_place_at: "e3"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e3", "role": "took_place_at"}
+      - id: "RS0001.RS0002"
+        type: "stay"
+        label: "Korte stop te Munden"
+        took_place_at: "e4"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e4", "role": "took_place_at"}
+      - id: "RS0001.RS0003"
+        type: "stay"
+        label: "Korte stop te Dransfeld"
+        took_place_at: "e5"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e5", "role": "took_place_at"}
+      - id: "RS0001.RS0004"
+        type: "stay"
+        label: "Rust by de herberg Knalhutte"
+        took_place_at: "e6"
+        time_span: null
+        falls_within: "RS0001"
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e6", "role": "took_place_at"}
+    toponym_relations:
+      e3: "FROM"
+      e4: "IN"
+      e5: "THRU"
+      e6: "IN"
+      e8: "TO"
+
+# --- Example 6: Translocation with NEAR entity (Casernes seen from a distance) ---
+# Source: Brief 4, lines 10-15: walking from Kassel to Weissenstein, seeing Casernes
+# Demonstrates: NEAR for entities seen from a distance during a translocation
+- text: |
+    Langs eene lange breede laan [gingen](Mode_of_Transportation, e1) wy [Zondag ll](E52_Time_Span, e2) van [Kassel](E53_Place, e3) naar het beroemde [Weissenstein](E53_Place, e4). Op eenige afstand der stad gekomen zagen wy regts af de enorme [Casernes](E18_Physical_Thing, e5) door Jerome in zyne tyd gebouwd.
+  output:
+    letter_id: "BRF0004"
+    tour_group:
+      id: "TG"
+      label: "Tour Group Brief 4"
+    events:
+      - id: "RS0001"
+        type: "translocation"
+        label: "Wandeling van Kassel naar Weissenstein"
+        moved_from: "e3"
+        moved_to: "e4"
+        mode_of_transportation: "e1"
+        time_span: ["e2"]
+        falls_within: null
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        near_places: ["e5"]
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e3", "role": "moved_from"}
+          - {"mention_id": "e4", "role": "moved_to"}
+          - {"mention_id": "e1", "role": "mode_of_transportation"}
+          - {"mention_id": "e2", "role": "time_span"}
+          - {"mention_id": "e5", "role": "near_places"}
+    toponym_relations:
+      e3: "FROM"
+      e4: "TO"
+      e5: "NEAR"
+
+# --- Example 7: Stay with NEAR entity (view of Cassel from Octogoon) ---
+# Source: Brief 4, lines 111-115: refreshments at the Octogoon, view of Cassel
+# Demonstrates: IN/NEAR contrast — narrator is IN the herberg but Cassel is NEAR (seen from a distance)
+- text: |
+    Na alles rondgezien te hebben begaven wy ons naar de [herberg](E53_Place, e1) aan de voet der [Octogoon](E19_Physical_Object, e2) alwaar wy ons met een dronk verfristen. Onder het lommer der bomen zittende hadden wy een uitmuntend gezicht op [Cassel](E53_Place, e3) hetwelk in eene diepte voor ons lag.
+  output:
+    letter_id: "BRF0004"
+    tour_group:
+      id: "TG"
+      label: "Tour Group Brief 4"
+    events:
+      - id: "RS0001"
+        type: "stay"
+        label: "Verfrissing by de Octogoon met uitzicht op Cassel"
+        took_place_at: "e1"
+        on_or_within: "e2"
+        time_span: null
+        falls_within: null
+        via_points: []
+        viewed_artifacts: []
+        mentions_places: []
+        near_places: ["e3"]
+        sections: []
+        sub_events: []
+        citations:
+          - {"mention_id": "e1", "role": "took_place_at"}
+          - {"mention_id": "e2", "role": "on_or_within"}
+          - {"mention_id": "e3", "role": "near_places"}
+    toponym_relations:
+      e1: "IN"
+      e3: "NEAR"

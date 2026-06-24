@@ -1,0 +1,11 @@
+{
+  "model": "glm-5.1",
+  "mode": "zeroshot",
+  "language": "dutch",
+  "temperature": 0.5,
+  "source_text": "data/1816_third_letter.txt",
+  "duration_seconds": 1063.9,
+  "num_pages": 10,
+  "ollama_host": "cloud",
+  "failed_pages": []
+}

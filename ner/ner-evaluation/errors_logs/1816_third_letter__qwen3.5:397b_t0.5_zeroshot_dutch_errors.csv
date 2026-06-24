@@ -1,0 +1,389 @@
+type,label,page,gold_text,pred_text,gold_start,gold_end,pred_start,pred_end
+FN,F2_Expression,16,"
+Derde Brief",,4,16,,
+FN,Mode_of_Transportation,16,ryden,,145,150,,
+FN,E52_Time_Span,16,dien nagt,,183,192,,
+FN,Mode_of_Transportation,16,reden,,459,464,,
+FN,E18_Physical_Thing,16,7 bergen,,829,837,,
+FN,E52_Time_Span,16,langen tyd,,1135,1145,,
+FN,Mode_of_Transportation,16,reden,,1305,1310,,
+FN,Mode_of_Transportation,16,zes paarden,,1777,1788,,
+FP,E31_Document,16,,Derde Brief,,,5,16
+FP,E52_Time_Span,16,,den 4,,,485,490
+FP,E20_Biological_Object,16,,eiken,,,1086,1091
+TP,E53_Place,16,"
+
+
+Cassel",Cassel,17,26,20,26
+TP,E52_Time_Span,16,7 July 1816,den 7 July 1816,31,42,27,42
+TP,E52_Time_Span,16,eene halve dag,halve dag,99,113,104,113
+TP,E53_Place,16,Paderborn,Paderborn,118,127,118,127
+TP,E53_Place,16,Warburg,Warburg,209,216,209,216
+TP,E52_Time_Span,16,volgende avond,volgende avond,242,256,242,256
+TP,E52_Time_Span,16,5 uuren,5 uuren,257,264,257,264
+TP,E53_Place,16,Paderborn,Paderborn,313,322,313,322
+TP,E53_Place,16,Cassel,Cassel,403,409,403,409
+TP,E52_Time_Span,16,Donderdag,Donderdag,469,478,469,478
+TP,E52_Time_Span,16,1 uur,1 uur,494,499,494,499
+TP,Mode_of_Transportation,16,Extrapost,Extrapost,504,513,504,513
+TP,E53_Place,16,Paderborn,Paderborn,518,527,518,527
+TP,E18_Physical_Thing,16,Hoxenberg,Hoxenberg,621,630,621,630
+TP,E53_Place,16,Paderborn,Paderborn,711,720,711,720
+TP,E53_Place,16,Dornhagen,Dornhagen,960,969,960,969
+TP,E53_Place,16,Grondsteinheim,Grondsteinheim,1043,1057,1043,1057
+TP,Mode_of_Transportation,16,rytuig,rytuig,1165,1171,1165,1171
+TP,E52_Time_Span,16,3½ uur,3½ uur,1317,1323,1317,1323
+TP,E53_Place,16,Lichtenau,Lichtenau,1365,1374,1365,1374
+TP,E53_Place,16,Neuhaus,Neuhaus,1442,1449,1442,1449
+TP,E53_Place,16,Paderborn,Paderborn,1453,1462,1453,1462
+TP,E53_Place,16,Cassel,Cassel,1634,1640,1634,1640
+TP,E52_Time_Span,16,vijf vieren deel uur,vijf vieren deel uur,1727,1747,1727,1747
+FN,Mode_of_Transportation,17,4 paarden,,28,37,,
+FN,Mode_of_Transportation,17,6 paarden,,317,326,,
+FN,Mode_of_Transportation,17,twee van vier,,551,564,,
+FN,Mode_of_Transportation,17,reden,,845,850,,
+FN,Mode_of_Transportation,17,4 jonge paarden,,1057,1072,,
+FP,E53_Place,17,,station,,,198,205
+FP,E53_Place,17,,station,,,309,316
+TP,E53_Place,17,Paderborn,Paderborn,96,105,96,105
+TP,Mode_of_Transportation,17,wagen voor zeven personen,wagen,499,524,499,504
+TP,Mode_of_Transportation,17,Munstersche wagen,Munstersche wagen,621,638,621,638
+TP,E52_Time_Span,17,vorige dag,de vorige dag,697,707,694,707
+TP,Mode_of_Transportation,17,Extrapost,Extrapost,815,824,815,824
+TP,E52_Time_Span,17,5 uur,5 uur,864,869,864,869
+TP,Mode_of_Transportation,17,wagen,wagen,886,891,886,891
+TP,E19_Physical_Object,17,koffers,koffers,999,1006,999,1006
+TP,Mode_of_Transportation,17,met 4 paarden bespannen rytuig,rytuig,1141,1171,1165,1171
+TP,Mode_of_Transportation,17,wagen,wagen,1289,1294,1289,1294
+TP,E18_Physical_Thing,17,hooge bergen,bergen,1531,1543,1537,1543
+TP,E18_Physical_Thing,17,bergen,bergen,1638,1644,1638,1644
+TP,Mode_of_Transportation,17,wagen,wagen,1845,1850,1845,1850
+TP,E19_Physical_Object,17,koffer,koffer,1942,1948,1942,1948
+TP,E53_Place,17,Kleinenberg,Kleinenberg,2002,2013,2002,2013
+TP,E53_Place,17,uitgestrekt bosch,bosch,2049,2066,2061,2066
+TP,E53_Place,17,Hardehauserwoud,Hardehauserwoud,2090,2105,2090,2105
+TP,E18_Physical_Thing,17,klooster,klooster,2123,2131,2123,2131
+TP,E18_Physical_Thing,17,Desenberg,Desenberg,2237,2246,2237,2246
+TP,E52_Time_Span,17,een uur,een uur,2247,2254,2247,2254
+TP,E53_Place,17,Warburg,Warburg,2261,2268,2261,2268
+TP,E52_Time_Span,17,8 uur,8 uur,2318,2323,2318,2323
+FN,E52_Time_Span,18,avond,,666,671,,
+FN,Mode_of_Transportation,18,wandelden,,710,719,,
+FN,Mode_of_Transportation,18,doorgereden,,885,896,,
+FN,Mode_of_Transportation,18,wandelingen,,985,996,,
+FN,E52_Time_Span,18,de volgende morgen,,1194,1212,,
+FN,Mode_of_Transportation,18,reden,,1224,1229,,
+FN,Mode_of_Transportation,18,rydende,,1617,1624,,
+FN,Mode_of_Transportation,18,reden,,1727,1732,,
+FN,E18_Physical_Thing,18,Wilhelmhohe,,2302,2313,,
+FP,E19_Physical_Object,18,,bagagie,,,588,595
+FP,E52_Time_Span,18,,donkeren,,,948,956
+FP,E19_Physical_Object,18,,bedden,,,1041,1047
+FP,E31_Document,18,,achtste brief,,,1387,1400
+FP,E53_Place,18,,Wilhelmhohe,,,2302,2313
+TP,E53_Place,18,Ossendorf,Ossendorf,5,14,5,14
+TP,E18_Physical_Thing,18,posthuis,posthuis,65,73,65,73
+TP,E53_Place,18,Ocksendorf,Ocksendorf,115,125,115,125
+TP,E53_Place,18,Ossendorf,Ossendorf,173,182,173,182
+TP,E53_Place,18,Ossen,Ossen,227,232,227,232
+TP,E53_Place,18,Ocksendorf,Ocksendorf,236,246,236,246
+TP,Mode_of_Transportation,18,Extrapost,Extrapost,311,320,311,320
+TP,Mode_of_Transportation,18,postwagen,postwagen,339,348,339,348
+TP,Mode_of_Transportation,18,postwagen,postwagen,557,566,557,566
+TP,E53_Place,18,Warburg,Warburg,677,684,677,684
+TP,E52_Time_Span,18,groot uur,een groot uur,690,699,686,699
+TP,E52_Time_Span,18,dien nagt,dien nagt,869,878,869,878
+TP,E52_Time_Span,18,des morgens,des morgens,899,910,899,910
+TP,E53_Place,18,Cassel,Cassel,919,925,919,925
+TP,E53_Place,18,Warburg,Warburg,964,971,964,971
+TP,Mode_of_Transportation,18,zeer goed rytuig en een span beste paarden,rytuig,1092,1134,1102,1108
+TP,E18_Physical_Thing,18,Gasthofe Desenburg,Gasthofe Desenburg,1162,1180,1162,1180
+TP,E53_Place,18,Warburg,Warburg,1213,1220,1213,1220
+TP,E53_Place,18,Dalheim,Dalheim,1246,1253,1246,1253
+TP,E18_Physical_Thing,18,Desenberg,Desenberg,1294,1303,1294,1303
+TP,E18_Physical_Thing,18,Desenberg,Desenberg,1358,1367,1358,1367
+TP,F2_Expression,18,de geheele achtste brief der wandeling door een gedeelte van Duitschland 1 deel van bladz: 125-136,wandeling door een gedeelte van Duitschland 1 deel,1376,1474,1405,1455
+TP,E53_Place,18,Warburg,Warburg,1564,1571,1564,1571
+TP,E53_Place,18,Ehrings,Ehrings,1598,1605,1598,1605
+TP,E53_Place,18,Libenau,Libenau,1609,1616,1609,1616
+TP,E53_Place,18,Ober,Ober,1642,1646,1642,1646
+TP,E53_Place,18,Nider Lichtingen,Nider Lichtingen,1655,1671,1655,1671
+TP,E53_Place,18,Hessisch grondgebied,Hessisch grondgebied,1694,1714,1694,1714
+TP,E53_Place,18,West-Uffelen,West-Uffelen,1737,1749,1737,1749
+TP,E53_Place,18,Cassel,Cassel,1783,1789,1783,1789
+TP,Mode_of_Transportation,18,rytuig,rytuig,1838,1844,1838,1844
+TP,E53_Place,18,Cassel,Cassel,1873,1879,1873,1879
+TP,E53_Place,18,Meinbids,Meinbids,2047,2055,2047,2055
+TP,E53_Place,18,Kalken,Kalken,2059,2065,2059,2065
+TP,Mode_of_Transportation,18,wagen,wagen,2173,2178,2173,2178
+TP,E53_Place,18,Cassel,Cassel,2242,2248,2242,2248
+TP,E18_Physical_Thing,18,Hercules,Hercules,2271,2279,2271,2279
+TP,E18_Physical_Thing,18,octogoon,octogoon,2286,2294,2286,2294
+TP,E52_Time_Span,18,deezen middag,deezen middag,2323,2336,2323,2336
+FN,E19_Physical_Object,19,schilderyen,,769,780,,
+FN,E18_Physical_Thing,19,museum,,885,891,,
+FN,F2_Expression,19,"de brieven voornoemd 1 deel bl 167, 168, 169",,1217,1261,,
+FN,E53_Place,19,houtbibliotheek,,1275,1290,,
+FN,E20_Biological_Object,19,was geboetzeerde vruchten,,1490,1515,,
+FN,E20_Biological_Object,19,viervoetige dieren,,1795,1813,,
+FN,E19_Physical_Object,19,veele stukken,,2320,2333,,
+FP,E19_Physical_Object,19,,pen,,,364,367
+FP,E52_Time_Span,19,,nu,,,447,449
+FP,E52_Time_Span,19,,thans,,,684,689
+FP,E53_Place,19,,Kamer,,,949,954
+FP,E31_Document,19,,brieven voornoemd,,,1220,1237
+FP,E31_Document,19,,1 deel,,,1238,1244
+FP,E19_Physical_Object,19,,houtbibliotheek,,,1275,1290
+FP,E19_Physical_Object,19,,vruchten,,,1507,1515
+FP,E19_Physical_Object,19,,Kas,,,1669,1672
+FP,E18_Physical_Thing,19,,zuilen,,,2132,2138
+FP,E19_Physical_Object,19,,antiquen,,,2261,2269
+TP,E53_Place,19,Cassel,Cassel,35,41,35,41
+TP,E53_Place,19,Cassel,Cassel,75,81,75,81
+TP,E52_Time_Span,19,5 uur,5 uur,102,107,102,107
+TP,E18_Physical_Thing,19,logement de Kurfürst,logement de Kurfürst,144,164,144,164
+TP,E53_Place,19,Cassel,Cassel,216,222,216,222
+TP,E53_Place,19,Cassel,Cassel,488,494,488,494
+TP,E53_Place,19,Cassel,Cassel,631,637,631,637
+TP,E18_Physical_Thing,19,Museum Fridericianum,Museum Fridericianum,744,764,744,764
+TP,E53_Place,19,Parys,Parys,790,795,790,795
+TP,E53_Place,19,het eerste vertrek,vertrek,1057,1075,1068,1075
+TP,E20_Biological_Object,19,vogeleyeren,vogeleyeren,1130,1141,1130,1141
+TP,E18_Physical_Thing,19,Academiesche boekery,Academiesche boekery,1368,1388,1368,1388
+TP,E53_Place,19,Groningen,Groningen,1392,1401,1392,1401
+TP,E20_Biological_Object,19,stam van eene lauwrierboom,stam,1429,1455,1429,1433
+TP,E53_Place,19,Tweede Kamer,Kamer,1571,1583,1578,1583
+TP,E20_Biological_Object,19,opgezette vogels,vogels,1606,1622,1616,1622
+TP,E20_Biological_Object,19,Casuarus,Casuarus,1644,1652,1644,1652
+TP,E20_Biological_Object,19,paradysvogels,paradysvogels,1677,1690,1677,1690
+TP,F2_Expression,19,Lynnaeische Systema,Lynnaeische Systema,1716,1735,1716,1735
+TP,E53_Place,19,derde Kamer,Kamer,1768,1779,1774,1779
+TP,E20_Biological_Object,19,opgezette en een gesceletteerde olyphant,olyphant,1857,1897,1889,1897
+TP,E53_Place,19,diergaarde,diergaarde,1945,1955,1945,1955
+TP,E20_Biological_Object,19,leeuw,leeuw,1977,1982,1977,1982
+TP,E20_Biological_Object,19,tyger,tyger,1984,1989,1984,1989
+TP,E20_Biological_Object,19,Kaapsche ezel,ezel,1991,2004,2000,2004
+TP,E20_Biological_Object,19,luipaard,luipaard,2006,2014,2006,2014
+TP,E20_Biological_Object,19,drommedaris,drommedaris,2016,2027,2016,2027
+TP,E20_Biological_Object,19,wild zwyn,zwyn,2029,2038,2034,2038
+TP,E20_Biological_Object,19,rendier,rendier,2042,2049,2042,2049
+TP,E53_Place,19,galery door eene ry van zuilen ondersteund,galery,2108,2150,2108,2114
+TP,E53_Place,19,vestibule,vestibule,2173,2182,2173,2182
+TP,E18_Physical_Thing,19,geheele gebouw,gebouw,2191,2205,2199,2205
+TP,E53_Place,19,Frederikplein,Frederikplein,2228,2241,2228,2241
+FN,E19_Physical_Object,20,antiquen,,155,163,,
+FN,E19_Physical_Object,20,schoone van Kurk nagemaakte ruines,,175,209,,
+FN,E19_Physical_Object,20,versteeningen,,677,690,,
+FN,E19_Physical_Object,20,antiquiteiten,,885,898,,
+FN,E19_Physical_Object,20,pretiosa,,1094,1102,,
+FN,E19_Physical_Object,20,dingen uit barnsteen gemaakt,,1256,1284,,
+FP,E18_Physical_Thing,20,,ruines,,,203,209
+FP,E52_Time_Span,20,,thans,,,553,558
+FP,E20_Biological_Object,20,,versteeningen,,,677,690
+FP,E19_Physical_Object,20,,glazen,,,830,836
+FP,E19_Physical_Object,20,,kast,,,1235,1239
+FP,E52_Time_Span,20,,zekere tyden,,,1618,1630
+TP,E53_Place,20,Parys,Parys,24,29,24,29
+TP,E19_Physical_Object,20,Venus de Medicis,Venus de Medicis,104,120,104,120
+TP,E19_Physical_Object,20,twee worstelaars,worstelaars,124,140,129,140
+TP,E18_Physical_Thing,20,Palazo di Maecenate,Palazo di Maecenate,214,233,214,233
+TP,E53_Place,20,Tivoli,Tivoli,237,243,237,243
+TP,E18_Physical_Thing,20,Bagno della nimfa Egeria,Bagno della nimfa Egeria,249,273,249,273
+TP,E19_Physical_Object,20,Aristoteles,Aristoteles,283,294,283,294
+TP,E53_Place,20,zaalen,zaalen,334,340,334,340
+TP,E18_Physical_Thing,20,gebouw voor de vergadering der standen,gebouw,407,445,407,413
+TP,E19_Physical_Object,20,troon voor de Koning,troon,495,515,495,500
+TP,E53_Place,20,kamer,kamer,667,672,667,672
+TP,E19_Physical_Object,20,mineralen,mineralen,692,701,692,701
+TP,E20_Biological_Object,20,schelpen,schelpen,705,713,705,713
+TP,E53_Place,20,vertrek,vertrek,784,791,784,791
+TP,E19_Physical_Object,20,oude penningen,penningen,796,810,801,810
+TP,E19_Physical_Object,20,kleine beeldjes,beeldjes,868,883,875,883
+TP,E19_Physical_Object,20,groote verzameling van edelgesteenten,edelgesteenten,908,945,931,945
+TP,E19_Physical_Object,20,Onyx,Onyx,967,971,967,971
+TP,E53_Place,20,kamer,kamer,1036,1041,1036,1041
+TP,E53_Place,20,kamer,kamer,1342,1347,1342,1347
+TP,E18_Physical_Thing,20,vesting Rheinfels,vesting Rheinfels,1359,1376,1359,1376
+TP,E19_Physical_Object,20,mozaiek,mozaiek,1381,1388,1381,1388
+TP,E53_Place,20,vertrek,vertrek,1408,1415,1408,1415
+TP,E19_Physical_Object,20,klokken,klokken,1427,1434,1427,1434
+TP,E19_Physical_Object,20,pendules,pendules,1435,1443,1435,1443
+TP,E19_Physical_Object,20,horlogies,horlogies,1447,1456,1447,1456
+TP,E19_Physical_Object,20,klokken,klokken,1513,1520,1513,1520
+TP,E19_Physical_Object,20,schilderyen,schilderyen,1547,1558,1547,1558
+TP,E19_Physical_Object,20,beeld waarin een uurwerk schoot op zekere tyden een pistool af,beeld,1583,1645,1583,1588
+TP,E53_Place,20,laatste kamer,kamer,1685,1698,1693,1698
+TP,E19_Physical_Object,20,mosaiek,mosaiek,1732,1739,1732,1739
+TP,E53_Place,20,twee kamers,kamers,1804,1815,1809,1815
+TP,E18_Physical_Thing,20,breede trap,trap,1884,1895,1891,1895
+FN,E19_Physical_Object,21,19 landgraven & landgravinnen,,381,410,,
+FN,E53_Place,21,locaal,,1186,1192,,
+FN,F2_Expression,21,het 2de deel van de door de Heeren Tydeman & van Campen uitgegevene Mnemosyne,,1470,1547,,
+FP,E19_Physical_Object,21,,costumes,,,468,476
+FP,E19_Physical_Object,21,,kleding,,,670,677
+FP,E53_Place,21,,cabinetten,,,858,868
+FP,E53_Place,21,,Cassels,,,1282,1289
+FP,E31_Document,21,,2de deel,,,1474,1482
+FP,E31_Document,21,,Mnemosyne,,,1538,1547
+FP,E19_Physical_Object,21,,pers,,,1596,1600
+FP,E31_Document,21,,alphabetische,,,1706,1719
+TP,E19_Physical_Object,21,oude wapentuigen gevuld een vyftigtal bogen,wapentuigen,13,56,18,29
+TP,E19_Physical_Object,21,zwaarden,zwaarden,150,158,150,158
+TP,E53_Place,21,Heilige Land,Heilige Land,227,239,227,239
+TP,E53_Place,21,laatste zaal,zaal,334,346,342,346
+TP,E19_Physical_Object,21,stoelen,stoelen,501,508,501,508
+TP,E18_Physical_Thing,21,museum,museum,760,766,760,766
+TP,E53_Place,21,boekery,boekery,1069,1076,1069,1076
+TP,E18_Physical_Thing,21,gebouw,gebouw,1102,1108,1102,1108
+TP,E31_Document,21,catalogus,catalogus,1655,1664,1655,1664
+TP,E31_Document,21,reaal catalogue,catalogue,1764,1779,1770,1779
+TP,E31_Document,21,reaal catalogus,catalogus,2003,2018,2009,2018
+TP,E31_Document,21,reaal catalogus,catalogus,2070,2085,2076,2085
+FN,E19_Physical_Object,22,schilderyen,,251,262,,
+FN,E19_Physical_Object,22,schoone stukken,,327,342,,
+FN,E19_Physical_Object,22,schoone stukken,,575,590,,
+FN,E19_Physical_Object,22,stuk,,622,626,,
+FN,E19_Physical_Object,22,een groot stuk,,675,689,,
+FN,F2_Expression,22,een stier,,708,717,,
+FN,E19_Physical_Object,22,een klein strandgezicht,,743,766,,
+FN,E53_Place,22,Scheveningen,,771,783,,
+FN,F2_Expression,22,"een postillon die, hoe men zich ook plaatste, steeds naar eene andere kant scheen te ryden",,829,919,,
+FN,E53_Place,22,2 verdiepingen,,1198,1212,,
+FN,E19_Physical_Object,22,schilderyen,,1415,1426,,
+FN,E19_Physical_Object,22,eene Cleopatra,,1572,1586,,
+FN,E18_Physical_Thing,22,logement de Keurvorst,,2064,2085,,
+FP,F2_Expression,22,,stuk van Potter,,,685,700
+FP,F2_Expression,22,,strandgezicht van Scheveningen,,,753,783
+FP,F2_Expression,22,,Cleopatra,,,1577,1586
+FP,E52_Time_Span,22,,eenige tyd,,,1591,1601
+FP,E52_Time_Span,22,,kortstondig verblyf,,,2030,2049
+FP,E53_Place,22,,logement,,,2064,2072
+TP,E18_Physical_Thing,22,paleis Bellevue,paleis Bellevue,270,285,270,285
+TP,E53_Place,22,Parys,Parys,1133,1138,1133,1138
+TP,E53_Place,22,gallery,gallery,1167,1174,1167,1174
+TP,E53_Place,22,de ruines van de schildergallery,schildergallery,1288,1320,1305,1320
+TP,E53_Place,22,danszaal,danszaal,1335,1343,1335,1343
+TP,E53_Place,22,Parys,Parys,1605,1610,1605,1610
+TP,F2_Expression,22,eene Ariadne,Ariadne,1658,1670,1663,1670
+TP,F2_Expression,22,Cleopatra,Cleopatra,1799,1808,1799,1808
+TP,E53_Place,22,Cassel,Cassel,1877,1883,1877,1883
+TP,E18_Physical_Thing,22,paleis Belle vue,paleis Belle vue,1906,1922,1906,1922
+TP,E19_Physical_Object,22,meubels,meubels,2100,2107,2100,2107
+FN,E18_Physical_Thing,23,Orangerie,,206,215,,
+FN,F2_Expression,23,de reizen,,764,773,,
+FN,F2_Expression,23,bladzyde 162 en 163,,808,827,,
+FN,E19_Physical_Object,23,uitgeschotene hoek,,1203,1221,,
+FN,E18_Physical_Thing,23,vyver,,1449,1454,,
+FN,E18_Physical_Thing,23,logement,,1699,1707,,
+FP,F2_Expression,23,,meesterstuk,,,126,137
+FP,E53_Place,23,,Orangerie,,,206,215
+FP,E20_Biological_Object,23,,P.S. Monnot,,,384,395
+FP,E19_Physical_Object,23,,jaspis,,,525,531
+FP,E19_Physical_Object,23,,agaat,,,532,537
+FP,E19_Physical_Object,23,,steenen,,,547,554
+FP,E18_Physical_Thing,23,,trappen,,,597,604
+FP,E31_Document,23,,reizen,,,767,773
+FP,E20_Biological_Object,23,,Swinderen,,,788,797
+FP,E19_Physical_Object,23,,zerk,,,960,964
+FP,E18_Physical_Thing,23,,deur,,,972,976
+FP,E20_Biological_Object,23,,Cnernitschef,,,1020,1032
+FP,E53_Place,23,,stad,,,1061,1065
+FP,E20_Biological_Object,23,,linden,,,1379,1385
+FP,E53_Place,23,,vyver,,,1449,1454
+FP,E20_Biological_Object,23,,Bongard,,,1467,1474
+FP,E53_Place,23,,logement,,,1699,1707
+FP,E20_Biological_Object,23,,Tischbein,,,2085,2094
+TP,E19_Physical_Object,23,groote spiegels,spiegels,15,30,22,30
+TP,E53_Place,23,gallery,gallery,37,44,37,44
+TP,E18_Physical_Thing,23,marmeren bad,bad,183,195,192,195
+TP,E18_Physical_Thing,23,gebouw,gebouw,273,279,273,279
+TP,E53_Place,23,vierkant vertrek,vertrek,415,431,424,431
+TP,E18_Physical_Thing,23,vloeren,vloeren,443,450,443,450
+TP,E18_Physical_Thing,23,muren,muren,452,457,452,457
+TP,E19_Physical_Object,23,vercierselen,vercierselen,461,473,461,473
+TP,E18_Physical_Thing,23,Het bad,bad,564,571,568,571
+TP,E18_Physical_Thing,23,acht Corintische pylaren,pylaren,634,658,651,658
+TP,E18_Physical_Thing,23,koepel,koepel,675,681,675,681
+TP,E19_Physical_Object,23,kanon kogel,kanon,1002,1013,1002,1007
+TP,E52_Time_Span,23,30 September 1813,30 September 1813,1037,1054,1037,1054
+TP,E18_Physical_Thing,23,schoone gebouw,gebouw,1099,1113,1107,1113
+TP,E52_Time_Span,23,30 September 1813,30 September 1813,1233,1250,1233,1250
+TP,E18_Physical_Thing,23,gebouw,gebouw,1271,1277,1271,1277
+TP,E53_Place,23,Aue,Aue,1290,1293,1290,1293
+TP,E53_Place,23,Aue-Garten,Aue-Garten,1297,1307,1297,1307
+TP,E53_Place,23,lange linden allee,allee,1373,1391,1386,1391
+TP,E18_Physical_Thing,23,kerken,kerken,1571,1577,1571,1577
+TP,E18_Physical_Thing,23,Roomsche kerk,kerk,1671,1684,1680,1684
+TP,E18_Physical_Thing,23,ronden koepel,koepel,1778,1791,1785,1791
+TP,E18_Physical_Thing,23,kolommen,kolommen,1801,1809,1801,1809
+TP,E53_Place,23,galery,galery,1838,1844,1838,1844
+TP,E19_Physical_Object,23,orgel,orgel,1856,1861,1856,1861
+TP,E53_Place,23,galery,galery,1885,1891,1885,1891
+TP,E18_Physical_Thing,23,colommen,colommen,1903,1911,1903,1911
+TP,E18_Physical_Thing,23,koepelvormige dak,dak,1922,1939,1936,1939
+TP,E18_Physical_Thing,23,marmeren hoogaltaar,hoogaltaar,1958,1977,1967,1977
+TP,E18_Physical_Thing,23,drie circelvormige trappen,trappen,1981,2007,2000,2007
+TP,E18_Physical_Thing,23,de koepel,koepel,2018,2027,2021,2027
+TP,E19_Physical_Object,23,schilderyen,schilderyen,2069,2080,2069,2080
+TP,E18_Physical_Thing,23,kerk,kerk,2107,2111,2107,2111
+FN,E53_Place,24,tombes,,60,66,,
+FN,E52_Time_Span,24,Jahre 1812,,268,278,,
+FN,E53_Place,24,Vaterlande,,283,293,,
+FN,E18_Physical_Thing,24,Kweekschool voor onderwyzers,,425,453,,
+FN,F2_Expression,24,brief,,737,742,,
+FN,F2_Expression,24,bladzyde 170-188 van het eerste deel,,784,820,,
+FP,E18_Physical_Thing,24,,tombes,,,60,66
+FP,E53_Place,24,,Kweekschool voor onderwyzers,,,425,453
+FP,E53_Place,24,,instituut,,,620,629
+FP,E31_Document,24,,brief,,,737,742
+FP,E31_Document,24,,reis,,,775,779
+FP,E31_Document,24,,bladzyde 170-188,,,784,800
+FP,E31_Document,24,,eerste deel,,,809,820
+FP,F2_Expression,24,,chronique scandaleuse,,,1171,1192
+TP,E18_Physical_Thing,24,Brüder,Brüder,15,21,15,21
+TP,E18_Physical_Thing,24,Domkerk,Domkerk,28,35,28,35
+TP,E19_Physical_Object,24,6 groote schilden,schilden,122,139,131,139
+TP,E52_Time_Span,24,1814,1814,184,188,184,188
+TP,F2_Expression,24,"
+Cassels söhne die sich im Jahre 1812 dem Vaterlande, unter anführung des tapferen Kurprinses, weiheten","Cassels söhne die sich im Jahre 1812 dem Vaterlande, unter anführung des tapferen Kurprinses, weiheten.",241,344,242,345
+TP,E19_Physical_Object,24,zevende schild,schild,381,395,389,395
+TP,E52_Time_Span,24,1809,1809,707,711,707,711
+TP,E18_Physical_Thing,24,Comedie,Comedie,1042,1049,1042,1049
+TP,E53_Place,24,loge,loge,1110,1114,1110,1114
+TP,E53_Place,24,toneel,toneel,1123,1129,1123,1129
+TP,E52_Time_Span,24,twintig jaar,twintig jaar,1518,1530,1518,1530
+TP,E19_Physical_Object,24,een groot driekantige hoed,hoed,1614,1640,1636,1640
+TP,E19_Physical_Object,24,vervaarlyke stokken,stokken,1726,1745,1738,1745
+TP,E20_Biological_Object,24,zwane ey,zwane ey,1876,1884,1876,1884
+TP,E18_Physical_Thing,24,observatorium,observatorium,2002,2015,2002,2015
+FN,E18_Physical_Thing,25,standbeelden van andere landgraven,,1600,1634,,
+FN,E53_Place,25,Konings,,1761,1768,,
+FN,E18_Physical_Thing,25,Wilhelmshöhe,,1952,1964,,
+FP,E53_Place,25,,Wilhelmshöhe,,,1952,1964
+TP,E18_Physical_Thing,25,Wilhelms Brücke,Wilhelms Brücke,32,47,32,47
+TP,E53_Place,25,Cassel,Cassel,51,57,51,57
+TP,E53_Place,25,Göttingen,Göttingen,90,99,90,99
+TP,E53_Place,25,Cassel,Cassel,157,163,157,163
+TP,E53_Place,25,Fulda,Fulda,385,390,385,390
+TP,E18_Physical_Thing,25,Wilhelmsbrug,Wilhelmsbrug,452,464,452,464
+TP,E52_Time_Span,25,in 1788 begonnen en in 1794 voltooid,1788,539,575,542,546
+TP,E53_Place,25,Cassel,Cassel,653,659,653,659
+TP,E53_Place,25,Leipsicher plein,Leipsicher plein,707,723,707,723
+TP,E18_Physical_Thing,25,Leipsicher poort,Leipsicher poort,739,755,739,755
+TP,E53_Place,25,paradeplaats,paradeplaats,760,772,760,772
+TP,E53_Place,25,Kasern plaats,Kasern plaats,779,792,779,792
+TP,E18_Physical_Thing,25,coffyhuis,coffyhuis,893,902,893,902
+TP,E53_Place,25,4 bovenkamers,bovenkamers,921,934,923,934
+TP,E53_Place,25,Frederiksplein,Frederiksplein,1013,1027,1013,1027
+TP,E53_Place,25,dubbele linden allee,linden allee,1119,1139,1127,1139
+TP,E53_Place,25,Koningsplein,Koningsplein,1145,1157,1145,1157
+TP,E53_Place,25,Karelsplein,Karelsplein,1250,1261,1250,1261
+TP,E18_Physical_Thing,25,marmeren beeld van den landgraaf Karel,marmeren beeld,1337,1375,1337,1351
+TP,E52_Time_Span,25,einde der 17de Eeuw,einde der 17de Eeuw,1387,1406,1387,1406
+TP,E53_Place,25,boven nieuw stad,boven nieuw stad,1425,1441,1425,1441
+TP,E53_Place,25,Franryk,Franryk,1454,1461,1454,1461
+TP,E31_Document,25,Edict van Nantes,Edict van Nantes,1488,1504,1488,1504
+TP,E53_Place,25,Cassel,Cassel,1747,1753,1747,1753
+TP,E53_Place,25,Bellevue straat,Bellevue straat,1775,1790,1775,1790
+TP,E53_Place,25,boven nieuwstad,boven nieuwstad,1803,1818,1803,1818
+TP,E53_Place,25,Göttingen,Göttingen,1981,1990,1981,1990

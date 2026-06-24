@@ -4,9 +4,11 @@ Loads a predicted .spacy DocBin and a Recogito JSON-LD export, aligns them
 via full-text character offsets, and reports precision/recall/F1 per label.
 """
 
+import argparse
 import csv
 import json
 import sys
+from datetime import datetime
 from pathlib import Path
 from spacy.scorer import Scorer
 from spacy.training import Example
@@ -14,25 +16,74 @@ from spacy.tokens import DocBin
 import spacy
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-RESULTS_DIR = SCRIPT_DIR / "ner-results"
-RECOGITO_FILE = str(SCRIPT_DIR / "gs-annotations.jsonld")
+RESULTS_DIR = SCRIPT_DIR / "ner-output"
+EVAL_DIR = SCRIPT_DIR / "ner-evaluation"
+ERRORS_DIR = EVAL_DIR / "errors_logs"
 
-TAG_MAP = {
-    "E53 Place": "E53_Place",
-    "E19 Physical Thing": "E19_Physical_Thing",
+
+def get_annotations_path(spacy_file: Path) -> tuple[Path, str, Path]:
+    """Derive the GS annotations file, source text prefix, and source text path.
+
+    Parses the spacy filename (e.g. '1816_third_letter__...') and returns
+    the matching '{prefix}-gs-annotations.jsonld' file, the prefix, and
+    the expected source .txt path (relative to repo root).
+
+    Returns (annotations_path, prefix, source_text_path).
+    """
+    stem = spacy_file.stem
+    try:
+        source_text_label, _ = stem.split("__", maxsplit=1)
+        prefix = source_text_label.split("_", maxsplit=1)[0]  # e.g. '1816' or '1809'
+    except (ValueError, IndexError):
+        prefix = ""
+        source_text_label = ""
+    annotations_path = SCRIPT_DIR / "gs_annotations" / f"{prefix}.jsonld"
+    if not annotations_path.exists():
+        print(f"Error: no GS annotations found for prefix '{prefix}'")
+        print(f"  Tried: {annotations_path}")
+        sys.exit(1)
+    source_text_path = SCRIPT_DIR.parent / "data" / f"{source_text_label}.txt"
+    return annotations_path, prefix, source_text_path
+
+
+TAG_MAPS = {
+    "1816": {
+        "E53 Place": "E53_Place",
+        "E18 Physical Thing": "E18_Physical_Thing",
+        "E22 Human-made Object": "Mode_of_Transportation",
+        "Mode of Transportation": "Mode_of_Transportation",
+        "Mode_of_Transportation": "Mode_of_Transportation",
+        "F2 Expression": "F2_Expression",
+        "E52 Time-Span": "E52_Time_Span",
+        "E19 Physical Object": "E19_Physical_Object",
+        "E20 Biological Object": "E20_Biological_Object",
+        "E31 Document": "E31_Document",
+    },
+    "1809": {
+        "E53 Place": "E53_Place",
+        "E18 Physical Thing": "E18_Physical_Thing",
+        "Mode of Transportation": "Mode_of_Transportation",
+        "Mode_of_Transportation": "Mode_of_Transportation",
+        "E52 Time-Span": "E52_Time_Span",
+        "F2 Expression": "F2_Expression",
+        "E19 Physical Object": "E19_Physical_Object",
+        "E20 Biological Object": "E20_Biological_Object",
+        "E31 Document": "E31_Document",
+    },
 }
 
 
 def select_results_file() -> Path:
-    """Present a numbered menu of .spacy files in ner-results/ and return the chosen path."""
-    spacy_files = sorted(RESULTS_DIR.glob("*.spacy"))
+    """Present a numbered menu of .spacy files in ner-output/ and return the chosen path."""
+    spacy_files = sorted(RESULTS_DIR.rglob("*.spacy"))
     if not spacy_files:
-        print("No .spacy files found in ner-results/")
+        print("No .spacy files found in ner-output/")
         sys.exit(1)
-    print("Available .spacy files:")
+    print("Available .spacy files:", flush=True)
     for i, f in enumerate(spacy_files, 1):
         size_mb = f.stat().st_size / (1024 * 1024)
-        print(f"  {i:>3}. {f.name}  ({size_mb:.1f} MB)")
+        rel = f.relative_to(RESULTS_DIR)
+        print(f"  {i:>3}. {rel}  ({size_mb:.1f} MB)", flush=True)
     try:
         choice = input(f"\nSelect a file (1-{len(spacy_files)}): ").strip()
         idx = int(choice) - 1
@@ -44,17 +95,90 @@ def select_results_file() -> Path:
     return spacy_files[idx]
 
 
-def load_recogito_annotations(path: str) -> list[dict]:
-    """Extract annotations with purpose=tagging from Recogito JSON-LD."""
+def load_recogito_annotations(
+    path: str, tag_map: dict[str, str], source_path: Path,
+    offset_map: dict | None = None,
+) -> list[dict]:
+    """Extract annotations with purpose=tagging from Recogito JSON-LD.
+
+    Recogito stores character offsets against the raw source file opened in
+    Python text mode (UTF-8 BOM present, CRLF→LF). The NER pipeline normalizes
+    the same text through BOM strip + chunk split + .strip().
+
+    This function builds a precise per-character offset remap from raw text
+    to the concatenated stripped text that the pipeline produces, accounting
+    for BOM removal, CRLF→LF conversion, delimiter removal, and chunk stripping.
+    """
+    import re
+
     with open(path) as f:
         data = json.load(f)
 
+    # Read source in text mode — this is Recogito's coordinate space
+    with open(source_path) as f:
+        raw_text = f.read()
+
+    # Strip BOM to match pipeline coordinate space
+    bom_len = 1 if raw_text.startswith("﻿") else 0
+    raw_text = raw_text[bom_len:]
+
+    if offset_map is None:
+        print(f"Loaded 0 annotations from {path} (no offset map provided)")
+        return []
+
+    # --- Build precise offset remap: raw_text position → concat_stripped position ---
+    # Step 1: Find all delimiter positions (same regex as ner.py)
+    delimiters = [(m.start(), m.end()) for m in re.finditer(r"\n_{16,}\n", raw_text)]
+
+    # Step 2: Compute chunk positions (gaps between delimiters)
+    chunk_spans = []
+    prev_end = 0
+    for d_start, d_end in delimiters:
+        chunk_spans.append((prev_end, d_start))
+        prev_end = d_end
+    chunk_spans.append((prev_end, len(raw_text)))
+
+    # Step 3: Build stripped chunks + their concat positions (same logic as pipeline)
+    stripped_info = []  # list of (raw_start, raw_end, stripped_text, concat_start)
+    concat_pos = 0
+    for cs, ce in chunk_spans:
+        chunk_text = raw_text[cs:ce]
+        stripped = chunk_text.strip()
+        if stripped:
+            # Count leading whitespace stripped
+            leading = len(chunk_text) - len(chunk_text.lstrip())
+            stripped_info.append((cs, ce, stripped, concat_pos, leading))
+            concat_pos += len(stripped)
+
+    # Step 4: Build a raw→concat position map for quick lookup
+    # For each position in raw_text, compute its concat position
+    # Positions in delimiters or in stripped whitespace → map to nearest valid position
+    raw_to_concat = {}
+    for cs, ce, stripped, concat_start, leading in stripped_info:
+        # Positions in leading whitespace → map to concat_start
+        for p in range(cs, cs + leading):
+            raw_to_concat[p] = concat_start
+        # Positions in the actual stripped content
+        for i in range(len(stripped)):
+            raw_to_concat[cs + leading + i] = concat_start + i
+        # Positions in trailing whitespace → map to concat_start + len(stripped)
+        trailing_start = cs + leading + len(stripped)
+        for p in range(trailing_start, ce):
+            raw_to_concat[p] = concat_start + len(stripped)
+    # Positions in delimiters → map to the concat position of the next chunk
+    for d_start, d_end in delimiters:
+        for p in range(d_start, d_end):
+            # Find next non-delimiter position
+            next_pos = d_end
+            raw_to_concat[p] = raw_to_concat.get(next_pos, concat_pos)
+
+    # Step 5: Remap all annotations using the precise offset map
     annotations = []
+    missed = 0
     for item in data:
         bodies = item.get("body", [])
         if not isinstance(bodies, list):
             bodies = [bodies]
-
         tag = None
         for b in bodies:
             if b.get("purpose") == "tagging":
@@ -62,8 +186,7 @@ def load_recogito_annotations(path: str) -> list[dict]:
                 break
         if not tag:
             continue
-
-        tag = TAG_MAP.get(tag, tag)
+        tag = tag_map.get(tag, tag)
         selector = item.get("target", {}).get("selector", [])
         pos = None
         for sel in selector:
@@ -73,7 +196,25 @@ def load_recogito_annotations(path: str) -> list[dict]:
         if pos is None:
             continue
 
-        annotations.append({"start": pos[0], "end": pos[1], "label": tag})
+        # Adjust for BOM
+        raw_start = pos[0] - bom_len
+        raw_end = pos[1] - bom_len
+
+        # Remap using the precise offset map
+        concat_start = raw_to_concat.get(raw_start)
+        concat_end = raw_to_concat.get(raw_end)
+
+        if concat_start is not None and concat_end is not None and concat_end > concat_start:
+            annotations.append({
+                "start": concat_start,
+                "end": concat_end,
+                "label": tag,
+            })
+        else:
+            missed += 1
+
+    if missed:
+        print(f"  Warning: {missed}/{len(data)} annotations could not be aligned")
 
     print(f"Loaded {len(annotations)} annotations from {path}")
     return annotations
@@ -238,33 +379,57 @@ def write_errors_csv(
     print(f"  TP: {len(tp_instances)}, FP: {len(fp_instances)}, FN: {len(fn_instances)}")
 
 
+def parse_args():
+    """Parse CLI arguments for non-interactive usage."""
+    parser = argparse.ArgumentParser(
+        description="Evaluate NER predictions against Recogito manual annotations."
+    )
+    parser.add_argument(
+        "-s", "--spacy-file", type=str, default=None,
+        help="Path to a .spacy file to evaluate. If omitted, shows an interactive file picker."
+    )
+    return parser.parse_args()
+
+
 def main():
     """Evaluate NER predictions against Recogito gold annotations.
 
     Matches predicted docs to pages via the full-text offset map, builds spaCy
     Example objects for strict scoring, and computes relaxed (overlap-based)
     P/R/F1 per label. Exports TP/FP/FN instances to a CSV.
+
+    If --spacy-file is provided on the CLI, evaluate that file directly.
+    Otherwise, show an interactive file picker.
     """
-    # 1. Select files
-    spacy_file = select_results_file()
+    # 1. Select files — CLI arg or interactive picker
+    args = parse_args()
+    if args.spacy_file:
+        spacy_file = Path(args.spacy_file).resolve()
+        if not spacy_file.exists():
+            print(f"Error: spacy file not found: {spacy_file}")
+            sys.exit(1)
+        if spacy_file.suffix != ".spacy":
+            print(f"Error: expected a .spacy file, got: {spacy_file.suffix}")
+            sys.exit(1)
+    else:
+        spacy_file = select_results_file()
 
     offset_map_path = spacy_file.with_name(
-        spacy_file.stem.replace("all_pages", "offset_map") + ".json"
+        spacy_file.stem + "_offset_map.json"
     )
     if not offset_map_path.exists():
         print(f"No offset map found: {offset_map_path}")
         print("Re-run ner.py to generate one (markers are now kept in chunk text).")
         sys.exit(1)
 
-    if not Path(RECOGITO_FILE).exists():
-        print(f"Recogito annotations file not found: {RECOGITO_FILE}")
-        sys.exit(1)
+    recogito_file, prefix, source_text_path = get_annotations_path(spacy_file)
 
     # 2. Load data
     with open(offset_map_path) as f:
         offset_map = json.load(f)
 
-    annotations = load_recogito_annotations(RECOGITO_FILE)
+    tag_map = TAG_MAPS.get(prefix, TAG_MAPS.get("1816", {}))
+    annotations = load_recogito_annotations(str(recogito_file), tag_map, source_text_path, offset_map)
     boundaries = build_page_boundaries(offset_map)
     page_annotations = assign_annotations_to_pages(annotations, boundaries)
 
@@ -337,7 +502,7 @@ def main():
     scorer = Scorer()
     strict = scorer.score(examples)
 
-    # 5. Relaxed scoring (overlap = match)
+    # 5. Relaxed scoring (span overlap = match)
     relaxed = compute_relaxed_scores(all_gold_spans, all_pred_spans)
     relaxed_per_label = compute_relaxed_per_label(all_gold_spans, all_pred_spans, all_labels)
 
@@ -365,9 +530,149 @@ def main():
     print(f"{'Overall':<30} {strict.get('ents_f', 0):>10.3f} {relaxed['f']:>10.3f}")
 
     # 7. Export TP/FP/FN instances to CSV
+    ERRORS_DIR.mkdir(parents=True, exist_ok=True)
     tp, fp, fn = classify_instances(pages_gold, pages_pred, page_numbers)
-    csv_path = spacy_file.with_name(spacy_file.stem + "_errors.csv")
+    csv_path = ERRORS_DIR / (spacy_file.stem + "_errors.csv")
     write_errors_csv(tp, fp, fn, csv_path)
+
+    # 8. Load meta sidecar for duration
+    meta_path = spacy_file.with_name(spacy_file.stem + "_meta.json")
+    try:
+        with open(meta_path) as f:
+            meta = json.load(f)
+        duration_seconds = meta.get("duration_seconds", "")
+        num_pages = meta.get("num_pages", "")
+        inference_type = meta.get("ollama_host", "")
+        failed_pages = meta.get("failed_pages", [])
+    except (FileNotFoundError, json.JSONDecodeError):
+        duration_seconds = ""
+        num_pages = ""
+        inference_type = ""
+        failed_pages = []
+    count_failed_pages = len(failed_pages)
+
+    # 9. Export scores CSV — cumulative, appended each run
+    source_text, model_name, prompting_method, temperature, prompt_language = _parse_spacy_filename(spacy_file)
+    scores_path = EVAL_DIR / "scores.csv"
+    _append_scores_csv(scores_path, source_text, model_name, prompting_method, temperature,
+                       duration_seconds, num_pages, inference_type,
+                       count_failed_pages,
+                       all_labels, strict, relaxed_per_label, relaxed,
+                       len(tp), len(fp), len(fn),
+                       prompt_language=prompt_language)
+
+
+def _parse_spacy_filename(spacy_file: Path):
+    """Parse a .spacy filename into (source_text, model_name, prompting_method, temperature).
+
+    Expects the naming convention from ner.py:
+        {source_text}__{model}_t{TEMP}_{mode}.spacy
+    e.g. 1816_third_letter__gemma4:31b_t0.1_fewshot.spacy
+
+    The double underscore (__) between source text and model is the key delimiter,
+    since source text itself may contain single underscores.
+    """
+    stem = spacy_file.stem  # removes .spacy
+
+    try:
+        # Split on __ to isolate source_text, then parse the rest
+        source_text, rest = stem.split("__", maxsplit=1)
+
+        # rest: {model}_t{TEMP}_{mode}_{language} — last 3 underscore segments are temp, mode, language
+        *model_parts, temp_str, prompting_method, prompt_language = rest.rsplit("_", 3)
+        temperature = temp_str[1:]  # strip the 't' prefix
+        model_name = "_".join(model_parts)  # reassemble in case model has underscores
+
+        source_text = f"{source_text}.txt"
+    except (ValueError, IndexError):
+        return (spacy_file.name, spacy_file.name, "unknown", "unknown", "unknown")
+
+    return (source_text, model_name, prompting_method, temperature, prompt_language)
+
+
+def _append_scores_csv(
+    path: Path, source_text: str, model_name: str, prompting_method: str,
+    temperature: str, duration_seconds: str | float,
+    pages_processed: str | int, inference_type: str,
+    count_failed_pages: int,
+    all_labels: set,
+    strict: dict, relaxed_per_label: dict, relaxed_overall: dict,
+    count_tp: int = 0, count_fp: int = 0, count_fn: int = 0,
+    prompt_language: str = "",
+) -> None:
+    """Append a summary row per label (+ overall) to a cumulative scores CSV.
+
+    Creates the file with a header row if it doesn't exist yet; otherwise
+    appends data rows only, so multiple evaluation runs accumulate into one file.
+    Columns: source_text, model, temperature, prompting_method, prompt_language,
+             pages_processed, duration_seconds, inference_type, datetime, label,
+             strict_p, strict_r, strict_f1, relaxed_p, relaxed_r, relaxed_f1.
+    """
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    fieldnames = [
+        "source_text", "model", "temperature", "prompting_method",
+        "prompt_language",
+        "pages_processed", "duration_seconds", "inference_type",
+        "count_failed_pages",
+        "datetime", "label",
+        "strict_p", "strict_r", "strict_f1",
+        "relaxed_p", "relaxed_r", "relaxed_f1",
+        "count_tp", "count_fp", "count_fn",
+    ]
+    file_exists = path.exists()
+    with open(path, "a", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        if not file_exists:
+            writer.writeheader()
+
+        for label in sorted(all_labels):
+            s = strict.get("ents_per_type", {}).get(label, {})
+            r = relaxed_per_label.get(label, {})
+            writer.writerow({
+                "source_text": source_text,
+                "model": model_name,
+                "temperature": temperature,
+                "prompting_method": prompting_method,
+                "prompt_language": prompt_language,
+                "duration_seconds": duration_seconds,
+                "pages_processed": pages_processed,
+                "inference_type": inference_type,
+                "count_failed_pages": count_failed_pages,
+                "datetime": now,
+                "label": label,
+                "strict_p": f"{s.get('p', 0):.4f}",
+                "strict_r": f"{s.get('r', 0):.4f}",
+                "strict_f1": f"{s.get('f', 0):.4f}",
+                "relaxed_p": f"{r.get('p', 0):.4f}",
+                "relaxed_r": f"{r.get('r', 0):.4f}",
+                "relaxed_f1": f"{r.get('f', 0):.4f}",
+            })
+
+        # Overall row
+        writer.writerow({
+            "source_text": source_text,
+            "model": model_name,
+            "temperature": temperature,
+            "prompting_method": prompting_method,
+            "prompt_language": prompt_language,
+            "duration_seconds": duration_seconds,
+            "pages_processed": pages_processed,
+            "inference_type": inference_type,
+            "count_failed_pages": count_failed_pages,
+            "datetime": now,
+            "label": "OVERALL",
+            "strict_p": f"{strict.get('ents_p', 0):.4f}",
+            "strict_r": f"{strict.get('ents_r', 0):.4f}",
+            "strict_f1": f"{strict.get('ents_f', 0):.4f}",
+            "relaxed_p": f"{relaxed_overall.get('p', 0):.4f}",
+            "relaxed_r": f"{relaxed_overall.get('r', 0):.4f}",
+            "relaxed_f1": f"{relaxed_overall.get('f', 0):.4f}",
+            "count_tp": count_tp,
+            "count_fp": count_fp,
+            "count_fn": count_fn,
+        })
+
+    print(f"Scores CSV written to {path}")
 
 
 if __name__ == "__main__":

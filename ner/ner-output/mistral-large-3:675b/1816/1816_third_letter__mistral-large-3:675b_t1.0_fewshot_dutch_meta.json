@@ -1,0 +1,11 @@
+{
+  "model": "mistral-large-3:675b",
+  "mode": "fewshot",
+  "language": "dutch",
+  "temperature": 1.0,
+  "source_text": "data/1816_third_letter.txt",
+  "duration_seconds": 258.7,
+  "num_pages": 10,
+  "ollama_host": "cloud",
+  "failed_pages": []
+}

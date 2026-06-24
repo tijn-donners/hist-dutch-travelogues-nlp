@@ -1,3 +1,5 @@
+### WORK IN PROGRESS ###
+
 """Write NER + Entity Linking annotations back into PageXML <Metadata>.
 
 Reads an _el.spacy DocBin and offset/line maps, adds structured entity
@@ -14,7 +16,17 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 import pandas as pd
 import spacy
-from spacy.tokens import DocBin
+from spacy.tokens import Span, Token, DocBin
+
+# Register custom extension attributes for EL data (must happen before DocBin loading)
+if not Span.has_extension("kb_id_wikidata_"):
+    Span.set_extension("kb_id_wikidata_", default=None)
+if not Token.has_extension("ent_kb_id_wikidata_"):
+    Token.set_extension("ent_kb_id_wikidata_", default=None)
+if not Span.has_extension("kb_id_geonames_"):
+    Span.set_extension("kb_id_geonames_", default=None)
+if not Token.has_extension("ent_kb_id_geonames_"):
+    Token.set_extension("ent_kb_id_geonames_", default=None)
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 ROOT_DIR = SCRIPT_DIR.parent
@@ -22,12 +34,11 @@ ROOT_DIR = SCRIPT_DIR.parent
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-SPACY_FILE = str(ROOT_DIR / "ner" / "ner-results" / "1816_all_pages_gemma4:31b-cloud_el.spacy")
-OFFSET_MAP = str(ROOT_DIR / "ner" / "ner-results" / "1816_offset_map_gemma4:31b-cloud.json")
-LINE_MAP = str(ROOT_DIR / "ner" / "ner-results" / "1816_line_map_gemma4:31b-cloud.json")
 PAGEXML_IN = str(ROOT_DIR / "data" / "page_updated/")  # corrected PageXML input
 PAGEXML_OUT = str(SCRIPT_DIR / "page/")  # enriched output
 SCAN_CSV = str(ROOT_DIR / "data" / "1816-scannumber-to-pagenumber.csv")
+EL_RESULTS_DIR = ROOT_DIR / "entity_linking" / "el-results"
+NER_RESULTS_DIR = ROOT_DIR / "ner" / "ner-output"
 
 # Fallback to uncorrected PageXML if no corrected files exist
 FALLBACK_PAGEXML = str(ROOT_DIR / "data" / "page/")
@@ -101,28 +112,92 @@ def add_annotation_metadata(tree, root, ns, entities, page_num):
         ann.set("start", str(ent["start"]))
         ann.set("end", str(ent["end"]))
         ann.set("line", str(ent["line"]))
+        # Set KB ID attributes for backward compatibility and dual ID support
         if ent.get("kb_id"):
-            ann.set("kb_id", ent["kb_id"])
+            ann.set("kb_id", ent["kb_id"])  # Primary ID for backward compatibility
+        # Get extension attributes safely
+        try:
+            wikidata_val = ent._.kb_id_wikidata_
+        except (AttributeError, KeyError):
+            wikidata_val = None
+        try:
+            geonames_val = ent._.kb_id_geonames_
+        except (AttributeError, KeyError):
+            geonames_val = None
+        if wikidata_val is not None:
+            ann.set("kb_id_wikidata", wikidata_val)
+        if geonames_val is not None:
+            ann.set("kb_id_geonames", geonames_val)
         ann.text = ent["text"]
 
     return metadata
 
 
 def main():
+    # --- Select input file ---
+    spacy_files = sorted(EL_RESULTS_DIR.glob("*_el.spacy")) + sorted(NER_RESULTS_DIR.rglob("*.spacy"))
+    if not spacy_files:
+        print("No .spacy files found. Run NER and EL first.")
+        sys.exit(1)
+
+    if len(spacy_files) == 1:
+        spacy_path = spacy_files[0]
+        print(f"Auto-selected: {spacy_path.name}")
+    else:
+        print("Available .spacy files:")
+        for i, f in enumerate(spacy_files, 1):
+            try:
+                label = f.relative_to(NER_RESULTS_DIR)
+            except ValueError:
+                label = f.name
+            print(f"  [{i}] {label}")
+        try:
+            idx = int(input("Select number: ").strip()) - 1
+            spacy_path = spacy_files[idx]
+        except (ValueError, IndexError, EOFError, KeyboardInterrupt):
+            print("Invalid selection.")
+            sys.exit(1)
+
+    print(f"Loading: {spacy_path}")
+
+    # --- Auto-discover offset map and line map ---
+    offset_map_path = spacy_path.parent / f"{spacy_path.stem}_offset_map.json"
+    if not offset_map_path.exists():
+        # Also try with _el stripped for EL files
+        base_stem = spacy_path.stem.replace("_el", "")
+        offset_map_path = spacy_path.parent / f"{base_stem}_offset_map.json"
+    if not offset_map_path.exists():
+        # Fallback: search ner-output/ recursively
+        for c in sorted(NER_RESULTS_DIR.rglob(f"*offset_map*{spacy_path.stem.split('__')[0]}*")):
+            offset_map_path = c
+            break
+    if not offset_map_path.exists():
+        print("ERROR: no offset map found. Re-run ner.py to generate one.")
+        sys.exit(1)
+    print(f"Offset map: {offset_map_path.name}")
+
+    line_map_path = spacy_path.parent / f"{spacy_path.stem}_line_map.json"
+    if not line_map_path.exists():
+        base_stem = spacy_path.stem.replace("_el", "")
+        line_map_path = spacy_path.parent / f"{base_stem}_line_map.json"
+    if not line_map_path.exists():
+        line_map_path = None
+
     # --- Load data ---
     nlp = spacy.blank("nl")
-    db = DocBin().from_disk(SPACY_FILE)
+    db = DocBin().from_disk(str(spacy_path))
     docs = list(db.get_docs(nlp.vocab))
+    print(f"Docs loaded: {len(docs)}")
 
-    with open(OFFSET_MAP) as f:
+    with open(offset_map_path) as f:
         offset_map = json.load(f)
 
-    line_map = None
-    if Path(LINE_MAP).exists():
-        with open(LINE_MAP) as f:
+    if line_map_path and line_map_path.exists():
+        with open(line_map_path) as f:
             line_map = json.load(f)
         print(f"Loaded line map with {len(line_map)} pages")
     else:
+        line_map = None
         print("No line map found — line indices will be computed from text")
 
     sorted_pages = sorted(offset_map.items(), key=lambda x: _page_sort_key(x[0]))
@@ -180,13 +255,25 @@ def main():
             else:
                 start_line = doc.text[:ent.start_char].count('\n')
 
-            kb_id = ent.kb_id_ if ent.kb_id_ else None
+            # Extract both KB IDs from the entity (using extension attributes)
+            try:
+                wikidata_id = ent._.kb_id_wikidata_
+            except (AttributeError, KeyError):
+                wikidata_id = None
+            try:
+                geonames_id = ent._.kb_id_geonames_
+            except (AttributeError, KeyError):
+                geonames_id = None
+            # For backward compatibility, define a primary kb_id (prefer Wikidata if available)
+            kb_id = wikidata_id if wikidata_id is not None else geonames_id
             entities.append({
                 "label": ent.label_,
                 "start": ent.start_char,
                 "end": ent.end_char,
                 "line": start_line,
                 "kb_id": kb_id,
+                "kb_id_wikidata": wikidata_id,
+                "kb_id_geonames": geonames_id,
                 "text": ent.text,
             })
 

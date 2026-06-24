@@ -1,0 +1,342 @@
+Expert in 19th-century Dutch travel reports, modeling events using the Academic Tourism Ontology (ATO) based on CIDOC CRM.
+A travel report by a Groningen student traveling through Germany around 1816.
+Named Entities marked as `[text](LABEL, mention_id)`.
+Extract ALL travel events, their relationships, and relationships to places.
+
+        *   `translocation` (E9_Move): Start (P27), End (P26), Mode, `near_places` (visible but not entered).
+        *   `indoor_tour` (E7_Activity): Building (P8), City (P7). Sub-tour rule: each room/section gets its own sub-event.
+        *   `outdoor_tour` (E7_Activity): Location (P7). Sub-events for specific parts.
+        *   `stay` (E7_Activity): Location (P7), optional Building (P8).
+
+        *   `time_span`: Array of mention_ids (E52_Time_Span).
+        *   `viewed_artifacts`: F2_Expression, E19_Physical_Object, E20_Biological_Object, E31_Document.
+
+        *   `IN`: Physically inside/at the location.
+        *   `NEAR`: Close by/visible from distance.
+        *   `THRU`: Passing through/crossing.
+        *   `TO`: Destination reached.
+        *   `FROM`: Starting point.
+        *   `NO_REL`: Mentioned only (plans, memories, comparisons, etc.).
+        *   *Consistency:* Must match event roles bidirectionally.
+
+        *   `sections`: `[{"room": "eX", "building": "eY"}]` for indoor tours.
+        *   JSON format: No markdown, no code blocks, just the JSON object.
+
+    *   *Context:* Letter written from Cassel on July 7, 1816.
+    *   *Segment 1:* "wy zyn [dien nagt](e7) fraay en wel te [Warburg](e8) gebleven en niet voor de [volgende avond](e9) [5 uuren](e10) alhier gearriveerd"
+        *   Event: Stay/Arrival at Warburg.
+        *   Event: Translocation to Cassel (e12).
+    *   *Segment 2:* "Wy [reden](e13) dan [Donderdag](e14) zynde den 4 om [1 uur](e15) met [Extrapost](e16) uit [Paderborn](e17)..."
+        *   Event: Translocation. From: Paderborn (e17), To: Lichtenau (e27) (based on the text "reden wy... Lichtenau binnen").
+        *   `near_places`: Hoxenberg (e18), Paderborn (e19) (looking back).
+        *   `via_points`: 7 bergen (e20), Dornhagen (e21), Grondsteinheim (e22).
+        *   Time: e14, e15. Mode: e16.
+    *   *Segment 3:* "reden wy om [3½ uur](e26) het in eene diepe vallei liggende stadje [Lichtenau](e27) binnen"
+        *   Arrival at Lichtenau.
+    *   *Segment 4:* "verbeeld u de ongemaklykke en brutale postmeester hield ons hier meer dan [vijf vieren deel uur](e31) op..."
+        *   Event: Stay in Lichtenau (e27).
+    *   *Segment 5:* "reden wy even voor [5 uur](e42) van daar in een [wagen](e43)..."
+        *   Event: Translocation. From: Lichtenau (e27), To: Ossendorf (e60).
+        *   `via_points`: hooge bergen (e48), bergen (e49).
+        *   Time: e42. Mode: e43.
+    *   *Segment 6:* "Na [Kleinenberg](e52) gepasseerd te zyn kwamen wy in een [uitgestrekt bosch](e53) indien zoo ik meen het [Hardehauserwoud](e54) geheten naar een [klooster](e55)..."
+        *   `via_points`: Kleinenberg (e52), Hardehauserwoud (e54), klooster (e55).
+        *   `near_places`: Desenberg (e56).
+    *   *Segment 7:* "kwamen wy om [8 uur](e59) te [Ossendorf](e60) zynde de tweede station aan"
+        *   Arrival at Ossendorf.
+    *   *Segment 8:* "moesten wy ons bepalen... 3 in de [postwagen](e68) gingen... terwyl ik met myne 3 Groninger reisgenoten in eene heerlyke [avond](e69) naar [Warburg](e70), een [groot uur](e71) van daar, [wandelden](e72)"
+        *   Event: Translocation/Walk. From: Ossendorf (e60/63/64/65), To: Warburg (e70).
+        *   Time: e69, e71. Mode: e72.
+    *   *Segment 9:* "den [nagt](e73) weder [doorgereden](e74) & [des morgens](e75) hier te [Cassel](e76) gekomen"
+        *   Event: Translocation (others). From: Ossendorf, To: Cassel.
+    *   *Segment 10:* "om [Warburg](e77) allerliefste [wandelingen](e78) gedaan, zeer goed gegeten... heerlyk geslapen"
+        *   Event: Outdoor tour and Stay in Warburg.
+    *   *Segment 11:* "van onze Kastelein uit het [Gasthofe Desenburg](e80) verlieten wy [de volgende morgen](e81) [Warburg](e82)"
+        *   Event: Translocation. From: Warburg (e82), To: West-Uffelen (e96).
+        *   Time: e81. Mode: e79.
+        *   `via_points`: Dalheim (e84), Ehrings (e89), Libenau (e90), Ober (e92), Nider Lichtingen (e93), Hessisch grondgebied (e94).
+        *   `near_places`: Desenberg (e85/e86).
+    *   *Segment 12:* "reden tot [West-Uffelen](e96) de derde en laatste station... hier aten wy in der haast"
+        *   Event: Stay in West-Uffelen.
+    *   *Segment 13:* "bestelden een ander [rytuig](e98) en waren weldra op weg naar [Cassel](e99)"
+        *   Event: Translocation. From: West-Uffelen (e96), To: Cassel (e109).
+        *   Mode: e98.
+        *   `via_points`: Meinbids (e100), Kalken (e101).
+        *   `near_places`: Hercules (e104), octogoon (e105), Wilhelmhohe (e106).
+    *   *Segment 14:* "om [5 uur](e110) in het voortreflyk waarlyk vorstlyk [logement de Kurfürst](e111) onze intrek namen"
+        *   Event: Stay in Cassel.
+    *   *Segment 15:* "Museum Fridericianum (e115/e118)"
+        *   Event: Indoor Tour.
+        *   Sub-events:
+            *   1st room (e119): vogeleyeren (e120), houtbibliotheek (e122), lauwrierboom (e125), was vruchten (e126).
+            *   2nd room (e127): opgezette vogels (e128), Casuarus (e129), paradysvogels (e130).
+            *   3rd room (e132): viervoetige dieren (e133), olyphant (e134), leeuw (e136), tyger (e137), Kaapsche ezel (e138), luipaard (e139), drommedaris (e140), wild zwyn (e141), rendier (e142).
+            *   Galery (e143) / Vestibule (e144): Venus de Medicis (e149), twee worstelaars (e150), antiquen (e151), ruines (e152), Palazo di Maecenate (e153), Bagno della nimfa Egeria (e155), Aristoteles (e156).
+            *   Gebouw vergadering standen (e158): troon (e159).
+            *   Kamer (e160): versteeningen (e161), mineralen (e162), schelpen (e163).
+            *   Vertrek (e164): penningen (e165), beeldjes (e166), antiquiteiten (e167), edelgesteenten (e168), Onyx (e169).
+            *   Kamer (e170/e173): pretiosa (e171), barnsteen (e172), mozaiek vesting Rheinfels (e174/e175).
+            *   Vertrek (e176): klokken (e177/e180), pendules (e178), horlogies (e179), schilderyen (e181), beeld met pistool (e182).
+            *   Laatste kamer (e183): mosaiek (e184).
+            *   Two rooms above (e185): wapentuigen (e187), zwaarden (e188).
+            *   Last hall (e190): landgraven & landgravinnen (e191), stoelen (e192).
+    *   *Segment 16:* "boekery (e194) in het zelve gebouw (e195)"
+        *   Event: Indoor Tour.
+        *   `viewed_artifacts`: Mnemosyne (e197), catalogus (e198), reaal catalogue (e199/e200/e201).
+    *   *Segment 17:* "schilderyen (e202) in het paleis Bellevue (e203)"
+        *   Event: Indoor Tour.
+        *   Sub-events:
+            *   Gallery (e213/e214/e215): Rubbens, etc. (e204), Raphaël (e206), Potter (e207), stier (e208), strandgezicht Scheveningen (e209), postillon (e211), schilderyen (e217), Cleopatra (e218/e221), Ariadne (e220).
+            *   Danszaal (e216).
+            *   Room with furniture (e224/e225): meubels (e225), spiegels (e226).
+            *   Gallery of marble (e227).
+    *   *Segment 18:* "marmeren bad (e228) in de Orangerie (e229)"
+        *   Event: Indoor Tour.
+        *   `viewed_artifacts`: marmer details (e234), bad (e235), kanon kogel (e240), date (e244).
+    *   *Segment 19:* "Aue (e246/e247)"
+        *   Event: Outdoor Tour.
+        *   Sub-events: linden allee (e248), vyver (e249).
+    *   *Segment 20:* "kerken (e250)"
+        *   Event: Indoor Tour.
+        *   Sub-events:
+            *   Roomsche kerk (e251): galery (e255/e257), orgel (e256), hoogaltaar (e260), schilderyen (e263).
+            *   Brüder (e265).
+            *   Domkerk (e266): tombes (e267), schilden (e268), zevende schild (e271).
+    *   *Segment 21:* "Kweekschool voor onderwyzers (e272)"
+        *   Event: Indoor Tour.
+    *   *Segment 22:* "Comedie (e276)"
+        *   Event: Indoor Tour.
+        *   Sub-events: loge (e277), toneel (e278).
+    *   *Segment 23:* "parade van het garnizoen"
+        *   Event: Outdoor Tour.
+        *   `viewed_artifacts`: hoed (e280), stokken (e281), zwane ey (e282).
+    *   *Segment 24:* "observatorium (e283)"
+        *   Note: "niet kunnen zien" -> NO_REL.
+    *   *Segment 25:* "stad Cassel (e287/e291/e308)"
+        *   Event: Outdoor Tour.
+        *   Sub-events:
+            *   Leipsicher plein (e292), Leipsicher poort (e293).
+            *   Paradeplaats (e294).
+            *   Kasern plaats (e295).
+            *   Coffyhuis (e296) with rooms (e297).
+            *   Frederiksplein (e298) with linden allee (e299).
+            *   Koningsplein (e300).
+            *   Karelsplein (e301) with statue (e302).
+            *   Boven nieuw stad (e304/e311).
+            *   Koningsstraat (e309) and Bellevue straat (e310).
+
+    *   *Toponym Relations Mapping:*
+        *   Paderborn (e5, e11, e17, e19, e29, e34): e17 is FROM, e19 is NEAR, others NO_REL.
+        *   Warburg (e8, e58, e70, e77, e82, e88): e8 is TO, e58 is NEAR, e70 is TO, e77 is IN, e82 is FROM, e88 is NEAR.
+        *   Cassel (e2, e12, e30, e76, e97, e99, e103, e108, e109, e112, e113, e114, e222, e285, e287, e291, e308): e2 (NO_REL - letter head), e12 (TO), e30 (TO), e76 (TO), e97 (TO), e99 (TO), e103 (TO), e109 (TO), e112 (IN), e113 (IN), e114 (IN), e222 (NO_REL), e285 (IN), e287 (IN), e291 (IN), e308 (IN).
+        *   Lichtenau (e27): TO, IN.
+        *   Ossendorf (e60, e62, e63, e64, e65): TO, IN.
+        *   Kleinenberg (e52): THRU.
+        *   Hardehauserwoud (e53, e54): THRU.
+        *   Klooster (e55): THRU.
+        *   Desenberg (e56, e85, e86): e56 is NEAR, e85 is NEAR, e86 is NEAR.
+        *   Dalheim (e84): THRU.
+        *   Ehrings (e89), Libenau (e90): THRU.
+        *   Ober (e92): THRU.
+        *   Nider Lichtingen (e93): THRU.
+        *   Hessisch grondgebied (e94): THRU.
+        *   West-Uffelen (e96): TO, IN.
+        *   Meinbids (e100), Kalken (e101): THRU.
+        *   Museum Fridericianum (e115, e118, e193): IN.
+        *   Parys (e117, e148, e212, e219): NO_REL.
+        *   Groningen (e124): NO_REL.
+        *   Tivoli (e154): NO_REL.
+        *   Heilige Land (e189): NO_REL.
+        *   Bellevue (e203, e223): IN.
+        *   Scheveningen (e210): NO_REL.
+        *   Aue (e246, e247): IN.
+        *   Göttingen (e286, e313): NO_REL.
+        *   Franryk (e305): NO_REL.
+
+    *   *Self-Correction on "Paderborn":* The user mentions "Paderborn" multiple times. e17 is the start of the main journey. e19 is seen from a distance. e29 is mentioned as a comparison. e34 is where the postmaster is.
+
+    *   *Sub-event nesting:* Museum Fridericianum (RS0007) -> Rooms (RS0007.RS0001, etc.).
+    *   *Sections:* Room e119 building e115.
+
+    *   *RS0001:* Translocation Paderborn (e17) -> Lichtenau (e27).
+    *   *RS0002:* Stay Lichtenau (e27).
+    *   *RS0003:* Translocation Lichtenau (e27) -> Ossendorf (e60).
+    *   *RS0004:* Stay Ossendorf (e60).
+    *   *RS0005:* Translocation Ossendorf (e60) -> Warburg (e70).
+    *   *RS0006:* Stay/Tour Warburg (e77).
+    *   *RS0007:* Translocation Warburg (e82) -> West-Uffelen (e96).
+    *   *RS0008:* Stay West-Uffelen (e96).
+    *   *RS0009:* Translocation West-Uffelen (e96) -> Cassel (e109).
+    *   *RS0010:* Stay Cassel (e111).
+    *   *RS0011:* Indoor Tour Museum Fridericianum (e115).
+    *   *RS0012:* Indoor Tour Bookery (e194).
+    *   *RS0013:* Indoor Tour Palace Bellevue (e203).
+    *   *RS0014:* Indoor Tour Marmeren Bad (e228).
+    *   *RS0015:* Outdoor Tour Aue (e246).
+    *   *RS0016:* Indoor Tour Churches (e250).
+    *   *RS0017:* Indoor Tour Kweekschool (e272).
+    *   *RS0018:* Indoor Tour Comedie (e276).
+    *   *RS0019:* Outdoor Tour Parade (e279).
+    *   *RS0020:* Outdoor Tour Cassel City (e291).
+
+    *   *Wait, let's double check the "Paderborn" logic:*
+        e5: "van Paderborn herwaarts zouden ryden" (Hypothetical/Plan) -> NO_REL.
+        e11: "verplaats u weder naar Paderborn" (Command) -> NO_REL.
+        e17: "uit Paderborn" (Start) -> FROM.
+        e19: "blikken naar het... Paderborn wendt" (Near) -> NEAR.
+        e29: "waardig is met... Paderborn" (Comparison) -> NO_REL.
+        e34: "postmeester te Paderborn" (Reference) -> NO_REL.
+
+    *   *Citations:* Ensure every role is cited.
+
+    *   *Specifics for Museum (RS0011):*
+        - e119 (1st room) -> artifacts e120, e122, e125, e126.
+        - e127 (2nd room) -> artifacts e128, e129, e130.
+        - e132 (3rd room) -> artifacts e133, e134, e136, e137, e138, e139, e140, e141, e142.
+        - e143/e144 (Galery/Vestibule) -> artifacts e149, e150, e151, e152, e153, e155, e156.
+        - e158 (Gebouw standen) -> artifact e159.
+        - e160 (Kamer) -> artifacts e161, e162, e163.
+        - e164 (Vertrek) -> artifacts e165, e166, e167, e168, e169.
+        - e170/e173 (Kamer) -> artifacts e171, e172, e174, e175.
+        - e176 (Vertrek) -> artifacts e177, e178, e179, e180, e181, e182.
+        - e183 (Laatste kamer) -> artifact e184.
+        - e185 (Two rooms) -> artifacts e187, e188.
+        - e190 (Last hall) -> artifacts e191, e192.
+
+    *   *Bellevue (RS0013):*
+        - e213 (Gallery) -> artifacts e204, e206, e207, e208, e209, e211, e217, e218, e220, e221.
+        - e216 (Danszaal).
+        - e224 (Logement/Room) -> artifacts e225, e226.
+        - e227 (Gallery marble).
+
+    *   *Orangerie (RS0014):*
+        - e231 (Vierkant vertrek) -> artifacts e234, e235, e240, e244.
+
+    *   *Aue (RS0015):*
+        - e248 (Linden allee).
+        - e249 (Vyver).
+
+    *   *Churches (RS0016):*
+        - e251 (Roomsche kerk) -> artifacts e256, e260, e263.
+        - e265 (Brüder).
+        - e266 (Domkerk) -> artifacts e267, e268, e271.
+
+    *   *Cassel City (RS0020):*
+        - e292 (Leipsicher plein).
+        - e294 (Paradeplaats).
+        - e295 (Kasern plaats).
+        - e296 (Coffyhuis) -> e297 (Rooms).
+        - e298 (Frederiksplein) -> e299 (Allee).
+        - e300 (Koningsplein).
+        - e301 (Karelsplein) -> e302 (Statue).
+        - e304/e311 (Boven nieuw stad).
+        - e309 (Koningsstraat).
+        - e310 (Bellevue straat).
+
+    *   `letter_id`: "BRF0003" (implied from "Derde Brief" / "3rd letter").
+    *   `tour_group`: "TG", "Tour Group Brief 3".
+    *   `events`: Array of events.
+    *   `toponym_relations`: Map of all E53 and E18.
+
+    *Self-Correction on `Soni et al.` categories:*
+    - `moved_from` -> FROM
+    - `moved_to` -> TO
+    - `took_place_at`/`on_or_within` -> IN
+    - `via_points` -> THRU
+    - `near_places` -> NEAR
+    - Otherwise -> NO_REL.
+
+    *Check for "dangling" entities:*
+    - e5 (Paderborn): NO_REL.
+    - e11 (Paderborn): NO_REL.
+    - e17 (Paderborn): FROM.
+    - e19 (Paderborn): NEAR.
+    - e29 (Paderborn): NO_REL.
+    - e34 (Paderborn): NO_REL.
+    - e52 (Kleinenberg): THRU.
+    - e53 (Bosch): THRU.
+    - e54 (Hardehauserwoud): THRU.
+    - e55 (Klooster): THRU.
+    - e56 (Desenberg): NEAR.
+    - e85 (Desenberg): NEAR.
+    - e86 (Desenberg): NEAR.
+    - etc.
+
+    *Wait, the text says:* "wy zyn [dien nagt](e7) fraay en wel te [Warburg](e8) gebleven". This is a `stay` event.
+    "niet voor de [volgende avond](e9) [5 uuren](e10) alhier gearriveerd" (Cassel e12). This is a `translocation`.
+
+    Let's refine the timeline:
+    1. Stay in Warburg (e8).
+    2. Translocation Warburg -> Cassel (e12).
+    3. Translocation Paderborn (e17) -> Lichtenau (e27).
+    4. Stay Lichtenau (e27).
+    5. Translocation Lichtenau (e27) -> Ossendorf (e60).
+    6. Stay Ossendorf (e60).
+    7. Translocation Ossendorf (e60) -> Warburg (e70).
+    8. Stay/Tour Warburg (e77).
+    9. Translocation Warburg (e82) -> West-Uffelen (e96).
+    10. Stay West-Uffelen (e96).
+    11. Translocation West-Uffelen (e96) -> Cassel (e109).
+    12. Stay Cassel (e111).
+    ... and then the tours in Cassel.
+
+    *Wait*, the narrator is writing this *after* the events. The text jumps around chronologically. I must follow the order in the *text*.
+
+    *Text Order:*
+    1. Mention of stay in Warburg (e8) and arrival in Cassel (e12).
+    2. Detailed description of trip Paderborn (e17) -> Lichtenau (e27).
+    3. Stay in Lichtenau (e27).
+    4. Trip Lichtenau (e27) -> Ossendorf (e60).
+    5. Stay in Ossendorf (e60).
+    6. Trip Ossendorf (e60) -> Warburg (e70).
+    7. Stay/Tour in Warburg (e77).
+    8. Trip Warburg (e82) -> West-Uffelen (e96).
+    9. Stay in West-Uffelen (e96).
+    10. Trip West-Uffelen (e96) -> Cassel (e109).
+    11. Stay in Cassel (e111).
+    12. Indoor Tour Museum Fridericianum (e115).
+    13. Indoor Tour Bookery (e194).
+    14. Indoor Tour Palace Bellevue (e203).
+    15. Indoor Tour Marmeren Bad (e228).
+    16. Outdoor Tour Aue (e246).
+    17. Indoor Tour Churches (e250).
+    18. Indoor Tour Kweekschool (e272).
+    19. Indoor Tour Comedie (e276).
+    20. Outdoor Tour Parade (e279).
+    21. Outdoor Tour Cassel (e291).
+
+    *Check for "near_places":*
+    - RS0002 (Paderborn -> Lichtenau): Hoxenberg (e18), Paderborn (e19).
+    - RS0003 (Lichtenau -> Ossendorf): Desenberg (e56).
+    - RS0007 (Warburg -> West-Uffelen): Desenberg (e85, e86).
+    - RS0009 (West-Uffelen -> Cassel): Hercules (e104), Octogoon (e105), Wilhelmhohe (e106).
+
+    *Final check on `toponym_relations`:*
+    - e5 (Paderborn): NO_REL
+    - e8 (Warburg): IN
+    - e12 (Cassel): TO
+    - e17 (Paderborn): FROM
+    - e19 (Paderborn): NEAR
+    - e27 (Lichtenau): TO/IN
+    - e60 (Ossendorf): TO/IN
+    - e70 (Warburg): TO
+    - e77 (Warburg): IN
+    - e82 (Warburg): FROM
+    - e96 (West-Uffelen): TO/IN
+    - e109 (Cassel): TO
+    - e111 (Logement): IN
+    - e115 (Museum): IN
+    - e194 (Boekery): IN
+    - e203 (Bellevue): IN
+    - e228 (Marmeren Bad): IN
+    - e246 (Aue): IN
+    - e250 (Kerken): IN
+    - e272 (Kweekschool): IN
+    - e276 (Comedie): IN
+    - e291 (Cassel): IN
+
+    *Wait*, the prompt asks for ALL travel events.
+    The very first part: "wy zyn [dien nagt](e7) fraay en wel te [Warburg](e8) gebleven" is a `stay`.
+    "niet voor de [volgende avond](e9) [5 uuren](e10) alhier gearriveerd" is a `translocation` from Warburg to Cassel.
+
+    Let's build the JSON.

@@ -1,0 +1,9 @@
+{
+  "source_text": "1816_third_letter",
+  "model": "deepseek-v4-flash",
+  "temperature": 0.7,
+  "think_mode": null,
+  "inference_type": "cloud",
+  "datetime": "2026-06-23 13:47:21",
+  "duration_seconds": 273.4
+}

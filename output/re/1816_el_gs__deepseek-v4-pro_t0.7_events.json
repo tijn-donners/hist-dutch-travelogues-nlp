@@ -1,0 +1,2299 @@
+{
+  "letter_id": "BRF0003",
+  "tour_group": {
+    "id": "TG",
+    "label": "Tour Group Brief 3"
+  },
+  "events": [
+    {
+      "id": "RS0001",
+      "type": "translocation",
+      "label": "Reis van Paderborn naar Ossendorf met extrapost en wagen",
+      "moved_from": "e17",
+      "moved_to": "e60",
+      "mode_of_transportation": "e16",
+      "time_span": [
+        "e14",
+        "e15",
+        "e23",
+        "e26",
+        "e59"
+      ],
+      "falls_within": null,
+      "via_points": [
+        "e18",
+        "e20",
+        "e27",
+        "e52",
+        "e53"
+      ],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [
+        "e19",
+        "e21",
+        "e22",
+        "e55",
+        "e56"
+      ],
+      "sections": [],
+      "sub_events": [
+        "RS0001.RS0001",
+        "RS0001.RS0002"
+      ],
+      "citations": [
+        {
+          "mention_id": "e17",
+          "role": "moved_from"
+        },
+        {
+          "mention_id": "e60",
+          "role": "moved_to"
+        },
+        {
+          "mention_id": "e16",
+          "role": "mode_of_transportation"
+        },
+        {
+          "mention_id": "e14",
+          "role": "time_span"
+        },
+        {
+          "mention_id": "e15",
+          "role": "time_span"
+        },
+        {
+          "mention_id": "e23",
+          "role": "time_span"
+        },
+        {
+          "mention_id": "e26",
+          "role": "time_span"
+        },
+        {
+          "mention_id": "e59",
+          "role": "time_span"
+        },
+        {
+          "mention_id": "e18",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e20",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e27",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e52",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e53",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e19",
+          "role": "near_places"
+        },
+        {
+          "mention_id": "e21",
+          "role": "near_places"
+        },
+        {
+          "mention_id": "e22",
+          "role": "near_places"
+        },
+        {
+          "mention_id": "e55",
+          "role": "near_places"
+        },
+        {
+          "mention_id": "e56",
+          "role": "near_places"
+        }
+      ]
+    },
+    {
+      "id": "RS0001.RS0001",
+      "type": "stay",
+      "label": "Oponthoud te Lichtenau",
+      "took_place_at": "e27",
+      "on_or_within": null,
+      "time_span": [
+        "e31"
+      ],
+      "falls_within": "RS0001",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e27",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e31",
+          "role": "time_span"
+        }
+      ]
+    },
+    {
+      "id": "RS0001.RS0002",
+      "type": "stay",
+      "label": "Aankomst te Ossendorf",
+      "took_place_at": "e60",
+      "on_or_within": "e61",
+      "time_span": [
+        "e59"
+      ],
+      "falls_within": "RS0001",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e60",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e61",
+          "role": "on_or_within"
+        },
+        {
+          "mention_id": "e59",
+          "role": "time_span"
+        }
+      ]
+    },
+    {
+      "id": "RS0002",
+      "type": "translocation",
+      "label": "Wandeling van Ossendorf naar Warburg",
+      "moved_from": "e60",
+      "moved_to": "e70",
+      "mode_of_transportation": "e72",
+      "time_span": [
+        "e69",
+        "e71"
+      ],
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [
+        "RS0002.RS0001"
+      ],
+      "citations": [
+        {
+          "mention_id": "e60",
+          "role": "moved_from"
+        },
+        {
+          "mention_id": "e70",
+          "role": "moved_to"
+        },
+        {
+          "mention_id": "e72",
+          "role": "mode_of_transportation"
+        },
+        {
+          "mention_id": "e69",
+          "role": "time_span"
+        },
+        {
+          "mention_id": "e71",
+          "role": "time_span"
+        }
+      ]
+    },
+    {
+      "id": "RS0002.RS0001",
+      "type": "stay",
+      "label": "Overnachting in Gasthofe Desenburg te Warburg",
+      "took_place_at": "e70",
+      "on_or_within": "e80",
+      "time_span": [
+        "e73"
+      ],
+      "falls_within": "RS0002",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [
+        "RS0002.RS0001.RS0001"
+      ],
+      "citations": [
+        {
+          "mention_id": "e70",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e80",
+          "role": "on_or_within"
+        },
+        {
+          "mention_id": "e73",
+          "role": "time_span"
+        }
+      ]
+    },
+    {
+      "id": "RS0002.RS0001.RS0001",
+      "type": "outdoor_tour",
+      "label": "Avondwandelingen om Warburg",
+      "took_place_at": "e77",
+      "on_or_within": null,
+      "time_span": [
+        "e69"
+      ],
+      "falls_within": "RS0002.RS0001",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e77",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e69",
+          "role": "time_span"
+        }
+      ]
+    },
+    {
+      "id": "RS0003",
+      "type": "translocation",
+      "label": "Rit van Warburg naar Cassel",
+      "moved_from": "e82",
+      "moved_to": "e109",
+      "mode_of_transportation": "e79",
+      "time_span": [
+        "e81",
+        "e110"
+      ],
+      "falls_within": null,
+      "via_points": [
+        "e84",
+        "e89",
+        "e90",
+        "e92",
+        "e93",
+        "e94",
+        "e96",
+        "e100",
+        "e101"
+      ],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [
+        "e85",
+        "e88",
+        "e104",
+        "e105",
+        "e106"
+      ],
+      "sections": [],
+      "sub_events": [
+        "RS0003.RS0001",
+        "RS0003.RS0002"
+      ],
+      "citations": [
+        {
+          "mention_id": "e82",
+          "role": "moved_from"
+        },
+        {
+          "mention_id": "e109",
+          "role": "moved_to"
+        },
+        {
+          "mention_id": "e79",
+          "role": "mode_of_transportation"
+        },
+        {
+          "mention_id": "e81",
+          "role": "time_span"
+        },
+        {
+          "mention_id": "e110",
+          "role": "time_span"
+        },
+        {
+          "mention_id": "e84",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e89",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e90",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e92",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e93",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e94",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e96",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e100",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e101",
+          "role": "via_points"
+        },
+        {
+          "mention_id": "e85",
+          "role": "near_places"
+        },
+        {
+          "mention_id": "e88",
+          "role": "near_places"
+        },
+        {
+          "mention_id": "e104",
+          "role": "near_places"
+        },
+        {
+          "mention_id": "e105",
+          "role": "near_places"
+        },
+        {
+          "mention_id": "e106",
+          "role": "near_places"
+        }
+      ]
+    },
+    {
+      "id": "RS0003.RS0001",
+      "type": "stay",
+      "label": "Maaltijd te West-Uffelen",
+      "took_place_at": "e96",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0003",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e96",
+          "role": "took_place_at"
+        }
+      ]
+    },
+    {
+      "id": "RS0003.RS0002",
+      "type": "stay",
+      "label": "Aankomst en intrek in logement de Kurfürst te Cassel",
+      "took_place_at": "e109",
+      "on_or_within": "e111",
+      "time_span": [
+        "e110"
+      ],
+      "falls_within": "RS0003",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e109",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e111",
+          "role": "on_or_within"
+        },
+        {
+          "mention_id": "e110",
+          "role": "time_span"
+        }
+      ]
+    },
+    {
+      "id": "RS0004",
+      "type": "indoor_tour",
+      "label": "Bezoek aan het Museum Fridericianum",
+      "took_place_at": "e114",
+      "on_or_within": "e115",
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [
+        "RS0004.RS0001",
+        "RS0004.RS0002",
+        "RS0004.RS0003",
+        "RS0004.RS0004",
+        "RS0004.RS0005",
+        "RS0004.RS0006",
+        "RS0004.RS0007",
+        "RS0004.RS0008",
+        "RS0004.RS0009",
+        "RS0004.RS0010",
+        "RS0004.RS0011",
+        "RS0004.RS0012"
+      ],
+      "citations": [
+        {
+          "mention_id": "e114",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e115",
+          "role": "on_or_within"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0001",
+      "type": "indoor_tour",
+      "label": "Eerste vertrek: vogeleieren, houtbibliotheek, wassen vruchten",
+      "took_place_at": "e119",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e120",
+        "e125",
+        "e126"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e119",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [
+        "RS0004.RS0001.RS0001"
+      ],
+      "citations": [
+        {
+          "mention_id": "e119",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e120",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e125",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e126",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0001.RS0001",
+      "type": "indoor_tour",
+      "label": "Houtbibliotheek",
+      "took_place_at": "e122",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004.RS0001",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e122",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e122",
+          "role": "took_place_at"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0002",
+      "type": "indoor_tour",
+      "label": "Tweede Kamer: opgezette vogels",
+      "took_place_at": "e127",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e128",
+        "e129",
+        "e130",
+        "e131"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e127",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e127",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e128",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e129",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e130",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e131",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0003",
+      "type": "indoor_tour",
+      "label": "Derde Kamer: viervoetige dieren",
+      "took_place_at": "e132",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e133",
+        "e134",
+        "e136",
+        "e137",
+        "e138",
+        "e139",
+        "e140",
+        "e141",
+        "e142"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e132",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e132",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e133",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e134",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e136",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e137",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e138",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e139",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e140",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e141",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e142",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0004",
+      "type": "indoor_tour",
+      "label": "Vestibule met antiquen en beelden",
+      "took_place_at": "e144",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e147",
+        "e149",
+        "e150",
+        "e151",
+        "e152",
+        "e156"
+      ],
+      "mentions_places": [],
+      "near_places": [
+        "e146"
+      ],
+      "sections": [
+        {
+          "room": "e144",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e144",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e147",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e149",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e150",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e151",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e152",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e156",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e146",
+          "role": "near_places"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0005",
+      "type": "indoor_tour",
+      "label": "Gebouw voor de vergadering der standen",
+      "took_place_at": "e157",
+      "on_or_within": "e158",
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e159"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e157",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e158",
+          "role": "on_or_within"
+        },
+        {
+          "mention_id": "e159",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0006",
+      "type": "indoor_tour",
+      "label": "Kamer met versteeningen, mineralen en schelpen",
+      "took_place_at": "e160",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e161",
+        "e162",
+        "e163"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e160",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e160",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e161",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e162",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e163",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0007",
+      "type": "indoor_tour",
+      "label": "Vertrek met oude penningen en edelgesteenten",
+      "took_place_at": "e164",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e165",
+        "e166",
+        "e167",
+        "e168",
+        "e169"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e164",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e164",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e165",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e166",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e167",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e168",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e169",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0008",
+      "type": "indoor_tour",
+      "label": "Kamer met pretiosa en barnsteen",
+      "took_place_at": "e170",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e171",
+        "e172"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e170",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [
+        "RS0004.RS0008.RS0001"
+      ],
+      "citations": [
+        {
+          "mention_id": "e170",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e171",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e172",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0008.RS0001",
+      "type": "indoor_tour",
+      "label": "Mozaïek van de vesting Rheinfels in het midden der kamer",
+      "took_place_at": "e173",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004.RS0008",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e175"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e173",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e173",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e175",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0009",
+      "type": "indoor_tour",
+      "label": "Vertrek met klokken, pendules en horloges",
+      "took_place_at": "e176",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e177",
+        "e178",
+        "e179",
+        "e180",
+        "e181",
+        "e182"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e176",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e176",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e177",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e178",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e179",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e180",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e181",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e182",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0010",
+      "type": "indoor_tour",
+      "label": "Laatste kamer beneden met mozaïek",
+      "took_place_at": "e183",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e184"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e183",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e183",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e184",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0011",
+      "type": "indoor_tour",
+      "label": "Eerste bovenkamer met oude wapentuigen",
+      "took_place_at": "e185",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e187",
+        "e188"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e185",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e185",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e187",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e188",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0004.RS0012",
+      "type": "indoor_tour",
+      "label": "Laatste zaal met wassen beelden van landgraven",
+      "took_place_at": "e190",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0004",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e191",
+        "e192"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e190",
+          "building": "e115"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e190",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e191",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e192",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0005",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de bibliotheek in hetzelfde gebouw",
+      "took_place_at": "e194",
+      "on_or_within": "e195",
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [
+        "RS0005.RS0001"
+      ],
+      "citations": [
+        {
+          "mention_id": "e194",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e195",
+          "role": "on_or_within"
+        }
+      ]
+    },
+    {
+      "id": "RS0005.RS0001",
+      "type": "indoor_tour",
+      "label": "Het locaal van de bibliotheek met catalogi en Mnemosyne",
+      "took_place_at": "e196",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0005",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e197",
+        "e198",
+        "e199",
+        "e200",
+        "e201"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e196",
+          "building": "e195"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e196",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e197",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e198",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e199",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e200",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e201",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0006",
+      "type": "indoor_tour",
+      "label": "Bezoek aan het paleis Bellevue",
+      "took_place_at": "e114",
+      "on_or_within": "e203",
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [
+        "RS0006.RS0001",
+        "RS0006.RS0002"
+      ],
+      "citations": [
+        {
+          "mention_id": "e114",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e203",
+          "role": "on_or_within"
+        }
+      ]
+    },
+    {
+      "id": "RS0006.RS0001",
+      "type": "indoor_tour",
+      "label": "Danszaal met schilderijen van oude meesters",
+      "took_place_at": "e216",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0006",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e202",
+        "e204",
+        "e205",
+        "e206",
+        "e207",
+        "e208",
+        "e209",
+        "e211",
+        "e218",
+        "e221"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e216",
+          "building": "e203"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e216",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e202",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e204",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e205",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e206",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e207",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e208",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e209",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e211",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e218",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e221",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0006.RS0002",
+      "type": "indoor_tour",
+      "label": "Marmeren gallery met meubels en spiegels",
+      "took_place_at": "e227",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0006",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e225",
+        "e226"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e227",
+          "building": "e203"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e227",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e225",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e226",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0007",
+      "type": "indoor_tour",
+      "label": "Bezoek aan het marmeren bad in de Orangerie",
+      "took_place_at": "e231",
+      "on_or_within": "e228",
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [
+        "e234",
+        "e240",
+        "e243"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e231",
+          "building": "e228"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e231",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e228",
+          "role": "on_or_within"
+        },
+        {
+          "mention_id": "e234",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e240",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e243",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0008",
+      "type": "outdoor_tour",
+      "label": "Wandeling door de Aue-Garten",
+      "took_place_at": "e246",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [
+        "RS0008.RS0001"
+      ],
+      "citations": [
+        {
+          "mention_id": "e246",
+          "role": "took_place_at"
+        }
+      ]
+    },
+    {
+      "id": "RS0008.RS0001",
+      "type": "outdoor_tour",
+      "label": "Lange linden allee naar de grote vijver",
+      "took_place_at": "e248",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0008",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [
+        "e249"
+      ],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e248",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e249",
+          "role": "near_places"
+        }
+      ]
+    },
+    {
+      "id": "RS0009",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Roomsche kerk",
+      "took_place_at": "e114",
+      "on_or_within": "e251",
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [
+        "e263"
+      ],
+      "mentions_places": [],
+      "near_places": [
+        "e252"
+      ],
+      "sections": [],
+      "sub_events": [
+        "RS0009.RS0001",
+        "RS0009.RS0002"
+      ],
+      "citations": [
+        {
+          "mention_id": "e114",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e251",
+          "role": "on_or_within"
+        },
+        {
+          "mention_id": "e263",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e252",
+          "role": "near_places"
+        }
+      ]
+    },
+    {
+      "id": "RS0009.RS0001",
+      "type": "indoor_tour",
+      "label": "Galery met het orgel",
+      "took_place_at": "e255",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0009",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e256"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e255",
+          "building": "e251"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e255",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e256",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0009.RS0002",
+      "type": "indoor_tour",
+      "label": "Koepel met het marmeren hoogaltaar",
+      "took_place_at": "e262",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0009",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e262",
+          "building": "e251"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e262",
+          "role": "took_place_at"
+        }
+      ]
+    },
+    {
+      "id": "RS0010",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Brüderkerk",
+      "took_place_at": "e114",
+      "on_or_within": "e265",
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e114",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e265",
+          "role": "on_or_within"
+        }
+      ]
+    },
+    {
+      "id": "RS0011",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Domkerk",
+      "took_place_at": "e114",
+      "on_or_within": "e266",
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [
+        "RS0011.RS0001"
+      ],
+      "citations": [
+        {
+          "mention_id": "e114",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e266",
+          "role": "on_or_within"
+        }
+      ]
+    },
+    {
+      "id": "RS0011.RS0001",
+      "type": "indoor_tour",
+      "label": "Tombes met schilden en opschrift",
+      "took_place_at": "e267",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0011",
+      "via_points": [],
+      "viewed_artifacts": [
+        "e268",
+        "e270",
+        "e271"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [
+        {
+          "room": "e267",
+          "building": "e266"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e267",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e268",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e270",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e271",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0012",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Kweekschool voor onderwijzers",
+      "took_place_at": "e114",
+      "on_or_within": "e272",
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e114",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e272",
+          "role": "on_or_within"
+        }
+      ]
+    },
+    {
+      "id": "RS0013",
+      "type": "indoor_tour",
+      "label": "Bezoek aan de Comedie",
+      "took_place_at": "e114",
+      "on_or_within": "e276",
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [
+        "RS0013.RS0001"
+      ],
+      "citations": [
+        {
+          "mention_id": "e114",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e276",
+          "role": "on_or_within"
+        }
+      ]
+    },
+    {
+      "id": "RS0013.RS0001",
+      "type": "indoor_tour",
+      "label": "Loge aan het toneel",
+      "took_place_at": "e277",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": "RS0013",
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [
+        "e278"
+      ],
+      "sections": [
+        {
+          "room": "e277",
+          "building": "e276"
+        }
+      ],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e277",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e278",
+          "role": "near_places"
+        }
+      ]
+    },
+    {
+      "id": "RS0014",
+      "type": "outdoor_tour",
+      "label": "Bijwonen van een parade van het garnizoen",
+      "took_place_at": "e294",
+      "on_or_within": null,
+      "time_span": null,
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [
+        "e280",
+        "e281"
+      ],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e294",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e280",
+          "role": "viewed_artifacts"
+        },
+        {
+          "mention_id": "e281",
+          "role": "viewed_artifacts"
+        }
+      ]
+    },
+    {
+      "id": "RS0015",
+      "type": "stay",
+      "label": "Verblijf te Cassel",
+      "took_place_at": "e2",
+      "on_or_within": null,
+      "time_span": [
+        "e3"
+      ],
+      "falls_within": null,
+      "via_points": [],
+      "viewed_artifacts": [],
+      "mentions_places": [],
+      "near_places": [],
+      "sections": [],
+      "sub_events": [],
+      "citations": [
+        {
+          "mention_id": "e2",
+          "role": "took_place_at"
+        },
+        {
+          "mention_id": "e3",
+          "role": "time_span"
+        }
+      ]
+    }
+  ],
+  "toponym_relations": {
+    "e2": "IN",
+    "e5": "NO_REL",
+    "e8": "NO_REL",
+    "e11": "NO_REL",
+    "e12": "NO_REL",
+    "e17": "FROM",
+    "e18": "THRU",
+    "e19": "NEAR",
+    "e20": "THRU",
+    "e21": "NEAR",
+    "e22": "NEAR",
+    "e27": "IN",
+    "e28": "NO_REL",
+    "e29": "NO_REL",
+    "e30": "NO_REL",
+    "e34": "NO_REL",
+    "e48": "NO_REL",
+    "e49": "NO_REL",
+    "e52": "THRU",
+    "e53": "THRU",
+    "e54": "NO_REL",
+    "e55": "NEAR",
+    "e56": "NEAR",
+    "e58": "NO_REL",
+    "e60": "TO",
+    "e61": "IN",
+    "e62": "NO_REL",
+    "e63": "NO_REL",
+    "e64": "NO_REL",
+    "e65": "NO_REL",
+    "e70": "TO",
+    "e76": "NO_REL",
+    "e77": "IN",
+    "e80": "IN",
+    "e82": "FROM",
+    "e84": "THRU",
+    "e85": "NEAR",
+    "e86": "NO_REL",
+    "e88": "NEAR",
+    "e89": "THRU",
+    "e90": "THRU",
+    "e92": "THRU",
+    "e93": "THRU",
+    "e94": "THRU",
+    "e96": "IN",
+    "e97": "NO_REL",
+    "e99": "NO_REL",
+    "e100": "THRU",
+    "e101": "THRU",
+    "e103": "NO_REL",
+    "e104": "NEAR",
+    "e105": "NEAR",
+    "e106": "NEAR",
+    "e108": "NO_REL",
+    "e109": "TO",
+    "e111": "IN",
+    "e112": "NO_REL",
+    "e113": "NO_REL",
+    "e114": "IN",
+    "e115": "IN",
+    "e117": "NO_REL",
+    "e118": "NO_REL",
+    "e119": "IN",
+    "e122": "IN",
+    "e123": "NO_REL",
+    "e124": "NO_REL",
+    "e127": "IN",
+    "e132": "IN",
+    "e135": "NO_REL",
+    "e143": "NO_REL",
+    "e144": "IN",
+    "e145": "NO_REL",
+    "e146": "NEAR",
+    "e148": "NO_REL",
+    "e153": "NO_REL",
+    "e154": "NO_REL",
+    "e155": "NO_REL",
+    "e157": "IN",
+    "e158": "IN",
+    "e160": "IN",
+    "e164": "IN",
+    "e170": "IN",
+    "e173": "IN",
+    "e174": "NO_REL",
+    "e176": "IN",
+    "e183": "IN",
+    "e185": "IN",
+    "e186": "NO_REL",
+    "e189": "NO_REL",
+    "e190": "IN",
+    "e193": "NO_REL",
+    "e194": "IN",
+    "e195": "IN",
+    "e196": "IN",
+    "e203": "IN",
+    "e210": "NO_REL",
+    "e212": "NO_REL",
+    "e213": "NO_REL",
+    "e214": "NO_REL",
+    "e215": "NO_REL",
+    "e216": "IN",
+    "e219": "NO_REL",
+    "e222": "NO_REL",
+    "e223": "NO_REL",
+    "e224": "NO_REL",
+    "e227": "IN",
+    "e228": "IN",
+    "e229": "NO_REL",
+    "e230": "NO_REL",
+    "e231": "IN",
+    "e232": "NO_REL",
+    "e233": "NO_REL",
+    "e235": "NO_REL",
+    "e236": "NO_REL",
+    "e237": "NO_REL",
+    "e242": "NO_REL",
+    "e245": "NO_REL",
+    "e246": "IN",
+    "e247": "NO_REL",
+    "e248": "IN",
+    "e249": "NEAR",
+    "e250": "NO_REL",
+    "e251": "IN",
+    "e252": "NEAR",
+    "e253": "NO_REL",
+    "e254": "NO_REL",
+    "e255": "IN",
+    "e257": "NO_REL",
+    "e258": "NO_REL",
+    "e259": "NO_REL",
+    "e260": "NO_REL",
+    "e261": "NO_REL",
+    "e262": "IN",
+    "e264": "NO_REL",
+    "e265": "IN",
+    "e266": "IN",
+    "e267": "IN",
+    "e272": "IN",
+    "e276": "IN",
+    "e277": "IN",
+    "e278": "NEAR",
+    "e283": "NO_REL",
+    "e284": "NO_REL",
+    "e285": "NO_REL",
+    "e286": "NO_REL",
+    "e287": "NO_REL",
+    "e288": "NO_REL",
+    "e289": "NO_REL",
+    "e291": "NO_REL",
+    "e292": "NO_REL",
+    "e293": "NO_REL",
+    "e294": "IN",
+    "e295": "NO_REL",
+    "e296": "NO_REL",
+    "e297": "NO_REL",
+    "e298": "NO_REL",
+    "e299": "NO_REL",
+    "e300": "NO_REL",
+    "e301": "NO_REL",
+    "e302": "NO_REL",
+    "e304": "NO_REL",
+    "e305": "NO_REL",
+    "e307": "NO_REL",
+    "e308": "NO_REL",
+    "e309": "NO_REL",
+    "e310": "NO_REL",
+    "e311": "NO_REL",
+    "e312": "NO_REL",
+    "e313": "NO_REL"
+  },
+  "mentioned_only_places": [
+    {
+      "mention_id": "e5",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e8",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e11",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e12",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e28",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e29",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e30",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e34",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e48",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e49",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e54",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e58",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e62",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e63",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e64",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e65",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e76",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e86",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e97",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e99",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e103",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e108",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e112",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e113",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e117",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e118",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e123",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e124",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e135",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e143",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e145",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e148",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e153",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e154",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e155",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e174",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e186",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e189",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e193",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e210",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e212",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e213",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e214",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e215",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e219",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e222",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e223",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e224",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e229",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e230",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e232",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e233",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e235",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e236",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e237",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e242",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e245",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e247",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e250",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e253",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e254",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e257",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e258",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e259",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e260",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e261",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e264",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e283",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e284",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e285",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e286",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e287",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e288",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e289",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e291",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e292",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e293",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e295",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e296",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e297",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e298",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e299",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e300",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e301",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e302",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e304",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e305",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e307",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e308",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e309",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e310",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e311",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e312",
+      "reason": "category=NO_REL"
+    },
+    {
+      "mention_id": "e313",
+      "reason": "category=NO_REL"
+    }
+  ]
+}

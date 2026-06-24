@@ -8,18 +8,207 @@ archaic Dutch context to unlock highly accurate semantic candidate matching.
 
 import json
 import re
+import sys
+from pathlib import Path
+
 import requests
+from rapidfuzz import fuzz, process
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from ollama_utils import stream_ollama_chat
 
 _cache: dict[str, list[dict]] = {}
 _llm_cache: dict[str, dict] = {}
+
+# Load GeoNames gazetteer for Germany at module startup
+_GAZETTEER_PATH = Path(__file__).resolve().parent.parent / "entity_linking" / "GeoNames_DE_gazetteer.txt"
+_GAZETTEER_DATA = []  # List of (geonameid, name, asciiname, alternatenames_list, lat, lon, feature_class, feature_code, country_code, admin1_code, population, elevation)
+
+if _GAZETTEER_PATH.exists():
+    with open(_GAZETTEER_PATH, encoding="utf8") as f:
+        for line in f:
+            parts = line.strip().split("\t")
+            if len(parts) >= 11:
+                geonameid = parts[0]
+                name = parts[1]
+                asciiname = parts[2]
+                alternatenames = parts[3].split(",") if parts[3] else []
+                # Parse numeric fields, handling empty values
+                try:
+                    lat = float(parts[4]) if parts[4] else 0.0
+                except ValueError:
+                    lat = 0.0
+                try:
+                    lon = float(parts[5]) if parts[5] else 0.0
+                except ValueError:
+                    lon = 0.0
+                feature_class = parts[6] if len(parts) > 6 else ""
+                feature_code = parts[7] if len(parts) > 7 else ""
+                country_code = parts[8] if len(parts) > 8 else ""
+                admin1_code = parts[10] if len(parts) > 10 and parts[10] else ""
+                try:
+                    population = int(parts[14]) if len(parts) > 14 and parts[14] else 0
+                except ValueError:
+                    population = 0
+                try:
+                    elevation = int(parts[15]) if len(parts) > 15 and parts[15] else 0
+                except ValueError:
+                    elevation = 0
+
+                _GAZETTEER_DATA.append((
+                    geonameid, name, asciiname, alternatenames, lat, lon,
+                    feature_class, feature_code, country_code, admin1_code,
+                    population, elevation
+                ))
+else:
+    print(f"Warning: GeoNames gazetteer not found at {_GAZETTEER_PATH}")
+
+# Human-readable labels for GeoNames feature class codes
+_FEATURE_CLASS_LABELS = {
+    "P": "populated place",
+    "A": "administrative region",
+    "H": "water feature",
+    "L": "lake",
+    "T": "mountain/hill",
+    "S": "spot/building",
+    "R": "road/railroad",
+    "V": "forest/vegetation",
+    "U": "undersea",
+}
+
+# Human-readable labels for common GeoNames feature codes (DE-relevant subset)
+_FEATURE_CODE_LABELS = {
+    "PPL": "city/town/village",
+    "PPLA": "administrative seat",
+    "PPLA2": "district seat",
+    "PPLA3": "municipality seat",
+    "PPLA4": "borough seat",
+    "PPLC": "capital city",
+    "PPLCH": "historical capital",
+    "PPLF": "farm/village",
+    "PPLG": "seat of government",
+    "PPLH": "historical populated place",
+    "PPLQ": "abandoned place",
+    "PPLR": "religious populated place",
+    "PPLS": "populated locality",
+    "PPLW": "destroyed place",
+    "PPLX": "section of populated place",
+    "ST": "stream",
+    "STM": "stream",
+    "STMI": "intermittent stream",
+    "STMR": "meandering stream",
+    "STMSB": "stream bend",
+    "LK": "lake",
+    "LKI": "intermittent lake",
+    "LKN": "salt lake",
+    "RSV": "reservoir",
+    "RSVT": "water tank",
+    "CNL": "canal",
+    "DTCH": "ditch",
+    "MT": "mountain",
+    "MTT": "mountain range",
+    "HLL": "hill",
+    "HLLS": "hills",
+    "PK": "peak",
+    "RK": "rock",
+    "VLC": "volcano",
+    "VAL": "valley",
+    "PLN": "plain",
+    "FLD": "field",
+    "FRM": "farm",
+    "CH": "church",
+    "CHS": "church (historical)",
+    "MNA": "monastery",
+    "MN": "mine",
+    "MUS": "museum",
+    "HTL": "hotel",
+    "INN": "inn",
+    "CAST": "castle",
+    "PAL": "palace",
+    "FT": "fort",
+    "BTL": "battlefield",
+    "PARK": "park",
+    "GDN": "garden",
+    "SQ": "square",
+    "BRDG": "bridge",
+    "RSTN": "railroad station",
+    "RSTP": "railroad stop",
+    "BD": "border post",
+    "PRK": "parking area",
+    "PYR": "pyramid",
+    "TOWR": "tower",
+    "MNMT": "monument",
+    "FCL": "facility",
+    "HSP": "hospital",
+    "SCH": "school",
+    "UNIV": "university",
+    "THTR": "theater",
+    "LCTY": "locality",
+    "AREA": "area",
+    "RG": "region",
+    "RGN": "region",
+    "ISL": "island",
+    "PEN": "peninsula",
+    "PT": "point",
+    "BAY": "bay",
+    "GULF": "gulf",
+    "STRT": "strait",
+    "CHN": "channel",
+    "HBR": "harbor",
+    "BCH": "beach",
+    "CLF": "cliff",
+    "CAPE": "cape",
+    "FRST": "forest",
+    "PRT": "port",
+    "RUIN": "ruin",
+    "SHRN": "shrine",
+    "STM": "stream",
+    "WLL": "well",
+    "SPNG": "spring",
+    "FLLS": "waterfall",
+    "GLCR": "glacier",
+    "DAM": "dam",
+    "PIER": "pier",
+    "WHF": "wharf",
+    "LTHSE": "lighthouse",
+    "AIRP": "airport",
+    "CMP": "camp",
+    "CSTL": "castle",
+    "PAL": "palace",
+}
+
+# German admin1 (state) code mapping (as used in this GeoNames export)
+_ADMIN1_DE = {
+    "01": "Baden-Württemberg",
+    "02": "Bayern",
+    "03": "Bremen",
+    "04": "Hamburg",
+    "05": "Hessen",
+    "06": "Niedersachsen",
+    "07": "Nordrhein-Westfalen",
+    "08": "Rheinland-Pfalz",
+    "09": "Saarland",
+    "10": "Schleswig-Holstein",
+    "11": "Brandenburg",
+    "12": "Mecklenburg-Vorpommern",
+    "13": "Sachsen",
+    "14": "Sachsen-Anhalt",
+    "15": "Thüringen",
+    "16": "Berlin",
+}
 
 HEADERS = {
     "User-Agent": "DutchTravelogueNLP/1.0 (https://github.com/tijn-do/hist-dutch-travelogues-nlp; research project)"
 }
 
+TEMPERATURE = 0.1
+
 # Prompting the LLM to act as our dense structural profile generator
 _EPG_PROMPT = """Je bent een expert in historische geografie en 19e-eeuwse Nederlandse reisliteratuur.
+De topnoniemen zijn afkomstig uit 19e-eeuws Nederlands reisverslag. De auteur is een Groningse student die rond 1816 door Duitsland reist voor zijn Bildung. Alle entiteiten zijn locaties (steden, dorpen, rivieren, bergen, gebouwen, pleinen) voornamelijk in Duitsland, Nederland of aangrenzende gebieden.
 Analyseer de historische entiteit en context, en voorspel het profiel van de moderne entiteit.
+Het doel is om het toponiem vindbaar te maken in Knowledge Bases zoals Wikidata en Geonames, daarom is het van belang dat je bij generieke termen identificeert welke plaats/gebouw/structuur er bedoeld wordt uit de context.
+
 
 Entiteit (historische spelling): "{entity_text}"
 Type: "{entity_label}"
@@ -27,8 +216,8 @@ Context uit reisverhaal: "{context}"
 
 Geef het resultaat STRICT terug als een geldig JSON object met de volgende structuur:
 {{
-  "modern_name": "De huidige gestandaardiseerde internationale of lokale naam",
-  "country_or_region": "Het huidige land of de regio waar dit ligt",
+  "modern_name": "De DUITSE naam voor toponiemen in Duitsland, anders de gangbare Nederlandse of Engelse naam",
+  "country_or_region": "Het huidige land of de regio waar dit ligt (in het Engels, bv. 'Germany', 'Netherlands')",
   "type_keywords": ["maximaal", "3", "type", "keywords" (bijv: "castle", "city", "mountain")]
 }}
 
@@ -77,6 +266,7 @@ def _predict_entity_profile(
     ollama_url: str,
     model_name: str,
     ollama_headers: dict | None = None,
+    think: bool | str | None = None,
 ) -> dict | None:
     """Use an LLM to predict a modern identity profile for an archaic entity mention.
 
@@ -86,11 +276,13 @@ def _predict_entity_profile(
 
     Args:
         entity_text: The archaic entity surface form (e.g. "Cassel").
-        entity_label: NER label (E53_Place or E19_Physical_Thing).
+        entity_label: NER label (E53_Place or E18_Physical_Thing).
         context: Surrounding text from the travelogue.
         ollama_url: Ollama server base URL.
         model_name: Ollama model name.
         ollama_headers: Optional auth headers for cloud API.
+        think: Thinking mode (True, False, "low", "medium", "high").
+               None uses the model's default.
 
     Returns:
         Dict with modern_name, country_or_region, type_keywords, or None on failure.
@@ -100,24 +292,25 @@ def _predict_entity_profile(
         return _llm_cache[cache_key]
 
     prompt = _EPG_PROMPT.format(entity_text=entity_text, entity_label=entity_label, context=context)
+    api_key = None
+    if ollama_headers:
+        auth = ollama_headers.get("Authorization", "")
+        api_key = auth.replace("Bearer ", "") if auth.startswith("Bearer ") else None
     try:
-        resp = requests.post(
-            f"{ollama_url}/api/generate",
-            json={
-                "model": model_name,
-                "prompt": prompt,
-                "stream": False,
-                "options": {"temperature": 0.1, "num_predict": 150},
-            },
-            headers=ollama_headers,
-            timeout=30,
-        )
-        raw_response = resp.json().get("response", "").strip()
-        
+        raw_response = stream_ollama_chat(
+            model=model_name,
+            prompt=prompt,
+            host=ollama_url,
+            api_key=api_key,
+            timeout=30.0,
+            temperature=TEMPERATURE,
+            think=think,
+        ).strip()
+
         # Strip markdown code blocks if the LLM accidentally added them
         raw_response = re.sub(r"```(?:json)?\s*|```", "", raw_response).strip()
         profile = json.loads(raw_response)
-        
+
         _llm_cache[cache_key] = profile
         return profile
     except Exception as e:
@@ -292,112 +485,182 @@ def _wikipedia_search(profile: dict) -> list[dict]:
     return candidates
 
 
-def _geonames_profile_search(profile: dict, username: str | None) -> list[dict]:
-    """Search GeoNames using the EPG-predicted modern name and location.
+
+def _geonames_gazetteer_search(profile: dict) -> list[dict]:
+    """Search local GeoNames gazetteer using EPG-predicted modern name and location.
 
     Args:
         profile: EPG profile dict with modern_name and country_or_region keys.
-        username: GeoNames API username (None disables this lane).
 
     Returns:
-        List of candidate dicts with id (gn:NNN), label, description, source="geonames_epg".
+        List of candidate dicts with id (gn:NNN), label, description, source="geonames_gazetteer".
     """
-    if not username or not profile.get("modern_name"):
+    if not _GAZETTEER_DATA or not profile.get("modern_name"):
         return []
 
-    url = "http://api.geonames.org/search"
-    search_term = f"{profile['modern_name']} {profile.get('country_or_region', '')}".strip()
-    
-    params = {
-        "q": search_term,
-        "maxRows": 10,
-        "username": username,
-        "type": "json",
-        "fuzzy": 0.8,
-    }
-    try:
-        resp = requests.get(url, params=params, timeout=10)
-        data = resp.json()
-        
-        candidates = []
-        for result in data.get("geonames", []):
-            candidates.append({
-                "id": f"gn:{result['geonameId']}",
-                "label": result.get("name", ""),
-                "description": (
-                    f"{result.get('name', '')}, "
-                    f"{result.get('adminName1', '')}, "
-                    f"{result.get('countryName', '')}"
-                ),
-                "source": "geonames_epg",
-            })
-        return candidates
-    except Exception:
-        return []
+    modern_name = profile.get("modern_name", "").strip()
+    country_or_region = profile.get("country_or_region", "").strip()
+
+    # Create search string from modern_name only.
+    # country_or_region is NOT included because it's a Dutch label (e.g. "Duitsland")
+    # that doesn't appear in the German/English gazetteer text and would only
+    # dilute the fuzzy match score, causing correct candidates to fall below threshold.
+    search_string = modern_name.lower()
+
+    # Scan through gazetteer data and score matches
+    scored_matches = []
+
+    for geonameid, name, asciiname, alternatenames, lat, lon, feature_class, feature_code, country_code, admin1_code, population, elevation in _GAZETTEER_DATA:
+        # Skip if country doesn't match (if we have a strong location hint)
+        # For now, we'll do text matching and let ranking handle it
+
+        # Create text to search against: name + asciiname + alternatenames
+        search_text = f"{name} {asciiname} {' '.join(alternatenames)}".lower()
+
+        # Use rapidfuzz to get similarity score
+        # We'll try matching against the full search string
+        score = fuzz.WRatio(search_string, search_text)
+
+        # Also try partial matching for cases where the entity name is part of a longer name
+        partial_score = fuzz.partial_ratio(search_string, search_text)
+
+        # Take the maximum of the two scores
+        final_score = max(score, partial_score)
+
+        # Only consider matches above a threshold
+        if final_score >= 85:  # Similarity threshold
+            # Boost score for exact matches
+            if search_string in search_text or search_text in search_string:
+                final_score = min(100, final_score + 10)
+
+            # Boost score for population (more important places)
+            # Normalize population to 0-20 bonus points
+            pop_bonus = min(20, population / 10000)  # 200k population = max bonus
+            final_score = min(100, final_score + pop_bonus)
+
+            # Boost score for certain feature types (cities, towns, etc.)
+            if feature_class == "P":  # Populated place
+                final_score = min(100, final_score + 5)
+            elif feature_class in ["H", "L"]:  # Hydrographic or Lake
+                final_score = min(100, final_score + 3)
+
+            # Build a rich description with feature type, admin region, country, and population
+            # so the reranker and selector have enough context to disambiguate
+            desc_parts = [name]
+
+            # Feature type: class + code in human-readable form
+            feat_class_label = _FEATURE_CLASS_LABELS.get(feature_class, "")
+            feat_code_label = _FEATURE_CODE_LABELS.get(feature_code, "")
+            type_str = " — ".join(filter(None, [feat_class_label, feat_code_label]))
+            if type_str:
+                desc_parts.append(f"({type_str})")
+
+            # Admin region (state) for German entries
+            if country_code == "DE" and admin1_code:
+                state = _ADMIN1_DE.get(admin1_code, "")
+                if state:
+                    desc_parts.append(state)
+
+            # Country (always, not just when non-DE)
+            if country_code:
+                desc_parts.append(country_code)
+
+            # Population for populated places
+            if population > 0:
+                desc_parts.append(f"pop. {population}")
+
+            description = ", ".join(desc_parts)
+
+            scored_matches.append((
+                final_score,
+                {
+                    "id": f"gn:{geonameid}",
+                    "label": name,
+                    "description": description,
+                    "source": "geonames_gazetteer"
+                }
+            ))
+
+    # Sort by score descending and take top matches
+    scored_matches.sort(key=lambda x: x[0], reverse=True)
+
+    # Return top 10 matches (similar to API limit)
+    candidates = [match[1] for match in scored_matches[:10]]
+
+    return candidates
 
 
 def generate_candidates(
     entity_text: str,
     entity_label: str,
     context: str = "",
-    geonames_username: str | None = None,
     ollama_url: str = "http://localhost:11434",
     model_name: str = "gemma4:31b-cloud",
     ollama_headers: dict | None = None,
     use_cache: bool = True,
-) -> list[dict]:
+    think: bool | str | None = None,
+) -> dict[str, list[dict]]:
     """Generate KB candidate entries for an entity mention using a multi-lane approach.
 
-    Stage 1 of the EL pipeline. Runs two lanes:
+    Stage 1 of the EL pipeline. Runs three lanes:
       - Sparse lane: wikidata text search in nl/en/de against the raw surface form.
       - Dense/EPG lane: LLM predicts a modern profile, then queries Wikidata SPARQL,
-        Wikipedia full-text, and GeoNames with the predicted modern name and location.
+        Wikipedia full-text, and local GeoNames gazetteer with the predicted modern name and location.
 
     Args:
         entity_text: The entity surface form (e.g. "Cassel").
-        entity_label: NER label (E53_Place or E19_Physical_Thing).
+        entity_label: NER label (E53_Place or E18_Physical_Thing).
         context: Surrounding text from the travelogue (enables EPG lane).
-        geonames_username: Optional GeoNames API username.
         ollama_url: Ollama server base URL.
         model_name: Ollama model name for EPG profile prediction.
         ollama_headers: Optional auth headers for cloud API.
         use_cache: Whether to return cached results for duplicate queries.
+        think: Thinking mode (True, False, "low", "medium", "high").
+               None uses the model's default.
 
     Returns:
-        Deduplicated list of candidate dicts across all search lanes.
+        Dict with separate candidate lists for each KB type:
+        {"wikidata": [...], "geonames": [...]} where each list contains candidate dicts.
     """
     cache_key = f"{entity_text}|{entity_label}"
     if use_cache and cache_key in _cache:
-        print(f"  [Stage 1] '{entity_text}' -> {len(_cache[cache_key])} candidates (cached)")
+        wikidata_count = len(_cache[cache_key]["wikidata"])
+        geonames_count = len(_cache[cache_key]["geonames"])
+        print(f"  [Stage 1] '{entity_text}' -> {wikidata_count} Wikidata + {geonames_count} GeoNames candidates (cached)")
         return _cache[cache_key]
 
-    candidates: list[dict] = []
-    seen_ids: set[str] = set()
+    # Initialize result structure
+    candidates = {
+        "wikidata": [],
+        "geonames": []
+    }
+    seen_wikidata_ids: set[str] = set()
+    seen_geonames_ids: set[str] = set()
 
     # 1. Sparse Lane: Try matching the surface form directly against native API first
     for lang in ["nl", "en", "de"]:
         for cand in _wikidata_search(entity_text, lang=lang):
-            if cand["id"] not in seen_ids:
-                seen_ids.add(cand["id"])
-                candidates.append(cand)
-                
-    print(f"  [Stage 1] Baseline text search for '{entity_text}': {len(candidates)} results")
+            if cand["id"] not in seen_wikidata_ids:
+                seen_wikidata_ids.add(cand["id"])
+                candidates["wikidata"].append(cand)
+
+    print(f"  [Stage 1] Baseline text search for '{entity_text}': {len(candidates['wikidata'])} Wikidata results")
 
     # 2. Dense/EPG Lane: Generate profile using surrounding context to unlock structural matches
     if context:
         profile = _predict_entity_profile(
-            entity_text, entity_label, context, ollama_url, model_name, ollama_headers
+            entity_text, entity_label, context, ollama_url, model_name, ollama_headers, think=think
         )
         if profile:
             print(f"  [Stage 1] EPG Predicted Profile: {profile}")
-            
+
             # Hybrid search with the predicted anchor targets
             epg_candidates = _wikidata_hybrid_sparql_search(profile)
             new_epg_count = 0
             for cand in epg_candidates:
-                if cand["id"] not in seen_ids:
-                    seen_ids.add(cand["id"])
-                    candidates.append(cand)
+                if cand["id"] not in seen_wikidata_ids:
+                    seen_wikidata_ids.add(cand["id"])
+                    candidates["wikidata"].append(cand)
                     new_epg_count += 1
             print(f"  [Stage 1] EPG Hybrid lane added {new_epg_count} new structural candidates.")
 
@@ -405,25 +668,27 @@ def generate_candidates(
             wiki_candidates = _wikipedia_search(profile)
             new_wiki_count = 0
             for cand in wiki_candidates:
-                if cand["id"] not in seen_ids:
-                    seen_ids.add(cand["id"])
-                    candidates.append(cand)
+                if cand["id"] not in seen_wikidata_ids:
+                    seen_wikidata_ids.add(cand["id"])
+                    candidates["wikidata"].append(cand)
                     new_wiki_count += 1
             if new_wiki_count:
                 print(f"  [Stage 1] EPG Wikipedia lane added {new_wiki_count} candidates.")
 
-            # GeoNames targeted lane
-            gn_candidates = _geonames_profile_search(profile, username=geonames_username)
+            # GeoNames gazetteer lane (replaces API-based GeoNames search)
+            gn_candidates = _geonames_gazetteer_search(profile)
             new_gn_count = 0
             for cand in gn_candidates:
-                if cand["id"] not in seen_ids:
-                    seen_ids.add(cand["id"])
-                    candidates.append(cand)
+                if cand["id"] not in seen_geonames_ids:
+                    seen_geonames_ids.add(cand["id"])
+                    candidates["geonames"].append(cand)
                     new_gn_count += 1
             if new_gn_count:
-                print(f"  [Stage 1] EPG GeoNames lane added {new_gn_count} candidates.")
+                print(f"  [Stage 1] EPG GeoNames gazetteer lane added {new_gn_count} candidates.")
 
-    print(f"  [Stage 1] '{entity_text}' -> {len(candidates)} candidates total")
+    wikidata_total = len(candidates["wikidata"])
+    geonames_total = len(candidates["geonames"])
+    print(f"  [Stage 1] '{entity_text}' -> {wikidata_total} Wikidata + {geonames_total} GeoNames candidates total")
     _cache[cache_key] = candidates
     return candidates
 

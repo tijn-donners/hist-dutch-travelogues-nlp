@@ -1,0 +1,205 @@
+# Fewshot example 1: This fewshot aims to clarify the difference between E53_Place an E18_Physical_Thing based
+# on the model-agnostic error analysis from zeroshot results in  zeroshot_error_analysis.ipynb
+- text: Het is in eene bevallige
+        smaak gebouwd met een plat dak voorzien waaruit zich eene koepel
+        verheft van 62 voeten doorsnede en van waar, zoo als wy vervolgens zagen,
+        men een heerlyk gezicht op Cassel en de omliggende streken heeft voor het overige
+        bestaat het geheel uit een hoofdgebouw & twee vleugelen die door een zoort van verdekte galery
+        vereenigd zyn. Inwendig beantwoordt alles aan het grootsche denkbeeld dat men by het eerste
+        gezicht reeds heeft opgevat; door een zeer ruim en schoon vestibule gegaan zynde komt men
+        dadelyk aan de danszaal die zeer schoon is vervolgens in eene galery van
+        schilderyen waaronder van grote meesters
+  spans:
+    - text: plat dak
+      is_entity: true
+      label: E18_Physical_Thing
+      reason: a flat roof is a physical structure that can be touched and is not easily movable. Therefore it is an E18 Physical Thing
+    - text: koepel
+      is_entity: true
+      label: E18_Physical_Thing
+      reason: is a large physical structure, tangible and not conceptual. A dome cannot simply be moved and is therefore not portable. Therefore it is E18 Physical Thing (and not E18 Physical Object or E53_Place)
+    - text: 62 voeten
+      is_entity: false
+      label: ==NONE==
+      reason: is an indication of size, and there is no suitable tag for this in the available labels. Therefore it is not an entity.
+    - text: hoofdgebouw
+      is_entity: true
+      label: E18_Physical_Thing
+      reason: is an immovable physical structure. It is a part of the Wilhelmshöhe palace, but it concerns a specific building, and not a spatial area. Therefore it is E18_Physical_Thing and not E53_Place.
+    - text: twee vleugelen
+      is_entity: true
+      label: E18_Physical_Thing
+      reason: is an immovable physical structure. It is a part of the Wilhelmshöhe palace, but it concerns a specific building, and not a spatial area. Therefore it is E18_Physical_Thing and not E53_Place.
+    - text: vestibule
+      is_entity: true
+      label: E53_Place
+      reason: is a room within the building. It therefore does not refer to a physical structure, but to the space inside it, and therefore it is E53_Place.
+    - text: danszaal
+      is_entity: true
+      label: E53_Place
+      reason: is a room within the building. It therefore does not refer to a physical structure, but to the space inside it, and therefore it is E53_Place.
+    - text: galery
+      is_entity: true
+      label: E53_Place
+      reason: is a room within the building. It therefore does not refer to a physical structure, but to the space inside it, and therefore it is E53_Place.
+    - text: schilderyen
+      is_entity: true
+      label: E19_Physical_Object
+      reason: these are paintings, thus physical objects that are portable and can be carried. Therefore it IS an E19_Physical_Object and NOT an E18_Physical_Thing. It is also NOT an F2_Expression because "paintings" refers to the physical object, and not the expression depicted on these paintings.
+    - text: grote meesters
+      is_entity: false
+      label: ==None==
+      reason: refers to a group of people, the 'great artists'. There is no matching label for this, so it is not an entity.
+ 
+# Example 2: Clarifying the difference between E18, E19, E20 and E53. It also includes an negative example
+# of figure of speech ('hooge trap' van volkomenheid) which at first seems like a physical object but is not.
+- text: het Museum hetwelk ons, uitgenomen de verzameling van mineralen die onder opzigt
+        van Prof. Hausman tot eene hooge trap van volkomenheid gebragt is, zeer is uit de
+        hand gevallen, schoon de aanwezige vogels alle in eene zeer losse &
+        ongedwongene houding waren opgezet, men vond er ook eene leeuwin en een krokodil van 13
+        voeten lang. In de kamer met rariteiten waren veele wapenen,
+        kledingstukken enz van de inwoners der Zuidzee &
+        Sandwich's eilanden
+  spans:
+    - text: Museum
+      is_entity: true
+      label: E18_Physical_Thing
+      reason: the museum refers to a physical structure that can be touched and is not movable. Therefore it is an E18_Physical_Thing.
+    - text: verzameling van mineralen
+      is_entity: true
+      label: E19_Physical_Object
+      reason: is a collection of physical objects, tangible and NOT conceptual. The collection of minerals can be moved and therefore it is an E19_Physical_Object (and not E18 Physical_Thing or E53_Place)
+    - text: Prof. Hausman
+      is_entity: false
+      label: ==NONE==
+      reason: is a person, and there is no suitable tag for this in the available labels. Therefore it is not an entity.
+    - text: hooge trap
+      is_entity: false
+      label: ==None==
+      reason: the 'high step' here refers to a 'high degree of perfection' and is therefore a figure of speech. It does not refer to an actual physical step.
+    - text: vogels
+      is_entity: true
+      label: E20_Biological_Object
+      reason: is a biological object because the context shows that these animals are taxidermied. It is therefore biological non-living material, and therefore an E20_Biological_Object. If it concerned living animals, no label would have been assigned.
+    - text: leeuwin
+      is_entity: true
+      label: E20_Biological_Object
+      reason: is a biological object because the context shows that these animals are taxidermied. It is therefore biological non-living material, and therefore an E20_Biological_Object. If it concerned living animals, no label would have been assigned.
+    - text: krokodil
+      is_entity: true
+      label: E20_Biological_Object
+      reason: is a biological object because the context shows that these animals are taxidermied. It is therefore biological non-living material, and therefore an E20_Biological_Object. If it concerned living animals, no label would have been assigned.
+    - text: 13 voeten
+      is_entity: false
+      label: ==None==
+      reason: this is not an entity because it concerns a measure of length, and there is no correct label for this in the available labels.
+    - text: kamer
+      is_entity: true
+      label: E53_Place
+      reason: is a room within the museum, so it concerns a spatial area. Therefore it is an E53_Place and not an E18_Physical_Thing.
+    - text: rariteiten
+      is_entity: true
+      label: E19_Physical_Object
+      reason: these are strange objects in a room, so they are movable. Therefore the entity is an E19_Physical_Object and not an E18_Physical_Thing.
+    - text: veele wapenen
+      is_entity: true
+      label: E19_Physical_Object
+      reason: these are weapons in a room, so they are movable. Therefore the entity is an E19_Physical_Object and not an E18_Physical_Thing.
+    - text: kledingstukken
+      is_entity: true
+      label: E19_Physical_Object
+      reason: these are garments, so they are physical objects that can be moved. Therefore the entity is an E19_Physical_Object and not an E18_Physical_Thing.
+    - text: Zuidzee
+      is_entity: true
+      label: E53_Place
+      reason: is a spatial area. Rivers and seas are not classified under E18_Physical_Thing by CIDOC because the water they consist of does not stay in place. A pond could, for example, be an E18_Physical_Thing. But the South Sea is E53_Place.
+    - text: Sandwich eilanden
+      is_entity: true
+      label: E53_Place
+      reason: is a geopolitical entity, and also an abstract spatial description of an area in space. Therefore it is E53_Place.
+
+# Example 3: Distinguishing between F2 Expression and E31 Document
+- text: veele derzelver stelden tafereelen voor uit de
+        Gierusalemne liberata van Torquato Tasso, eenige waren uit
+        Wieland's Oberon genomen, van deeze alle is eene zeer omslagtig catalogus te vinden
+        in de beschreibung des Kurfürstlichen Landsitzes Wilhelmshöhe bey Cassel in 1804 door eenen W. Döring te Cassel
+        uitgegeven 't geen voor elken bezigtiger van deeze heerlyke lustplaats onmisbaar is.
+  spans:
+    - text: Gierusalemne liberata
+      is_entity: true
+      label: F2_Expression
+      reason: here the poems on which the "scenes" are based are meant. This therefore concerns an F2 Expression. Not an E31 Document. An E31 Document is characterized by a specific function, while an F2 Expression is characterized by the literary form, or the intellectual concept behind a term.
+    - text: Torquato Tasso
+      is_entity: false
+      label: ==None==
+      reason: is a person, and persons or groups of persons are not in the tagset. Therefore no label is assigned.
+    - text: Wieland
+      is_entity: false
+      label: ==None==
+      reason: is a person, and persons or groups of persons are not in the tagset. Therefore no label is assigned.
+    - text: Oberon
+      is_entity: true
+      label: F2_Expression
+      reason: here the poems on which the "scenes" are based are meant. This therefore concerns an F2 Expression. Not an E31 Document. An E31 Document is characterized by a specific function, while an F2 Expression is characterized by the literary form, or the intellectual concept behind a term.
+    - text: omslagtig catalogus
+      is_entity: true
+      label: E31_Document
+      reason: a catalog is a physical object that 'represents propositions about reality'. It is also identifiable because it refers to the other entity "beschreibung des Kurfürstlichen Landsitzes Wilhelmshöhe bey Cassel". It also fulfills a specific function, namely providing information. Therefore it falls within the category E31_Document.
+    - text: beschreibung des Kurfürstlichen Landsitzes Wilhelmshöhe bey Cassel
+      is_entity: true
+      label: E31_Document
+      reason: a physical object that 'represents propositions about reality'. This catalog is also identifiable. It also fulfills a specific function, namely providing information. Therefore this is an E31_Document.
+    - text: '1804'
+      is_entity: true
+      label: E52_Time_Span
+      reason: this is a year, and therefore a time indication and E52_Time_Span.
+    - text: W. Döring
+      is_entity: false
+      label: ==None==
+      reason: is a person, and there is no suitable tag for this in the available labels. Therefore it is not an entity.
+    - text: Cassel
+      is_entity: true
+      label: E53_Place
+      reason: is a geopolitical entity and refers to a spatial area.
+    - text: heerlyke lustplaats
+      is_entity: true
+      label: E53_Place
+      reason: refers to a spatial abstract location. Therefore it is an E53_Place.
+
+# example 5: Mode of Transportation(both verbs like "ryden" en "wandelen" and nouns like "rytuig" or "wagen") and E52_Time_Span examples 
+- text: wy hadden ons des morgens wel met een rytuig tot de plaats onzer bestemming laten brengen, doch
+        hadden den ganschen dag gelopen en geklommen, zonder byna een oogenblik uit te rusten tot des
+        avonds 8 uur
+  spans:
+    - text: wy
+      is_entity: false
+      label: ==None==
+      reason: refers to a group of people. There is no label available for this in the tagset.
+    - text: des morgens
+      is_entity: true
+      label: E52_Time_Span
+      reason: this refers to a part of the day and is therefore a time indication. Therefore it is an E52_Time_Span.
+    - text: rytuig
+      is_entity: true
+      label: Mode_of_Transportation
+      reason: this is a physical object that is used for transport, so it is a Mode_of_Transportation.
+    - text: den ganschen dag
+      is_entity: true
+      label: E52_Time_Span
+      reason: this is a part of the day and therefore a time indication. This makes this entity an E52_Time_Span.
+    - text: gelopen
+      is_entity: true
+      label: Mode_of_Transportation
+      reason: this is a verb that refers to the mode of transport. Therefore the label Mode_of_Transportation belongs to this entity.
+    - text: geklommen
+      is_entity: true
+      label: Mode_of_Transportation
+      reason: this is a verb that refers to the mode of transport. Therefore the label Mode_of_Transportation belongs to this entity.
+    - text: een oogenblik
+      is_entity: true
+      label: E52_Time_Span
+      reason: a moment refers to a short period of time, and is therefore a time indication and an E52_Time_Span.
+    - text: des avonds 8 uur
+      is_entity: true
+      label: E52_Time_Span
+      reason: this is a time indication for 8 o'clock in the evening, and therefore E52_Time_Span  

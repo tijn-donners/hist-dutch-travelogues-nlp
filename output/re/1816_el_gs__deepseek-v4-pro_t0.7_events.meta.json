@@ -1,0 +1,16 @@
+{
+  "model": "deepseek-v4-pro",
+  "temperature": 0.7,
+  "think_mode": null,
+  "source_text": "1816_el_gs_el",
+  "datetime": "2026-06-23 13:49:00",
+  "duration_seconds": 1058.8,
+  "num_api_failures": 0,
+  "num_retries": 1,
+  "prompt_length_chars": 54649,
+  "response_length_chars": 33965,
+  "num_events": 43,
+  "num_toponym_relations": 169,
+  "num_entities": 313,
+  "rdf_triples": 4402
+}
