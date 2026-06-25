@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 # ── CONFIGURE THIS ────────────────────────────────────────────────────
-MODEL = "qwen3.5:397b"
+MODEL = "deepseek-v4-flash"
 # ───────────────────────────────────────────────────────────────────────
 
 ROOT = Path(__file__).resolve().parent.parent

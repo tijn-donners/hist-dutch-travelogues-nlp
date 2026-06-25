@@ -1,1 +1,1 @@
-{"stats": {"total_entities": 170, "count_errors": 0, "count_skipped": 0, "count_linked_wd": 83, "count_linked_gn": 43, "count_linked_both": 41, "count_linked_neither": 85}, "duration": 2793.882423877716, "model": "gemma4:31b", "temperature": 1.0, "top_k": 3, "think": "false"}
+{"stats": {"total_entities": 170, "count_errors": 0, "count_skipped": 0, "count_linked_wd": 82, "count_linked_gn": 38, "count_linked_both": 32, "count_linked_neither": 82}, "duration": 1984.2410480976105, "model": "gemma4:31b", "temperature": 1.0, "top_k": 3, "think": "false", "inference_type": "cloud"}
