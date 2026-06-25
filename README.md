@@ -2,7 +2,7 @@
 
 An integrated NLP pipeline for Named Entity Recognition (NER), Entity Linking (EL), Relation Extraction (RE), and RDF generation for 19th-century Dutch travelogues. Part of the **Academic Tourism project** at the **University of Groningen**.
 
-The primary source material is letters from a Groningen student traveling through Germany (~1816) as part of his *Bildungsreise* (academic grand tour). The pipeline extracts travel events according to the **Academic Tourism Ontology (ATO)**, an extension of **CIDOC CRM** for modelling academic tourism phenomena.
+The primary source material is letters from a Groningen student traveling through Germany (~1816) as part of his *Bildungsreise* (academic grand tour). The pipeline extracts travel events according to the **Academic Tourism Ontology (ATO)**, an extension of **CIDOC CRM** for modelling travel events.
 
 The pipeline is implemented in Python using spaCy for NER, Ollama-hosted LLMs for all NLP stages, and rdflib for RDF generation and validation.
 
