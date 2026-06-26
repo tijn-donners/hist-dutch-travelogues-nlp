@@ -13,6 +13,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from ollama_utils import stream_ollama_chat
 
+# Default LLM temperature for rerank scoring. The EL pipeline threads the
+# --temperature CLI value (default 0.0) through to this stage; this constant is
+# the standalone default when rerank_candidates is called without one.
 TEMPERATURE = 0.0
 
 _RERANK_PROMPT = """Je beoordeelt kandidaat-matches voor een toponiem uit een 19e-eeuws Nederlands reisverslag. De auteur is een Groningse student die rond 1816 door Duitsland reist. Alle toponiemen zijn locaties (steden, dorpen, rivieren, bergen, gebouwen, pleinen) in Duitsland of aangrenzende gebieden.
@@ -39,6 +42,7 @@ def _ollama_rerank(
     model_name: str = "gemma4:31b-cloud",
     ollama_headers: dict | None = None,
     think: bool | str | None = None,
+    temperature: float = TEMPERATURE,
 ) -> list[dict]:
     """Score all candidates in a single Ollama call and keep the top_k.
 
@@ -90,7 +94,7 @@ def _ollama_rerank(
             host=ollama_url,
             api_key=api_key,
             timeout=120.0,
-            temperature=TEMPERATURE,
+            temperature=temperature,
             think=think,
         ).strip()
     except Exception as e:
@@ -143,6 +147,7 @@ def rerank_candidates(
     model_name: str = "gemma4:31b-cloud",
     ollama_headers: dict | None = None,
     think: bool | str | None = None,
+    temperature: float = TEMPERATURE,
 ) -> list[dict]:
     """Rerank candidates for an entity mention.
 
@@ -168,7 +173,8 @@ def rerank_candidates(
     # Ollama reranker (required — no fallback, to keep LLM-only evaluation clean)
     result = _ollama_rerank(entity_text, context, candidates, top_k,
                             ollama_url=ollama_url, model_name=model_name,
-                            ollama_headers=ollama_headers, think=think)
+                            ollama_headers=ollama_headers, think=think,
+                            temperature=temperature)
     print(f"  [Stage 2] {model_name} reranked {len(candidates)} -> {len(result)}")
     for i, c in enumerate(result):
         print(f"    {i+1}. {c['id']} {c['label']} (score={c['rerank_score']:.3f})")

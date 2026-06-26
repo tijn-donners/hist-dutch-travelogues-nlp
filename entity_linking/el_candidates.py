@@ -201,7 +201,11 @@ HEADERS = {
     "User-Agent": "DutchTravelogueNLP/1.0 (https://github.com/tijn-do/hist-dutch-travelogues-nlp; research project)"
 }
 
-TEMPERATURE = 0.1
+# Default LLM temperature for EPG profile generation. The EL pipeline threads
+# the --temperature CLI value (default 0.0) through to this stage; this 0.0
+# default is used only when generate_candidates/_predict_entity_profile are
+# called standalone without an explicit temperature.
+TEMPERATURE = 0.0
 
 # Prompting the LLM to act as our dense structural profile generator
 _EPG_PROMPT = """Je bent een expert in historische geografie en 19e-eeuwse Nederlandse reisliteratuur.
@@ -267,6 +271,7 @@ def _predict_entity_profile(
     model_name: str,
     ollama_headers: dict | None = None,
     think: bool | str | None = None,
+    temperature: float = TEMPERATURE,
 ) -> dict | None:
     """Use an LLM to predict a modern identity profile for an archaic entity mention.
 
@@ -303,7 +308,7 @@ def _predict_entity_profile(
             host=ollama_url,
             api_key=api_key,
             timeout=30.0,
-            temperature=TEMPERATURE,
+            temperature=temperature,
             think=think,
         ).strip()
 
@@ -599,6 +604,7 @@ def generate_candidates(
     ollama_headers: dict | None = None,
     use_cache: bool = True,
     think: bool | str | None = None,
+    temperature: float = TEMPERATURE,
 ) -> dict[str, list[dict]]:
     """Generate KB candidate entries for an entity mention using a multi-lane approach.
 
@@ -649,7 +655,8 @@ def generate_candidates(
     # 2. Dense/EPG Lane: Generate profile using surrounding context to unlock structural matches
     if context:
         profile = _predict_entity_profile(
-            entity_text, entity_label, context, ollama_url, model_name, ollama_headers, think=think
+            entity_text, entity_label, context, ollama_url, model_name, ollama_headers, think=think,
+            temperature=temperature,
         )
         if profile:
             print(f"  [Stage 1] EPG Predicted Profile: {profile}")

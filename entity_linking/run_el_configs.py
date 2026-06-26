@@ -1,18 +1,21 @@
 """Run all unfinished EL configs for a given model.
 
-Hardcode MODEL at the top, then run this script. It checks which of the 6
-standard configurations are missing from el-results/ and runs them sequentially.
+Hardcode MODEL at the top, then run this script. It checks which configurations
+in CONFIGS are missing from el-results/ and runs them sequentially. The current
+setup runs a single config: non-thinking (think=false) at temperature 0.0.
 
 Usage:
     python entity_linking/run_el_configs.py
 
-You can run three instances simultaneously for the three models:
+You can run several instances simultaneously, one per model (edit MODEL first
+in each):
     # Terminal 1
-    python entity_linking/run_el_configs.py   # MODEL = "deepseek-v4-flash"
-    # Terminal 2 (edit MODEL first)
     python entity_linking/run_el_configs.py   # MODEL = "gemma4:31b"
-    # Terminal 3 (edit MODEL first)
+    # Terminal 2
+    python entity_linking/run_el_configs.py   # MODEL = "deepseek-v4-flash"
+    # Terminal 3
     python entity_linking/run_el_configs.py   # MODEL = "kimi-k2.7-code"
+    # ...one terminal per NER-stage model
 """
 
 import subprocess
@@ -28,14 +31,13 @@ EL_RESULTS = ROOT / "entity_linking" / "el-results"
 NER_INPUT = ROOT / "ner" / "ner-output" / "1816_el_gs" / "1816_el_gs.spacy"
 EL_SCRIPT = ROOT / "entity_linking" / "el.py"
 
-# All 6 standard configs: (think, temperature)
+# EL config: non-thinking (think=false) at temperature 0.0.
+# The temperature axis was dropped because the temperature effect was limited
+# in the NER stage; thinking modes are dropped on resource grounds. The
+# parameter chain is now wired, so --temperature 0.0 genuinely reaches all
+# three EL stages (EPG / rerank / selector).
 CONFIGS = [
     ("false", 0.0),
-    ("false", 0.5),
-    ("false", 1.0),
-    ("low", 1.0),
-    ("medium", 1.0),
-    ("high", 1.0),
 ]
 
 

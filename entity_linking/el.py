@@ -135,6 +135,7 @@ def link_entities(
     ollama_url: str = "http://localhost:11434",
     ollama_headers: dict | None = None,
     think: bool | str | None = None,
+    temperature: float = 0.0,
 ) -> tuple[list, dict]:
     """Run the full EL pipeline on a .spacy file.
 
@@ -202,6 +203,7 @@ def link_entities(
                 model_name=model_name,
                 ollama_headers=ollama_headers,
                 think=think,
+                temperature=temperature,
             )
 
             wikidata_candidates = candidates_by_kb.get("wikidata", [])
@@ -225,6 +227,7 @@ def link_entities(
                         model_name=model_name,
                         ollama_headers=ollama_headers,
                         think=think,
+                        temperature=temperature,
                     )
                     # Select best Wikidata candidate
                     wikidata_selected_id = select_candidate(
@@ -235,6 +238,7 @@ def link_entities(
                         ollama_url=ollama_url,
                         ollama_headers=ollama_headers,
                         think=think,
+                        temperature=temperature,
                     )
                 except Exception as e:
                     err = str(e)
@@ -259,6 +263,7 @@ def link_entities(
                         model_name=model_name,
                         ollama_headers=ollama_headers,
                         think=think,
+                        temperature=temperature,
                     )
                     # Select best GeoNames candidate
                     geonames_selected_id = select_candidate(
@@ -269,6 +274,7 @@ def link_entities(
                         ollama_url=ollama_url,
                         ollama_headers=ollama_headers,
                         think=think,
+                        temperature=temperature,
                     )
                 except Exception as e:
                     err = str(e)
@@ -423,6 +429,7 @@ def main():
         ollama_url=OLLAMA_URL,
         ollama_headers=OLLAMA_HEADERS,
         think=think,
+        temperature=temperature,
     )
     t1 = time.time()
     duration = t1 - t0

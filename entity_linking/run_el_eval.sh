@@ -109,6 +109,7 @@ docs, stats = link_entities(
     ollama_url=OLLAMA_URL,
     ollama_headers=OLLAMA_HEADERS,
     think=THINK,
+    temperature=TEMPERATURE,
 )
 t1 = time.time()
 duration = t1 - t0

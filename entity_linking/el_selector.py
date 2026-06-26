@@ -18,6 +18,9 @@ HEADERS = {
     "User-Agent": "DutchTravelogueNLP/1.0 (https://github.com/tijn-do/hist-dutch-travelogues-nlp; research project)"
 }
 
+# Default LLM temperature for final candidate selection. The EL pipeline threads
+# the --temperature CLI value (default 0.0) through to this stage; this constant
+# is the standalone default when select_candidate is called without one.
 TEMPERATURE = 0.0
 
 
@@ -144,6 +147,7 @@ def select_candidate(
     ollama_url: str = "http://localhost:11434",
     ollama_headers: dict | None = None,
     think: bool | str | None = None,
+    temperature: float = TEMPERATURE,
 ) -> str:
     """Ask the LLM to select the best candidate for an entity.
 
@@ -192,7 +196,7 @@ def select_candidate(
             host=ollama_url,
             api_key=api_key,
             timeout=180.0,
-            temperature=TEMPERATURE,
+            temperature=temperature,
             think=think,
         ).strip()
         print(f"  [Stage 3] LLM raw response: \"{answer[:200]}\"")
