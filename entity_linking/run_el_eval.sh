@@ -17,7 +17,7 @@ PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # ── Defaults ─────────────────────────────────────────────────────────────────
 INPUT_FILE=""
-MODEL="deepseek-v4-flash"
+MODEL="mistral-large-3:675b"
 TEMPERATURE=0.0
 TOP_K=3
 # Think mode (controls reasoning/thinking token budget for thinking models):

@@ -1,0 +1,59 @@
+wikidata_qid,wikidata_label,text,label,QRank,n_mentions,in_qrank
+Q183,Duitsland,Vaterlande,E53_Place,23409894,1,True
+Q142,Frankrijk,Franryk,E53_Place,20818109,1,True
+Q90,Parijs,Parys,E53_Place,9497805,4,True
+Q48175,Heilige Land,Heilige Land,E53_Place,1059447,1,True
+Q2865,Kassel,Cassel,E53_Place,826208,17,True
+Q3033,Göttingen,Göttingen,E53_Place,743808,2,True
+Q749,Groningen,Groningen,E53_Place,585162,1,True
+Q2971,Paderborn,Paderborn,E53_Place,442637,6,True
+Q159605,Tivoli,Tivoli,E53_Place,378068,1,True
+Q20135,Groothertogdom Hessen,Hessisch grondgebied,E53_Place,327117,1,True
+Q837211,Scheveningen,Scheveningen,E53_Place,220703,1,True
+Q321252,"Hercules monument, Kassel",Hercules,E18_Physical_Thing,132378,1,True
+Q447441,Bergpark en Schloss Wilhelmshöhe,Wilhelmshöhe,E18_Physical_Thing,116580,1,True
+Q447441,Bergpark en Schloss Wilhelmshöhe,Wilhelmhohe,E18_Physical_Thing,116580,1,True
+Q968,Warburg,Warburg,E53_Place,104327,6,True
+Q6434,Fulda,Fulda,E53_Place,67401,1,True
+Q567643,Burg Rheinfels,vesting Rheinfels,E18_Physical_Thing,47242,1,True
+Q183483,Lichtenau,Lichtenau,E53_Place,19078,1,True
+Q2028171,Orangerie Kassel,Orangerie,E18_Physical_Thing,15979,1,True
+Q2028171,Orangerie Kassel,schoone gebouw,E18_Physical_Thing,15979,1,True
+Q449280,Fridericianum,Museum Fridericianum,E18_Physical_Thing,14168,1,True
+Q449280,Fridericianum,gebouw,E18_Physical_Thing,14168,1,True
+Q449280,Fridericianum,museum,E18_Physical_Thing,14168,2,True
+Q878589,Karlsaue,Aue-Garten,E53_Place,10503,1,True
+Q878589,Karlsaue,Aue,E53_Place,10503,1,True
+Q1200563,Desenberg,Desenberg,E18_Physical_Thing,9807,3,True
+Q2776250,Martinuskerk,Domkerk,E18_Physical_Thing,9396,1,True
+Q1339298,Schloß Neuhaus,Neuhaus,E53_Place,7960,1,True
+Q505551,Liebenau,Libenau,E53_Place,7936,1,True
+Q1775300,Hardehausen Abbey,Hardehauserwoud,E53_Place,6859,1,True
+Q1775300,Hardehausen Abbey,klooster,E18_Physical_Thing,6859,1,True
+Q1541968,Bellevue Palace,paleis Bellevue,E18_Physical_Thing,4958,1,True
+Q1541968,Bellevue Palace,paleis Belle vue,E18_Physical_Thing,4958,1,True
+Q1430309,Friedrichsplatz,Frederikplein,E53_Place,4494,1,True
+Q1430309,Friedrichsplatz,Frederiksplein,E53_Place,4494,1,True
+Q21208527,Nymphaeum of Egeria,Bagno della nimfa Egeria,E18_Physical_Thing,3701,1,True
+Q1796444,Königsplatz,Koningsplein,E53_Place,2756,1,True
+Q1657965,Ihringshausen,Ehrings,E53_Place,2497,1,True
+Q1746571,Kleinenberg,Kleinenberg,E53_Place,2323,1,True
+Q15106410,Brüderkirche,Brüder,E18_Physical_Thing,2170,1,True
+Q1678836,Westuffeln,West-Uffelen,E53_Place,1898,1,True
+Q1157899,Dalheim,Dalheim,E53_Place,1541,1,True
+Q200899,Universiteitsbibliotheek Groningen,Academiesche boekery,E18_Physical_Thing,1460,1,True
+Q2034601,Ossendorf,Ossendorf,E53_Place,1434,2,True
+Q2034601,Ossendorf,Ossen,E53_Place,1434,1,True
+Q2034601,Ossendorf,Ocksendorf,E53_Place,1434,2,True
+Q1271329,Dörnhagen,Dornhagen,E53_Place,1374,1,True
+Q1550705,Grundsteinheim,Grondsteinheim,E53_Place,1251,1,True
+Q1902237,,marmeren bad,E18_Physical_Thing,1141,1,True
+Q1902237,,Het bad,E18_Physical_Thing,1141,1,True
+Q1738255,Oberlistingen,Ober,E53_Place,728,1,True
+Q15123313,Oberneustadt,boven nieuwstad,E53_Place,633,1,True
+Q15123313,Oberneustadt,boven nieuw stad,E53_Place,633,1,True
+Q1988004,Niederlistingen,Nider Lichtingen,E53_Place,570,1,True
+Q117323794,,marmeren beeld van den landgraaf Karel,E18_Physical_Thing,256,1,True
+Q100507321,Leipziger Platz,Leipsicher plein,E53_Place,5,1,True
+Q100509241,,Karelsplein,E53_Place,0,1,False
+Q63039258,,Comedie,E18_Physical_Thing,0,1,False

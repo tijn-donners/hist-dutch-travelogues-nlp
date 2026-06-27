@@ -1,0 +1,1 @@
+{"stats": {"total_entities": 170, "count_errors": 102, "count_skipped": 0, "count_linked_wd": 0, "count_linked_gn": 0, "count_linked_both": 0, "count_linked_neither": 170}, "duration": 156.2972493171692, "model": "cogito-2.1:671b", "temperature": 0.0, "top_k": 3, "think": "false", "inference_type": "cloud"}

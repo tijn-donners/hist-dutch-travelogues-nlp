@@ -12,6 +12,7 @@ import argparse
 import json
 import os
 import shutil
+import sys
 import time
 from pathlib import Path
 
@@ -403,7 +404,10 @@ def main():
     think = _parse_think_arg(args.think)
 
     if args.input:
-        spacy_file = Path(args.input)
+        # Resolve relative to project root (cwd is entity_linking/ after the
+        # os.chdir below), so "ner/ner-output/..." works. Absolute paths are
+        # unaffected (Path joining with an absolute RHS discards the left).
+        spacy_file = ROOT_DIR / args.input
         if not spacy_file.exists():
             print(f"Input file not found: {spacy_file}")
             sys.exit(1)
