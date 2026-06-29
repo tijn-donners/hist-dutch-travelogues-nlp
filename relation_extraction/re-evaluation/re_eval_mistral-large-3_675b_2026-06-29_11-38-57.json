@@ -1,0 +1,9 @@
+{
+  "source_text": "1816_el_gs",
+  "model": "mistral-large-3_675b",
+  "temperature": 0.0,
+  "think_mode": "default",
+  "inference_type": "cloud",
+  "datetime": "2026-06-29 11:38:57",
+  "duration_seconds": 161.6
+}

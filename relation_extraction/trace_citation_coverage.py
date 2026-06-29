@@ -42,7 +42,7 @@ ACADT = "http://academictourism.com/academictourism#"
 
 E53 = URIRef(CRM + "E53_Place")
 E18 = URIRef(CRM + "E18_Physical_Thing")
-P129i = URIRef(CRM + "P129i_is_subject_of")
+P67i = URIRef(CRM + "P67i_is_referred_to_by")
 
 # Properties that indicate a location was visited / linked to a travel event
 VISIT_PROPS = {
@@ -127,11 +127,11 @@ def derive_loc_visited(g):
 
 def map_mentions_to_loc(g, loc_entities, mention_map, letter_id):
     """Return dict mention_id → LOC.* URI for mentions whose CT points to a
-    LOC.* entity via P129i_is_subject_of."""
+    LOC.* entity via P67i_is_referred_to_by."""
     ct_prefix = ATO + f"CT.{letter_id}."
     mid_to_loc = {}
     for loc in loc_entities:
-        for ct_entity in g.objects(loc, P129i):
+        for ct_entity in g.objects(loc, P67i):
             ct_str = str(ct_entity)
             if ct_str.startswith(ct_prefix):
                 mid = ct_str[len(ct_prefix):]

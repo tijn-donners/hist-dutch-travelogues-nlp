@@ -1,4 +1,4 @@
-### WORK IN PROGRESS ###
+### LEGACY / WORK IN PROGRESS ###
 
 """Write NER + Entity Linking annotations back into PageXML <Metadata>.
 

@@ -34,9 +34,8 @@ P8 = URIRef(CIDOC_NS + "P8_took_place_on_or_within")
 P10_contains = URIRef(CIDOC_NS + "P10_contains")
 P10_falls = URIRef(CIDOC_NS + "P10_falls_within")
 P67_refers = URIRef(CIDOC_NS + "P67_refers_to")
-P129 = URIRef(CIDOC_NS + "P129_is_about")
 E9_Move = URIRef(CIDOC_NS + "E9_Move")
-E89 = URIRef(CIDOC_NS + "E89_Propositional_Object")
+F2_Expression = URIRef(LRMOO_NS + "F2_Expression")
 
 # Toponym (visitable location) types. A visitable toponym is an E53_Place, or
 # an E18_Physical_Thing that is NOT also typed with a subclass of E18.
@@ -47,7 +46,7 @@ E18 = URIRef(CIDOC_NS + "E18_Physical_Thing")
 E18_SUBCLASSES = [
     URIRef(CIDOC_NS + "E19_Physical_Object"),
     URIRef(CIDOC_NS + "E20_Biological_Object"),
-    URIRef(CIDOC_NS + "E22_Human_Made_Object"),
+    URIRef(CIDOC_NS + "E22_Human-Made_Object"),
 ]
 
 # SKOS
@@ -256,7 +255,11 @@ def query_route(ttl_path, csv_mode=False):
         for ct in sorted(g.objects(event_uri, CONVEYS), key=str):
             ct_label = str(g.value(ct, RDFS.label) or short(ct))
             qid = None
-            for q in g.objects(ct, P129):
+            for q in g.objects(ct, P67_refers):
+                # CTs also carry direct P67_refers_to to Wikidata/GeoNames URIs
+                # (no skos:closeMatch); only the ATO-local target carries the qid.
+                if not str(q).startswith(ATO_NS):
+                    continue
                 match = g.value(q, SKOS_closeMatch)
                 qid = wd(match) if match else None
             mid = short(ct).split(".")[-1]  # Extract eN from CT.BRF0003.eN
@@ -559,7 +562,8 @@ def query_route(ttl_path, csv_mode=False):
     translocations = sum(1 for ev in chain if (ev, RDF.type, E9_Move) in g)
     tours = sum(1 for ev in chain if (ev, RDF.type, E9_Move) not in g)
     sub_count = len(skip_in_chain)
-    ct_count = len(list(g.subjects(None, E89)))
+    ct_count = sum(1 for s in g.subjects(RDF.type, F2_Expression)
+                   if str(s).startswith(ATO_NS + "CT."))
     print(f"  Events: {top_events} top-level + {sub_count} sub-events = {top_events + sub_count} total")
     print(f"  Translocations: {translocations}")
     print(f"  Tours/Stays: {tours}")

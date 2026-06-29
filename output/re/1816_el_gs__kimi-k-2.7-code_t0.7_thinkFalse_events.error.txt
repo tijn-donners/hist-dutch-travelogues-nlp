@@ -1,1 +1,0 @@
-API error after 3 attempts: model 'kimi-k-2.7-code' not found (status code: 404)

@@ -232,12 +232,16 @@ def evaluate(
         ``(el_metrics, full_metrics, details)``
 
         Each metrics dict has keys ``"wd"``, ``"gn"``, ``"combined"``.
-        ``el_metrics`` also has key ``"nil"``.
+        ``el_metrics`` also has keys ``"nil"`` (combined abstention from both
+        KBs), ``"nil_wd"`` (Wikidata-scoped abstention), and ``"nil_gn"``
+        (GeoNames-scoped abstention).
     """
     el_wd = ELMetrics()
     el_gn = ELMetrics()
     el_combined = ELMetrics()
     el_nil = ELMetrics()
+    el_nil_wd = ELMetrics()   # NIL scoped to Wikidata only (abstain from a QID)
+    el_nil_gn = ELMetrics()   # NIL scoped to GeoNames only (abstain from a GN ID)
 
     full_wd = ELMetrics()
     full_gn = ELMetrics()
@@ -397,6 +401,30 @@ def evaluate(
                     el_nil.add(fp=1)   # missed link (model abstained when it shouldn't)
                 # else: TN (correct link) — not counted
 
+            # --- NIL prediction per KB (EL-only only) ---
+            # Same abstention accounting as the combined NIL above, but scoped
+            # to a single KB. Mirrors the type_nil_wd / type_nil_gn labels below.
+            # TP = gold NIL (no KB id) + pred NIL, FP = gold has KB + pred NIL
+            # (missed link), FN = gold NIL + pred has KB (spurious link).
+            # Wikidata:
+            if not g_wd:
+                if not p_wd:
+                    el_nil_wd.add(tp=1)
+                else:
+                    el_nil_wd.add(fn=1)
+            else:
+                if not p_wd:
+                    el_nil_wd.add(fp=1)
+            # GeoNames:
+            if not g_gn:
+                if not p_gn:
+                    el_nil_gn.add(tp=1)
+                else:
+                    el_nil_gn.add(fn=1)
+            else:
+                if not p_gn:
+                    el_nil_gn.add(fp=1)
+
             # --- Per-KB type classification ---
             # type_wd
             if g_wd and p_wd and p_wd == g_wd:
@@ -500,85 +528,12 @@ def evaluate(
 
     el_metrics = {
         "wd": el_wd, "gn": el_gn, "combined": el_combined, "nil": el_nil,
+        "nil_wd": el_nil_wd, "nil_gn": el_nil_gn,
     }
     full_metrics = {
         "wd": full_wd, "gn": full_gn, "combined": full_combined,
     }
     return el_metrics, full_metrics, details
-
-
-# ── Reporting ──────────────────────────────────────────────────────────────────
-
-def _print_metrics_header(level_name: str, description: str) -> None:
-    """Print a section header with a clear explanation of what the metrics mean."""
-    print()
-    print("=" * 70)
-    print(f"  {level_name}")
-    print(f"  {description}")
-    print("=" * 70)
-
-
-def _print_metrics_table(
-    wd: ELMetrics, gn: ELMetrics, combined: ELMetrics,
-    nil: ELMetrics | None = None,
-) -> None:
-    """Print a formatted metrics table with TP/FP/FN and P/R/F1."""
-    print(f"    {'KB':<20} {'TP':>5} {'FP':>5} {'FN':>5}  "
-          f"{'Precision':>8} {'Recall':>8} {'F1':>8}  {'Explanation':<30}")
-    print("    " + "-" * 100)
-    for kb_name, m in [("Wikidata", wd), ("GeoNames", gn), ("Combined", combined)]:
-        if kb_name == "Combined":
-            expl = "correct in either KB"
-        elif kb_name == "Wikidata":
-            expl = "QID match vs gold QID"
-        else:
-            expl = "GN-ID match vs gold GN-ID"
-        print(f"    {kb_name:<20} {m.tp:>5} {m.fp:>5} {m.fn:>5}  "
-              f"{m.precision:>8.3f} {m.recall:>8.3f} {m.f1:>8.3f}  {expl:<30}")
-    if nil is not None:
-        print(f"    {'NIL (abstention)':<20} {nil.tp:>5} {nil.fp:>5} {nil.fn:>5}  "
-              f"{nil.precision:>8.3f} {nil.recall:>8.3f} {nil.f1:>8.3f}  "
-              f"{'correct NIL vs spurious/missed':<30}")
-
-
-def _print_metrics(
-    label: str, wd: ELMetrics, gn: ELMetrics, combined: ELMetrics,
-    nil: ELMetrics | None = None,
-) -> None:
-    print(f"\n  {label}:")
-    print(f"    {'':<20} {'TP':>5} {'FP':>5} {'FN':>5}  {'P':>8} {'R':>8} {'F1':>8}")
-    sep = "    " + "-" * 60
-    print(sep)
-    for kb_name, m in [("Wikidata", wd), ("GeoNames", gn), ("Combined", combined)]:
-        print(f"    {kb_name:<20} {m.tp:>5} {m.fp:>5} {m.fn:>5}  "
-              f"{m.precision:>8.3f} {m.recall:>8.3f} {m.f1:>8.3f}")
-    if nil is not None:
-        print(f"    {'NIL (abstention)':<20} {nil.tp:>5} {nil.fp:>5} {nil.fn:>5}  "
-              f"{nil.precision:>8.3f} {nil.recall:>8.3f} {nil.f1:>8.3f}")
-
-
-def _print_per_label(per_label: dict[str, dict]) -> None:
-    if not per_label:
-        return
-    print("\n  Per-Label Breakdown (Wikidata P / R / F1 — EL-only):")
-    print(f"    {'Label':<30} {'P':>8} {'R':>8} {'F1':>8}")
-    print("    " + "-" * 56)
-    for lbl in sorted(per_label):
-        m = per_label[lbl]["wd"]
-        print(f"    {lbl:<30} {m.precision:>8.3f} {m.recall:>8.3f} {m.f1:>8.3f}")
-    print("\n  Per-Label Breakdown (GeoNames P / R / F1 — EL-only):")
-    print(f"    {'Label':<30} {'P':>8} {'R':>8} {'F1':>8}")
-    print("    " + "-" * 56)
-    for lbl in sorted(per_label):
-        m = per_label[lbl]["gn"]
-        print(f"    {lbl:<30} {m.precision:>8.3f} {m.recall:>8.3f} {m.f1:>8.3f}")
-    print("\n  Per-Label Breakdown (NIL P / R / F1 — EL-only):")
-    print(f"    {'Label':<30} {'P':>8} {'R':>8} {'F1':>8}")
-    print("    " + "-" * 56)
-    for lbl in sorted(per_label):
-        m = per_label[lbl].get("nil")
-        if m is not None:
-            print(f"    {lbl:<30} {m.precision:>8.3f} {m.recall:>8.3f} {m.f1:>8.3f}")
 
 
 def _write_detail_csv(details: list[dict], path: Path) -> None:
@@ -611,6 +566,8 @@ def _append_scores_csv(
     gn: ELMetrics,
     combined: ELMetrics,
     nil: ELMetrics | None = None,
+    nil_wd: ELMetrics | None = None,
+    nil_gn: ELMetrics | None = None,
     think: str = "",
 ) -> None:
     """Append one summary row to a cumulative EL scores CSV.
@@ -632,6 +589,8 @@ def _append_scores_csv(
         "gn_p", "gn_r", "gn_f1",
         "combined_p", "combined_r", "combined_f1",
         "nil_p", "nil_r", "nil_f1",
+        "nil_wd_p", "nil_wd_r", "nil_wd_f1",
+        "nil_gn_p", "nil_gn_r", "nil_gn_f1",
     ]
     file_exists = path.exists()
     needs_header = not file_exists
@@ -690,6 +649,12 @@ def _append_scores_csv(
             "nil_p": f"{nil.precision:.4f}" if nil else "",
             "nil_r": f"{nil.recall:.4f}" if nil else "",
             "nil_f1": f"{nil.f1:.4f}" if nil else "",
+            "nil_wd_p": f"{nil_wd.precision:.4f}" if nil_wd else "",
+            "nil_wd_r": f"{nil_wd.recall:.4f}" if nil_wd else "",
+            "nil_wd_f1": f"{nil_wd.f1:.4f}" if nil_wd else "",
+            "nil_gn_p": f"{nil_gn.precision:.4f}" if nil_gn else "",
+            "nil_gn_r": f"{nil_gn.recall:.4f}" if nil_gn else "",
+            "nil_gn_f1": f"{nil_gn.f1:.4f}" if nil_gn else "",
         }
         writer.writerow(row)
 
@@ -879,19 +844,7 @@ def main() -> None:
         print(f"No offset map found for {el_path.name}")
         sys.exit(1)
 
-    print(f"Gold CSV:  {gold_path.name}")
-    print(f"EL file:   {el_path.name}")
-    print(f"Offset:    {offset_map_path.name}")
-    print()
-
     gold_rows = load_gold_csv(gold_path)
-    print(f"Gold entities loaded: {len(gold_rows)}")
-    n_gold_has_wd = sum(1 for r in gold_rows if r["wikidata_qid"] is not None)
-    n_gold_has_gn = sum(1 for r in gold_rows if r["geonames_id"] is not None)
-    n_gold_has_any = sum(
-        1 for r in gold_rows
-        if r["wikidata_qid"] is not None or r["geonames_id"] is not None
-    )
 
     with open(offset_map_path, encoding="utf-8") as f:
         offset_map = json.load(f)
@@ -900,99 +853,23 @@ def main() -> None:
     nlp = spacy.blank("nl")
     db = DocBin().from_disk(str(el_path))
     pred_docs = list(db.get_docs(nlp.vocab))
-    print(f"Predicted docs loaded: {len(pred_docs)}")
 
     # Page order (sorted by offset)
     page_order = [b[0] for b in boundaries]
 
     # ── 2. Assign gold to pages ────────────────────────────────────────────────
     gold_by_page = assign_gold_to_pages(gold_rows, boundaries)
-    total_assigned = sum(len(v) for v in gold_by_page.values())
-    print(f"Gold assigned to pages: {total_assigned}")
 
     # ── 3. Run evaluation ──────────────────────────────────────────────────────
     el_metrics, full_metrics, details = evaluate(
         gold_by_page, pred_docs, boundaries, page_order,
     )
 
-    # ── 4. Report ──────────────────────────────────────────────────────────────
-    print("\n" + "=" * 70)
-    print("  ENTITY LINKING EVALUATION RESULTS")
-    print("=" * 70)
-
-    # ── 4a. Explanation of TP / FP / FN ──────────────────────────────────────
-    print()
-    print("  HOW TP / FP / FN ARE COUNTED (per KB — Wikidata and GeoNames separately):")
-    print()
-    print("    For each gold entity that has a KB ID (e.g. a Wikidata QID):")
-    print("      -> TP if the predicted KB ID matches the gold KB ID exactly")
-    print("      -> FN if the predicted KB ID is wrong OR missing (we failed to link)")
-    print("      -> FP if the predicted KB ID is wrong (a wrong link was made)")
-    print("         Note: when gold has QID=X and pred has QID=Y (wrong),")
-    print("         that counts as 1 FN (missed X) + 1 FP (wrongly gave Y)")
-    print()
-    print("    For each gold entity that has NO KB ID (blank/NIL in gold):")
-    print("      -> FP if the predictor still assigns a KB ID (spurious link)")
-    print("      -> nothing if the predictor also assigns nothing (correct abstain)")
-    print()
-    print("    'Combined' = correct in EITHER Wikidata OR GeoNames (or both).")
-    print("    This is the most lenient measure: a link counts as correct if at")
-    print("    least one of the two KBs has the right ID.")
-    print()
-    print("    'NIL (abstention)' = measures how well the model knows when to abstain.")
-    print("      TP = gold NIL + pred NIL (correct abstention)")
-    print("      FP = gold has KB + pred NIL (model missed a link)")
-    print("      FN = gold NIL + pred has KB (model linked when it should not have)")
-
-    # ── 4b. EL-only metrics table ─────────────────────────────────────────────
-    _print_metrics_header(
-        "EL-ONLY METRICS (conditioned on span match)",
-        "Only gold entities with a matching predicted span are scored.\n"
-        "  Unmatched gold/pred entities are skipped.\n"
-        "  This isolates linking accuracy from NER detection errors."
-    )
-    _print_metrics_table(
-        el_metrics["wd"], el_metrics["gn"], el_metrics["combined"],
-        nil=el_metrics["nil"],
-    )
-
-    # ── 4c. Full metrics table ────────────────────────────────────────────────
-    _print_metrics_header(
-        "FULL METRICS (end-to-end, includes NER errors)",
-        "All gold entities and all predicted entities are scored.\n"
-        "  Unmatched gold entities count as FN (NER miss).\n"
-        "  Unmatched pred entities count as FP (spurious prediction).\n"
-        "  NIL metrics are not computed at the full level (NIL is inherently EL-only)."
-    )
-    _print_metrics_table(
-        full_metrics["wd"], full_metrics["gn"], full_metrics["combined"],
-    )
-
-    # ── 4d. Per-label breakdown ─────────────────────────────────────────────
-    per_label = _build_per_label(gold_by_page, pred_docs, boundaries, page_order)
-    _print_per_label(per_label)
-
-    # ── 4e. Summary counts ──────────────────────────────────────────────────
-    print()
-    print("-" * 70)
-    print("  SUMMARY - Gold Standard Composition")
-    print("-" * 70)
-    print(f"  Total gold entities:              {len(gold_rows)}")
-    print(f"    with Wikidata QID:              {n_gold_has_wd}  "
-          f"({n_gold_has_wd/len(gold_rows)*100:.1f}%)")
-    print(f"    with GeoNames ID:               {n_gold_has_gn}  "
-          f"({n_gold_has_gn/len(gold_rows)*100:.1f}%)")
-    print(f"    with any KB ID:                 {n_gold_has_any}  "
-          f"({n_gold_has_any/len(gold_rows)*100:.1f}%)")
-    print(f"    blank (no link in gold):        {len(gold_rows) - n_gold_has_any}  "
-          f"({(len(gold_rows)-n_gold_has_any)/len(gold_rows)*100:.1f}%)")
-
-    # ── 5. Detail CSV ──────────────────────────────────────────────────────────
+    # ── 4. Write outputs ───────────────────────────────────────────────────────
     if args.detail:
         detail_path = el_path.with_name(el_path.stem + "_el_eval.csv")
         _write_detail_csv(details, detail_path)
 
-    # ── 6. Scores CSV ──────────────────────────────────────────────────────────
     EL_EVAL_DIR.mkdir(parents=True, exist_ok=True)
     scores_path = EL_EVAL_DIR / "scores.csv"
     _append_scores_csv(
@@ -1007,84 +884,11 @@ def main() -> None:
         pipeline_stats=pipeline_stats,
         wd=full_metrics["wd"], gn=full_metrics["gn"], combined=full_metrics["combined"],
         nil=el_metrics["nil"],
+        nil_wd=el_metrics["nil_wd"],
+        nil_gn=el_metrics["nil_gn"],
         think=think,
     )
-    print(f"\n  Scores CSV → {scores_path.name}")
-
-
-def _build_per_label(
-    gold_by_page: dict[int, list[dict]],
-    pred_docs: list,
-    boundaries: list[tuple[int, int, int]],
-    page_order: list[int],
-) -> dict[str, dict]:
-    """Build per-label metric accumulators separately for the report."""
-    per_label: dict[str, dict] = {}
-
-    doc_by_page: dict[int, int] = {}
-    for di in range(min(len(pred_docs), len(page_order))):
-        doc_by_page[page_order[di]] = di
-
-    for page, golds in gold_by_page.items():
-        if page not in doc_by_page:
-            continue
-        doc = pred_docs[doc_by_page[page]]
-        preds = list(doc.ents)
-
-        for g in golds:
-            lbl = g["label"]
-            if lbl not in per_label:
-                per_label[lbl] = {
-                    "wd": ELMetrics(), "gn": ELMetrics(), "nil": ELMetrics(),
-                }
-
-            # Find matching pred
-            p = None
-            for pe in preds:
-                if (g["label"] == pe.label_
-                        and _spans_overlap(
-                            g["local_start"], g["local_end"],
-                            pe.start_char, pe.end_char)):
-                    p = pe
-                    break
-
-            if p is None:
-                continue
-
-            p_wd = _normalise_id(p._.kb_id_wikidata_)
-            p_gn = _normalise_id(p._.kb_id_geonames_)
-            g_wd = g["wikidata_qid"]
-            g_gn = g["geonames_id"]
-
-            pl = per_label[lbl]
-            if g_wd:
-                if p_wd and p_wd == g_wd:
-                    pl["wd"].add(tp=1)
-                else:
-                    pl["wd"].add(fn=1)
-            else:
-                if p_wd:
-                    pl["wd"].add(fp=1)
-            if g_gn:
-                if p_gn and p_gn == g_gn:
-                    pl["gn"].add(tp=1)
-                else:
-                    pl["gn"].add(fn=1)
-            else:
-                if p_gn:
-                    pl["gn"].add(fp=1)
-
-            # NIL per label
-            if not g_wd and not g_gn:
-                if not p_wd and not p_gn:
-                    pl["nil"].add(tp=1)
-                else:
-                    pl["nil"].add(fn=1)
-            else:
-                if not p_wd and not p_gn:
-                    pl["nil"].add(fp=1)
-
-    return per_label
+    print(f"Scores CSV → {scores_path.name}")
 
 
 if __name__ == "__main__":

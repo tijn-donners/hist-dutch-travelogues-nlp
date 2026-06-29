@@ -1,15 +1,15 @@
 # Few-shot examples for ATO relation extraction
-# Based on actual text from the fourth and fifth letters (BRF0004, BRF0005)
-# — different from the letter being analyzed (BRF0003, Brief 3).
+# Based on text from the fourth and fifth letters (BRF0004, BRF0005)
+# different from the letter being analyzed (BRF0003, Brief 3).
 # Labels adapted to the pipeline tagset (E53_Place kept from source annotations,
 # Mode_of_Transportation, time spans and other labels added where appropriate).
 # Entity markers include mention IDs (e1, e2, ...) for citation provenance.
-# No persons (E21_Person, E74_Group) — the pipeline does not model them.
+# No persons (E21_Person, E74_Group) since the pipeline does not model them.
 
 # --- Example 1: Translocation (wandeling) with mode and time span ---
 # Source: Brief 4, lines 10-11: walking from Kassel to Weissenstein
 - text: |
-    Langs eene lange breede laan [gingen](Mode_of_Transportation, e1) wy [Zondag ll](E52_Time_Span, e2) van [Kassel](E53_Place, e3) naar het beroemde [Weissenstein](E53_Place, e4). Het [paleis](E18_Physical_Thing, e5) aldaar is in eene bevallige smaak gebouwd.
+    Langs eene lange breede laan [gingen](Mode_of_Transportation, e1) wy [Zondag ll](E52_Time_Span, e2) van [Kassel](E53_Place, e3) naar het beroemde [Weissenstein](E18_Physical_Thing, e4). Het [paleis](E18_Physical_Thing, e5) aldaar is in eene bevallige smaak gebouwd.
   output:
     letter_id: "BRF0004"
     tour_group:

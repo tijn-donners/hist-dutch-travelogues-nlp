@@ -5,6 +5,10 @@ Iterates over every ``*_el.spacy`` file in ``el-results/``, reads the
 matching ``*_run_info.json`` for metadata (model, temperature, think mode,
 top-k, duration, pipeline stats), and calls ``el_evaluate.py`` for each.
 
+The gold-standard reference file (``{source}_el.spacy``, with no ``__model``
+segment) is skipped — it's the source the gold CSV was built from, not a
+model run, so evaluating it would score the gold against itself.
+
 Files whose stem starts with ``1816_el_gs__`` are evaluated against the
 default gold CSV (``1816_el_gs.csv``).  Other files use ``--gold`` to point
 at a gold CSV derived from the source-text prefix of the filename.
@@ -167,6 +171,16 @@ def main() -> None:
         print(f"{'=' * 70}")
         print(f"  {spacy_path.name}")
         print(f"{'=' * 70}")
+
+        # Skip the gold-standard reference .spacy. Model outputs are named
+        # ``{source}__{model}_t{temp}..._el.spacy`` (note the ``__`` separating
+        # source from model); the bare reference file is just ``{source}_el.spacy``
+        # — the source the gold CSV was built from, not a model run. Evaluating
+        # it would score the gold against itself.
+        base_stem = spacy_path.stem[:-3] if spacy_path.stem.endswith("_el") else spacy_path.stem
+        if "__" not in base_stem:
+            print("  ⊘ gold-reference file (not a model run) — skipping\n")
+            continue
 
         # Check offset map
         offset_map = find_offset_map(spacy_path)

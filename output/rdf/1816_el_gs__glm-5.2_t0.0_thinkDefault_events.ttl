@@ -1,0 +1,4613 @@
+@prefix academictourism: <http://academictourism.com/academictourism#> .
+@prefix ato: <http://academictourism.com/entity/> .
+@prefix cidoc-crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix lrmoo: <http://iflastandards.info/ns/lrm/lrmoo/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+ato:BRF0003.RS0001.VP0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Hoxenberg" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0001 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0001 ;
+    cidoc-crm:P26_moved_to ato:LOC.Hoxenberg ;
+    cidoc-crm:P27_moved_from ato:LOC.Paderborn_Q2971 .
+
+ato:BRF0003.RS0001.VP0002 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through 7 bergen" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0001 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0001 ;
+    cidoc-crm:P26_moved_to ato:LOC.7_bergen ;
+    cidoc-crm:P27_moved_from ato:LOC.Hoxenberg .
+
+ato:BRF0003.RS0002.VP0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through hooge bergen" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0002 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0002 ;
+    cidoc-crm:P26_moved_to ato:LOC.hooge_bergen ;
+    cidoc-crm:P27_moved_from ato:LOC.Lichtenau_Q183483 .
+
+ato:BRF0003.RS0002.VP0002 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through bergen" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0002 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0002 ;
+    cidoc-crm:P26_moved_to ato:LOC.bergen ;
+    cidoc-crm:P27_moved_from ato:LOC.hooge_bergen .
+
+ato:BRF0003.RS0002.VP0003 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Kleinenberg" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0002 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0002 ;
+    cidoc-crm:P26_moved_to ato:LOC.Kleinenberg_Q1746571 ;
+    cidoc-crm:P27_moved_from ato:LOC.bergen .
+
+ato:BRF0003.RS0002.VP0004 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through uitgestrekt bosch" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0002 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0002 ;
+    cidoc-crm:P26_moved_to ato:LOC.uitgestrekt_bosch ;
+    cidoc-crm:P27_moved_from ato:LOC.Kleinenberg_Q1746571 .
+
+ato:BRF0003.RS0002.VP0005 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Hardehauserwoud" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0002 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0002 ;
+    cidoc-crm:P26_moved_to ato:LOC.Hardehauserwoud_Q1775300 ;
+    cidoc-crm:P27_moved_from ato:LOC.uitgestrekt_bosch .
+
+ato:BRF0003.RS0004.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Maaltijd te West-Uffelen, derde station" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0004 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.West_Uffelen_Q1678836 .
+
+ato:BRF0003.RS0004.VP0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Dalheim" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0004 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0004 ;
+    cidoc-crm:P26_moved_to ato:LOC.Dalheim_Q1157899 ;
+    cidoc-crm:P27_moved_from ato:LOC.Warburg_Q968 .
+
+ato:BRF0003.RS0004.VP0002 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Ehrings" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0004 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0004 ;
+    cidoc-crm:P26_moved_to ato:LOC.Ehrings_Q1657965 ;
+    cidoc-crm:P27_moved_from ato:LOC.Dalheim_Q1157899 .
+
+ato:BRF0003.RS0004.VP0003 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Libenau" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0004 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0004 ;
+    cidoc-crm:P26_moved_to ato:LOC.Libenau_Q505551 ;
+    cidoc-crm:P27_moved_from ato:LOC.Ehrings_Q1657965 .
+
+ato:BRF0003.RS0004.VP0004 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Ober" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0004 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0004 ;
+    cidoc-crm:P26_moved_to ato:LOC.Ober_Q1738255 ;
+    cidoc-crm:P27_moved_from ato:LOC.Libenau_Q505551 .
+
+ato:BRF0003.RS0004.VP0005 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Nider Lichtingen" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0004 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0004 ;
+    cidoc-crm:P26_moved_to ato:LOC.Nider_Lichtingen_Q1988004 ;
+    cidoc-crm:P27_moved_from ato:LOC.Ober_Q1738255 .
+
+ato:BRF0003.RS0004.VP0006 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Hessisch grondgebied" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0004 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0004 ;
+    cidoc-crm:P26_moved_to ato:LOC.Hessisch_grondgebied_Q20135 ;
+    cidoc-crm:P27_moved_from ato:LOC.Nider_Lichtingen_Q1988004 .
+
+ato:BRF0003.RS0005.VP0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Meinbids" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0005 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0005 ;
+    cidoc-crm:P26_moved_to ato:LOC.Meinbids ;
+    cidoc-crm:P27_moved_from ato:LOC.West_Uffelen_Q1678836 .
+
+ato:BRF0003.RS0005.VP0002 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Pass through Kalken" ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0005 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS0005 ;
+    cidoc-crm:P26_moved_to ato:LOC.Kalken ;
+    cidoc-crm:P27_moved_from ato:LOC.Meinbids .
+
+ato:LOC.acht_Corintische_pylaren a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "acht Corintische pylaren" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e236 .
+
+ato:LOC.breede_trap a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "breede trap" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e186 .
+
+ato:LOC.colommen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "colommen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e258 .
+
+ato:LOC.de_koepel a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "de koepel" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e262 .
+
+ato:LOC.drie_circelvormige_trappen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "drie circelvormige trappen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e261 .
+
+ato:LOC.geheele_gebouw a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "geheele gebouw" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e145 .
+
+ato:LOC.houtbibliotheek a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "houtbibliotheek" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e122 .
+
+ato:LOC.kerk a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "kerk" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e264 .
+
+ato:LOC.koepel a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "koepel" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e237 .
+
+ato:LOC.koepelvormige_dak a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "koepelvormige dak" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e259 .
+
+ato:LOC.kolommen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "kolommen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e254 .
+
+ato:LOC.locaal a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "locaal" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e196 .
+
+ato:LOC.logement a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "logement" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e252 .
+
+ato:LOC.logement_de_Keurvorst a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "logement de Keurvorst" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e224 .
+
+ato:LOC.marmeren_hoogaltaar a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "marmeren hoogaltaar" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e260 .
+
+ato:LOC.muren a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "muren" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e233 .
+
+ato:LOC.ronden_koepel a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "ronden koepel" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e253 .
+
+ato:LOC.vestibule a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "vestibule" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e144 .
+
+ato:LOC.vloeren a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "vloeren" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e232 .
+
+ato:LOC.zaalen a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "zaalen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e157 .
+
+ato:ART.Derde_Brief a lrmoo:F2_Expression ;
+    rdfs:label "Derde Brief" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e1 .
+
+ato:ART.Lynnaeische_Systema a lrmoo:F2_Expression ;
+    rdfs:label "Lynnaeische Systema" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e131 .
+
+ato:ART.bladzyde_162_en_163 a lrmoo:F2_Expression ;
+    rdfs:label "bladzyde 162 en 163" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e239 .
+
+ato:ART.bladzyde_170_188_van_het_eerste_deel a lrmoo:F2_Expression ;
+    rdfs:label "bladzyde 170-188 van het eerste deel" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e275 .
+
+ato:ART.brief a lrmoo:F2_Expression ;
+    rdfs:label "brief" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e274 .
+
+ato:ART.de_brieven_voornoemd_1_deel_bl_167__168_ a lrmoo:F2_Expression ;
+    rdfs:label "de brieven voornoemd 1 deel bl 167, 168, 169" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e121 .
+
+ato:ART.de_geheele_achtste_brief_der_wandeling_d a lrmoo:F2_Expression ;
+    rdfs:label "de geheele achtste brief der wandeling door een gedeelte van Duitschland 1 deel van bladz: 125-136." ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e87 .
+
+ato:ART.de_reizen a lrmoo:F2_Expression ;
+    rdfs:label "de reizen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e238 .
+
+ato:ART.eene_Ariadne a lrmoo:F2_Expression ;
+    rdfs:label "eene Ariadne" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e220 .
+
+ato:BIO.zwane_ey a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "zwane ey" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e282 .
+
+ato:BRF0003 a lrmoo:F2_Expression ;
+    rdfs:label "Brief 3 — Cassel, July 1816" ;
+    cidoc-crm:P129_is_about ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.Cassels_s_hne_die_sich_im_Jahre_1812_dem,
+        ato:ART.Cleopatra,
+        ato:ART.Derde_Brief,
+        ato:ART.Lynnaeische_Systema,
+        ato:ART.bladzyde_162_en_163,
+        ato:ART.bladzyde_170_188_van_het_eerste_deel,
+        ato:ART.brief,
+        ato:ART.de_brieven_voornoemd_1_deel_bl_167__168_,
+        ato:ART.de_geheele_achtste_brief_der_wandeling_d,
+        ato:ART.de_reizen,
+        ato:ART.een_postillon_die__hoe_men_zich_ook_plaa,
+        ato:ART.een_stier,
+        ato:ART.eene_Ariadne,
+        ato:ART.het_2de_deel_van_de_door_de_Heeren_Tydem,
+        ato:BIO.Casuarus,
+        ato:BIO.Kaapsche_ezel,
+        ato:BIO.drommedaris,
+        ato:BIO.leeuw,
+        ato:BIO.luipaard,
+        ato:BIO.opgezette_en_een_gesceletteerd,
+        ato:BIO.opgezette_vogels,
+        ato:BIO.paradysvogels,
+        ato:BIO.rendier,
+        ato:BIO.schelpen,
+        ato:BIO.stam_van_eene_lauwrierboom,
+        ato:BIO.tyger,
+        ato:BIO.viervoetige_dieren,
+        ato:BIO.vogeleyeren,
+        ato:BIO.was_geboetzeerde_vruchten,
+        ato:BIO.wild_zwyn,
+        ato:BIO.zwane_ey,
+        ato:DOC.Edict_van_Nantes,
+        ato:DOC.catalogus,
+        ato:DOC.reaal_catalogue,
+        ato:DOC.reaal_catalogus,
+        ato:LOC.2_verdiepingen,
+        ato:LOC.4_bovenkamers,
+        ato:LOC.Academiesche_boekery_Q200899,
+        ato:LOC.Bagno_della_nimfa_Egeria_Q21208527,
+        ato:LOC.Bellevue_straat,
+        ato:LOC.Cassel_Q2865,
+        ato:LOC.Desenberg_Q1200563,
+        ato:LOC.Franryk_Q142,
+        ato:LOC.Frederikplein_Q1430309,
+        ato:LOC.Fulda_Q6434,
+        ato:LOC.G_ttingen_Q3033,
+        ato:LOC.Groningen_Q749,
+        ato:LOC.Heilige_Land_Q48175,
+        ato:LOC.Karelsplein_Q100509241,
+        ato:LOC.Kasern_plaats,
+        ato:LOC.Konings,
+        ato:LOC.Koningsplein_Q1796444,
+        ato:LOC.Leipsicher_plein_Q100507321,
+        ato:LOC.Leipsicher_poort,
+        ato:LOC.Neuhaus_Q1339298,
+        ato:LOC.Paderborn_Q2971,
+        ato:LOC.Palazo_di_Maecenate,
+        ato:LOC.Parys_Q90,
+        ato:LOC.Scheveningen_Q837211,
+        ato:LOC.Tivoli_Q159605,
+        ato:LOC.Warburg_Q968,
+        ato:LOC.Wilhelmhohe_Q447441,
+        ato:LOC.Wilhelms_Br_cke,
+        ato:LOC.Wilhelmsbrug,
+        ato:LOC.boven_nieuw_stad_Q15123313,
+        ato:LOC.coffyhuis,
+        ato:LOC.danszaal,
+        ato:LOC.de_ruines_van_de_schildergalle,
+        ato:LOC.diergaarde,
+        ato:LOC.dubbele_linden_allee,
+        ato:LOC.kerken,
+        ato:LOC.marmeren_beeld_van_den_landgra_Q117323794,
+        ato:LOC.observatorium,
+        ato:LOC.paradeplaats,
+        ato:LOC.standbeelden_van_andere_landgr,
+        ato:LOC.vesting_Rheinfels_Q567643,
+        ato:MOD.4_jonge_paarden,
+        ato:MOD.4_paarden,
+        ato:MOD.6_paarden,
+        ato:MOD.doorgereden,
+        ato:MOD.reden,
+        ato:MOD.ryden,
+        ato:MOD.rydende,
+        ato:MOD.twee_van_vier,
+        ato:MOD.wandelingen,
+        ato:MOD.zeer_goed_rytuig_en_een_span_b,
+        ato:MOD.zes_paarden,
+        ato:PHO.19_landgraven___landgravinnen,
+        ato:PHO.6_groote_schilden,
+        ato:PHO.Aristoteles,
+        ato:PHO.Onyx,
+        ato:PHO.Venus_de_Medicis,
+        ato:PHO.antiquen,
+        ato:PHO.antiquiteiten,
+        ato:PHO.beeld_waarin_een_uurwerk_schoo,
+        ato:PHO.dingen_uit_barnsteen_gemaakt,
+        ato:PHO.een_groot_driekantige_hoed,
+        ato:PHO.een_groot_stuk,
+        ato:PHO.een_klein_strandgezicht,
+        ato:PHO.eene_Cleopatra,
+        ato:PHO.groote_spiegels,
+        ato:PHO.groote_verzameling_van_edelges,
+        ato:PHO.horlogies,
+        ato:PHO.kanon_kogel,
+        ato:PHO.kleine_beeldjes,
+        ato:PHO.klokken,
+        ato:PHO.koffer,
+        ato:PHO.koffers,
+        ato:PHO.meubels,
+        ato:PHO.mineralen,
+        ato:PHO.mosaiek,
+        ato:PHO.mozaiek,
+        ato:PHO.orgel,
+        ato:PHO.oude_penningen,
+        ato:PHO.oude_wapentuigen_gevuld_een_vy,
+        ato:PHO.pendules,
+        ato:PHO.pretiosa,
+        ato:PHO.schilderyen,
+        ato:PHO.schoone_stukken,
+        ato:PHO.schoone_van_Kurk_nagemaakte_ru,
+        ato:PHO.stoelen,
+        ato:PHO.stuk,
+        ato:PHO.troon_voor_de_Koning,
+        ato:PHO.twee_worstelaars,
+        ato:PHO.uitgeschotene_hoek,
+        ato:PHO.veele_stukken,
+        ato:PHO.vercierselen,
+        ato:PHO.versteeningen,
+        ato:PHO.vervaarlyke_stokken,
+        ato:PHO.zevende_schild,
+        ato:PHO.zwaarden,
+        ato:TS.1809,
+        ato:TS.1814,
+        ato:TS.30_September_1813,
+        ato:TS.7_July_1816,
+        ato:TS.deezen_middag,
+        ato:TS.des_morgens,
+        ato:TS.dien_nagt,
+        ato:TS.een_uur,
+        ato:TS.eene_halve_dag,
+        ato:TS.einde_der_17de_Eeuw,
+        ato:TS.in_1788_begonnen_en_in_1794_voltooid,
+        ato:TS.langen_tyd,
+        ato:TS.twintig_jaar,
+        ato:TS.vorige_dag,
+        ato:VEH.Extrapost,
+        ato:VEH.Munstersche_wagen,
+        ato:VEH.met_4_paarden_bespannen_rytuig,
+        ato:VEH.postwagen,
+        ato:VEH.rytuig,
+        ato:VEH.wagen,
+        ato:VEH.wagen_voor_zeven_personen .
+
+ato:BRF0003.RS0001.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Verblijf te Lichtenau, eerste station" ;
+    academictourism:conveys ato:CT.BRF0003.e31 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0001 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P4_has_time-span ato:TS.vijf_vieren_deel_uur ;
+    cidoc-crm:P7_took_place_at ato:LOC.Lichtenau_Q183483 .
+
+ato:BRF0003.RS0009.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Lange linden allee" ;
+    academictourism:conveys ato:CT.BRF0003.e248 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0009 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.lange_linden_allee .
+
+ato:BRF0003.RS0009.RS0002 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Vyver in de Aue-Garten" ;
+    academictourism:conveys ato:CT.BRF0003.e249 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0009 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.vyver .
+
+ato:CT.BRF0003.e1 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Derde Brief' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.Derde_Brief .
+
+ato:CT.BRF0003.e10 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '5 uuren' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:TS.5_uuren .
+
+ato:CT.BRF0003.e100 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Meinbids' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:LOC.Meinbids .
+
+ato:CT.BRF0003.e101 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Kalken' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:LOC.Kalken .
+
+ato:CT.BRF0003.e102 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'wagen' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.wagen .
+
+ato:CT.BRF0003.e103 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e104 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Hercules' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:LOC.Hercules_Q321252,
+        <https://www.wikidata.org/wiki/Q321252> .
+
+ato:CT.BRF0003.e105 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'octogoon' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:LOC.octogoon .
+
+ato:CT.BRF0003.e106 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Wilhelmhohe' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:LOC.Wilhelmhohe_Q447441,
+        <https://www.geonames.org/3207202>,
+        <https://www.wikidata.org/wiki/Q447441> .
+
+ato:CT.BRF0003.e107 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'deezen middag' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.deezen_middag .
+
+ato:CT.BRF0003.e108 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e109 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e11 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Paderborn' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Paderborn_Q2971,
+        <https://www.geonames.org/2855745>,
+        <https://www.wikidata.org/wiki/Q2971> .
+
+ato:CT.BRF0003.e110 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '5 uur' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:TS.5_uur .
+
+ato:CT.BRF0003.e111 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'logement de Kurfürst' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.logement_de_Kurf_rst .
+
+ato:CT.BRF0003.e112 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e113 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e114 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e115 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Museum Fridericianum' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006 ;
+    cidoc-crm:P67_refers_to ato:LOC.Museum_Fridericianum_Q449280,
+        <https://www.wikidata.org/wiki/Q449280> .
+
+ato:CT.BRF0003.e116 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schilderyen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.schilderyen .
+
+ato:CT.BRF0003.e117 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Parys' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Parys_Q90,
+        <https://www.geonames.org/2988507>,
+        <https://www.wikidata.org/wiki/Q90> .
+
+ato:CT.BRF0003.e118 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'museum' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006 ;
+    cidoc-crm:P67_refers_to ato:LOC.Museum_Fridericianum_Q449280,
+        <https://www.wikidata.org/wiki/Q449280> .
+
+ato:CT.BRF0003.e119 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'het eerste vertrek' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.het_eerste_vertrek .
+
+ato:CT.BRF0003.e12 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e120 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vogeleyeren' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0001 ;
+    cidoc-crm:P67_refers_to ato:BIO.vogeleyeren .
+
+ato:CT.BRF0003.e121 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'de brieven voornoemd 1 deel bl 167, 168, 169' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.de_brieven_voornoemd_1_deel_bl_167__168_ .
+
+ato:CT.BRF0003.e122 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'houtbibliotheek' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.houtbibliotheek .
+
+ato:CT.BRF0003.e123 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Academiesche boekery' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Academiesche_boekery_Q200899,
+        <https://www.wikidata.org/wiki/Q200899> .
+
+ato:CT.BRF0003.e124 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Groningen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Groningen_Q749,
+        <https://www.geonames.org/2755251>,
+        <https://www.wikidata.org/wiki/Q749> .
+
+ato:CT.BRF0003.e125 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'stam van eene lauwrierboom' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0001 ;
+    cidoc-crm:P67_refers_to ato:BIO.stam_van_eene_lauwrierboom .
+
+ato:CT.BRF0003.e126 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'was geboetzeerde vruchten' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0001 ;
+    cidoc-crm:P67_refers_to ato:BIO.was_geboetzeerde_vruchten .
+
+ato:CT.BRF0003.e127 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Tweede Kamer' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.Tweede_Kamer .
+
+ato:CT.BRF0003.e128 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'opgezette vogels' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0002 ;
+    cidoc-crm:P67_refers_to ato:BIO.opgezette_vogels .
+
+ato:CT.BRF0003.e129 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Casuarus' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0002 ;
+    cidoc-crm:P67_refers_to ato:BIO.Casuarus .
+
+ato:CT.BRF0003.e13 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'reden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.reden .
+
+ato:CT.BRF0003.e130 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'paradysvogels' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0002 ;
+    cidoc-crm:P67_refers_to ato:BIO.paradysvogels .
+
+ato:CT.BRF0003.e131 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Lynnaeische Systema' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.Lynnaeische_Systema .
+
+ato:CT.BRF0003.e132 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'derde Kamer' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:LOC.derde_Kamer .
+
+ato:CT.BRF0003.e133 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'viervoetige dieren' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:BIO.viervoetige_dieren .
+
+ato:CT.BRF0003.e134 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'opgezette en een gesceletteerde olyphant' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:BIO.opgezette_en_een_gesceletteerd .
+
+ato:CT.BRF0003.e135 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'diergaarde' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.diergaarde .
+
+ato:CT.BRF0003.e136 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'leeuw' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:BIO.leeuw .
+
+ato:CT.BRF0003.e137 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'tyger' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:BIO.tyger .
+
+ato:CT.BRF0003.e138 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Kaapsche ezel' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:BIO.Kaapsche_ezel .
+
+ato:CT.BRF0003.e139 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'luipaard' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:BIO.luipaard .
+
+ato:CT.BRF0003.e14 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Donderdag' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:TS.Donderdag .
+
+ato:CT.BRF0003.e140 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'drommedaris' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:BIO.drommedaris .
+
+ato:CT.BRF0003.e141 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'wild zwyn' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:BIO.wild_zwyn .
+
+ato:CT.BRF0003.e142 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'rendier' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0003 ;
+    cidoc-crm:P67_refers_to ato:BIO.rendier .
+
+ato:CT.BRF0003.e143 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'galery door eene ry van zuilen ondersteund' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.galery_door_eene_ry_van_zuilen .
+
+ato:CT.BRF0003.e144 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vestibule' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.vestibule .
+
+ato:CT.BRF0003.e145 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'geheele gebouw' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006 ;
+    cidoc-crm:P67_refers_to ato:LOC.geheele_gebouw .
+
+ato:CT.BRF0003.e146 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Frederikplein' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Frederikplein_Q1430309,
+        <https://www.geonames.org/11001975.0>,
+        <https://www.wikidata.org/wiki/Q1430309> .
+
+ato:CT.BRF0003.e147 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'veele stukken' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.veele_stukken .
+
+ato:CT.BRF0003.e148 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Parys' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Parys_Q90,
+        <https://www.geonames.org/2988507>,
+        <https://www.wikidata.org/wiki/Q90> .
+
+ato:CT.BRF0003.e149 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Venus de Medicis' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0004 ;
+    cidoc-crm:P67_refers_to ato:PHO.Venus_de_Medicis .
+
+ato:CT.BRF0003.e15 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '1 uur' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:TS.1_uur .
+
+ato:CT.BRF0003.e150 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'twee worstelaars' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0004 ;
+    cidoc-crm:P67_refers_to ato:PHO.twee_worstelaars .
+
+ato:CT.BRF0003.e151 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'antiquen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0004 ;
+    cidoc-crm:P67_refers_to ato:PHO.antiquen .
+
+ato:CT.BRF0003.e152 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schoone van Kurk nagemaakte ruines' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0004 ;
+    cidoc-crm:P67_refers_to ato:PHO.schoone_van_Kurk_nagemaakte_ru .
+
+ato:CT.BRF0003.e153 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Palazo di Maecenate' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Palazo_di_Maecenate .
+
+ato:CT.BRF0003.e154 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Tivoli' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Tivoli_Q159605,
+        <https://www.geonames.org/3165624>,
+        <https://www.wikidata.org/wiki/Q159605> .
+
+ato:CT.BRF0003.e155 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Bagno della nimfa Egeria' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Bagno_della_nimfa_Egeria_Q21208527,
+        <https://www.wikidata.org/wiki/Q21208527> .
+
+ato:CT.BRF0003.e156 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Aristoteles' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0004 ;
+    cidoc-crm:P67_refers_to ato:PHO.Aristoteles .
+
+ato:CT.BRF0003.e157 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'zaalen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.zaalen .
+
+ato:CT.BRF0003.e158 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'gebouw voor de vergadering der standen' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0005 ;
+    cidoc-crm:P67_refers_to ato:LOC.gebouw_voor_de_vergadering_der .
+
+ato:CT.BRF0003.e159 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'troon voor de Koning' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0005 ;
+    cidoc-crm:P67_refers_to ato:PHO.troon_voor_de_Koning .
+
+ato:CT.BRF0003.e16 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Extrapost' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:VEH.Extrapost .
+
+ato:CT.BRF0003.e160 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'kamer' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0006 ;
+    cidoc-crm:P67_refers_to ato:LOC.kamer .
+
+ato:CT.BRF0003.e161 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'versteeningen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0006 ;
+    cidoc-crm:P67_refers_to ato:PHO.versteeningen .
+
+ato:CT.BRF0003.e162 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'mineralen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0006 ;
+    cidoc-crm:P67_refers_to ato:PHO.mineralen .
+
+ato:CT.BRF0003.e163 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schelpen' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0006 ;
+    cidoc-crm:P67_refers_to ato:BIO.schelpen .
+
+ato:CT.BRF0003.e164 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vertrek' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0007 ;
+    cidoc-crm:P67_refers_to ato:LOC.vertrek .
+
+ato:CT.BRF0003.e165 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'oude penningen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0007 ;
+    cidoc-crm:P67_refers_to ato:PHO.oude_penningen .
+
+ato:CT.BRF0003.e166 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'kleine beeldjes' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0007 ;
+    cidoc-crm:P67_refers_to ato:PHO.kleine_beeldjes .
+
+ato:CT.BRF0003.e167 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'antiquiteiten' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0007 ;
+    cidoc-crm:P67_refers_to ato:PHO.antiquiteiten .
+
+ato:CT.BRF0003.e168 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'groote verzameling van edelgesteenten' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0007 ;
+    cidoc-crm:P67_refers_to ato:PHO.groote_verzameling_van_edelges .
+
+ato:CT.BRF0003.e169 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Onyx' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0007 ;
+    cidoc-crm:P67_refers_to ato:PHO.Onyx .
+
+ato:CT.BRF0003.e17 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Paderborn' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Paderborn_Q2971,
+        <https://www.geonames.org/2855745>,
+        <https://www.wikidata.org/wiki/Q2971> .
+
+ato:CT.BRF0003.e170 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'kamer' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0008 ;
+    cidoc-crm:P67_refers_to ato:LOC.kamer .
+
+ato:CT.BRF0003.e171 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'pretiosa' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0008 ;
+    cidoc-crm:P67_refers_to ato:PHO.pretiosa .
+
+ato:CT.BRF0003.e172 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'dingen uit barnsteen gemaakt' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0008 ;
+    cidoc-crm:P67_refers_to ato:PHO.dingen_uit_barnsteen_gemaakt .
+
+ato:CT.BRF0003.e173 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'kamer' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0008 ;
+    cidoc-crm:P67_refers_to ato:LOC.kamer .
+
+ato:CT.BRF0003.e174 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vesting Rheinfels' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.vesting_Rheinfels_Q567643,
+        <https://www.geonames.org/2847637>,
+        <https://www.wikidata.org/wiki/Q567643> .
+
+ato:CT.BRF0003.e175 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'mozaiek' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0008 ;
+    cidoc-crm:P67_refers_to ato:PHO.mozaiek .
+
+ato:CT.BRF0003.e176 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vertrek' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0009 ;
+    cidoc-crm:P67_refers_to ato:LOC.vertrek .
+
+ato:CT.BRF0003.e177 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'klokken' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0009 ;
+    cidoc-crm:P67_refers_to ato:PHO.klokken .
+
+ato:CT.BRF0003.e178 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'pendules' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0009 ;
+    cidoc-crm:P67_refers_to ato:PHO.pendules .
+
+ato:CT.BRF0003.e179 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'horlogies' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0009 ;
+    cidoc-crm:P67_refers_to ato:PHO.horlogies .
+
+ato:CT.BRF0003.e18 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Hoxenberg' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Hoxenberg .
+
+ato:CT.BRF0003.e180 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'klokken' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0009 ;
+    cidoc-crm:P67_refers_to ato:PHO.klokken .
+
+ato:CT.BRF0003.e181 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schilderyen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0009 ;
+    cidoc-crm:P67_refers_to ato:PHO.schilderyen .
+
+ato:CT.BRF0003.e182 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'beeld waarin een uurwerk schoot op zekere tyden een pistool af' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0009 ;
+    cidoc-crm:P67_refers_to ato:PHO.beeld_waarin_een_uurwerk_schoo .
+
+ato:CT.BRF0003.e183 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'laatste kamer' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.laatste_kamer .
+
+ato:CT.BRF0003.e184 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'mosaiek' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0010 ;
+    cidoc-crm:P67_refers_to ato:PHO.mosaiek .
+
+ato:CT.BRF0003.e185 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'twee kamers' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0011 ;
+    cidoc-crm:P67_refers_to ato:LOC.twee_kamers .
+
+ato:CT.BRF0003.e186 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'breede trap' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006 ;
+    cidoc-crm:P67_refers_to ato:LOC.breede_trap .
+
+ato:CT.BRF0003.e187 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'oude wapentuigen gevuld een vyftigtal bogen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0011 ;
+    cidoc-crm:P67_refers_to ato:PHO.oude_wapentuigen_gevuld_een_vy .
+
+ato:CT.BRF0003.e188 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'zwaarden' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0011 ;
+    cidoc-crm:P67_refers_to ato:PHO.zwaarden .
+
+ato:CT.BRF0003.e189 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Heilige Land' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Heilige_Land_Q48175,
+        <https://www.wikidata.org/wiki/Q48175> .
+
+ato:CT.BRF0003.e19 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Paderborn' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Paderborn_Q2971,
+        <https://www.geonames.org/2855745>,
+        <https://www.wikidata.org/wiki/Q2971> .
+
+ato:CT.BRF0003.e190 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'laatste zaal' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0012 ;
+    cidoc-crm:P67_refers_to ato:LOC.laatste_zaal .
+
+ato:CT.BRF0003.e191 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '19 landgraven & landgravinnen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0012 ;
+    cidoc-crm:P67_refers_to ato:PHO.19_landgraven___landgravinnen .
+
+ato:CT.BRF0003.e192 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'stoelen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0012 ;
+    cidoc-crm:P67_refers_to ato:PHO.stoelen .
+
+ato:CT.BRF0003.e193 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'museum' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006 ;
+    cidoc-crm:P67_refers_to ato:LOC.Museum_Fridericianum_Q449280,
+        <https://www.wikidata.org/wiki/Q449280> .
+
+ato:CT.BRF0003.e194 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'boekery' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0013 ;
+    cidoc-crm:P67_refers_to ato:LOC.boekery .
+
+ato:CT.BRF0003.e195 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'gebouw' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0013 ;
+    cidoc-crm:P67_refers_to ato:LOC.Museum_Fridericianum_Q449280,
+        <https://www.wikidata.org/wiki/Q449280> .
+
+ato:CT.BRF0003.e196 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'locaal' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0013 ;
+    cidoc-crm:P67_refers_to ato:LOC.locaal .
+
+ato:CT.BRF0003.e197 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'het 2de deel van de door de Heeren Tydeman & van Campen uitgegevene Mnemosyne' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0013 ;
+    cidoc-crm:P67_refers_to ato:ART.het_2de_deel_van_de_door_de_Heeren_Tydem .
+
+ato:CT.BRF0003.e198 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'catalogus' (E31_Document)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0013 ;
+    cidoc-crm:P67_refers_to ato:DOC.catalogus .
+
+ato:CT.BRF0003.e199 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'reaal catalogue' (E31_Document)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0013 ;
+    cidoc-crm:P67_refers_to ato:DOC.reaal_catalogue .
+
+ato:CT.BRF0003.e2 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e20 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '7 bergen' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.7_bergen .
+
+ato:CT.BRF0003.e200 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'reaal catalogus' (E31_Document)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0013 ;
+    cidoc-crm:P67_refers_to ato:DOC.reaal_catalogus .
+
+ato:CT.BRF0003.e201 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'reaal catalogus' (E31_Document)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0006.RS0013 ;
+    cidoc-crm:P67_refers_to ato:DOC.reaal_catalogus .
+
+ato:CT.BRF0003.e202 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schilderyen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.schilderyen .
+
+ato:CT.BRF0003.e203 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'paleis Bellevue' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007 ;
+    cidoc-crm:P67_refers_to ato:LOC.paleis_Bellevue_Q1541968,
+        <https://www.wikidata.org/wiki/Q1541968> .
+
+ato:CT.BRF0003.e204 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schoone stukken' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.schoone_stukken .
+
+ato:CT.BRF0003.e205 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schoone stukken' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.schoone_stukken .
+
+ato:CT.BRF0003.e206 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'stuk' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.stuk .
+
+ato:CT.BRF0003.e207 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'een groot stuk' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.een_groot_stuk .
+
+ato:CT.BRF0003.e208 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'een stier' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:ART.een_stier .
+
+ato:CT.BRF0003.e209 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'een klein strandgezicht' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.een_klein_strandgezicht .
+
+ato:CT.BRF0003.e21 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Dornhagen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Dornhagen_Q1271329,
+        <https://www.geonames.org/2935704.0>,
+        <https://www.wikidata.org/wiki/Q1271329> .
+
+ato:CT.BRF0003.e210 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Scheveningen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Scheveningen_Q837211,
+        <https://www.geonames.org/2747599>,
+        <https://www.wikidata.org/wiki/Q837211> .
+
+ato:CT.BRF0003.e211 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'een postillon die, hoe men zich ook plaatste, steeds naar eene andere kant scheen te ryden' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:ART.een_postillon_die__hoe_men_zich_ook_plaa .
+
+ato:CT.BRF0003.e212 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Parys' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Parys_Q90,
+        <https://www.geonames.org/2988507>,
+        <https://www.wikidata.org/wiki/Q90> .
+
+ato:CT.BRF0003.e213 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'gallery' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.gallery .
+
+ato:CT.BRF0003.e214 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '2 verdiepingen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.2_verdiepingen .
+
+ato:CT.BRF0003.e215 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'de ruines van de schildergallery' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.de_ruines_van_de_schildergalle .
+
+ato:CT.BRF0003.e216 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'danszaal' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.danszaal .
+
+ato:CT.BRF0003.e217 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schilderyen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.schilderyen .
+
+ato:CT.BRF0003.e218 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'eene Cleopatra' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.eene_Cleopatra .
+
+ato:CT.BRF0003.e219 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Parys' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Parys_Q90,
+        <https://www.geonames.org/2988507>,
+        <https://www.wikidata.org/wiki/Q90> .
+
+ato:CT.BRF0003.e22 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Grondsteinheim' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Grondsteinheim_Q1550705,
+        <https://www.geonames.org/2914314.0>,
+        <https://www.wikidata.org/wiki/Q1550705> .
+
+ato:CT.BRF0003.e220 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'eene Ariadne' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.eene_Ariadne .
+
+ato:CT.BRF0003.e221 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cleopatra' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:ART.Cleopatra .
+
+ato:CT.BRF0003.e222 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e223 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'paleis Belle vue' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007 ;
+    cidoc-crm:P67_refers_to ato:LOC.paleis_Bellevue_Q1541968,
+        <https://www.wikidata.org/wiki/Q1541968> .
+
+ato:CT.BRF0003.e224 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'logement de Keurvorst' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.logement_de_Keurvorst .
+
+ato:CT.BRF0003.e225 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'meubels' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.meubels .
+
+ato:CT.BRF0003.e226 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'groote spiegels' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.groote_spiegels .
+
+ato:CT.BRF0003.e227 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'gallery' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.gallery .
+
+ato:CT.BRF0003.e228 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'marmeren bad' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008 ;
+    cidoc-crm:P67_refers_to ato:LOC.marmeren_bad_Q1902237,
+        <https://www.wikidata.org/wiki/Q1902237> .
+
+ato:CT.BRF0003.e229 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Orangerie' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008 ;
+    cidoc-crm:P67_refers_to ato:LOC.Orangerie_Q2028171,
+        <https://www.wikidata.org/wiki/Q2028171> .
+
+ato:CT.BRF0003.e23 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'langen tyd' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.langen_tyd .
+
+ato:CT.BRF0003.e230 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'gebouw' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008 ;
+    cidoc-crm:P67_refers_to ato:LOC.gebouw .
+
+ato:CT.BRF0003.e231 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vierkant vertrek' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.vierkant_vertrek .
+
+ato:CT.BRF0003.e232 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vloeren' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.vloeren .
+
+ato:CT.BRF0003.e233 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'muren' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.muren .
+
+ato:CT.BRF0003.e234 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vercierselen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.vercierselen .
+
+ato:CT.BRF0003.e235 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Het bad' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.marmeren_bad_Q1902237,
+        <https://www.wikidata.org/wiki/Q1902237> .
+
+ato:CT.BRF0003.e236 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'acht Corintische pylaren' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.acht_Corintische_pylaren .
+
+ato:CT.BRF0003.e237 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'koepel' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.koepel .
+
+ato:CT.BRF0003.e238 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'de reizen' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.de_reizen .
+
+ato:CT.BRF0003.e239 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'bladzyde 162 en 163' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.bladzyde_162_en_163 .
+
+ato:CT.BRF0003.e24 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'rytuig' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.rytuig .
+
+ato:CT.BRF0003.e240 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'kanon kogel' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.kanon_kogel .
+
+ato:CT.BRF0003.e241 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '30 September 1813' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.30_September_1813 .
+
+ato:CT.BRF0003.e242 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schoone gebouw' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008 ;
+    cidoc-crm:P67_refers_to ato:LOC.Orangerie_Q2028171,
+        <https://www.wikidata.org/wiki/Q2028171> .
+
+ato:CT.BRF0003.e243 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'uitgeschotene hoek' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.uitgeschotene_hoek .
+
+ato:CT.BRF0003.e244 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '30 September 1813' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.30_September_1813 .
+
+ato:CT.BRF0003.e245 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'gebouw' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0008 ;
+    cidoc-crm:P67_refers_to ato:LOC.gebouw .
+
+ato:CT.BRF0003.e246 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Aue' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0009 ;
+    cidoc-crm:P67_refers_to ato:LOC.Aue_Q878589,
+        <https://www.geonames.org/2892914>,
+        <https://www.wikidata.org/wiki/Q878589> .
+
+ato:CT.BRF0003.e247 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Aue-Garten' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0009 ;
+    cidoc-crm:P67_refers_to ato:LOC.Aue_Q878589,
+        <https://www.geonames.org/2892914>,
+        <https://www.wikidata.org/wiki/Q878589> .
+
+ato:CT.BRF0003.e248 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'lange linden allee' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0009.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.lange_linden_allee .
+
+ato:CT.BRF0003.e249 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vyver' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0009.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.vyver .
+
+ato:CT.BRF0003.e25 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'reden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.reden .
+
+ato:CT.BRF0003.e250 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'kerken' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.kerken .
+
+ato:CT.BRF0003.e251 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Roomsche kerk' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.Roomsche_kerk .
+
+ato:CT.BRF0003.e252 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'logement' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.logement .
+
+ato:CT.BRF0003.e253 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'ronden koepel' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.ronden_koepel .
+
+ato:CT.BRF0003.e254 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'kolommen' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.kolommen .
+
+ato:CT.BRF0003.e255 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'galery' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.galery .
+
+ato:CT.BRF0003.e256 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'orgel' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.orgel .
+
+ato:CT.BRF0003.e257 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'galery' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.galery .
+
+ato:CT.BRF0003.e258 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'colommen' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.colommen .
+
+ato:CT.BRF0003.e259 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'koepelvormige dak' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.koepelvormige_dak .
+
+ato:CT.BRF0003.e26 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '3½ uur' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:TS.3__uur .
+
+ato:CT.BRF0003.e260 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'marmeren hoogaltaar' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.marmeren_hoogaltaar .
+
+ato:CT.BRF0003.e261 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'drie circelvormige trappen' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.drie_circelvormige_trappen .
+
+ato:CT.BRF0003.e262 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'de koepel' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.de_koepel .
+
+ato:CT.BRF0003.e263 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'schilderyen' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.schilderyen .
+
+ato:CT.BRF0003.e264 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'kerk' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0010 ;
+    cidoc-crm:P67_refers_to ato:LOC.kerk .
+
+ato:CT.BRF0003.e265 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Brüder' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0011 ;
+    cidoc-crm:P67_refers_to ato:LOC.Br_der_Q15106410,
+        <https://www.wikidata.org/wiki/Q15106410> .
+
+ato:CT.BRF0003.e266 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Domkerk' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0012 ;
+    cidoc-crm:P67_refers_to ato:LOC.Domkerk_Q2776250,
+        <https://www.wikidata.org/wiki/Q2776250> .
+
+ato:CT.BRF0003.e267 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'tombes' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0012.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.tombes .
+
+ato:CT.BRF0003.e268 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '6 groote schilden' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0012.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.6_groote_schilden .
+
+ato:CT.BRF0003.e269 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '1814' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.1814 .
+
+ato:CT.BRF0003.e27 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Lichtenau' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Lichtenau_Q183483,
+        <https://www.geonames.org/2878133>,
+        <https://www.wikidata.org/wiki/Q183483> .
+
+ato:CT.BRF0003.e270 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassels söhne die sich im Jahre 1812 dem Vaterlande, unter anführung des tapferen Kurprinses, weiheten.' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0012.RS0001 ;
+    cidoc-crm:P67_refers_to ato:ART.Cassels_s_hne_die_sich_im_Jahre_1812_dem .
+
+ato:CT.BRF0003.e271 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'zevende schild' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0012.RS0001 ;
+    cidoc-crm:P67_refers_to ato:PHO.zevende_schild .
+
+ato:CT.BRF0003.e272 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Kweekschool voor onderwyzers' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0013 ;
+    cidoc-crm:P67_refers_to ato:LOC.Kweekschool_voor_onderwyzers .
+
+ato:CT.BRF0003.e273 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '1809' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.1809 .
+
+ato:CT.BRF0003.e274 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'brief' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.brief .
+
+ato:CT.BRF0003.e275 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'bladzyde 170-188 van het eerste deel' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.bladzyde_170_188_van_het_eerste_deel .
+
+ato:CT.BRF0003.e276 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Comedie' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0014 ;
+    cidoc-crm:P67_refers_to ato:LOC.Comedie_Q63039258,
+        <https://www.wikidata.org/wiki/Q63039258> .
+
+ato:CT.BRF0003.e277 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'loge' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0014 ;
+    cidoc-crm:P67_refers_to ato:LOC.loge .
+
+ato:CT.BRF0003.e278 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'toneel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0014 ;
+    cidoc-crm:P67_refers_to ato:LOC.toneel .
+
+ato:CT.BRF0003.e279 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'twintig jaar' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.twintig_jaar .
+
+ato:CT.BRF0003.e28 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Neuhaus' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Neuhaus_Q1339298,
+        <https://www.geonames.org/2865152>,
+        <https://www.wikidata.org/wiki/Q1339298> .
+
+ato:CT.BRF0003.e280 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'een groot driekantige hoed' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.een_groot_driekantige_hoed .
+
+ato:CT.BRF0003.e281 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vervaarlyke stokken' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.vervaarlyke_stokken .
+
+ato:CT.BRF0003.e282 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'zwane ey' (E20_Biological_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:BIO.zwane_ey .
+
+ato:CT.BRF0003.e283 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'observatorium' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.observatorium .
+
+ato:CT.BRF0003.e284 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Wilhelms Brücke' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Wilhelms_Br_cke .
+
+ato:CT.BRF0003.e285 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e286 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Göttingen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.G_ttingen_Q3033,
+        <https://www.geonames.org/2918632>,
+        <https://www.wikidata.org/wiki/Q3033> .
+
+ato:CT.BRF0003.e287 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e288 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Fulda' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Fulda_Q6434,
+        <https://www.wikidata.org/wiki/Q6434> .
+
+ato:CT.BRF0003.e289 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Wilhelmsbrug' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Wilhelmsbrug .
+
+ato:CT.BRF0003.e29 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Paderborn' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Paderborn_Q2971,
+        <https://www.geonames.org/2855745>,
+        <https://www.wikidata.org/wiki/Q2971> .
+
+ato:CT.BRF0003.e290 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'in 1788 begonnen en in 1794 voltooid' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.in_1788_begonnen_en_in_1794_voltooid .
+
+ato:CT.BRF0003.e291 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e292 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Leipsicher plein' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Leipsicher_plein_Q100507321,
+        <https://www.wikidata.org/wiki/Q100507321> .
+
+ato:CT.BRF0003.e293 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Leipsicher poort' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Leipsicher_poort .
+
+ato:CT.BRF0003.e294 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'paradeplaats' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.paradeplaats .
+
+ato:CT.BRF0003.e295 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Kasern plaats' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Kasern_plaats .
+
+ato:CT.BRF0003.e296 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'coffyhuis' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.coffyhuis .
+
+ato:CT.BRF0003.e297 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '4 bovenkamers' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.4_bovenkamers .
+
+ato:CT.BRF0003.e298 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Frederiksplein' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Frederikplein_Q1430309,
+        <https://www.geonames.org/11001975>,
+        <https://www.wikidata.org/wiki/Q1430309> .
+
+ato:CT.BRF0003.e299 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'dubbele linden allee' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.dubbele_linden_allee .
+
+ato:CT.BRF0003.e3 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '7 July 1816' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.7_July_1816 .
+
+ato:CT.BRF0003.e30 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e300 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Koningsplein' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Koningsplein_Q1796444,
+        <https://www.wikidata.org/wiki/Q1796444> .
+
+ato:CT.BRF0003.e301 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Karelsplein' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Karelsplein_Q100509241,
+        <https://www.wikidata.org/wiki/Q100509241> .
+
+ato:CT.BRF0003.e302 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'marmeren beeld van den landgraaf Karel' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.marmeren_beeld_van_den_landgra_Q117323794,
+        <https://www.wikidata.org/wiki/Q117323794> .
+
+ato:CT.BRF0003.e303 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'einde der 17de Eeuw' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.einde_der_17de_Eeuw .
+
+ato:CT.BRF0003.e304 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'boven nieuw stad' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.boven_nieuw_stad_Q15123313,
+        <https://www.wikidata.org/wiki/Q15123313> .
+
+ato:CT.BRF0003.e305 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Franryk' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Franryk_Q142,
+        <https://www.geonames.org/3017382>,
+        <https://www.wikidata.org/wiki/Q142> .
+
+ato:CT.BRF0003.e306 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Edict van Nantes' (E31_Document)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:DOC.Edict_van_Nantes .
+
+ato:CT.BRF0003.e307 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'standbeelden van andere landgraven' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.standbeelden_van_andere_landgr .
+
+ato:CT.BRF0003.e308 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e309 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Konings' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Konings .
+
+ato:CT.BRF0003.e31 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vijf vieren deel uur' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0001.RS0001 ;
+    cidoc-crm:P67_refers_to ato:TS.vijf_vieren_deel_uur .
+
+ato:CT.BRF0003.e310 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Bellevue straat' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Bellevue_straat .
+
+ato:CT.BRF0003.e311 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'boven nieuwstad' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.boven_nieuw_stad_Q15123313,
+        <https://www.wikidata.org/wiki/Q15123313> .
+
+ato:CT.BRF0003.e312 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Wilhelmshöhe' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Wilhelmhohe_Q447441,
+        <https://www.geonames.org/3207202>,
+        <https://www.wikidata.org/wiki/Q447441> .
+
+ato:CT.BRF0003.e313 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Göttingen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.G_ttingen_Q3033,
+        <https://www.geonames.org/2918632>,
+        <https://www.wikidata.org/wiki/Q3033> .
+
+ato:CT.BRF0003.e32 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'zes paarden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.zes_paarden .
+
+ato:CT.BRF0003.e33 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '4 paarden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.4_paarden .
+
+ato:CT.BRF0003.e34 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Paderborn' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Paderborn_Q2971,
+        <https://www.geonames.org/2855745>,
+        <https://www.wikidata.org/wiki/Q2971> .
+
+ato:CT.BRF0003.e35 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '6 paarden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.6_paarden .
+
+ato:CT.BRF0003.e36 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'wagen voor zeven personen' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.wagen_voor_zeven_personen .
+
+ato:CT.BRF0003.e37 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'twee van vier' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.twee_van_vier .
+
+ato:CT.BRF0003.e38 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Munstersche wagen' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.Munstersche_wagen .
+
+ato:CT.BRF0003.e39 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'vorige dag' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.vorige_dag .
+
+ato:CT.BRF0003.e4 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'eene halve dag' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.eene_halve_dag .
+
+ato:CT.BRF0003.e40 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Extrapost' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.Extrapost .
+
+ato:CT.BRF0003.e41 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'reden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.reden .
+
+ato:CT.BRF0003.e42 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '5 uur' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:TS.5_uur .
+
+ato:CT.BRF0003.e43 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'wagen' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:VEH.wagen .
+
+ato:CT.BRF0003.e44 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'koffers' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.koffers .
+
+ato:CT.BRF0003.e45 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '4 jonge paarden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.4_jonge_paarden .
+
+ato:CT.BRF0003.e46 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'met 4 paarden bespannen rytuig' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.met_4_paarden_bespannen_rytuig .
+
+ato:CT.BRF0003.e47 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'wagen' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.wagen .
+
+ato:CT.BRF0003.e48 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'hooge bergen' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.hooge_bergen .
+
+ato:CT.BRF0003.e49 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'bergen' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.bergen .
+
+ato:CT.BRF0003.e5 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Paderborn' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Paderborn_Q2971,
+        <https://www.geonames.org/2855745>,
+        <https://www.wikidata.org/wiki/Q2971> .
+
+ato:CT.BRF0003.e50 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'wagen' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.wagen .
+
+ato:CT.BRF0003.e51 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'koffer' (E19_Physical_Object)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:PHO.koffer .
+
+ato:CT.BRF0003.e52 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Kleinenberg' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.Kleinenberg_Q1746571,
+        <https://www.geonames.org/2889463.0>,
+        <https://www.wikidata.org/wiki/Q1746571> .
+
+ato:CT.BRF0003.e53 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'uitgestrekt bosch' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.uitgestrekt_bosch .
+
+ato:CT.BRF0003.e54 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Hardehauserwoud' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.Hardehauserwoud_Q1775300,
+        <https://www.geonames.org/2910659>,
+        <https://www.wikidata.org/wiki/Q1775300> .
+
+ato:CT.BRF0003.e55 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'klooster' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.Hardehauserwoud_Q1775300,
+        <https://www.wikidata.org/wiki/Q1775300> .
+
+ato:CT.BRF0003.e56 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Desenberg' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.Desenberg_Q1200563,
+        <https://www.geonames.org/2937965.0>,
+        <https://www.wikidata.org/wiki/Q1200563> .
+
+ato:CT.BRF0003.e57 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'een uur' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.een_uur .
+
+ato:CT.BRF0003.e58 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Warburg' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Warburg_Q968,
+        <https://www.geonames.org/2814153>,
+        <https://www.wikidata.org/wiki/Q968> .
+
+ato:CT.BRF0003.e59 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: '8 uur' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:TS.8_uur .
+
+ato:CT.BRF0003.e6 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'ryden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.ryden .
+
+ato:CT.BRF0003.e60 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Ossendorf' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002 ;
+    cidoc-crm:P67_refers_to ato:LOC.Ossendorf_Q2034601,
+        <https://www.geonames.org/2856859.0>,
+        <https://www.wikidata.org/wiki/Q2034601> .
+
+ato:CT.BRF0003.e61 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'posthuis' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.posthuis .
+
+ato:CT.BRF0003.e62 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Ocksendorf' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Ossendorf_Q2034601,
+        <https://www.geonames.org/2856859>,
+        <https://www.wikidata.org/wiki/Q2034601> .
+
+ato:CT.BRF0003.e63 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Ossendorf' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Ossendorf_Q2034601,
+        <https://www.geonames.org/2856859.0>,
+        <https://www.wikidata.org/wiki/Q2034601> .
+
+ato:CT.BRF0003.e64 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Ossen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Ossendorf_Q2034601,
+        <https://www.geonames.org/2856859>,
+        <https://www.wikidata.org/wiki/Q2034601> .
+
+ato:CT.BRF0003.e65 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Ocksendorf' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0002.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Ossendorf_Q2034601,
+        <https://www.geonames.org/2856859>,
+        <https://www.wikidata.org/wiki/Q2034601> .
+
+ato:CT.BRF0003.e66 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Extrapost' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.Extrapost .
+
+ato:CT.BRF0003.e67 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'postwagen' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.postwagen .
+
+ato:CT.BRF0003.e68 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'postwagen' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:VEH.postwagen .
+
+ato:CT.BRF0003.e69 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'avond' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0003 ;
+    cidoc-crm:P67_refers_to ato:TS.avond .
+
+ato:CT.BRF0003.e7 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'dien nagt' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:TS.dien_nagt .
+
+ato:CT.BRF0003.e70 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Warburg' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0003 ;
+    cidoc-crm:P67_refers_to ato:LOC.Warburg_Q968,
+        <https://www.geonames.org/2814153>,
+        <https://www.wikidata.org/wiki/Q968> .
+
+ato:CT.BRF0003.e71 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'groot uur' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0003 ;
+    cidoc-crm:P67_refers_to ato:TS.groot_uur .
+
+ato:CT.BRF0003.e72 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'wandelden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0003 ;
+    cidoc-crm:P67_refers_to ato:MOD.wandelden .
+
+ato:CT.BRF0003.e73 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'dien nagt' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.dien_nagt .
+
+ato:CT.BRF0003.e74 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'doorgereden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.doorgereden .
+
+ato:CT.BRF0003.e75 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'des morgens' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:TS.des_morgens .
+
+ato:CT.BRF0003.e76 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e77 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Warburg' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Warburg_Q968,
+        <https://www.geonames.org/2814153>,
+        <https://www.wikidata.org/wiki/Q968> .
+
+ato:CT.BRF0003.e78 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'wandelingen' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.wandelingen .
+
+ato:CT.BRF0003.e79 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'zeer goed rytuig en een span beste paarden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.zeer_goed_rytuig_en_een_span_b .
+
+ato:CT.BRF0003.e8 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Warburg' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Warburg_Q968,
+        <https://www.geonames.org/2814153>,
+        <https://www.wikidata.org/wiki/Q968> .
+
+ato:CT.BRF0003.e80 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Gasthofe Desenburg' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0003.RS0001 ;
+    cidoc-crm:P67_refers_to ato:LOC.Gasthofe_Desenburg .
+
+ato:CT.BRF0003.e81 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'de volgende morgen' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:TS.de_volgende_morgen .
+
+ato:CT.BRF0003.e82 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Warburg' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.Warburg_Q968,
+        <https://www.geonames.org/2814153>,
+        <https://www.wikidata.org/wiki/Q968> .
+
+ato:CT.BRF0003.e83 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'reden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:MOD.reden .
+
+ato:CT.BRF0003.e84 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Dalheim' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.Dalheim_Q1157899,
+        <https://www.geonames.org/2939319.0>,
+        <https://www.wikidata.org/wiki/Q1157899> .
+
+ato:CT.BRF0003.e85 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Desenberg' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.Desenberg_Q1200563,
+        <https://www.geonames.org/2937965.0>,
+        <https://www.wikidata.org/wiki/Q1200563> .
+
+ato:CT.BRF0003.e86 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Desenberg' (E18_Physical_Thing)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Desenberg_Q1200563,
+        <https://www.geonames.org/2937965.0>,
+        <https://www.wikidata.org/wiki/Q1200563> .
+
+ato:CT.BRF0003.e87 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'de geheele achtste brief der wandeling door een gedeelte van Duitschland 1 deel van bladz: 125-136.' (F2_Expression)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:ART.de_geheele_achtste_brief_der_wandeling_d .
+
+ato:CT.BRF0003.e88 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Warburg' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.Warburg_Q968,
+        <https://www.geonames.org/2814153>,
+        <https://www.wikidata.org/wiki/Q968> .
+
+ato:CT.BRF0003.e89 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Ehrings' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.Ehrings_Q1657965,
+        <https://www.geonames.org/2896615>,
+        <https://www.wikidata.org/wiki/Q1657965> .
+
+ato:CT.BRF0003.e9 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'volgende avond' (E52_Time_Span)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:TS.volgende_avond .
+
+ato:CT.BRF0003.e90 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Libenau' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.Libenau_Q505551,
+        <https://www.geonames.org/2877980>,
+        <https://www.wikidata.org/wiki/Q505551> .
+
+ato:CT.BRF0003.e91 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'rydende' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.rydende .
+
+ato:CT.BRF0003.e92 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Ober' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.Ober_Q1738255,
+        <https://www.geonames.org/2859873>,
+        <https://www.wikidata.org/wiki/Q1738255> .
+
+ato:CT.BRF0003.e93 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Nider Lichtingen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.Nider_Lichtingen_Q1988004,
+        <https://www.geonames.org/2863153>,
+        <https://www.wikidata.org/wiki/Q1988004> .
+
+ato:CT.BRF0003.e94 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Hessisch grondgebied' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.Hessisch_grondgebied_Q20135,
+        <https://www.geonames.org/2905330>,
+        <https://www.wikidata.org/wiki/Q20135> .
+
+ato:CT.BRF0003.e95 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'reden' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:MOD.reden .
+
+ato:CT.BRF0003.e96 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'West-Uffelen' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0004 ;
+    cidoc-crm:P67_refers_to ato:LOC.West_Uffelen_Q1678836,
+        <https://www.geonames.org/2810034>,
+        <https://www.wikidata.org/wiki/Q1678836> .
+
+ato:CT.BRF0003.e97 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:CT.BRF0003.e98 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'rytuig' (Mode_of_Transportation)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS0005 ;
+    cidoc-crm:P67_refers_to ato:VEH.rytuig .
+
+ato:CT.BRF0003.e99 a lrmoo:F2_Expression ;
+    rdfs:label "Citation: 'Cassel' (E53_Place)" ;
+    academictourism:is_conveyed_by ato:BRF0003.RS ;
+    cidoc-crm:P67_refers_to ato:LOC.Cassel_Q2865,
+        <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:DOC.Edict_van_Nantes a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E31_Document,
+        cidoc-crm:E73_Information_Object ;
+    rdfs:label "Edict van Nantes" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e306 .
+
+ato:LOC.2_verdiepingen a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "2 verdiepingen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e214 .
+
+ato:LOC.4_bovenkamers a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "4 bovenkamers" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e297 .
+
+ato:LOC.7_bergen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "7 bergen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e20 .
+
+ato:LOC.Academiesche_boekery_Q200899 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Academiesche boekery" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e123 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q200899> .
+
+ato:LOC.Bagno_della_nimfa_Egeria_Q21208527 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Bagno della nimfa Egeria" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e155 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q21208527> .
+
+ato:LOC.Bellevue_straat a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Bellevue straat" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e310 .
+
+ato:LOC.Br_der_Q15106410 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Brüder" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e265 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q15106410> .
+
+ato:LOC.Dornhagen_Q1271329 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Dornhagen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e21 ;
+    skos:closeMatch <https://www.geonames.org/2935704.0>,
+        <https://www.wikidata.org/wiki/Q1271329> .
+
+ato:LOC.Franryk_Q142 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Franryk" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e305 ;
+    skos:closeMatch <https://www.geonames.org/3017382>,
+        <https://www.wikidata.org/wiki/Q142> .
+
+ato:LOC.Fulda_Q6434 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Fulda" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e288 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q6434> .
+
+ato:LOC.Gasthofe_Desenburg a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Gasthofe Desenburg" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e80 .
+
+ato:LOC.Grondsteinheim_Q1550705 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Grondsteinheim" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e22 ;
+    skos:closeMatch <https://www.geonames.org/2914314.0>,
+        <https://www.wikidata.org/wiki/Q1550705> .
+
+ato:LOC.Groningen_Q749 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Groningen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e124 ;
+    skos:closeMatch <https://www.geonames.org/2755251>,
+        <https://www.wikidata.org/wiki/Q749> .
+
+ato:LOC.Heilige_Land_Q48175 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Heilige Land" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e189 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q48175> .
+
+ato:LOC.Hercules_Q321252 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Hercules" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e104 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q321252> .
+
+ato:LOC.Hessisch_grondgebied_Q20135 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Hessisch grondgebied" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e94 ;
+    skos:closeMatch <https://www.geonames.org/2905330>,
+        <https://www.wikidata.org/wiki/Q20135> .
+
+ato:LOC.Kalken a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Kalken" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e101 .
+
+ato:LOC.Karelsplein_Q100509241 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Karelsplein" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e301 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q100509241> .
+
+ato:LOC.Kasern_plaats a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Kasern plaats" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e295 .
+
+ato:LOC.Konings a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Konings" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e309 .
+
+ato:LOC.Koningsplein_Q1796444 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Koningsplein" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e300 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q1796444> .
+
+ato:LOC.Kweekschool_voor_onderwyzers a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Kweekschool voor onderwyzers" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e272 .
+
+ato:LOC.Leipsicher_plein_Q100507321 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Leipsicher plein" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e292 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q100507321> .
+
+ato:LOC.Leipsicher_poort a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Leipsicher poort" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e293 .
+
+ato:LOC.Neuhaus_Q1339298 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Neuhaus" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e28 ;
+    skos:closeMatch <https://www.geonames.org/2865152>,
+        <https://www.wikidata.org/wiki/Q1339298> .
+
+ato:LOC.Orangerie_Q2028171 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Orangerie" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e229,
+        ato:CT.BRF0003.e242 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q2028171> .
+
+ato:LOC.Palazo_di_Maecenate a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Palazo di Maecenate" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e153 .
+
+ato:LOC.Scheveningen_Q837211 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Scheveningen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e210 ;
+    skos:closeMatch <https://www.geonames.org/2747599>,
+        <https://www.wikidata.org/wiki/Q837211> .
+
+ato:LOC.Tivoli_Q159605 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Tivoli" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e154 ;
+    skos:closeMatch <https://www.geonames.org/3165624>,
+        <https://www.wikidata.org/wiki/Q159605> .
+
+ato:LOC.Wilhelms_Br_cke a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Wilhelms Brücke" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e284 .
+
+ato:LOC.Wilhelmsbrug a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Wilhelmsbrug" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e289 .
+
+ato:LOC.coffyhuis a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "coffyhuis" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e296 .
+
+ato:LOC.danszaal a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "danszaal" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e216 .
+
+ato:LOC.de_ruines_van_de_schildergalle a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "de ruines van de schildergallery" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e215 .
+
+ato:LOC.diergaarde a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "diergaarde" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e135 .
+
+ato:LOC.dubbele_linden_allee a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "dubbele linden allee" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e299 .
+
+ato:LOC.gebouw a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "gebouw" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e230,
+        ato:CT.BRF0003.e245 .
+
+ato:LOC.gebouw_voor_de_vergadering_der a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "gebouw voor de vergadering der standen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e158 .
+
+ato:LOC.kerken a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "kerken" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e250 .
+
+ato:LOC.lange_linden_allee a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "lange linden allee" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e248 .
+
+ato:LOC.loge a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "loge" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Comedie_Q63039258 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e277 .
+
+ato:LOC.logement_de_Kurf_rst a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "logement de Kurfürst" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e111 .
+
+ato:LOC.marmeren_beeld_van_den_landgra_Q117323794 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "marmeren beeld van den landgraaf Karel" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e302 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q117323794> .
+
+ato:LOC.observatorium a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "observatorium" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e283 .
+
+ato:LOC.octogoon a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "octogoon" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e105 .
+
+ato:LOC.paradeplaats a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "paradeplaats" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e294 .
+
+ato:LOC.posthuis a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "posthuis" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e61 .
+
+ato:LOC.standbeelden_van_andere_landgr a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "standbeelden van andere landgraven" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e307 .
+
+ato:LOC.toneel a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "toneel" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Comedie_Q63039258 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e278 .
+
+ato:LOC.vesting_Rheinfels_Q567643 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "vesting Rheinfels" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e174 ;
+    skos:closeMatch <https://www.geonames.org/2847637>,
+        <https://www.wikidata.org/wiki/Q567643> .
+
+ato:LOC.vyver a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "vyver" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e249 .
+
+ato:MOD.4_jonge_paarden a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "4 jonge paarden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e45 .
+
+ato:MOD.4_paarden a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "4 paarden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e33 .
+
+ato:MOD.6_paarden a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "6 paarden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e35 .
+
+ato:MOD.doorgereden a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "doorgereden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e74 .
+
+ato:MOD.ryden a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "ryden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e6 .
+
+ato:MOD.rydende a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "rydende" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e91 .
+
+ato:MOD.twee_van_vier a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "twee van vier" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e37 .
+
+ato:MOD.wandelden a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "wandelden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e72 .
+
+ato:MOD.wandelingen a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "wandelingen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e78 .
+
+ato:MOD.zeer_goed_rytuig_en_een_span_b a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "zeer goed rytuig en een span beste paarden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e79 .
+
+ato:MOD.zes_paarden a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "zes paarden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e32 .
+
+ato:PHO.een_groot_driekantige_hoed a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "een groot driekantige hoed" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e280 .
+
+ato:PHO.kanon_kogel a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "kanon kogel" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e240 .
+
+ato:PHO.koffer a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "koffer" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e51 .
+
+ato:PHO.koffers a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "koffers" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e44 .
+
+ato:PHO.uitgeschotene_hoek a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "uitgeschotene hoek" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e243 .
+
+ato:PHO.veele_stukken a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "veele stukken" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e147 .
+
+ato:PHO.vercierselen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "vercierselen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e234 .
+
+ato:PHO.vervaarlyke_stokken a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "vervaarlyke stokken" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e281 .
+
+ato:TS.1809 a cidoc-crm:E52_Time-Span ;
+    rdfs:label "1809" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e273 .
+
+ato:TS.1814 a cidoc-crm:E52_Time-Span ;
+    rdfs:label "1814" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e269 .
+
+ato:TS.1_uur a cidoc-crm:E52_Time-Span ;
+    rdfs:label "1 uur" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e15 .
+
+ato:TS.3__uur a cidoc-crm:E52_Time-Span ;
+    rdfs:label "3½ uur" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e26 .
+
+ato:TS.5_uuren a cidoc-crm:E52_Time-Span ;
+    rdfs:label "5 uuren" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e10 .
+
+ato:TS.7_July_1816 a cidoc-crm:E52_Time-Span ;
+    rdfs:label "7 July 1816" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e3 .
+
+ato:TS.8_uur a cidoc-crm:E52_Time-Span ;
+    rdfs:label "8 uur" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e59 .
+
+ato:TS.Donderdag a cidoc-crm:E52_Time-Span ;
+    rdfs:label "Donderdag" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e14 .
+
+ato:TS.avond a cidoc-crm:E52_Time-Span ;
+    rdfs:label "avond" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e69 .
+
+ato:TS.de_volgende_morgen a cidoc-crm:E52_Time-Span ;
+    rdfs:label "de volgende morgen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e81 .
+
+ato:TS.deezen_middag a cidoc-crm:E52_Time-Span ;
+    rdfs:label "deezen middag" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e107 .
+
+ato:TS.des_morgens a cidoc-crm:E52_Time-Span ;
+    rdfs:label "des morgens" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e75 .
+
+ato:TS.een_uur a cidoc-crm:E52_Time-Span ;
+    rdfs:label "een uur" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e57 .
+
+ato:TS.eene_halve_dag a cidoc-crm:E52_Time-Span ;
+    rdfs:label "eene halve dag" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e4 .
+
+ato:TS.einde_der_17de_Eeuw a cidoc-crm:E52_Time-Span ;
+    rdfs:label "einde der 17de Eeuw" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e303 .
+
+ato:TS.groot_uur a cidoc-crm:E52_Time-Span ;
+    rdfs:label "groot uur" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e71 .
+
+ato:TS.in_1788_begonnen_en_in_1794_voltooid a cidoc-crm:E52_Time-Span ;
+    rdfs:label "in 1788 begonnen en in 1794 voltooid" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e290 .
+
+ato:TS.langen_tyd a cidoc-crm:E52_Time-Span ;
+    rdfs:label "langen tyd" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e23 .
+
+ato:TS.twintig_jaar a cidoc-crm:E52_Time-Span ;
+    rdfs:label "twintig jaar" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e279 .
+
+ato:TS.vijf_vieren_deel_uur a cidoc-crm:E52_Time-Span ;
+    rdfs:label "vijf vieren deel uur" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e31 .
+
+ato:TS.volgende_avond a cidoc-crm:E52_Time-Span ;
+    rdfs:label "volgende avond" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e9 .
+
+ato:TS.vorige_dag a cidoc-crm:E52_Time-Span ;
+    rdfs:label "vorige dag" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e39 .
+
+ato:VEH.Munstersche_wagen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E22_Human-Made_Object ;
+    rdfs:label "Munstersche wagen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e38 .
+
+ato:VEH.met_4_paarden_bespannen_rytuig a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E22_Human-Made_Object ;
+    rdfs:label "met 4 paarden bespannen rytuig" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e46 .
+
+ato:VEH.wagen_voor_zeven_personen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E22_Human-Made_Object ;
+    rdfs:label "wagen voor zeven personen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e36 .
+
+ato:ART.Cassels_s_hne_die_sich_im_Jahre_1812_dem a lrmoo:F2_Expression ;
+    rdfs:label "Cassels söhne die sich im Jahre 1812 dem Vaterlande, unter anführung des tapferen Kurprinses, weiheten." ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e270 .
+
+ato:ART.Cleopatra a lrmoo:F2_Expression ;
+    rdfs:label "Cleopatra" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e221 .
+
+ato:ART.een_postillon_die__hoe_men_zich_ook_plaa a lrmoo:F2_Expression ;
+    rdfs:label "een postillon die, hoe men zich ook plaatste, steeds naar eene andere kant scheen te ryden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e211 .
+
+ato:ART.een_stier a lrmoo:F2_Expression ;
+    rdfs:label "een stier" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e208 .
+
+ato:ART.het_2de_deel_van_de_door_de_Heeren_Tydem a lrmoo:F2_Expression ;
+    rdfs:label "het 2de deel van de door de Heeren Tydeman & van Campen uitgegevene Mnemosyne" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e197 .
+
+ato:BIO.Casuarus a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "Casuarus" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e129 .
+
+ato:BIO.Kaapsche_ezel a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "Kaapsche ezel" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e138 .
+
+ato:BIO.drommedaris a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "drommedaris" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e140 .
+
+ato:BIO.leeuw a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "leeuw" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e136 .
+
+ato:BIO.luipaard a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "luipaard" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e139 .
+
+ato:BIO.opgezette_en_een_gesceletteerd a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "opgezette en een gesceletteerde olyphant" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e134 .
+
+ato:BIO.opgezette_vogels a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "opgezette vogels" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e128 .
+
+ato:BIO.paradysvogels a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "paradysvogels" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e130 .
+
+ato:BIO.rendier a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "rendier" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e142 .
+
+ato:BIO.schelpen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "schelpen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e163 .
+
+ato:BIO.stam_van_eene_lauwrierboom a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "stam van eene lauwrierboom" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e125 .
+
+ato:BIO.tyger a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "tyger" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e137 .
+
+ato:BIO.viervoetige_dieren a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "viervoetige dieren" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e133 .
+
+ato:BIO.vogeleyeren a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "vogeleyeren" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e120 .
+
+ato:BIO.was_geboetzeerde_vruchten a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "was geboetzeerde vruchten" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e126 .
+
+ato:BIO.wild_zwyn a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E20_Biological_Object ;
+    rdfs:label "wild zwyn" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e141 .
+
+ato:BRF0003.RS0006.RS0005 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Gebouw voor de vergadering der standen met troon" ;
+    academictourism:conveys ato:CT.BRF0003.e158,
+        ato:CT.BRF0003.e159 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:PHO.troon_voor_de_Koning,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.gebouw_voor_de_vergadering_der .
+
+ato:BRF0003.RS0006.RS0010 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Laatste kamer beneden: mosaiek" ;
+    academictourism:conveys ato:CT.BRF0003.e183,
+        ato:CT.BRF0003.e184 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:PHO.mosaiek,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.laatste_kamer .
+
+ato:DOC.catalogus a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E31_Document,
+        cidoc-crm:E73_Information_Object ;
+    rdfs:label "catalogus" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e198 .
+
+ato:DOC.reaal_catalogue a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E31_Document,
+        cidoc-crm:E73_Information_Object ;
+    rdfs:label "reaal catalogue" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e199 .
+
+ato:LOC.Aue_Q878589 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Aue" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e246,
+        ato:CT.BRF0003.e247 ;
+    skos:closeMatch <https://www.geonames.org/2892914>,
+        <https://www.wikidata.org/wiki/Q878589> .
+
+ato:LOC.Dalheim_Q1157899 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Dalheim" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e84 ;
+    skos:closeMatch <https://www.geonames.org/2939319.0>,
+        <https://www.wikidata.org/wiki/Q1157899> .
+
+ato:LOC.Domkerk_Q2776250 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Domkerk" ;
+    cidoc-crm:P59_has_section ato:LOC.tombes ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e266 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q2776250> .
+
+ato:LOC.Ehrings_Q1657965 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Ehrings" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e89 ;
+    skos:closeMatch <https://www.geonames.org/2896615>,
+        <https://www.wikidata.org/wiki/Q1657965> .
+
+ato:LOC.Frederikplein_Q1430309 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Frederikplein" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e146,
+        ato:CT.BRF0003.e298 ;
+    skos:closeMatch <https://www.geonames.org/11001975>,
+        <https://www.geonames.org/11001975.0>,
+        <https://www.wikidata.org/wiki/Q1430309> .
+
+ato:LOC.G_ttingen_Q3033 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Göttingen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e286,
+        ato:CT.BRF0003.e313 ;
+    skos:closeMatch <https://www.geonames.org/2918632>,
+        <https://www.wikidata.org/wiki/Q3033> .
+
+ato:LOC.Hoxenberg a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Hoxenberg" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e18 .
+
+ato:LOC.Kleinenberg_Q1746571 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Kleinenberg" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e52 ;
+    skos:closeMatch <https://www.geonames.org/2889463.0>,
+        <https://www.wikidata.org/wiki/Q1746571> .
+
+ato:LOC.Libenau_Q505551 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Libenau" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e90 ;
+    skos:closeMatch <https://www.geonames.org/2877980>,
+        <https://www.wikidata.org/wiki/Q505551> .
+
+ato:LOC.Meinbids a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Meinbids" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e100 .
+
+ato:LOC.Nider_Lichtingen_Q1988004 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Nider Lichtingen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e93 ;
+    skos:closeMatch <https://www.geonames.org/2863153>,
+        <https://www.wikidata.org/wiki/Q1988004> .
+
+ato:LOC.Ober_Q1738255 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Ober" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e92 ;
+    skos:closeMatch <https://www.geonames.org/2859873>,
+        <https://www.wikidata.org/wiki/Q1738255> .
+
+ato:LOC.Roomsche_kerk a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Roomsche kerk" ;
+    cidoc-crm:P59_has_section ato:LOC.galery ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e251 .
+
+ato:LOC.Tweede_Kamer a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Tweede Kamer" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e127 .
+
+ato:LOC.bergen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "bergen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e49 .
+
+ato:LOC.boekery a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "boekery" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e194 .
+
+ato:LOC.boven_nieuw_stad_Q15123313 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "boven nieuw stad" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e304,
+        ato:CT.BRF0003.e311 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q15123313> .
+
+ato:LOC.derde_Kamer a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "derde Kamer" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e132 .
+
+ato:LOC.galery_door_eene_ry_van_zuilen a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "galery door eene ry van zuilen ondersteund" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e143 .
+
+ato:LOC.het_eerste_vertrek a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "het eerste vertrek" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e119 .
+
+ato:LOC.hooge_bergen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "hooge bergen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e48 .
+
+ato:LOC.laatste_kamer a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "laatste kamer" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e183 .
+
+ato:LOC.laatste_zaal a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "laatste zaal" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e190 .
+
+ato:LOC.tombes a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "tombes" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Domkerk_Q2776250 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e267 .
+
+ato:LOC.twee_kamers a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "twee kamers" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e185 .
+
+ato:LOC.uitgestrekt_bosch a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "uitgestrekt bosch" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e53 .
+
+ato:LOC.vierkant_vertrek a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "vierkant vertrek" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.marmeren_bad_Q1902237 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e231 .
+
+ato:PHO.19_landgraven___landgravinnen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "19 landgraven & landgravinnen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e191 .
+
+ato:PHO.6_groote_schilden a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "6 groote schilden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e268 .
+
+ato:PHO.Aristoteles a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "Aristoteles" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e156 .
+
+ato:PHO.Onyx a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "Onyx" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e169 .
+
+ato:PHO.Venus_de_Medicis a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "Venus de Medicis" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e149 .
+
+ato:PHO.antiquen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "antiquen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e151 .
+
+ato:PHO.antiquiteiten a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "antiquiteiten" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e167 .
+
+ato:PHO.beeld_waarin_een_uurwerk_schoo a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "beeld waarin een uurwerk schoot op zekere tyden een pistool af" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e182 .
+
+ato:PHO.dingen_uit_barnsteen_gemaakt a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "dingen uit barnsteen gemaakt" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e172 .
+
+ato:PHO.een_groot_stuk a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "een groot stuk" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e207 .
+
+ato:PHO.een_klein_strandgezicht a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "een klein strandgezicht" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e209 .
+
+ato:PHO.eene_Cleopatra a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "eene Cleopatra" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e218 .
+
+ato:PHO.groote_spiegels a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "groote spiegels" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e226 .
+
+ato:PHO.groote_verzameling_van_edelges a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "groote verzameling van edelgesteenten" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e168 .
+
+ato:PHO.horlogies a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "horlogies" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e179 .
+
+ato:PHO.kleine_beeldjes a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "kleine beeldjes" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e166 .
+
+ato:PHO.meubels a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "meubels" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e225 .
+
+ato:PHO.mineralen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "mineralen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e162 .
+
+ato:PHO.mosaiek a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "mosaiek" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e184 .
+
+ato:PHO.mozaiek a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "mozaiek" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e175 .
+
+ato:PHO.orgel a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "orgel" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e256 .
+
+ato:PHO.oude_penningen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "oude penningen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e165 .
+
+ato:PHO.oude_wapentuigen_gevuld_een_vy a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "oude wapentuigen gevuld een vyftigtal bogen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e187 .
+
+ato:PHO.pendules a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "pendules" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e178 .
+
+ato:PHO.pretiosa a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "pretiosa" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e171 .
+
+ato:PHO.schoone_van_Kurk_nagemaakte_ru a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "schoone van Kurk nagemaakte ruines" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e152 .
+
+ato:PHO.stoelen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "stoelen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e192 .
+
+ato:PHO.stuk a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "stuk" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e206 .
+
+ato:PHO.troon_voor_de_Koning a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "troon voor de Koning" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e159 .
+
+ato:PHO.twee_worstelaars a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "twee worstelaars" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e150 .
+
+ato:PHO.versteeningen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "versteeningen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e161 .
+
+ato:PHO.zevende_schild a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "zevende schild" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e271 .
+
+ato:PHO.zwaarden a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "zwaarden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e188 .
+
+ato:TS.30_September_1813 a cidoc-crm:E52_Time-Span ;
+    rdfs:label "30 September 1813" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e241,
+        ato:CT.BRF0003.e244 .
+
+ato:VEH.postwagen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E22_Human-Made_Object ;
+    rdfs:label "postwagen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e67,
+        ato:CT.BRF0003.e68 .
+
+ato:BRF0003.RS0006.RS0011 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Eerste bovenkamer: oude wapentuigen en zwaarden" ;
+    academictourism:conveys ato:CT.BRF0003.e185,
+        ato:CT.BRF0003.e187,
+        ato:CT.BRF0003.e188 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:PHO.oude_wapentuigen_gevuld_een_vy,
+        ato:PHO.zwaarden,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.twee_kamers .
+
+ato:BRF0003.RS0006.RS0012 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Laatste zaal: landgraven en landgravinnen in was" ;
+    academictourism:conveys ato:CT.BRF0003.e190,
+        ato:CT.BRF0003.e191,
+        ato:CT.BRF0003.e192 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:PHO.19_landgraven___landgravinnen,
+        ato:PHO.stoelen,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.laatste_zaal .
+
+ato:BRF0003.RS0011 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Bezoek aan de Brüderkerk" ;
+    academictourism:conveys ato:CT.BRF0003.e265 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0012 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0012 ;
+    cidoc-crm:P7_took_place_at ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.Br_der_Q15106410 .
+
+ato:BRF0003.RS0013 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Bezoek aan de Kweekschool voor onderwyzers" ;
+    academictourism:conveys ato:CT.BRF0003.e272 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0014 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0014 ;
+    cidoc-crm:P7_took_place_at ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.Kweekschool_voor_onderwyzers .
+
+ato:DOC.reaal_catalogus a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E31_Document,
+        cidoc-crm:E73_Information_Object ;
+    rdfs:label "reaal catalogus" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e200,
+        ato:CT.BRF0003.e201 .
+
+ato:LOC.Comedie_Q63039258 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Comedie" ;
+    cidoc-crm:P59_has_section ato:LOC.loge,
+        ato:LOC.toneel ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e276 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q63039258> .
+
+ato:LOC.Hardehauserwoud_Q1775300 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Hardehauserwoud" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e54,
+        ato:CT.BRF0003.e55 ;
+    skos:closeMatch <https://www.geonames.org/2910659>,
+        <https://www.wikidata.org/wiki/Q1775300> .
+
+ato:LOC.Wilhelmhohe_Q447441 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Wilhelmhohe" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e106,
+        ato:CT.BRF0003.e312 ;
+    skos:closeMatch <https://www.geonames.org/3207202>,
+        <https://www.wikidata.org/wiki/Q447441> .
+
+ato:LOC.galery a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "galery" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Roomsche_kerk ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e255,
+        ato:CT.BRF0003.e257 .
+
+ato:LOC.gallery a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "gallery" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.paleis_Bellevue_Q1541968 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e213,
+        ato:CT.BRF0003.e227 .
+
+ato:LOC.marmeren_bad_Q1902237 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "marmeren bad" ;
+    cidoc-crm:P59_has_section ato:LOC.vierkant_vertrek ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e228,
+        ato:CT.BRF0003.e235 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q1902237> .
+
+ato:LOC.paleis_Bellevue_Q1541968 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "paleis Bellevue" ;
+    cidoc-crm:P59_has_section ato:LOC.gallery ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e203,
+        ato:CT.BRF0003.e223 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q1541968> .
+
+ato:PHO.klokken a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "klokken" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e177,
+        ato:CT.BRF0003.e180 .
+
+ato:PHO.schoone_stukken a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "schoone stukken" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e204,
+        ato:CT.BRF0003.e205 .
+
+ato:TS.5_uur a cidoc-crm:E52_Time-Span ;
+    rdfs:label "5 uur" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e110,
+        ato:CT.BRF0003.e42 .
+
+ato:TS.dien_nagt a cidoc-crm:E52_Time-Span ;
+    rdfs:label "dien nagt" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e7,
+        ato:CT.BRF0003.e73 .
+
+ato:VEH.rytuig a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E22_Human-Made_Object ;
+    rdfs:label "rytuig" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e24,
+        ato:CT.BRF0003.e98 .
+
+ato:BRF0003.RS0003.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Overnachting te Warburg in Gasthofe Desenburg" ;
+    academictourism:conveys ato:CT.BRF0003.e7,
+        ato:CT.BRF0003.e77,
+        ato:CT.BRF0003.e8,
+        ato:CT.BRF0003.e80 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0003 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P4_has_time-span ato:TS.dien_nagt ;
+    cidoc-crm:P7_took_place_at ato:LOC.Warburg_Q968 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.Gasthofe_Desenburg .
+
+ato:BRF0003.RS0006.RS0002 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Tweede kamer: opgezette vogels" ;
+    academictourism:conveys ato:CT.BRF0003.e127,
+        ato:CT.BRF0003.e128,
+        ato:CT.BRF0003.e129,
+        ato:CT.BRF0003.e130 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:BIO.Casuarus,
+        ato:BIO.opgezette_vogels,
+        ato:BIO.paradysvogels,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.Tweede_Kamer .
+
+ato:BRF0003.RS0006.RS0006 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Kamer met versteeningen, mineralen en schelpen" ;
+    academictourism:conveys ato:CT.BRF0003.e160,
+        ato:CT.BRF0003.e161,
+        ato:CT.BRF0003.e162,
+        ato:CT.BRF0003.e163 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:BIO.schelpen,
+        ato:PHO.mineralen,
+        ato:PHO.versteeningen,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.kamer .
+
+ato:BRF0003.RS0010.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Galery met orgel" ;
+    academictourism:conveys ato:CT.BRF0003.e255,
+        ato:CT.BRF0003.e256,
+        ato:CT.BRF0003.e257,
+        ato:CT.BRF0003.e263 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0010 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:PHO.orgel,
+        ato:PHO.schilderyen,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.galery .
+
+ato:BRF0003.RS0012 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Bezoek aan de Domkerk" ;
+    academictourism:conveys ato:CT.BRF0003.e266 ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0012.RS0001 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0013 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0013 ;
+    cidoc-crm:P7_took_place_at ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.Domkerk_Q2776250 .
+
+ato:BRF0003.RS0012.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Tombes en schilden in de Domkerk" ;
+    academictourism:conveys ato:CT.BRF0003.e267,
+        ato:CT.BRF0003.e268,
+        ato:CT.BRF0003.e270,
+        ato:CT.BRF0003.e271 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0012 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:ART.Cassels_s_hne_die_sich_im_Jahre_1812_dem,
+        ato:PHO.6_groote_schilden,
+        ato:PHO.zevende_schild,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.tombes .
+
+ato:LOC.Lichtenau_Q183483 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Lichtenau" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e27 ;
+    skos:closeMatch <https://www.geonames.org/2878133>,
+        <https://www.wikidata.org/wiki/Q183483> .
+
+ato:LOC.Parys_Q90 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Parys" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e117,
+        ato:CT.BRF0003.e148,
+        ato:CT.BRF0003.e212,
+        ato:CT.BRF0003.e219 ;
+    skos:closeMatch <https://www.geonames.org/2988507>,
+        <https://www.wikidata.org/wiki/Q90> .
+
+ato:LOC.West_Uffelen_Q1678836 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "West-Uffelen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e96 ;
+    skos:closeMatch <https://www.geonames.org/2810034>,
+        <https://www.wikidata.org/wiki/Q1678836> .
+
+ato:LOC.vertrek a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "vertrek" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e164,
+        ato:CT.BRF0003.e176 .
+
+ato:VEH.Extrapost a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E22_Human-Made_Object ;
+    rdfs:label "Extrapost" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e16,
+        ato:CT.BRF0003.e40,
+        ato:CT.BRF0003.e66 .
+
+ato:BRF0003.RS0002.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Verblijf te Ossendorf, tweede station" ;
+    academictourism:conveys ato:CT.BRF0003.e61,
+        ato:CT.BRF0003.e62,
+        ato:CT.BRF0003.e63,
+        ato:CT.BRF0003.e64,
+        ato:CT.BRF0003.e65 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0002 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.Ossendorf_Q2034601 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.posthuis .
+
+ato:BRF0003.RS0006.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Eerste vertrek: vogeleieren, houtbibliotheek en vruchten" ;
+    academictourism:conveys ato:CT.BRF0003.e119,
+        ato:CT.BRF0003.e120,
+        ato:CT.BRF0003.e122,
+        ato:CT.BRF0003.e125,
+        ato:CT.BRF0003.e126 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:BIO.stam_van_eene_lauwrierboom,
+        ato:BIO.vogeleyeren,
+        ato:BIO.was_geboetzeerde_vruchten,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.het_eerste_vertrek .
+
+ato:BRF0003.RS0006.RS0008 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Kamer met pretiosa en mozaiek van vesting Rheinfels" ;
+    academictourism:conveys ato:CT.BRF0003.e170,
+        ato:CT.BRF0003.e171,
+        ato:CT.BRF0003.e172,
+        ato:CT.BRF0003.e173,
+        ato:CT.BRF0003.e175 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:PHO.dingen_uit_barnsteen_gemaakt,
+        ato:PHO.mozaiek,
+        ato:PHO.pretiosa,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.kamer .
+
+ato:BRF0003.RS0007 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Bezoek aan paleis Bellevue met schilderijenverzameling" ;
+    academictourism:conveys ato:CT.BRF0003.e203,
+        ato:CT.BRF0003.e223 ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0007.RS0001 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0008 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0008 ;
+    cidoc-crm:P7_took_place_at ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.paleis_Bellevue_Q1541968 .
+
+ato:BRF0003.RS0014 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Bezoek aan de Comedie" ;
+    academictourism:conveys ato:CT.BRF0003.e276,
+        ato:CT.BRF0003.e277,
+        ato:CT.BRF0003.e278 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.Comedie_Q63039258 .
+
+ato:LOC.Desenberg_Q1200563 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Desenberg" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e56,
+        ato:CT.BRF0003.e85,
+        ato:CT.BRF0003.e86 ;
+    skos:closeMatch <https://www.geonames.org/2937965.0>,
+        <https://www.wikidata.org/wiki/Q1200563> .
+
+ato:LOC.kamer a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "kamer" ;
+    cidoc-crm:P59i_is_section_of ato:LOC.Museum_Fridericianum_Q449280 ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e160,
+        ato:CT.BRF0003.e170,
+        ato:CT.BRF0003.e173 .
+
+ato:VEH.wagen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E22_Human-Made_Object ;
+    rdfs:label "wagen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e102,
+        ato:CT.BRF0003.e43,
+        ato:CT.BRF0003.e47,
+        ato:CT.BRF0003.e50 .
+
+ato:BRF0003.RS0006.RS0007 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Vertrek met oude penningen en edelgesteenten" ;
+    academictourism:conveys ato:CT.BRF0003.e164,
+        ato:CT.BRF0003.e165,
+        ato:CT.BRF0003.e166,
+        ato:CT.BRF0003.e167,
+        ato:CT.BRF0003.e168,
+        ato:CT.BRF0003.e169 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:PHO.Onyx,
+        ato:PHO.antiquiteiten,
+        ato:PHO.groote_verzameling_van_edelges,
+        ato:PHO.kleine_beeldjes,
+        ato:PHO.oude_penningen,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.vertrek .
+
+ato:BRF0003.RS0008.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Vierkant vertrek met marmeren bad" ;
+    academictourism:conveys ato:CT.BRF0003.e231,
+        ato:CT.BRF0003.e232,
+        ato:CT.BRF0003.e233,
+        ato:CT.BRF0003.e235,
+        ato:CT.BRF0003.e236,
+        ato:CT.BRF0003.e237 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0008 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.vierkant_vertrek .
+
+ato:BRF0003.RS0009 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Wandeling door de Aue-Garten" ;
+    academictourism:conveys ato:CT.BRF0003.e246,
+        ato:CT.BRF0003.e247 ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0009.RS0001,
+        ato:BRF0003.RS0009.RS0002 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0010 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0010 ;
+    cidoc-crm:P7_took_place_at ato:LOC.Aue_Q878589 .
+
+ato:MOD.reden a academictourism:Mode_of_Transportation,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E55_Type ;
+    rdfs:label "reden" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e13,
+        ato:CT.BRF0003.e25,
+        ato:CT.BRF0003.e41,
+        ato:CT.BRF0003.e83,
+        ato:CT.BRF0003.e95 .
+
+ato:BRF0003.RS0003 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Wandeling van Ossendorf naar Warburg" ;
+    academictourism:conveys ato:CT.BRF0003.e69,
+        ato:CT.BRF0003.e70,
+        ato:CT.BRF0003.e71,
+        ato:CT.BRF0003.e72 ;
+    cidoc-crm:P101_had_as_general_use ato:MOD.wandelden ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0003.RS0001 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0004 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0004 ;
+    cidoc-crm:P26_moved_to ato:LOC.Warburg_Q968 ;
+    cidoc-crm:P27_moved_from ato:LOC.Ossendorf_Q2034601 ;
+    cidoc-crm:P4_has_time-span ato:TS.avond,
+        ato:TS.groot_uur .
+
+ato:BRF0003.RS0006.RS0009 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Vertrek met klokken, pendules en horlogies" ;
+    academictourism:conveys ato:CT.BRF0003.e176,
+        ato:CT.BRF0003.e177,
+        ato:CT.BRF0003.e178,
+        ato:CT.BRF0003.e179,
+        ato:CT.BRF0003.e180,
+        ato:CT.BRF0003.e181,
+        ato:CT.BRF0003.e182 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:PHO.beeld_waarin_een_uurwerk_schoo,
+        ato:PHO.horlogies,
+        ato:PHO.klokken,
+        ato:PHO.pendules,
+        ato:PHO.schilderyen,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.vertrek .
+
+ato:LOC.Ossendorf_Q2034601 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Ossendorf" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e60,
+        ato:CT.BRF0003.e62,
+        ato:CT.BRF0003.e63,
+        ato:CT.BRF0003.e64,
+        ato:CT.BRF0003.e65 ;
+    skos:closeMatch <https://www.geonames.org/2856859>,
+        <https://www.geonames.org/2856859.0>,
+        <https://www.wikidata.org/wiki/Q2034601> .
+
+ato:PHO.schilderyen a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E19_Physical_Object,
+        cidoc-crm:E1_CRM_Entity ;
+    rdfs:label "schilderyen" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e116,
+        ato:CT.BRF0003.e181,
+        ato:CT.BRF0003.e202,
+        ato:CT.BRF0003.e217,
+        ato:CT.BRF0003.e263 .
+
+ato:BRF0003.RS0006.RS0004 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Galery/vestibule: antiquen en beeldhouwkunst" ;
+    academictourism:conveys ato:CT.BRF0003.e143,
+        ato:CT.BRF0003.e144,
+        ato:CT.BRF0003.e149,
+        ato:CT.BRF0003.e150,
+        ato:CT.BRF0003.e151,
+        ato:CT.BRF0003.e152,
+        ato:CT.BRF0003.e156,
+        ato:CT.BRF0003.e157 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:PHO.Aristoteles,
+        ato:PHO.Venus_de_Medicis,
+        ato:PHO.antiquen,
+        ato:PHO.schoone_van_Kurk_nagemaakte_ru,
+        ato:PHO.twee_worstelaars,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.galery_door_eene_ry_van_zuilen .
+
+ato:BRF0003.RS0006.RS0013 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Bezoek aan de boekery in hetzelfde gebouw" ;
+    academictourism:conveys ato:CT.BRF0003.e194,
+        ato:CT.BRF0003.e195,
+        ato:CT.BRF0003.e196,
+        ato:CT.BRF0003.e197,
+        ato:CT.BRF0003.e198,
+        ato:CT.BRF0003.e199,
+        ato:CT.BRF0003.e200,
+        ato:CT.BRF0003.e201 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:ART.het_2de_deel_van_de_door_de_Heeren_Tydem,
+        ato:DOC.catalogus,
+        ato:DOC.reaal_catalogue,
+        ato:DOC.reaal_catalogus,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.boekery ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.Museum_Fridericianum_Q449280 .
+
+ato:BRF0003.RS0008 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Bezoek aan het marmeren bad in de Orangerie" ;
+    academictourism:conveys ato:CT.BRF0003.e228,
+        ato:CT.BRF0003.e229,
+        ato:CT.BRF0003.e230,
+        ato:CT.BRF0003.e242,
+        ato:CT.BRF0003.e245 ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0008.RS0001 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0009 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0009 ;
+    cidoc-crm:P7_took_place_at ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.marmeren_bad_Q1902237 .
+
+ato:BRF0003.RS0005.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Intrek in logement de Kurfürst te Cassel" ;
+    academictourism:conveys ato:CT.BRF0003.e111,
+        ato:CT.BRF0003.e112,
+        ato:CT.BRF0003.e113,
+        ato:CT.BRF0003.e114,
+        ato:CT.BRF0003.e12,
+        ato:CT.BRF0003.e2,
+        ato:CT.BRF0003.e224,
+        ato:CT.BRF0003.e252,
+        ato:CT.BRF0003.e287 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0005 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.logement_de_Kurf_rst .
+
+ato:LOC.Paderborn_Q2971 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Paderborn" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e11,
+        ato:CT.BRF0003.e17,
+        ato:CT.BRF0003.e19,
+        ato:CT.BRF0003.e29,
+        ato:CT.BRF0003.e34,
+        ato:CT.BRF0003.e5 ;
+    skos:closeMatch <https://www.geonames.org/2855745>,
+        <https://www.wikidata.org/wiki/Q2971> .
+
+ato:BRF0003.RS0006.RS0003 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Derde kamer: viervoetige dieren" ;
+    academictourism:conveys ato:CT.BRF0003.e132,
+        ato:CT.BRF0003.e133,
+        ato:CT.BRF0003.e134,
+        ato:CT.BRF0003.e136,
+        ato:CT.BRF0003.e137,
+        ato:CT.BRF0003.e138,
+        ato:CT.BRF0003.e139,
+        ato:CT.BRF0003.e140,
+        ato:CT.BRF0003.e141,
+        ato:CT.BRF0003.e142 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0006 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:BIO.Kaapsche_ezel,
+        ato:BIO.drommedaris,
+        ato:BIO.leeuw,
+        ato:BIO.luipaard,
+        ato:BIO.opgezette_en_een_gesceletteerd,
+        ato:BIO.rendier,
+        ato:BIO.tyger,
+        ato:BIO.viervoetige_dieren,
+        ato:BIO.wild_zwyn,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.derde_Kamer .
+
+ato:LOC.Warburg_Q968 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Warburg" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e58,
+        ato:CT.BRF0003.e70,
+        ato:CT.BRF0003.e77,
+        ato:CT.BRF0003.e8,
+        ato:CT.BRF0003.e82,
+        ato:CT.BRF0003.e88 ;
+    skos:closeMatch <https://www.geonames.org/2814153>,
+        <https://www.wikidata.org/wiki/Q968> .
+
+ato:BRF0003.RS0010 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Bezoek aan de Roomsche kerk" ;
+    academictourism:conveys ato:CT.BRF0003.e251,
+        ato:CT.BRF0003.e253,
+        ato:CT.BRF0003.e254,
+        ato:CT.BRF0003.e258,
+        ato:CT.BRF0003.e259,
+        ato:CT.BRF0003.e260,
+        ato:CT.BRF0003.e261,
+        ato:CT.BRF0003.e262,
+        ato:CT.BRF0003.e264 ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0010.RS0001 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0011 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0011 ;
+    cidoc-crm:P7_took_place_at ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.Roomsche_kerk .
+
+ato:BRF0003.RS0007.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Gallery met schilderijen van meesters" ;
+    academictourism:conveys ato:CT.BRF0003.e204,
+        ato:CT.BRF0003.e205,
+        ato:CT.BRF0003.e206,
+        ato:CT.BRF0003.e207,
+        ato:CT.BRF0003.e208,
+        ato:CT.BRF0003.e209,
+        ato:CT.BRF0003.e211,
+        ato:CT.BRF0003.e213,
+        ato:CT.BRF0003.e218,
+        ato:CT.BRF0003.e221,
+        ato:CT.BRF0003.e225,
+        ato:CT.BRF0003.e226,
+        ato:CT.BRF0003.e227 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS0007 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:ART.Cleopatra,
+        ato:ART.een_postillon_die__hoe_men_zich_ook_plaa,
+        ato:ART.een_stier,
+        ato:PHO.een_groot_stuk,
+        ato:PHO.een_klein_strandgezicht,
+        ato:PHO.eene_Cleopatra,
+        ato:PHO.groote_spiegels,
+        ato:PHO.meubels,
+        ato:PHO.schoone_stukken,
+        ato:PHO.stuk,
+        ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P7_took_place_at ato:LOC.gallery .
+
+ato:LOC.Museum_Fridericianum_Q449280 a cidoc-crm:E18_Physical_Thing,
+        cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Museum Fridericianum" ;
+    cidoc-crm:P59_has_section ato:LOC.Tweede_Kamer,
+        ato:LOC.boekery,
+        ato:LOC.derde_Kamer,
+        ato:LOC.galery_door_eene_ry_van_zuilen,
+        ato:LOC.het_eerste_vertrek,
+        ato:LOC.kamer,
+        ato:LOC.laatste_kamer,
+        ato:LOC.laatste_zaal,
+        ato:LOC.twee_kamers,
+        ato:LOC.vertrek ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e115,
+        ato:CT.BRF0003.e118,
+        ato:CT.BRF0003.e193,
+        ato:CT.BRF0003.e195 ;
+    skos:closeMatch <https://www.wikidata.org/wiki/Q449280> .
+
+ato:BRF0003.RS0001 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Rit van Paderborn naar Lichtenau met Extrapost" ;
+    academictourism:conveys ato:CT.BRF0003.e14,
+        ato:CT.BRF0003.e15,
+        ato:CT.BRF0003.e16,
+        ato:CT.BRF0003.e17,
+        ato:CT.BRF0003.e18,
+        ato:CT.BRF0003.e19,
+        ato:CT.BRF0003.e20,
+        ato:CT.BRF0003.e21,
+        ato:CT.BRF0003.e22,
+        ato:CT.BRF0003.e26,
+        ato:CT.BRF0003.e27 ;
+    academictourism:happened_in_proximity_of ato:LOC.Dornhagen_Q1271329,
+        ato:LOC.Grondsteinheim_Q1550705,
+        ato:LOC.Paderborn_Q2971 ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0001.RS0001,
+        ato:BRF0003.RS0001.VP0001,
+        ato:BRF0003.RS0001.VP0002 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P16_used_specific_object ato:VEH.Extrapost ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0002 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0002 ;
+    cidoc-crm:P26_moved_to ato:LOC.Lichtenau_Q183483 ;
+    cidoc-crm:P27_moved_from ato:LOC.Paderborn_Q2971 ;
+    cidoc-crm:P4_has_time-span ato:TS.1_uur,
+        ato:TS.3__uur,
+        ato:TS.Donderdag .
+
+ato:BRF0003.RS0005 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Rit van West-Uffelen naar Cassel" ;
+    academictourism:conveys ato:CT.BRF0003.e10,
+        ato:CT.BRF0003.e100,
+        ato:CT.BRF0003.e101,
+        ato:CT.BRF0003.e104,
+        ato:CT.BRF0003.e105,
+        ato:CT.BRF0003.e106,
+        ato:CT.BRF0003.e109,
+        ato:CT.BRF0003.e110,
+        ato:CT.BRF0003.e9,
+        ato:CT.BRF0003.e98 ;
+    academictourism:happened_in_proximity_of ato:LOC.Hercules_Q321252,
+        ato:LOC.Wilhelmhohe_Q447441,
+        ato:LOC.octogoon ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0005.RS0001,
+        ato:BRF0003.RS0005.VP0001,
+        ato:BRF0003.RS0005.VP0002 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P16_used_specific_object ato:VEH.rytuig ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0006 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0006 ;
+    cidoc-crm:P26_moved_to ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P27_moved_from ato:LOC.West_Uffelen_Q1678836 ;
+    cidoc-crm:P4_has_time-span ato:TS.5_uur,
+        ato:TS.5_uuren,
+        ato:TS.volgende_avond .
+
+ato:BRF0003.RS0006 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume ;
+    rdfs:label "Rondleiding door het Museum Fridericianum" ;
+    academictourism:conveys ato:CT.BRF0003.e115,
+        ato:CT.BRF0003.e118,
+        ato:CT.BRF0003.e145,
+        ato:CT.BRF0003.e186,
+        ato:CT.BRF0003.e193 ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0006.RS0001,
+        ato:BRF0003.RS0006.RS0002,
+        ato:BRF0003.RS0006.RS0003,
+        ato:BRF0003.RS0006.RS0004,
+        ato:BRF0003.RS0006.RS0005,
+        ato:BRF0003.RS0006.RS0006,
+        ato:BRF0003.RS0006.RS0007,
+        ato:BRF0003.RS0006.RS0008,
+        ato:BRF0003.RS0006.RS0009,
+        ato:BRF0003.RS0006.RS0010,
+        ato:BRF0003.RS0006.RS0011,
+        ato:BRF0003.RS0006.RS0012,
+        ato:BRF0003.RS0006.RS0013 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0007 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0007 ;
+    cidoc-crm:P7_took_place_at ato:LOC.Cassel_Q2865 ;
+    cidoc-crm:P8_took_place_on_or_within ato:LOC.Museum_Fridericianum_Q449280 .
+
+ato:BRF0003.RS0002 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Rit van Lichtenau naar Ossendorf" ;
+    academictourism:conveys ato:CT.BRF0003.e42,
+        ato:CT.BRF0003.e43,
+        ato:CT.BRF0003.e48,
+        ato:CT.BRF0003.e49,
+        ato:CT.BRF0003.e52,
+        ato:CT.BRF0003.e53,
+        ato:CT.BRF0003.e54,
+        ato:CT.BRF0003.e55,
+        ato:CT.BRF0003.e56,
+        ato:CT.BRF0003.e59,
+        ato:CT.BRF0003.e60 ;
+    academictourism:happened_in_proximity_of ato:LOC.Desenberg_Q1200563,
+        ato:LOC.Hardehauserwoud_Q1775300 ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0002.RS0001,
+        ato:BRF0003.RS0002.VP0001,
+        ato:BRF0003.RS0002.VP0002,
+        ato:BRF0003.RS0002.VP0003,
+        ato:BRF0003.RS0002.VP0004,
+        ato:BRF0003.RS0002.VP0005 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P16_used_specific_object ato:VEH.wagen ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0003 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0003 ;
+    cidoc-crm:P26_moved_to ato:LOC.Ossendorf_Q2034601 ;
+    cidoc-crm:P27_moved_from ato:LOC.Lichtenau_Q183483 ;
+    cidoc-crm:P4_has_time-span ato:TS.5_uur,
+        ato:TS.8_uur .
+
+ato:BRF0003.RS0004 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Rit van Warburg naar West-Uffelen" ;
+    academictourism:conveys ato:CT.BRF0003.e81,
+        ato:CT.BRF0003.e82,
+        ato:CT.BRF0003.e83,
+        ato:CT.BRF0003.e84,
+        ato:CT.BRF0003.e85,
+        ato:CT.BRF0003.e88,
+        ato:CT.BRF0003.e89,
+        ato:CT.BRF0003.e90,
+        ato:CT.BRF0003.e92,
+        ato:CT.BRF0003.e93,
+        ato:CT.BRF0003.e94,
+        ato:CT.BRF0003.e96 ;
+    academictourism:happened_in_proximity_of ato:LOC.Desenberg_Q1200563,
+        ato:LOC.Warburg_Q968 ;
+    cidoc-crm:P101_had_as_general_use ato:MOD.reden ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0004.RS0001,
+        ato:BRF0003.RS0004.VP0001,
+        ato:BRF0003.RS0004.VP0002,
+        ato:BRF0003.RS0004.VP0003,
+        ato:BRF0003.RS0004.VP0004,
+        ato:BRF0003.RS0004.VP0005,
+        ato:BRF0003.RS0004.VP0006 ;
+    cidoc-crm:P10_falls_within ato:BRF0003.RS ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P132_spatiotemporally_overlaps_with ato:BRF0003.RS ;
+    cidoc-crm:P182_ends_before_or_with_the_start_of ato:BRF0003.RS0005 ;
+    cidoc-crm:P183_ends_before_the_start_of ato:BRF0003.RS0005 ;
+    cidoc-crm:P26_moved_to ato:LOC.West_Uffelen_Q1678836 ;
+    cidoc-crm:P27_moved_from ato:LOC.Warburg_Q968 ;
+    cidoc-crm:P4_has_time-span ato:TS.de_volgende_morgen .
+
+ato:LOC.Cassel_Q2865 a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E53_Place ;
+    rdfs:label "Cassel" ;
+    cidoc-crm:P67i_is_referred_to_by ato:CT.BRF0003.e103,
+        ato:CT.BRF0003.e108,
+        ato:CT.BRF0003.e109,
+        ato:CT.BRF0003.e112,
+        ato:CT.BRF0003.e113,
+        ato:CT.BRF0003.e114,
+        ato:CT.BRF0003.e12,
+        ato:CT.BRF0003.e2,
+        ato:CT.BRF0003.e222,
+        ato:CT.BRF0003.e285,
+        ato:CT.BRF0003.e287,
+        ato:CT.BRF0003.e291,
+        ato:CT.BRF0003.e30,
+        ato:CT.BRF0003.e308,
+        ato:CT.BRF0003.e76,
+        ato:CT.BRF0003.e97,
+        ato:CT.BRF0003.e99 ;
+    skos:closeMatch <https://www.geonames.org/2892518>,
+        <https://www.wikidata.org/wiki/Q2865> .
+
+ato:TG a cidoc-crm:E74_Group ;
+    rdfs:label "Tour Group Brief 3" .
+
+ato:BRF0003.RS a cidoc-crm:E1_CRM_Entity,
+        cidoc-crm:E2_Temporal_Entity,
+        cidoc-crm:E4_Period,
+        cidoc-crm:E5_Event,
+        cidoc-crm:E7_Activity,
+        cidoc-crm:E92_Spacetime_Volume,
+        cidoc-crm:E9_Move ;
+    rdfs:label "Tour in letter 3" ;
+    academictourism:conveys ato:CT.BRF0003.e1,
+        ato:CT.BRF0003.e102,
+        ato:CT.BRF0003.e103,
+        ato:CT.BRF0003.e107,
+        ato:CT.BRF0003.e108,
+        ato:CT.BRF0003.e11,
+        ato:CT.BRF0003.e116,
+        ato:CT.BRF0003.e117,
+        ato:CT.BRF0003.e121,
+        ato:CT.BRF0003.e123,
+        ato:CT.BRF0003.e124,
+        ato:CT.BRF0003.e13,
+        ato:CT.BRF0003.e131,
+        ato:CT.BRF0003.e135,
+        ato:CT.BRF0003.e146,
+        ato:CT.BRF0003.e147,
+        ato:CT.BRF0003.e148,
+        ato:CT.BRF0003.e153,
+        ato:CT.BRF0003.e154,
+        ato:CT.BRF0003.e155,
+        ato:CT.BRF0003.e174,
+        ato:CT.BRF0003.e189,
+        ato:CT.BRF0003.e202,
+        ato:CT.BRF0003.e210,
+        ato:CT.BRF0003.e212,
+        ato:CT.BRF0003.e214,
+        ato:CT.BRF0003.e215,
+        ato:CT.BRF0003.e216,
+        ato:CT.BRF0003.e217,
+        ato:CT.BRF0003.e219,
+        ato:CT.BRF0003.e220,
+        ato:CT.BRF0003.e222,
+        ato:CT.BRF0003.e23,
+        ato:CT.BRF0003.e234,
+        ato:CT.BRF0003.e238,
+        ato:CT.BRF0003.e239,
+        ato:CT.BRF0003.e24,
+        ato:CT.BRF0003.e240,
+        ato:CT.BRF0003.e241,
+        ato:CT.BRF0003.e243,
+        ato:CT.BRF0003.e244,
+        ato:CT.BRF0003.e25,
+        ato:CT.BRF0003.e250,
+        ato:CT.BRF0003.e269,
+        ato:CT.BRF0003.e273,
+        ato:CT.BRF0003.e274,
+        ato:CT.BRF0003.e275,
+        ato:CT.BRF0003.e279,
+        ato:CT.BRF0003.e28,
+        ato:CT.BRF0003.e280,
+        ato:CT.BRF0003.e281,
+        ato:CT.BRF0003.e282,
+        ato:CT.BRF0003.e283,
+        ato:CT.BRF0003.e284,
+        ato:CT.BRF0003.e285,
+        ato:CT.BRF0003.e286,
+        ato:CT.BRF0003.e288,
+        ato:CT.BRF0003.e289,
+        ato:CT.BRF0003.e29,
+        ato:CT.BRF0003.e290,
+        ato:CT.BRF0003.e291,
+        ato:CT.BRF0003.e292,
+        ato:CT.BRF0003.e293,
+        ato:CT.BRF0003.e294,
+        ato:CT.BRF0003.e295,
+        ato:CT.BRF0003.e296,
+        ato:CT.BRF0003.e297,
+        ato:CT.BRF0003.e298,
+        ato:CT.BRF0003.e299,
+        ato:CT.BRF0003.e3,
+        ato:CT.BRF0003.e30,
+        ato:CT.BRF0003.e300,
+        ato:CT.BRF0003.e301,
+        ato:CT.BRF0003.e302,
+        ato:CT.BRF0003.e303,
+        ato:CT.BRF0003.e304,
+        ato:CT.BRF0003.e305,
+        ato:CT.BRF0003.e306,
+        ato:CT.BRF0003.e307,
+        ato:CT.BRF0003.e308,
+        ato:CT.BRF0003.e309,
+        ato:CT.BRF0003.e310,
+        ato:CT.BRF0003.e311,
+        ato:CT.BRF0003.e312,
+        ato:CT.BRF0003.e313,
+        ato:CT.BRF0003.e32,
+        ato:CT.BRF0003.e33,
+        ato:CT.BRF0003.e34,
+        ato:CT.BRF0003.e35,
+        ato:CT.BRF0003.e36,
+        ato:CT.BRF0003.e37,
+        ato:CT.BRF0003.e38,
+        ato:CT.BRF0003.e39,
+        ato:CT.BRF0003.e4,
+        ato:CT.BRF0003.e40,
+        ato:CT.BRF0003.e41,
+        ato:CT.BRF0003.e44,
+        ato:CT.BRF0003.e45,
+        ato:CT.BRF0003.e46,
+        ato:CT.BRF0003.e47,
+        ato:CT.BRF0003.e5,
+        ato:CT.BRF0003.e50,
+        ato:CT.BRF0003.e51,
+        ato:CT.BRF0003.e57,
+        ato:CT.BRF0003.e58,
+        ato:CT.BRF0003.e6,
+        ato:CT.BRF0003.e66,
+        ato:CT.BRF0003.e67,
+        ato:CT.BRF0003.e68,
+        ato:CT.BRF0003.e73,
+        ato:CT.BRF0003.e74,
+        ato:CT.BRF0003.e75,
+        ato:CT.BRF0003.e76,
+        ato:CT.BRF0003.e78,
+        ato:CT.BRF0003.e79,
+        ato:CT.BRF0003.e86,
+        ato:CT.BRF0003.e87,
+        ato:CT.BRF0003.e91,
+        ato:CT.BRF0003.e95,
+        ato:CT.BRF0003.e97,
+        ato:CT.BRF0003.e99 ;
+    cidoc-crm:P10_contains ato:BRF0003.RS0001,
+        ato:BRF0003.RS0002,
+        ato:BRF0003.RS0003,
+        ato:BRF0003.RS0004,
+        ato:BRF0003.RS0005,
+        ato:BRF0003.RS0006,
+        ato:BRF0003.RS0007,
+        ato:BRF0003.RS0008,
+        ato:BRF0003.RS0009,
+        ato:BRF0003.RS0010,
+        ato:BRF0003.RS0011,
+        ato:BRF0003.RS0012,
+        ato:BRF0003.RS0013,
+        ato:BRF0003.RS0014 ;
+    cidoc-crm:P11_had_participant ato:TG ;
+    cidoc-crm:P129i_is_subject_of ato:BRF0003 ;
+    cidoc-crm:P12_occurred_in_the_presence_of ato:TG ;
+    cidoc-crm:P67i_is_referred_to_by ato:BRF0003 .
+

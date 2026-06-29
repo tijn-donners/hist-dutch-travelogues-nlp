@@ -29,7 +29,7 @@ from spacy.tokens import DocBin
 from spacy.util import load_config
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from ollama_utils import stream_ollama_chat
+from ollama_utils import stream_ollama_chat, resolve_ollama_host
 from rdflib import RDF, RDFS, Literal, Namespace, URIRef
 from rdflib.graph import Graph
 
@@ -59,10 +59,13 @@ PROMPT_TEMPLATE = str(SCRIPT_DIR / "re_prompt_dutch.jinja")
 OUTPUT_DIR_RE = ROOT_DIR / "output" / "re"
 OUTPUT_DIR_RDF = ROOT_DIR / "output" / "rdf"
 
-OLLAMA_MODEL = "deepseek-v4-flash"
-OLLAMA_HOST = "https://ollama.com"
-OLLAMA_KEY = os.environ.get("OLLAMA_API_KEY")
-TEMPERATURE = 0.7
+OLLAMA_MODEL = "deepseek-v4-pro"
+# Ollama host: resolves the --host CLI flag / OLLAMA_HOST env var. Default is
+# the auto-switch (cloud when OLLAMA_API_KEY is set, else http://localhost:11434);
+# a verbatim URL like http://localhost:1344 is accepted too. See
+# ollama_utils.resolve_ollama_host.
+OLLAMA_HOST, OLLAMA_KEY = resolve_ollama_host(os.environ.get("OLLAMA_HOST"))
+TEMPERATURE = 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -312,13 +315,18 @@ def build_prompt(annotated_text, examples=None):
 # ---------------------------------------------------------------------------
 # LLM call
 # ---------------------------------------------------------------------------
-def query_llm(prompt, model=OLLAMA_MODEL, think=None, think_log_path=None):
+def query_llm(prompt, model=OLLAMA_MODEL, think=None, think_log_path=None,
+              temperature=TEMPERATURE):
     """Send prompt to Ollama and return response text.
 
     Args:
         think_log_path: Optional path to persist the model's thinking trace,
             so expensive reasoning-model runs can be salvaged even when the
             content channel is empty or truncated.
+        temperature: Sampling temperature. Threaded explicitly (mirrors the EL
+            temperature-chain fix, commit 31f7b48) so callers that bypass main()
+            (notebooks, batch, tests) don't silently pick up a stale module
+            global. Defaults to the module constant for standalone use.
 
     Raises:
         ollama.ResponseError, ollama.RequestError, httpx.TimeoutException
@@ -329,7 +337,7 @@ def query_llm(prompt, model=OLLAMA_MODEL, think=None, think_log_path=None):
         host=OLLAMA_HOST,
         api_key=OLLAMA_KEY,
         timeout=600.0,
-        temperature=TEMPERATURE,
+        temperature=temperature,
         think=think,
         think_log_path=think_log_path,
     )
@@ -338,6 +346,39 @@ def query_llm(prompt, model=OLLAMA_MODEL, think=None, think_log_path=None):
 # ---------------------------------------------------------------------------
 # JSON parsing & validation
 # ---------------------------------------------------------------------------
+def _first_json_object(text):
+    """Return the substring of `text` spanning the first balanced '{'...'}'
+    block, skipping over string literals so braces inside strings don't
+    confuse the depth counter. Falls back to `text` (let json.loads raise)
+    if no balanced block is found.
+    """
+    start = text.find('{')
+    if start == -1:
+        return text
+    depth = 0
+    in_str = False
+    escape = False
+    for i in range(start, len(text)):
+        c = text[i]
+        if in_str:
+            if escape:
+                escape = False
+            elif c == '\\':
+                escape = True
+            elif c == '"':
+                in_str = False
+            continue
+        if c == '"':
+            in_str = True
+        elif c == '{':
+            depth += 1
+        elif c == '}':
+            depth -= 1
+            if depth == 0:
+                return text[start:i + 1]
+    return text  # unbalanced — let json.loads report the error
+
+
 def extract_json(text):
     """Extract JSON object from LLM response (may contain markdown fences)."""
     # Try to find JSON between ```json ... ``` fences
@@ -345,12 +386,35 @@ def extract_json(text):
     if m:
         text = m.group(1)
 
-    # Try to find outermost { ... }
-    m = re.search(r'\{.*\}', text, re.DOTALL)
-    if m:
-        text = m.group(0)
+    # Extract the first balanced {...} object rather than greedily spanning
+    # from the first '{' to the last '}', which would corrupt parsing if the
+    # model emits more than one JSON object.
+    text = _first_json_object(text)
 
     return json.loads(text)
+
+
+def normalize_toponym_relations(data):
+    """Coerce a list-shaped ``toponym_relations`` (an LLM variant) to a dict.
+
+    The prompt asks for an object ``{"e3": "FROM", ...}`` but models sometimes
+    return an array of objects ``[{"mention_id": "e3", "category": "FROM"}]``.
+    Downstream code (``validate_events`` and the mentioned-only derivation) calls
+    ``.items()`` on it, which would raise ``AttributeError`` on a list.
+    """
+    tr = data.get("toponym_relations")
+    if isinstance(tr, list):
+        d = {}
+        for item in tr:
+            if isinstance(item, dict):
+                mid = item.get("mention_id")
+                cat = item.get("category")
+                if mid and cat:
+                    d[mid] = cat
+        data["toponym_relations"] = d
+    elif tr is None:
+        data["toponym_relations"] = {}
+    return data
 
 
 def validate_events(data, mention_map):
@@ -451,13 +515,6 @@ def validate_events(data, mention_map):
         for event in data.get("events", []):
             _collect_roles(event)
 
-        # Expected category per role
-        ROLE_TO_CATEGORY = {
-            "moved_from": "FROM", "moved_to": "TO",
-            "took_place_at": "IN", "on_or_within": "IN",
-            "via_points": "THRU",
-            "near_places": "NEAR",
-        }
         for mid, roles in role_map.items():
             if mid not in toponym_relations:
                 continue
@@ -475,6 +532,120 @@ def validate_events(data, mention_map):
     return issues
 
 
+# Expected Soni toponym-relation category for each travel-event role. Shared by
+# validate_events() and build_validation_report() so the on-screen checks and
+# the persisted metadata stay in lockstep.
+ROLE_TO_CATEGORY = {
+    "moved_from": "FROM", "moved_to": "TO",
+    "took_place_at": "IN", "on_or_within": "IN",
+    "via_points": "THRU",
+    "near_places": "NEAR",
+}
+
+
+def collect_role_map(data):
+    """Map every mention_id to the travel-event roles it actually occupies.
+
+    Returns ``{mention_id: {"roles": set[str], "events": list[str]}}`` where
+    ``roles`` are the position fields the mention fills
+    (moved_from/moved_to/took_place_at/on_or_within/via_points/near_places)
+    across all top-level events and their sub_events, and ``events`` lists the
+    event ids that reference it. This is the "actual position usage in travel
+    events" against which toponym_relations categories are checked.
+    """
+    role_map = {}
+
+    def _add(mid, role, eid):
+        entry = role_map.setdefault(mid, {"roles": set(), "events": []})
+        entry["roles"].add(role)
+        if eid not in entry["events"]:
+            entry["events"].append(eid)
+
+    def _collect(event):
+        eid = event.get("id", "?")
+        for role in ("moved_from", "moved_to", "took_place_at", "on_or_within"):
+            mid = event.get(role)
+            if mid:
+                _add(mid, role, eid)
+        for vp in event.get("via_points", []):
+            _add(vp, "via_points", eid)
+        for np in event.get("near_places", []):
+            _add(np, "near_places", eid)
+        for sub in event.get("sub_events", []):
+            if isinstance(sub, dict):
+                _collect(sub)
+
+    for event in data.get("events", []):
+        _collect(event)
+    return role_map
+
+
+def build_validation_report(data, mention_map, issues):
+    """Structured per-run validation report for the metadata JSON.
+
+    Captures the toponym_relations <-> travel-event-role mapping that is
+    otherwise only printed to stdout: for each toponym mention, its declared
+    Soni category, the roles/positions it actually occupies in travel events,
+    the events that reference it, and whether the category is consistent with
+    those roles. Also records NEAR toponyms not assigned to any event's
+    near_places. The mentioned_only_places vs NO_REL discrepancy is attached by
+    the caller (it depends on the pre-override LLM output).
+    """
+    toponym_relations = data.get("toponym_relations", {}) or {}
+    role_map = collect_role_map(data)
+
+    toponyms = []
+    category_counts = {}
+    for mid, category in toponym_relations.items():
+        info = mention_map.get(mid, {})
+        roles = sorted(role_map.get(mid, {}).get("roles", set()))
+        ref_events = role_map.get(mid, {}).get("events", [])
+        mismatches = []
+        for role in roles:
+            expected = ROLE_TO_CATEGORY.get(role)
+            if expected and category != expected:
+                mismatches.append({"role": role, "expected": expected,
+                                   "actual": category})
+        toponyms.append({
+            "mention_id": mid,
+            "text": info.get("text"),
+            "label": info.get("label"),
+            "category": category,
+            "roles_in_events": roles,
+            "referencing_events": ref_events,
+            "consistent": len(mismatches) == 0,
+            "role_mismatches": mismatches,
+        })
+        category_counts[category] = category_counts.get(category, 0) + 1
+
+    # NEAR toponyms not assigned to any event's near_places
+    near_mids = {mid for mid, cat in toponym_relations.items() if cat == "NEAR"}
+    assigned_near = set()
+    for ev in data.get("events", []):
+        for np_mid in ev.get("near_places", []):
+            assigned_near.add(np_mid)
+        for sub in ev.get("sub_events", []):
+            if isinstance(sub, dict):
+                for np_mid in sub.get("near_places", []):
+                    assigned_near.add(np_mid)
+    unassigned_near = sorted(near_mids - assigned_near)
+
+    n_no_rel = category_counts.get("NO_REL", 0)
+    return {
+        "summary": {
+            "num_toponym_relations": len(toponym_relations),
+            "num_validation_issues": len(issues),
+            "category_counts": category_counts,
+            "num_visited": len(toponym_relations) - n_no_rel,
+            "num_no_rel": n_no_rel,
+            "num_unassigned_near": len(unassigned_near),
+        },
+        "validation_issues": issues,
+        "toponym_role_usage": toponyms,
+        "unassigned_near": unassigned_near,
+    }
+
+
 # ---------------------------------------------------------------------------
 # RDF Generation
 # ---------------------------------------------------------------------------
@@ -482,10 +653,24 @@ def event_uri(event_id):
     return ATO[event_id]
 
 
+def _kb_slug(text, kb_id, maxlen=30):
+    """Build a slug from text, disambiguated by a KB id when present.
+
+    Without a KB id the slug is text-only (truncated to `maxlen`), so two
+    distinct entities whose names share the first `maxlen` normalised
+    characters collapse to the same URI. When a KB id (Wikidata/GeoNames) is
+    known it is appended to the slug so distinct entities stay distinct.
+    """
+    base = re.sub(r'[^a-zA-Z0-9]', '_', text)[:maxlen]
+    if kb_id:
+        kb = re.sub(r'[^a-zA-Z0-9]', '_', str(kb_id))[:20]
+        return f"{base}_{kb}"
+    return base
+
+
 def loc_uri(text, kb_id):
-    """Generate a location URI. Use text-based slug for consistent identification."""
-    # Generate a slug from text for consistent URI regardless of KB ID
-    slug = re.sub(r'[^a-zA-Z0-9]', '_', text)[:30]
+    """Generate a location URI, disambiguated by KB id when available."""
+    slug = _kb_slug(text, kb_id)
     return ATO[f"LOC.{slug}"]
 
 
@@ -510,6 +695,10 @@ def generate_rdf(data, output_path, mention_map=None):
         mention_map: Optional dict of mention_id -> {text, label, kb_id, start, end}.
                      When provided, CT.* citation entities are generated.
     """
+    # Reset the KB-ID -> URI cache so repeated calls in one process (batch
+    # runs, notebooks, tests) don't inherit URI/label bindings from a prior run.
+    _kb_id_cache.clear()
+
     g = Graph()
     g.bind("ato", ATO)
     g.bind("academictourism", ACADEMICTOURISM)
@@ -841,7 +1030,7 @@ def generate_rdf(data, output_path, mention_map=None):
             place_uri = _ensure_by_label(g, mp_info)
             g.add((letter_uri, CIDOC["P67_refers_to"], place_uri))
             # Create CT citation linked to journey (so the entity is findable
-            # via P129i_is_subject_of in downstream evaluation)
+            # via P67i_is_referred_to_by in downstream evaluation)
             _ensure_citation(g, mp_mid, mp_info, journey_uri, letter_id)
             processed_mention_ids.add(mp_mid)
 
@@ -1057,12 +1246,12 @@ def _ensure_specific_vehicle(graph, text, wikidata_id=None, geonames_id=None):
     (E55_Type). Linked to translocation events via P16_used_specific_object.
     Uses a VEH. prefix to distinguish from modes and places.
     """
-    slug = re.sub(r'[^a-zA-Z0-9]', '_', text)[:30]
+    slug = _kb_slug(text, wikidata_id or geonames_id)
     uri = ATO[f"VEH.{slug}"]
     if (uri, RDF.type, None) not in graph:
         graph.add((uri, RDF.type, CIDOC.E1_CRM_Entity))
         graph.add((uri, RDF.type, CIDOC.E18_Physical_Thing))
-        graph.add((uri, RDF.type, CIDOC.E22_Human_Made_Object))
+        graph.add((uri, RDF.type, CIDOC["E22_Human-Made_Object"]))
         graph.add((uri, RDFS.label, Literal(text)))
     _add_kb_links(graph, uri, wikidata_id, geonames_id)
     return uri
@@ -1105,7 +1294,7 @@ def _ensure_physical_object(graph, text, wikidata_id=None, geonames_id=None):
     are modeled as E19_Physical_Object / E18_Physical_Thing.
     Uses a PHO. prefix to distinguish from LO C. place entities.
     """
-    slug = re.sub(r'[^a-zA-Z0-9]', '_', text)[:30]
+    slug = _kb_slug(text, wikidata_id or geonames_id)
     uri = ATO[f"PHO.{slug}"]
     if (uri, RDF.type, None) not in graph:
         graph.add((uri, RDF.type, CIDOC.E1_CRM_Entity))
@@ -1123,7 +1312,7 @@ def _ensure_biological_object(graph, text, wikidata_id=None, geonames_id=None):
     E20_Biological_Object / E19_Physical_Object / E18_Physical_Thing.
     Uses a BIO. prefix to distinguish from other entity types.
     """
-    slug = re.sub(r'[^a-zA-Z0-9]', '_', text)[:30]
+    slug = _kb_slug(text, wikidata_id or geonames_id)
     uri = ATO[f"BIO.{slug}"]
     if (uri, RDF.type, None) not in graph:
         graph.add((uri, RDF.type, CIDOC.E1_CRM_Entity))
@@ -1142,7 +1331,7 @@ def _ensure_document(graph, text, wikidata_id=None, geonames_id=None):
     E31_Document / E73_Information_Object.
     Uses a DOC. prefix to distinguish from other entity types.
     """
-    slug = re.sub(r'[^a-zA-Z0-9]', '_', text)[:30]
+    slug = _kb_slug(text, wikidata_id or geonames_id)
     uri = ATO[f"DOC.{slug}"]
     if (uri, RDF.type, None) not in graph:
         graph.add((uri, RDF.type, CIDOC.E1_CRM_Entity))
@@ -1189,10 +1378,12 @@ def _ensure_by_label(graph, mention_info):
 
 
 def _ensure_citation(graph, mention_id, mention_info, event_uri, letter_id):
-    """Create a CT.* citation (E89_Propositional_Object) linking an event to a text mention.
+    """Create a CT.* citation (lrmoo:F2_Expression) linking an event to a text mention.
 
-    Creates a citation entity of the form CT.<letter_id>.<mention_id> with
-    P129_is_about → ATO-local entity (typed via _ensure_place/_ensure_physical_thing),
+    Per ATO_paper.txt §5, citations are the per-mention "words or phrases" in the
+    letter and are modeled as F2_Expression, linked to the real-world entity they
+    reference via cidoc-crm:P67_refers_to. Creates CT.<letter_id>.<mention_id> with
+    P67_refers_to → ATO-local entity (typed via _ensure_place/_ensure_physical_thing),
     P67i_is_referred_to_by back-link, and academictourism:conveys / is_conveyed_by
     to the event. The ATO entity receives both Wikidata and GeoNames skos:closeMatch
     links in a single call.
@@ -1203,7 +1394,7 @@ def _ensure_citation(graph, mention_id, mention_info, event_uri, letter_id):
     if (ct_uri, RDF.type, None) in graph:
         return ct_uri
 
-    graph.add((ct_uri, RDF.type, CIDOC.E89_Propositional_Object))
+    graph.add((ct_uri, RDF.type, LRMOO.F2_Expression))
     graph.add((ct_uri, RDFS.label, Literal(
         f"Citation: '{mention_info['text']}' ({mention_info['label']})"
     )))
@@ -1234,8 +1425,8 @@ def _ensure_citation(graph, mention_id, mention_info, event_uri, letter_id):
     else:
         target_uri = _ensure_place(graph, text, wikidata_id, geonames_id)
 
-    # CT → ato:LOC.* (via tussenlaag, behouden)
-    graph.add((ct_uri, CIDOC["P129_is_about"], target_uri))
+    # CT → ato:LOC.*/ART.*/VEH.*/TS.* via P67_refers_to (per ATO_paper §5)
+    graph.add((ct_uri, CIDOC["P67_refers_to"], target_uri))
 
     # CT → Wikidata/GeoNames (directe link, zoals ATO.rdf)
     if wikidata_id is not None:
@@ -1245,8 +1436,7 @@ def _ensure_citation(graph, mention_id, mention_info, event_uri, letter_id):
         geonameid = geonames_id[3:] if geonames_id.startswith("gn:") else geonames_id
         graph.add((ct_uri, CIDOC["P67_refers_to"], GN[geonameid]))
 
-    # ato:LOC.* → CT (beide inverse properties)
-    graph.add((target_uri, CIDOC["P129i_is_subject_of"], ct_uri))
+    # ato:LOC.* → CT (inverse of the CT→target P67_refers_to link)
     graph.add((target_uri, CIDOC["P67i_is_referred_to_by"], ct_uri))
 
     # Link citation to the event via custom ATO property
@@ -1268,14 +1458,64 @@ def main():
     parser.add_argument("--think", default=None,
                         choices=["true", "false", "low", "medium", "high"],
                         help="Thinking mode (overrides model default)")
+    parser.add_argument("--host", default=os.environ.get("OLLAMA_HOST"),
+                        help="Ollama host: 'cloud', 'localhost', or a verbatim URL "
+                             "(e.g. http://localhost:1344). Default: auto-switch "
+                             "(cloud when OLLAMA_API_KEY is set, else localhost:11434). "
+                             "Overrides OLLAMA_HOST env var.")
+    parser.add_argument("--input", default=None,
+                        help="Path to the input *_el.spacy file (EL output). When "
+                             "omitted, an interactive picker lists all *_el.spacy files "
+                             "in el-results/. Passing this makes the run fully "
+                             "non-interactive for batch/orchestration use.")
+    parser.add_argument("--offset-map", default=None,
+                        help="Path to the matching offset_map.json for --input. "
+                             "When omitted, it is auto-discovered from the input "
+                             "filename (see find_offset_map).")
+    parser.add_argument("--regenerate-rdf", action="store_true",
+                        help="Skip the LLM and re-serialize the .ttl from an existing "
+                             "_events.json + _mention_map.json. Requires --events. "
+                             "Lets RDF-generation changes be applied to existing runs "
+                             "without re-running any model.")
+    parser.add_argument("--events", default=None,
+                        help="Path to an existing *_events.json (for --regenerate-rdf).")
+    parser.add_argument("--mention-map", default=None,
+                        help="Path to the matching *_mention_map.json (for "
+                             "--regenerate-rdf). Auto-discovered from --events when "
+                             "omitted (replaces '_events' with '_mention_map').")
     args = parser.parse_args()
 
+    # --- RDF-only regeneration (no LLM) ---
+    if args.regenerate_rdf:
+        if not args.events or not Path(args.events).exists():
+            print("--regenerate-rdf requires --events <path to *_events.json>")
+            return
+        events_path = Path(args.events)
+        if args.mention_map:
+            mm_path = Path(args.mention_map)
+        else:
+            mm_path = events_path.with_name(
+                events_path.name.replace("_events.json", "_mention_map.json"))
+        if not mm_path.exists():
+            print(f"Mention map not found: {mm_path}")
+            return
+        with open(events_path, encoding="utf-8") as f:
+            data = json.load(f)
+        with open(mm_path, encoding="utf-8") as f:
+            mention_map = json.load(f)
+        out_rdf = str(OUTPUT_DIR_RDF / events_path.name.replace(".json", ".ttl"))
+        print(f"Regenerating RDF (no LLM) from {events_path.name} -> {out_rdf}")
+        generate_rdf(data, out_rdf, mention_map)
+        return
+
     # Override constants if CLI args provided
-    global OLLAMA_MODEL, TEMPERATURE
+    global OLLAMA_MODEL, TEMPERATURE, OLLAMA_HOST, OLLAMA_KEY
     if args.model:
         OLLAMA_MODEL = args.model
     if args.temperature is not None:
         TEMPERATURE = args.temperature
+    if args.host is not None:
+        OLLAMA_HOST, OLLAMA_KEY = resolve_ollama_host(args.host)
 
     # Resolve think parameter
     think_param = args.think
@@ -1290,11 +1530,22 @@ def main():
     print("=" * 60)
     print("ATO Relation Extraction & RDF Generation")
     print("=" * 60)
+    print(f"Ollama host: {OLLAMA_HOST} {'(cloud)' if OLLAMA_KEY else '(local)'}")
+    print(f"Model: {OLLAMA_MODEL} | Temperature: {TEMPERATURE} | Think: {_THINK}")
 
-    # Select EL spacy file and find matching offset map
-    spacy_file = select_el_spacy_file()
-    offset_map_file = find_offset_map(spacy_file)
-    if offset_map_file is None:
+    # Select EL spacy file and find matching offset map.
+    # --input makes the run non-interactive (batch/orchestration); otherwise the
+    # interactive picker lists all *_el.spacy files in el-results/.
+    if args.input:
+        spacy_file = str(args.input)
+        if not Path(spacy_file).exists():
+            print(f"Input file not found: {spacy_file}")
+            return
+        print(f"Using input (from --input): {spacy_file}")
+    else:
+        spacy_file = select_el_spacy_file()
+    offset_map_file = args.offset_map or find_offset_map(spacy_file)
+    if offset_map_file is None or not Path(offset_map_file).exists():
         print("Cannot proceed without offset map. Run NER pipeline first.")
         return
 
@@ -1352,8 +1603,8 @@ def main():
         print(f"\n4. Querying {OLLAMA_MODEL} (attempt {attempt}/{max_retries})...")
         think_log_path = str(Path(output_json).with_suffix(".think.txt"))
         try:
-            response = query_llm(prompt, model=OLLAMA_MODEL, think=_THINK,
-                                 think_log_path=think_log_path)
+            response = query_llm(prompt, model=OLLAMA_MODEL, temperature=TEMPERATURE,
+                                 think=_THINK, think_log_path=think_log_path)
         except (ollama.RequestError, ollama.ResponseError,
                 httpx.TimeoutException, httpx.ConnectError) as e:
             num_api_failures += 1
@@ -1377,6 +1628,7 @@ def main():
         print(f"\n5. Parsing response (attempt {attempt}/{max_retries})...")
         try:
             data = extract_json(response)
+            normalize_toponym_relations(data)
             print("   JSON parsed successfully.")
             break  # success — exit retry loop
         except json.JSONDecodeError as e:
@@ -1416,19 +1668,20 @@ def main():
         ]
         # If LLM also returned a mentioned_only_places, warn on discrepancy
         llm_mentioned = data.get("mentioned_only_places", [])
+        discrepancy = {"extra": [], "missing": []}
         if llm_mentioned:
             llm_mids = {mp.get("mention_id") if isinstance(mp, dict) else mp
                         for mp in llm_mentioned}
             derived_mids = {mp["mention_id"] for mp in derived_mentioned}
             if llm_mids != derived_mids:
-                extra = llm_mids - derived_mids
-                missing = derived_mids - llm_mids
-                if extra:
-                    print(f"   NOTE: {len(extra)} mention_ids in LLM's "
+                discrepancy["extra"] = sorted(llm_mids - derived_mids)
+                discrepancy["missing"] = sorted(derived_mids - llm_mids)
+                if discrepancy["extra"]:
+                    print(f"   NOTE: {len(discrepancy['extra'])} mention_ids in LLM's "
                           f"mentioned_only_places but not NO_REL in "
                           f"toponym_relations (using derived list)")
-                if missing:
-                    print(f"   NOTE: {len(missing)} NO_REL toponyms missing "
+                if discrepancy["missing"]:
+                    print(f"   NOTE: {len(discrepancy['missing'])} NO_REL toponyms missing "
                           f"from LLM's mentioned_only_places (using derived list)")
         # Override with derived list for consistency
         data["mentioned_only_places"] = derived_mentioned
@@ -1437,24 +1690,22 @@ def main():
         print(f"   Toponym relations: {n_toponyms} total "
               f"({n_visited} visited, {len(derived_mentioned)} NO_REL)")
 
+        # Build the structured validation report (persisted to metadata) from
+        # the same role/category mapping that validate_events() checked above.
+        validation_report = build_validation_report(data, mention_map, issues)
+        validation_report["mentioned_only_discrepancy"] = discrepancy
+
         # Warn about NEAR entities not assigned to any event's near_places
-        near_mids = {mid for mid, cat in toponym_relations.items() if cat == "NEAR"}
-        if near_mids:
-            assigned_near = set()
-            for ev in data.get("events", []):
-                for np_mid in ev.get("near_places", []):
-                    assigned_near.add(np_mid)
-                for sub in ev.get("sub_events", []):
-                    if isinstance(sub, dict):
-                        for np_mid in sub.get("near_places", []):
-                            assigned_near.add(np_mid)
-            unassigned = near_mids - assigned_near
-            if unassigned:
-                print(f"   WARNING: {len(unassigned)} NEAR toponyms not assigned "
-                      f"to any event's near_places: {sorted(unassigned)}")
+        unassigned = validation_report["unassigned_near"]
+        if unassigned:
+            print(f"   WARNING: {len(unassigned)} NEAR toponyms not assigned "
+                  f"to any event's near_places: {sorted(unassigned)}")
     elif not data.get("mentioned_only_places"):
         print("   WARNING: no toponym_relations and no mentioned_only_places "
               "in output")
+        validation_report = build_validation_report(data, mention_map, issues)
+    else:
+        validation_report = build_validation_report(data, mention_map, issues)
 
     # Save JSON
     json_dir = Path(output_json).parent
@@ -1482,6 +1733,8 @@ def main():
         think_mode_str = "true"
     elif think_mode_str is False:
         think_mode_str = "false"
+    elif think_mode_str is None:
+        think_mode_str = "default"
     with open(meta_path, 'w') as f:
         json.dump({
             "model": OLLAMA_MODEL,
@@ -1498,6 +1751,7 @@ def main():
             "num_toponym_relations": len(data.get("toponym_relations", {})),
             "num_entities": len(mention_map),
             "rdf_triples": len(rdf_graph),
+            "validation": validation_report,
         }, f, indent=2)
     print(f"   Metadata saved to: {meta_path}")
 

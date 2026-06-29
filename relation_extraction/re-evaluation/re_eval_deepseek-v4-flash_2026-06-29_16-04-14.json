@@ -1,0 +1,9 @@
+{
+  "source_text": "dsp_before",
+  "model": "deepseek-v4-flash",
+  "temperature": 0.0,
+  "think_mode": "default",
+  "inference_type": "cloud",
+  "datetime": "2026-06-29 16:04:14",
+  "duration_seconds": 345.6
+}

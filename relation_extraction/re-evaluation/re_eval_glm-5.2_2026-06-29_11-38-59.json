@@ -1,0 +1,9 @@
+{
+  "source_text": "1816_el_gs",
+  "model": "glm-5.2",
+  "temperature": 0.0,
+  "think_mode": "default",
+  "inference_type": "cloud",
+  "datetime": "2026-06-29 11:38:59",
+  "duration_seconds": 750.2
+}

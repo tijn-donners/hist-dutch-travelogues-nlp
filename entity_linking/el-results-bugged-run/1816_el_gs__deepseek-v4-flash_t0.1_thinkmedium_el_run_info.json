@@ -1,0 +1,20 @@
+{
+  "stats": {
+    "total_entities": 170,
+    "count_errors": 0,
+    "count_skipped": 0,
+    "count_linked_wd": 106,
+    "count_linked_gn": 48,
+    "count_linked_both": 34,
+    "count_linked_neither": 50
+  },
+  "duration": 8780.558053731918,
+  "model": "deepseek-v4-flash",
+  "temperature": 0.1,
+  "top_k": 3,
+  "think": "medium",
+  "inference_type": "cloud",
+  "epg_temp": 0.1,
+  "reranker_temp": 0.0,
+  "selection_temp": 0.0
+}

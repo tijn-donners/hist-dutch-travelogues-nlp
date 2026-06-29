@@ -1,0 +1,9 @@
+{
+  "source_text": "1816_el_gs",
+  "model": "deepseek-v4-flash",
+  "temperature": 0.0,
+  "think_mode": "default",
+  "inference_type": "cloud",
+  "datetime": "2026-06-28 22:30:04",
+  "duration_seconds": 208.9
+}

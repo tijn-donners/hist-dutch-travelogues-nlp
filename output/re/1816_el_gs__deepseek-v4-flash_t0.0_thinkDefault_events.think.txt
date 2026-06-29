@@ -1,0 +1,959 @@
+We moeten de tekst analyseren en alle reisevenementen extraheren volgens de ATO. De tekst is een reisverslag van een Groningse student in 1816. We moeten de gemarkeerde entiteiten gebruiken (mention_id's) en de gebeurtenissen modelleren.
+
+Eerst de tekst begrijpen: De brief begint met "Cassel den 7 July 1816". De reiziger beschrijft de reis van Paderborn naar Cassel, met tussenstops. Daarna beschrijft hij bezoeken in Cassel: Museum Fridericianum, bibliotheek, paleis Bellevue, marmeren bad, kerken, etc.
+
+We moeten alle events in chronologische volgorde zetten. De tekst heeft een flashback: "verplaats u weder naar Paderborn" en dan beschrijft hij de reis van Paderborn naar Cassel. Dus de eerste events zijn de translocatie van Paderborn naar Cassel, met tussenstops. Daarna de aankomst in Cassel en de verblijven/bezoeken.
+
+Laten we de tekst paragraaf voor paragraaf analyseren.
+
+Eerste deel: "Wy reden dan Donderdag zynde den 4 om 1 uur met Extrapost uit Paderborn..." tot "...alwaar wy om 5 uur in het logement de Kurfürst onze intrek namen." Dit is een grote translocatie van Paderborn naar Cassel, met via_points: Lichtenau, Ossendorf, Warburg, etc. Maar er zijn ook sub-stays: stilstand bij Dornhagen/Grondsteinheim, stop in Lichtenau, stop in Ossendorf, wandeling naar Warburg, overnachting in Warburg, volgende dag verder via Dalheim, etc. We moeten dit modelleren als een translocatie met sub-events voor de stops? Of aparte translocaties? De instructie zegt: "Elke translocatie moet een moved_from en moved_to hebben". Maar hier is het een lange reis met meerdere etappes. In de voorbeelden zagen we dat een translocatie via_points kan hebben en sub-events voor stops. In het voorbeeld "Rit van Cassel naar Göttingen" had het via_points en sub-events voor stops. Dus we kunnen de hele reis van Paderborn naar Cassel als één translocatie modelleren met via_points en sub-events voor de stops. Maar let op: er is een overnachting in Warburg en de volgende dag verder. Dat is een stay in Warburg. Ook de wandeling naar Warburg is een aparte translocatie? In de tekst: "ik met myne 3 Groninger reisgenoten in eene heerlyke avond naar Warburg, een groot uur van daar, wandelden". Dat is een aparte verplaatsing van Ossendorf naar Warburg. En de volgende dag "verlieten wy de volgende morgen Warburg" met een rytuig. Dus eigenlijk zijn er meerdere translocaties: 1) Paderborn naar Lichtenau (eerste station), 2) Lichtenau naar Ossendorf (tweede station), 3) Ossendorf naar Warburg (te voet), 4) Warburg naar Cassel (volgende dag). Maar de tekst beschrijft het als één doorlopende reis. In de voorbeelden werd een translocatie met via_points gebruikt voor meerdere tussenstops. Maar hier is er een overnachting en een verandering van transportmiddel. We moeten de instructie volgen: "Chronologische volgorde" en "Elke translocatie moet een moved_from en moved_to hebben". We kunnen de reis opsplitsen in logische segmenten.
+
+Laten we de tekst nauwkeurig lezen:
+
+- "Wy reden dan Donderdag zynde den 4 om 1 uur met Extrapost uit Paderborn" -> start translocatie van Paderborn.
+- "Zeer steil dalende reden wy om 3½ uur het in eene diepe vallei liggende stadje Lichtenau binnen" -> aankomst in Lichtenau (eerste station). Dit is een stop.
+- "Eindelyk reden wy even voor 5 uur van daar in een wagen als een doofpot" -> vertrek uit Lichtenau.
+- "Onder eene gestadige regen kwamen wy om 8 uur te Ossendorf zynde de tweede station aan" -> aankomst in Ossendorf.
+- "ik met myne 3 Groninger reisgenoten in eene heerlyke avond naar Warburg, een groot uur van daar, wandelden" -> wandeling van Ossendorf naar Warburg.
+- "Met een zeer goed rytuig en een span beste paarden van onze Kastelein uit het Gasthofe Desenburg verlieten wy de volgende morgen Warburg" -> vertrek uit Warburg.
+- "wy reden door het dorpje Dalheim ... tot West-Uffelen de derde en laatste station voor Cassel: hier aten wy in der haast, bestelden een ander rytuig en waren weldra op weg naar Cassel" -> via West-Uffelen.
+- "alwaar wy om 5 uur in het logement de Kurfürst onze intrek namen" -> aankomst in Cassel.
+
+Dus er zijn meerdere translocaties: Paderborn->Lichtenau, Lichtenau->Ossendorf, Ossendorf->Warburg (te voet), Warburg->West-Uffelen, West-Uffelen->Cassel. Maar de tekst beschrijft ook dat ze in Lichtenau en Ossendorf stops hadden. We kunnen deze als aparte translocaties modelleren, of als één translocatie met via_points en sub-events. In de voorbeelden werd een translocatie met via_points gebruikt voor meerdere tussenstops, maar daar waren de tussenstops geen overnachtingen. Hier is er een overnachting in Warburg, wat een stay is. Ook de wandeling naar Warburg is een aparte translocatie. Ik denk dat het beter is om de reis op te splitsen in meerdere translocaties, omdat er verschillende transportmiddelen zijn (Extrapost, wagen, wandelen, rytuig) en een overnachting. Laten we de instructie volgen: "Elke translocatie moet een moved_from en moved_to hebben". We kunnen de volgende translocaties identificeren:
+
+1. Translocation van Paderborn naar Lichtenau (met Extrapost, tijd: Donderdag 4 om 1 uur, aankomst 3½ uur)
+2. Translocation van Lichtenau naar Ossendorf (met wagen, tijd: vertrek voor 5 uur, aankomst 8 uur)
+3. Translocation van Ossendorf naar Warburg (te voet, wandelen, avond)
+4. Translocation van Warburg naar West-Uffelen (met rytuig, volgende morgen)
+5. Translocation van West-Uffelen naar Cassel (met rytuig, na haastig eten)
+
+Maar let op: in de tekst staat dat ze in West-Uffelen aten en een ander rytuig bestelden, dus dat is een stop. We kunnen West-Uffelen als via_point of als aparte translocatie? De laatste translocatie van West-Uffelen naar Cassel is apart.
+
+Daarnaast zijn er sub-stops: bij Dornhagen en Grondsteinheim stonden ze stil, maar dat is tijdens de eerste translocatie. Dat kunnen we als near_places of via_points? Ze stonden stil en keken, dus dat is een stop. In de voorbeelden werden stops als sub-events van type stay gemodelleerd. In het voorbeeld "Rit van Cassel naar Göttingen" hadden ze sub-events voor stops. Dus we kunnen voor elke translocatie sub-events maken voor de stops.
+
+Maar we moeten ook de tijdsspannen en transportmiddelen correct toewijzen.
+
+Laten we de entiteiten in de tekst identificeren. De tekst heeft veel gemarkeerde entiteiten. We moeten de mention_id's gebruiken. Ik zie in de tekst: [Paderborn](E53_Place, e5), [Paderborn](E53_Place, e11), [Paderborn](E53_Place, e17), [Paderborn](E53_Place, e19), [Paderborn](E53_Place, e29), [Paderborn](E53_Place, e34) - meerdere vermeldingen. We moeten de juiste gebruiken voor moved_from, etc. De eerste vermelding van Paderborn is e5, maar later e17 voor de specifieke vertrek. In de tekst: "Wy reden dan Donderdag zynde den 4 om 1 uur met Extrapost uit Paderborn" - dat is e17? Laten we de tekst nakijken: "Wy [reden](Mode_of_Transportation, e13) dan [Donderdag](E52_Time_Span, e14) zynde den 4 om [1 uur](E52_Time_Span, e15) met [Extrapost](Mode_of_Transportation, e16) uit [Paderborn](E53_Place, e17)" - dus e17 is de Paderborn waar ze uit vertrekken. Ook e5 is eerder genoemd in "niet in eene halve dag van Paderborn herwaarts zouden ryden" - dat is een andere vermelding. We moeten consistent zijn: gebruik de mention_id die in de context van het event staat.
+
+We moeten ook de tijdsspannen noteren: Donderdag (e14), den 4 (e15? eigenlijk "den 4" is een tijdsspan, maar er is geen aparte mention voor "den 4"? In de tekst staat: "zynde den 4" - dat is onderdeel van dezelfde zin. Er is [den 4](E52_Time_Span, e2) in de eerste alinea? Laten we de tekst opnieuw bekijken: De eerste alinea heeft "[Cassel](E53_Place, e2) den [7 July 1816](E52_Time_Span, e3)." en later "niet in [eene halve dag](E52_Time_Span, e4) van [Paderborn](E53_Place, e5) herwaarts zouden [ryden](Mode_of_Transportation, e6)" - dus e4 is "eene halve dag". Dan "wy zyn [dien nagt](E52_Time_Span, e7) fraay en wel te [Warburg](E53_Place, e8) gebleven" - e7 is "dien nagt". "niet voor de [volgende avond](E52_Time_Span, e9) [5 uuren](E52_Time_Span, e10) alhier gearriveerd" - e9 en e10. Dan "Wy [reden](Mode_of_Transportation, e13) dan [Donderdag](E52_Time_Span, e14) zynde den 4 om [1 uur](E52_Time_Span, e15) met [Extrapost](Mode_of_Transportation, e16) uit [Paderborn](E53_Place, e17)" - e14, e15. "Zeer steil dalende [reden](Mode_of_Transportation, e25) wy om [3½ uur](E52_Time_Span, e26) het ... [Lichtenau](E53_Place, e27) binnen" - e26. "hield ons hier meer dan [vijf vieren deel uur](E52_Time_Span, e31) op" - e31. "Eindelyk [reden](Mode_of_Transportation, e41) wy even voor [5 uur](E52_Time_Span, e42) van daar" - e42. "kwamen wy om [8 uur](E52_Time_Span, e59) te [Ossendorf](E53_Place, e60)" - e59. "in eene heerlyke [avond](E52_Time_Span, e69) naar [Warburg](E53_Place, e70)" - e69. "een [groot uur](E52_Time_Span, e71) van daar" - e71. "hebben [dien nagt](E52_Time_Span, e73) weder [doorgereden](Mode_of_Transportation, e74)" - e73. "Met een [zeer goed rytuig en een span beste paarden](Mode_of_Transportation, e79) van onze Kastelein uit het [Gasthofe Desenburg](E18_Physical_Thing, e80) verlieten wy [de volgende morgen](E52_Time_Span, e81) [Warburg](E53_Place, e82)" - e81. "alwaar wy om [5 uur](E52_Time_Span, e110) in het voortreflyk waarlyk vorstlyk [logement de Kurfürst](E18_Physical_Thing, e111) onze intrek namen" - e110.
+
+Dus we hebben veel tijdsspannen.
+
+Nu de events:
+
+Eerst de reis van Paderborn naar Cassel. Ik stel voor om de translocaties als volgt te modelleren:
+
+1. Translocation van Paderborn (e17) naar Lichtenau (e27) met Extrapost (e16), tijd: Donderdag (e14), den 4 (e15? eigenlijk "den 4" is niet apart gemarkeerd, maar e15 is "1 uur", e14 is "Donderdag", e26 is "3½ uur" voor aankomst. We kunnen time_span: [e14, e15] voor vertrek, en e26 voor aankomst? Maar time_span is voor het hele event. In voorbeelden werd time_span gebruikt voor de tijdsaanduidingen van het event. We kunnen e14, e15, e26 gebruiken. Maar e26 is de aankomsttijd, die hoort bij het event. Dus time_span: [e14, e15, e26]. Ook de stop bij Dornhagen en Grondsteinheim: "langen tyd stonden wy met het rytuig hier stil" - er is [langen tyd](E52_Time_Span, e23). Dat is een tijdsspan tijdens de translocatie. We kunnen dat als sub-event stay modelleren.
+
+2. Translocation van Lichtenau (e27) naar Ossendorf (e60) met wagen (e43? "in een wagen als een doofpot" - e43 is Mode_of_Transportation? In de tekst: "Eindelyk [reden](Mode_of_Transportation, e41) wy even voor [5 uur](E52_Time_Span, e42) van daar in een [wagen](Mode_of_Transportation, e43)" - dus e43 is de wagen. Tijd: e42 (5 uur) voor vertrek, e59 (8 uur) voor aankomst. Ook de stop in Ossendorf? Ze kwamen aan en hadden problemen, maar dat is een stop. We kunnen sub-event stay voor Ossendorf.
+
+3. Translocation van Ossendorf (e60) naar Warburg (e70) te voet (wandelen, e72: "wandelden" is Mode_of_Transportation? In de tekst: "ik met myne 3 Groninger reisgenoten in eene heerlyke [avond](E52_Time_Span, e69) naar [Warburg](E53_Place, e70), een [groot uur](E52_Time_Span, e71) van daar, [wandelden](Mode_of_Transportation, e72)" - dus e72 is wandelen. Tijd: e69 (avond), e71 (groot uur). Geen specifieke aankomsttijd.
+
+4. Translocation van Warburg (e82) naar West-Uffelen (e96) met rytuig (e79: "zeer goed rytuig en een span beste paarden" - e79 is Mode_of_Transportation). Tijd: e81 (de volgende morgen). Ook via_points: Dalheim (e84), Ehrings (e89), Libenau (e90), Ober (e92), Nider Lichtingen (e93). En ze passeerden Meinbids (e100) en Kalken (e101) later? Dat is na West-Uffelen? Eigenlijk: "kort aan de weg zagen wy ... ter naauwernood waren wy Meinbids en Kalken gepasseerd toen wy door zulk eene hevige stortregen wierden verfrist" - dat is na West-Uffelen, dus in de translocatie van West-Uffelen naar Cassel. Dus we moeten de via_points correct toewijzen.
+
+5. Translocation van West-Uffelen (e96) naar Cassel (e109? of e2? e2 is Cassel in de aanhef, maar e109 is "de stad Cassel zelve" en e112, e113, etc. We gebruiken e109 voor aankomst? In de tekst: "kort daarop de stad [Cassel](E53_Place, e109) zelve, alwaar wy om [5 uur](E52_Time_Span, e110) in het [logement de Kurfürst](E18_Physical_Thing, e111) onze intrek namen." Dus moved_to is e109 (Cassel) of e111? Het logement is een gebouw, maar de translocatie eindigt in Cassel. We kunnen e109 als moved_to gebruiken. Tijd: e110 (5 uur). Transportmiddel: e98? "bestelden een ander [rytuig](Mode_of_Transportation, e98) en waren weldra op weg" - dus e98 is het rytuig. Ook via_points: Meinbids (e100), Kalken (e101). En near_places: Hercules (e104), octogoon (e105), Wilhelmhohe (e106) - "lang voor wy Cassel bereikten zagen wy de Hercules op de octogoon van de Wilhelmhohe" - dat is near_places.
+
+Nu de stops: Tijdens de eerste translocatie stonden ze stil bij Dornhagen en Grondsteinheim. Dat is een stay sub-event. Ook in Lichtenau hadden ze een oponthoud (meer dan vijf vieren deel uur). In Ossendorf hadden ze ook een oponthoud. In Warburg overnachtten ze. In West-Uffelen aten ze haastig. Deze kunnen we als sub-events van de translocaties modelleren, of als aparte stays? In de voorbeelden werden stops als sub-events van de translocatie gemodelleerd. Dus we kunnen voor elke translocatie sub-events maken voor de stops.
+
+Maar let op: de wandeling van Ossendorf naar Warburg is een aparte translocatie, en de overnachting in Warburg is een stay die na aankomst plaatsvindt. We kunnen de overnachting als een stay event modelleren, falls_within de translocatie? Of apart? In het voorbeeld "Rit van Cassel naar Göttingen" hadden ze sub-events voor stops, maar die stops waren kort. Hier is de overnachting een lang verblijf. Ik denk dat we de overnachting als een apart stay event kunnen modelleren, niet als sub-event van de translocatie, omdat het een aparte activiteit is. Maar de instructie zegt: "stay: Een verblijf op een locatie (overnachting, maaltijd, rustpauze)." Het kan een top-level event zijn. In de chronologie: na aankomst in Warburg (via wandeling) hebben ze een stay (overnachting). Dan de volgende dag vertrekken ze. Dus we kunnen de stay als apart event zetten.
+
+Laten we de events in chronologische volgorde zetten:
+
+1. Translocation: Paderborn (e17) -> Lichtenau (e27) met Extrapost (e16), tijd: e14, e15, e26. Sub-events: stop bij Dornhagen/Grondsteinheim (stay), stop in Lichtenau (stay). Ook via_points? Ze passeerden Hoxenberg (e18) en 7 bergen (e20) - dat zijn via_points? "even buiten de stad wanneer men de Hoxenberg beklommen heeft" - dat is een punt. "successivelyk komt men over 7 bergen heen" - dat zijn via_points. Ook Dornhagen (e21) en Grondsteinheim (e22) zijn plaatsen die ze zagen, maar ze stonden stil, dus die zijn near_places? Ze stonden stil en keken, dus die zijn near_places van de translocatie? In de tekst: "geheel in de diepte zagen wy ... het dorpje Dornhagen & een weinig verder ... Grondsteinheim ... langen tyd stonden wy met het rytuig hier stil" - dus ze waren op een punt en keken naar die plaatsen. Dat zijn near_places. Ook Hoxenberg en bergen zijn via_points? Hoxenberg is een berg die ze beklommen, dus THRU. 7 bergen zijn ook THRU. We kunnen via_points: e18, e20. near_places: e21, e22.
+
+2. Translocation: Lichtenau (e27) -> Ossendorf (e60) met wagen (e43), tijd: e42, e59. Sub-events: stop in Lichtenau? Nee, de stop in Lichtenau was al in de vorige translocatie. Hier is de translocatie van Lichtenau naar Ossendorf. Er is geen extra stop beschreven, behalve dat ze in Ossendorf aankwamen en daar problemen hadden. Dus sub-event voor de stop in Ossendorf? Die stop is eigenlijk de aankomst en het oponthoud. We kunnen een stay sub-event voor Ossendorf maken.
+
+3. Translocation: Ossendorf (e60) -> Warburg (e70) te voet (e72), tijd: e69, e71. Geen sub-events.
+
+4. Stay: Overnachting in Warburg (e70) in Gasthofe Desenburg? In de tekst: "zeer goed gegeten, en schoon slegte bedden hebbende heerlyk geslapen hebben." Ze logeerden in Warburg, maar niet specifiek in een genoemd gebouw. Er is [Gasthofe Desenburg](E18_Physical_Thing, e80) maar dat is in Warburg? In de volgende zin: "Met een zeer goed rytuig en een span beste paarden van onze Kastelein uit het Gasthofe Desenburg verlieten wy de volgende morgen Warburg" - dus het Gasthofe Desenburg is in Warburg. Dus de stay is in Warburg, on_or_within e80. Tijd: e7? "dien nagt" is e7, maar e7 is van de eerste nacht? In de tekst: "wy zyn dien nagt fraay en wel te Warburg gebleven" - dat is e7. Ook e73? "hebben dien nagt weder doorgereden" - dat is een andere. We gebruiken e7 voor de overnachting in Warburg? Laten we de context: "wy zyn dien nagt fraay en wel te Warburg gebleven" - dat is de nacht van de reis? Eigenlijk: ze vertrokken uit Paderborn op Donderdag, kwamen in Lichtenau, Ossendorf, wandelden naar Warburg, en bleven daar die nacht. Dus de nacht is dezelfde als "dien nagt" (e7). Ook "de volgende morgen" (e81) is de volgende dag. Dus time_span: e7.
+
+5. Translocation: Warburg (e82) -> West-Uffelen (e96) met rytuig (e79), tijd: e81. Via_points: Dalheim (e84), Ehrings (e89), Libenau (e90), Ober (e92), Nider Lichtingen (e93). Ook near_places: Desenberg (e85) - "latende den Desenberg aan de linkerhand liggen" - dat is near_places. Ook "schilderachtig was het gezicht dat wy van hier rondom en voornaamlyk naar den kant van Warburg hadden" - dat is een uitzicht, maar Warburg is al achter hen. We kunnen near_places: e85.
+
+6. Stay: Eten in West-Uffelen (e96) - "hier aten wy in der haast" - dat is een stay sub-event? Of apart? We kunnen het als sub-event van de translocatie modelleren, of als aparte stay. In de translocatie van Warburg naar Cassel is West-Uffelen een via_point? Ze stopten daar om te eten. Dus we kunnen een sub-event stay voor West-Uffelen maken.
+
+7. Translocation: West-Uffelen (e96) -> Cassel (e109) met rytuig (e98), tijd: e110. Via_points: Meinbids (e100), Kalken (e101). Near_places: Hercules (e104), octogoon (e105), Wilhelmhohe (e106) - "lang voor wy Cassel bereikten zagen wy de Hercules op de octogoon van de Wilhelmhohe" - dat is near_places.
+
+8. Stay: Aankomst in Cassel en intrek in logement de Kurfürst (e111) - dat is een stay event. Tijd: e110. took_place_at: e109? of e111? Het logement is een gebouw, dus on_or_within e111, took_place_at Cassel (e109). We kunnen dit als een stay modelleren.
+
+Na aankomst in Cassel begint de beschrijving van bezoeken. De tekst: "Ik zal maar een aanvang maken met gemeld museum & om u een zeer flaauwe schets ervan te geven uit iedere Kamer het een en ander opnoemen..." Dus er volgen indoor_tours in het Museum Fridericianum, bibliotheek, paleis Bellevue, marmeren bad, kerken, etc.
+
+We moeten deze bezoeken modelleren als indoor_tour, outdoor_tour, stay events.
+
+Eerst het Museum Fridericianum (e115, e118). De beschrijving: "Voortby den ingang in het eerste vertrek vonden wy ... De Tweede Kamer ... derde Kamer ... van daar kwamen wy in een soort van galery ... Agter deeze zaalen is ... Na nog eene kamer ... bragt men ons in een vertrek ... Dan wat wy eigenlyk in de daar aangrenzende kamer zagen ... Hiernaast was een vertrek ... zoo waren wy tot de laatste kamer beneden gekomen ... Nu bleef ons alleen boven nog twee kamers overig ... Eindelyk aan de laatste zaal gekomen ..." Dit zijn meerdere kamers. We moeten een indoor_tour event maken voor het museumbezoek, met sub-events voor elke kamer/vertrek. De kamers hebben mention_id's: [het eerste vertrek](E53_Place, e119), [Tweede Kamer](E53_Place, e127), [derde Kamer](E53_Place, e132), [galery door eene ry van zuilen ondersteund](E53_Place, e143), [vestibule](E53_Place, e144), [kamer](E53_Place, e160) met versteeningen, [vertrek](E53_Place, e164) met oude penningen, [kamer](E53_Place, e170) met pretiosa, [vertrek](E53_Place, e176) met klokken, [laatste kamer](E53_Place, e183) beneden, [twee kamers](E53_Place, e185) boven, [laatste zaal](E53_Place, e190). Ook de [boekery](E53_Place, e194) is in hetzelfde gebouw? "thans echter moet gy my naar de boekery vergezellen in het zelve gebouw voorhanden." Dus de bibliotheek is in hetzelfde gebouw. Dat wordt apart beschreven na het museum. Dus we kunnen het museumbezoek als één indoor_tour met sub-events voor elke kamer, en de bibliotheek als een apart sub-event? Of als apart top-level event? De instructie: "Bibliotheek in HETZELFDE gebouw als museum → sub-event van het museumbezoek." Dus de bibliotheek is een sub-event van het museumbezoek. Ook de galery en vestibule zijn onderdelen.
+
+We moeten ook de viewed_artifacts toevoegen: vogeleyeren (e120), houtbibliotheek (e122), stam van lauwrierboom (e125), wasvruchten (e126), opgezette vogels (e128), Casuarus (e129), paradysvogels (e130), viervoetige dieren (e133), olyphant (e134), leeuw (e136), tyger (e137), Kaapsche ezel (e138), luipaard (e139), drommedaris (e140), wild zwyn (e141), rendier (e142), antiquen (e147), Venus de Medicis (e149), twee worstelaars (e150), schoone van Kurk nagemaakte ruines (e152), Aristoteles (e156), troon (e159), versteeningen (e161), mineralen (e162), schelpen (e163), oude penningen (e165), kleine beeldjes (e166), antiquiteiten (e167), edelgesteenten (e168), Onyx (e169), pretiosa (e171), dingen uit barnsteen (e172), vesting Rheinfels als mozaiek (e175), klokken (e177), pendules (e178), horlogies (e179), schilderyen (e181), beeld met pistool (e182), mosaiek (e184), oude wapentuigen (e187), zwaarden (e188), 19 landgraven (e191), stoelen (e192). Ook de bibliotheek heeft catalogus (e198, e199, e200, e201) en Mnemosyne (e197). Die zijn viewed_artifacts.
+
+We moeten elke kamer een sub-event geven. Lijst van kamers in volgorde:
+- Eerste vertrek (e119)
+- Tweede Kamer (e127)
+- Derde Kamer (e132)
+- Galery/vestibule (e143, e144) - eigenlijk twee? "een soort van galery door eene ry van zuilen ondersteund hetgeen het eigenlyke vestibule van het geheele gebouw is" - dus één ruimte. We kunnen e143 als kamer gebruiken.
+- Kamer met versteeningen (e160)
+- Vertrek met oude penningen (e164)
+- Kamer met pretiosa (e170)
+- Vertrek met klokken (e176)
+- Laatste kamer beneden (e183)
+- Twee kamers boven (e185) - dit zijn twee kamers, maar ze worden samen beschreven? "Nu bleef ons alleen boven nog twee kamers overig om te zien" - de eerste was met oude wapentuigen, de laatste zaal met landgraven. Dus we kunnen twee sub-events: een voor de wapenkamer (e185? e185 is "twee kamers" als geheel? Er is geen aparte mention voor de eerste kamer boven. We kunnen e185 gebruiken voor de eerste kamer? Of we maken een sub-event voor de wapenkamer en een voor de laatste zaal (e190). De laatste zaal is apart gemarkeerd: [laatste zaal](E53_Place, e190). Dus we hebben:
+   - Kamer met oude wapentuigen (geen eigen mention, maar we kunnen e185 gebruiken als de kamer)
+   - Laatste zaal (e190)
+
+Daarnaast is er de bibliotheek (e194) in hetzelfde gebouw. Die wordt apart beschreven na het museum. Dus we maken een sub-event voor de bibliotheek.
+
+Ook is er een "kamer" (e160) met versteeningen, etc. We moeten alle kamers in volgorde zetten.
+
+We moeten ook de sections relaties leggen: elke kamer is een section van het museum (e115 of e118? Het museum is E18_Physical_Thing, e115 is "Museum Fridericianum", e118 is "museum". We gebruiken e115.
+
+Nu het paleis Bellevue (e203) en de schilderijencollectie. Dat is een apart gebouw. Dus een apart indoor_tour event. Daarin worden kamers genoemd? "wy zagen er schoone stukken ... de opzichter verhaalde ons ... Dit paleis Belle vue is voor de Koningin bestemd ... de meubels ... eene gallery van verschillende zoorten marmor deed ook een goed effect." Er worden geen specifieke kamers genoemd, behalve "gallery" (e213) en "danszaal" (e216) die uit de ruines van de schildergallery ontstond. Maar dat is historisch. De beschrijving is meer algemeen. We kunnen dit als één indoor_tour modelleren, met viewed_artifacts: schoone stukken (e204, e205, e206, e207, e209, e211, e218, e220, e221, e225, e226, e234, e240, e243). Ook de meubels (e225) en spiegels (e226). En de Cleopatra (e218) etc.
+
+Daarna het marmeren bad (e228) in de Orangerie (e229). Dat is een apart gebouw. "Doch wilt gy een meesterstuk der kunst zien gaat dan naar het zoogenaamde marmeren bad voorin de Orangerie" - dus een indoor_tour. Het bad zelf is een vertrek (e231) met vloeren, muren, etc. We kunnen een indoor_tour maken met sub-event voor het vertrek? Het is één ruimte. Ook de kanonkogel (e240) en de woorden (e244). viewed_artifacts: e234, e240, e243.
+
+Daarna de Aue of Aue-Garten (e246, e247) - dat is een outdoor_tour. "Naby dit gebouw vind men de Aue of Aue-Garten zynde een groote lap gronds ... eene lange linden allee ... eene ontzetten groote vyver" - dus een outdoor_tour met sub-events? De laan (e248) en vyver (e249) zijn onderdelen. We kunnen een outdoor_tour maken met sub-events voor de laan en de vyver.
+
+Daarna de kerken: "Dan zoo zullen nu ook de kerken wel eens aan de beurt komen althans die geene welke wy zagen, in de eerste plaats de schoone Roomsche kerk vlak over ons logement gelegen." Ze bezochten meerdere kerken: Roomsche kerk (e251), Brüder (e265), Domkerk (e266). Dat zijn aparte gebouwen, dus aparte indoor_tour events. Voor de Roomsche kerk wordt een beschrijving gegeven van de binnenkant: koepel, kolommen, galery, orgel, hoogaltaar, schilderyen. Dat is een indoor_tour. Voor de Brüder en Domkerk worden alleen genoemd, maar de Domkerk heeft tombes (e267) en schilden (e268). We kunnen voor elk een indoor_tour maken.
+
+Daarna de Kweekschool (e272) - "Van de Kweekschool voor onderwyzers ... zal ik niets melden dan dat wy thans 32 Seminaristen vonden" - ze hebben het bezocht? Het lijkt erop dat ze er geweest zijn, want ze spreken met de directeur. Dus een indoor_tour.
+
+Daarna de Comedie (e276) - "by gelegenheid dat wy in de Comedie de maitres en eenige onechte kinderen van den Vorst in eene loge aan het toneel zagen zitten" - dus een bezoek aan de schouwburg. Dat is een indoor_tour.
+
+Daarna het observatorium (e283) - "hebben wy tot nu toe om verschillende redenen niet kunnen zien" - dus geen bezoek, alleen genoemd. Dus NO_REL.
+
+Daarna de stad in het algemeen: pleinen, straten, etc. Dat zijn outdoor_tours? "Zoo verre ik weet heb ik nu Cassel met u rondgeweest" - dat is een samenvatting. Er worden pleinen genoemd: Leipsicher plein (e292), paradeplaats (e294), Kasern plaats (e295), Frederiksplein (e298), Koningsplein (e300), Karelsplein (e301). Ook de Wilhelmsbrug (e289). En straten: Koningsstraat (e309), Bellevue straat (e310). Dit zijn beschrijvingen van de stad, maar de reiziger heeft deze pleinen waarschijnlijk bezocht tijdens zijn verblijf. We kunnen een outdoor_tour maken voor een wandeling door Cassel, met sub-events voor de pleinen? Of aparte events? De tekst zegt: "Zoo verre ik weet heb ik nu Cassel met u rondgeweest" - dus het is een algemene rondleiding. We kunnen één outdoor_tour event maken voor de stadswandeling, met sub-events voor de verschillende pleinen en straten. Maar de pleinen zijn E53_Place, geen gebouwen. We kunnen sub-events van type outdoor_tour voor elk plein? Of gewoon mentions_places? De instructie: "outdoor_tour: Een wandeling door park, tuin, stad, laan, of ander buitenlocatie. Kan sub-events hebben voor beschreven delen." Dus we kunnen een outdoor_tour maken voor de stadswandeling, met sub-events voor elk plein of straat. Maar de tekst beschrijft ze in één alinea. We kunnen ook een apart outdoor_tour voor de Wilhelmsbrug? Laten we de volgorde volgen: na de kerken en kweekschool en comedie, dan de algemene beschrijving. Het is niet duidelijk of deze bezoeken op dezelfde dag waren. We kunnen ze als aparte events modelleren.
+
+We moeten ook de tijdsspannen noteren. Er zijn tijdsspannen voor de reis, maar voor de bezoeken in Cassel zijn er geen expliciete tijden, behalve "deezen middag" (e107) voor de Hercules, maar dat is tijdens de reis. In Cassel zelf: "wy zagen" etc. Geen tijden. Dus time_span null.
+
+Nu de toponym_relations: we moeten alle E53_Place en E18_Physical_Thing entiteiten classificeren. Er zijn veel. We moeten voor elke entiteit bepalen of de reiziger er IN was, NEAR, THRU, TO, FROM, of NO_REL. Voor de reis: Paderborn (e17) is FROM, Lichtenau (e27) is TO voor de eerste translocatie, maar ook THRU? Ze gingen er binnen, dus TO. Ossendorf (e60) is TO voor de tweede translocatie, Warburg (e70) is TO voor de derde, West-Uffelen (e96) is TO voor de vierde, Cassel (e109) is TO voor de vijfde. Maar ook via_points: Dalheim (e84) is THRU, Ehrings (e89) THRU, etc. Near_places: Dornhagen (e21) NEAR, Grondsteinheim (e22) NEAR, Desenberg (e85) NEAR, Hercules (e104) NEAR, etc. Voor de bezoeken: Museum Fridericianum (e115) is IN, de kamers zijn IN, paleis Bellevue (e203) IN, marmeren bad (e228) IN, kerken IN, etc. Sommige plaatsen worden alleen genoemd: Parys (e117) is NO_REL, Tivoli (e154) NO_REL, Heilige Land (e189) NO_REL, Franryk (e305) NO_REL, etc.
+
+We moeten consistent zijn: elke entiteit die in een event-role voorkomt, moet de juiste categorie hebben.
+
+Laten we beginnen met het opstellen van de events. We zullen de events in chronologische volgorde zetten.
+
+Eerst de reis van Paderborn naar Cassel. We splitsen in meerdere translocaties.
+
+Event 1: Translocation van Paderborn (e17) naar Lichtenau (e27) met Extrapost (e16). Tijd: e14 (Donderdag), e15 (1 uur), e26 (3½ uur). Sub-events: stop bij Dornhagen/Grondsteinheim (stay), stop in Lichtenau (stay). Via_points: Hoxenberg (e18), 7 bergen (e20). Near_places: Dornhagen (e21), Grondsteinheim (e22). Ook "langen tyd" (e23) is tijdsspan voor de stop. We maken sub-events:
+- RS0001.RS0001: Stay bij Dornhagen/Grondsteinheim. took_place_at? Ze stonden stil op een punt, niet in een gebouw. De locatie is de weg? We kunnen took_place_at gebruiken voor de plaats waar ze stonden? Er is geen entiteit voor die plek. We kunnen het als een stay zonder specifieke locatie? Of we gebruiken de dichtstbijzijnde plaats? In de tekst: "geheel in de diepte zagen wy ... het dorpje Dornhagen & ... Grondsteinheim" - ze waren op een berg. We kunnen de stay koppelen aan de translocatie, maar zonder took_place_at. In de voorbeelden hadden sub-events van translocaties took_place_at voor de via_points. Hier is er geen via_point voor de stop. We kunnen het sub-event een took_place_at geven van de locatie waar ze waren? Er is geen entiteit. Misschien kunnen we het weglaten? Of we gebruiken de berg? Hoxenberg (e18) is een via_point, maar ze waren er al voorbij? "even buiten de stad wanneer men de Hoxenberg beklommen heeft" - dat is het begin. De stop was later. We kunnen het sub-event een lege took_place_at geven? In de voorbeelden hadden sub-events van translocaties took_place_at voor de via_points. Hier is het een stop zonder specifieke plaats. We kunnen het sub-event overslaan? Maar de tekst beschrijft het uitgebreid. We kunnen een stay event maken met took_place_at null, maar dat is niet ideaal. Of we gebruiken de bergen? Laten we de instructie volgen: "stay: Een verblijf op een locatie (overnachting, maaltijd, rustpauze)." Ze stonden stil, dus een rustpauze. De locatie is de weg, maar er is geen entiteit. We kunnen het sub-event een label geven en geen took_place_at. In de JSON is took_place_at verplicht? Het kan null zijn. In de voorbeelden hadden sub-events van translocaties took_place_at voor de via_points. Hier is het geen via_point. We kunnen het sub-event een id geven en falls_within, maar geen took_place_at. Laten we het doen.
+
+- RS0001.RS0002: Stay in Lichtenau. took_place_at: e27 (Lichtenau). Tijd: e31 (vijf vieren deel uur). Ook e42? Nee, e42 is vertrek. We gebruiken e31.
+
+Event 2: Translocation van Lichtenau (e27) naar Ossendorf (e60) met wagen (e43). Tijd: e42 (5 uur), e59 (8 uur). Sub-event: stay in Ossendorf? Ze hadden oponthoud in Ossendorf. We maken sub-event RS0002.RS0001: Stay in Ossendorf. took_place_at: e60. Tijd: e31? Nee, e31 was in Lichtenau. In Ossendorf was er ook oponthoud, maar geen specifieke tijdsspan. We kunnen null.
+
+Event 3: Translocation van Ossendorf (e60) naar Warburg (e70) te voet (e72). Tijd: e69 (avond), e71 (groot uur). Geen sub-events.
+
+Event 4: Stay in Warburg (e70) in Gasthofe Desenburg (e80). Tijd: e7 (dien nagt). Ook e73? e73 is "dien nagt" voor de anderen die doorreden. We gebruiken e7.
+
+Event 5: Translocation van Warburg (e82) naar West-Uffelen (e96) met rytuig (e79). Tijd: e81 (de volgende morgen). Via_points: Dalheim (e84), Ehrings (e89), Libenau (e90), Ober (e92), Nider Lichtingen (e93). Near_places: Desenberg (e85). Sub-event: geen stop? Ze hadden geen stop tot West-Uffelen.
+
+Event 6: Stay in West-Uffelen (e96) - eten. Tijd: geen specifiek. We maken sub-event van translocatie? Of apart? Laten we het als sub-event van de translocatie van Warburg naar Cassel modelleren, omdat het een tussenstop is. Maar we hebben de translocatie van Warburg naar West-Uffelen en dan van West-Uffelen naar Cassel. Dus de stop in West-Uffelen is tussen deze twee translocaties. We kunnen het als een apart stay event modelleren tussen de translocaties. Of we kunnen de translocatie van Warburg naar Cassel als één translocatie met via_point West-Uffelen en sub-event stay. In de tekst: "wy reden ... tot West-Uffelen de derde en laatste station voor Cassel: hier aten wy in der haast, bestelden een ander rytuig en waren weldra op weg naar Cassel" - dus West-Uffelen is een station waar ze stopten. Dus we kunnen de translocatie van Warburg naar Cassel als één translocatie modelleren met via_points: West-Uffelen (e96), Meinbids (e100), Kalken (e101), en sub-event stay in West-Uffelen. Dat is consistent met de eerdere translocaties die ook via_points hadden. Laten we dat doen: we combineren de translocaties van Warburg naar West-Uffelen en West-Uffelen naar Cassel in één translocatie van Warburg (e82) naar Cassel (e109) met via_points: West-Uffelen (e96), Meinbids (e100), Kalken (e101). En sub-event: stay in West-Uffelen (eten). Ook near_places: Desenberg (e85) en Hercules (e104), octogoon (e105), Wilhelmhohe (e106). Maar Desenberg was tijdens het eerste deel, Hercules tijdens het laatste. We kunnen beide near_places toevoegen.
+
+Dus we hebben:
+
+Event 5: Translocation van Warburg (e82) naar Cassel (e109) met rytuig (e79 voor eerste deel? e98 voor tweede? Er zijn twee verschillende rytuigen: van Warburg naar West-Uffelen met e79, en van West-Uffelen naar Cassel met e98. We kunnen mode_of_transportation niet meerdere hebben. In de voorbeelden had een translocatie één mode_of_transportation. Hier zijn er twee. We kunnen de translocatie splitsen in twee: Warburg->West-Uffelen en West-Uffelen->Cassel. Dat is logischer, omdat er een wissel van rytuig was. Laten we teruggaan naar de splitsing.
+
+We hadden al een translocatie van Warburg naar West-Uffelen (event 5) en dan een stay in West-Uffelen (event 6) en dan translocatie van West-Uffelen naar Cassel (event 7). Dat is beter.
+
+Dus:
+
+Event 5: Translocation van Warburg (e82) naar West-Uffelen (e96) met rytuig (e79). Tijd: e81. Via_points: Dalheim (e84), Ehrings (e89), Libenau (e90), Ober (e92), Nider Lichtingen (e93). Near_places: Desenberg (e85).
+
+Event 6: Stay in West-Uffelen (e96) - eten. Tijd: geen. took_place_at: e96. on_or_within? Geen gebouw.
+
+Event 7: Translocation van West-Uffelen (e96) naar Cassel (e109) met rytuig (e98). Tijd: e110 (5 uur). Via_points: Meinbids (e100), Kalken (e101). Near_places: Hercules (e104), octogoon (e105), Wilhelmhohe (e106).
+
+Event 8: Stay in Cassel - intrek in logement de Kurfürst (e111). took_place_at: e109 (Cassel), on_or_within: e111. Tijd: e110.
+
+Nu de bezoeken in Cassel. We moeten ze in de volgorde van de tekst zetten. De tekst beschrijft eerst het museum, dan bibliotheek, dan paleis Bellevue, dan marmeren bad, dan Aue, dan kerken, dan kweekschool, dan comedie, dan algemene stadswandeling. We maken voor elk een event.
+
+Event 9: indoor_tour: Bezoek aan Museum Fridericianum (e115). took_place_at: Cassel (e109? of e2? We gebruiken e109 voor Cassel). on_or_within: e115. Sub_events: alle kamers. We moeten de kamers in volgorde zetten. Lijst van kamers met hun viewed_artifacts:
+
+- Eerste vertrek (e119): viewed_artifacts: vogeleyeren (e120), houtbibliotheek (e122), stam van lauwrierboom (e125), wasvruchten (e126). Ook "behalven veele dingen" - geen specifieke.
+- Tweede Kamer (e127): viewed_artifacts: opgezette vogels (e128), Casuarus (e129), paradysvogels (e130).
+- Derde Kamer (e132): viewed_artifacts: viervoetige dieren (e133), olyphant (e134), leeuw (e136), tyger (e137), Kaapsche ezel (e138), luipaard (e139), drommedaris (e140), wild zwyn (e141), rendier (e142).
+- Galery/vestibule (e143): viewed_artifacts: antiquen (e147), Venus de Medicis (e149), twee worstelaars (e150), schoone van Kurk nagemaakte ruines (e152), Aristoteles (e156). Ook "veele stukken" (e147) en "antiquen" (e151) - e151 is ook een entiteit? In de tekst: "onder de antiquen waren zeer schoone van Kurk nagemaakte ruines" - e151 is "antiquen". We voegen e151 toe.
+- Kamer met versteeningen (e160): viewed_artifacts: versteeningen (e161), mineralen (e162), schelpen (e163).
+- Vertrek met oude penningen (e164): viewed_artifacts: oude penningen (e165), kleine beeldjes (e166), antiquiteiten (e167), edelgesteenten (e168), Onyx (e169).
+- Kamer met pretiosa (e170): viewed_artifacts: pretiosa (e171), dingen uit barnsteen (e172), vesting Rheinfels als mozaiek (e175).
+- Vertrek met klokken (e176): viewed_artifacts: klokken (e177), pendules (e178), horlogies (e179), schilderyen (e181), beeld met pistool (e182).
+- Laatste kamer beneden (e183): viewed_artifacts: mosaiek (e184).
+- Eerste kamer boven (geen eigen mention, we gebruiken e185? e185 is "twee kamers" als geheel. We kunnen een sub-event maken met id RS0009.RS0010 en label "Kamer met oude wapentuigen". viewed_artifacts: oude wapentuigen (e187), zwaarden (e188). We kunnen took_place_at: e185? Maar e185 is de twee kamers. We kunnen sections: {room: e185, building: e115} maar e185 is een E53_Place? In de tekst: "Nu bleef ons alleen boven nog [twee kamers](E53_Place, e185) overig" - dus e185 is een E53_Place die de twee kamers als geheel aanduidt. We kunnen het gebruiken voor de eerste kamer, en de laatste zaal (e190) apart.
+- Laatste zaal (e190): viewed_artifacts: 19 landgraven (e191), stoelen (e192).
+
+Daarna de bibliotheek (e194) in hetzelfde gebouw. We maken sub-event RS0009.RS0012: indoor_tour voor bibliotheek. took_place_at: e194? De bibliotheek is een E53_Place? In de tekst: "de boekery" is E53_Place (e194). on_or_within: e115? Het is in hetzelfde gebouw. viewed_artifacts: Mnemosyne (e197), catalogus (e198, e199, e200, e201). Ook "het locaal" (e196) is de ruimte, maar dat is dezelfde als e194? We kunnen sections: {room: e194, building: e115}.
+
+We moeten ook de sections voor elke kamer toevoegen: {room: mention_id, building: e115}.
+
+Event 10: indoor_tour: Bezoek aan paleis Bellevue (e203). took_place_at: Cassel (e109), on_or_within: e203. Sub_events? Er worden geen aparte kamers genoemd, behalve de gallery (e213) en danszaal (e216) die historisch zijn. De beschrijving is algemeen. We kunnen één event maken met viewed_artifacts: schoone stukken (e204, e205, e206, e207, e209, e211, e218, e220, e221, e225, e226, e234, e240, e243). Ook de meubels (e225) en spiegels (e226). En de Cleopatra (e218) etc. Geen sub-events.
+
+Event 11: indoor_tour: Bezoek aan marmeren bad (e228) in de Orangerie (e229). took_place_at: Cassel (e109), on_or_within: e228. Sub_events? Het bad is een vertrek (e231). We kunnen een sub-event maken voor het vertrek. viewed_artifacts: vercierselen (e234), kanon kogel (e240), uitgeschotene hoek (e243). Ook de woorden (e244) zijn een F2_Expression? e244 is E52_Time_Span? In de tekst: "de woorden [30 September 1813](E52_Time_Span, e244) geplaatst" - dat is een tijdsspan, geen artifact. Dus niet. We maken sub-event RS0011.RS0001: indoor_tour voor het badvertrek. took_place_at: e231, on_or_within: e228. sections: {room: e231, building: e228}.
+
+Event 12: outdoor_tour: Bezoek aan Aue of Aue-Garten (e246, e247). took_place_at: Cassel (e109). Sub_events: laan (e248) en vyver (e249). We maken sub-events:
+- RS0012.RS0001: outdoor_tour voor de linden allee (e248). took_place_at: e248.
+- RS0012.RS0002: outdoor_tour voor de vyver (e249). took_place_at: e249.
+
+Event 13: indoor_tour: Bezoek aan Roomsche kerk (e251). took_place_at: Cassel (e109), on_or_within: e251. Sub_events? De kerk heeft onderdelen: koepel (e253), kolommen (e254), galery (e255), orgel (e256), hoogaltaar (e260), trappen (e261), schilderyen (e263). We kunnen sub-events maken voor de galery en het altaar? Of één event met viewed_artifacts. De instructie: "SUB-TOUR REGEL: Wanneer een indoor_tour 2 of meer afzonderlijk beschreven KAMERS, VERTREKKEN, ZALEN of SECTIES bevat, geef ELK onderdeel een eigen sub-event." Hier zijn het geen kamers maar onderdelen van de kerk. De galery (e255) is een E53_Place, de koepel (e253) is E18_Physical_Thing, etc. We kunnen sub-events maken voor de galery en het altaar? Laten we de tekst: "Zy bestaat uit een groot vierkant en eene daarmede verbonden ronden koepel, eene ry kolommen ondersteund eene rondgaande galery waarop het orgel geplaatst is: op deeze galery is eene ry colommen welke het koepelvormige dak dragen terwyl het marmeren hoogaltaar op drie circelvormige trappen midden in de koepel is, dit alles vereenigd met eenige goede schilderyen van Tischbein maken deeze kerk tot een der schoonste die ik gezien heb." Dit is een beschrijving van de architectuur, niet van aparte kamers. We kunnen het als één indoor_tour modelleren met viewed_artifacts: orgel (e256), hoogaltaar (e260), schilderyen (e263). Geen sub-events.
+
+Event 14: indoor_tour: Bezoek aan Brüder kerk (e265). took_place_at: Cassel, on_or_within: e265. Geen details, dus geen sub-events.
+
+Event 15: indoor_tour: Bezoek aan Domkerk (e266). took_place_at: Cassel, on_or_within: e266. viewed_artifacts: tombes (e267), schilden (e268), zevende schild (e271). Ook het opschrift (e270) is F2_Expression. Geen sub-events.
+
+Event 16: indoor_tour: Bezoek aan Kweekschool voor onderwyzers (e272). took_place_at: Cassel, on_or_within: e272. Geen details.
+
+Event 17: indoor_tour: Bezoek aan Comedie (e276). took_place_at: Cassel, on_or_within: e276. viewed_artifacts: loge (e277), toneel (e278) - die zijn E53_Place? e277 en e278 zijn E53_Place. We kunnen ze als sections? Of viewed_artifacts? Ze zijn geen artifacts. We kunnen ze als mentions_places? In de instructie: "viewed_artifacts" is voor F2_Expression, E19, E20, E31. E53_Place is geen artifact. Dus we kunnen ze niet in viewed_artifacts zetten. We kunnen ze als mentions_places? Er is een veld "mentions_places" in het event. In de voorbeelden werd dat niet gebruikt. We kunnen het weglaten. Of we kunnen sub-events maken voor de loge en het toneel? Maar het zijn geen kamers. Laten we het simpel houden: geen viewed_artifacts.
+
+Event 18: outdoor_tour: Stadswandeling door Cassel. took_place_at: Cassel (e109). Sub_events voor de pleinen en straten? De tekst noemt: Leipsicher plein (e292), paradeplaats (e294), Kasern plaats (e295), Frederiksplein (e298), Koningsplein (e300), Karelsplein (e301), Wilhelmsbrug (e289), Koningsstraat (e309), Bellevue straat (e310). Ook het coffyhuis (e296) met 4 bovenkamers (e297) - dat is een gebouw. We kunnen sub-events maken voor elk plein? Of één sub-event voor de wandeling? Laten we de instructie volgen: "Kan sub-events hebben voor beschreven delen." We kunnen voor elk genoemd plein een sub-event maken, maar dat zijn er veel. Ook de brug en straten. We kunnen ze groeperen. Laten we een sub-event maken voor de pleinen en een voor de straten? Of gewoon één outdoor_tour zonder sub-events, met mentions_places? In de voorbeelden hadden outdoor_tours sub-events voor laan en vyver. Hier is het een algemene beschrijving. Ik denk dat we het als één outdoor_tour kunnen modelleren met sub-events voor de belangrijkste onderdelen: de pleinen (e292, e294, e295, e298, e300, e301) en de brug (e289) en de straten (e309, e310). Maar dat zijn 10 sub-events. We kunnen ook een sub-event maken voor het coffyhuis (e296) met zijn kamers (e297) - dat is een indoor_tour? Het coffyhuis is een gebouw, dus indoor_tour. In de tekst: "op de hoek van deeze pleinen vind men een voortreklyk coffyhuis uit een suite van 4 bovenkamers bestaande van waar men het heerlykste uitzigt van de wereld heeft" - ze zijn er waarschijnlijk geweest? Het is niet expliciet dat ze er binnen waren. Het kan NEAR zijn. Laten we het als NEAR beschouwen. We maken geen sub-event voor het coffyhuis.
+
+We kunnen de stadswandeling als één outdoor_tour event maken met sub-events voor de pleinen en de brug. Maar de pleinen zijn E53_Place, geen gebouwen. We kunnen sub-events van type outdoor_tour maken voor elk plein, met took_place_at het plein. Dat is consistent.
+
+Laten we de sub-events maken:
+- RS0018.RS0001: outdoor_tour voor Leipsicher plein (e292)
+- RS0018.RS0002: outdoor_tour voor paradeplaats (e294)
+- RS0018.RS0003: outdoor_tour voor Kasern plaats (e295)
+- RS0018.RS0004: outdoor_tour voor Frederiksplein (e298)
+- RS0018.RS0005: outdoor_tour voor Koningsplein (e300)
+- RS0018.RS0006: outdoor_tour voor Karelsplein (e301)
+- RS0018.RS0007: outdoor_tour voor Wilhelmsbrug (e289)
+- RS0018.RS0008: outdoor_tour voor Koningsstraat (e309)
+- RS0018.RS0009: outdoor_tour voor Bellevue straat (e310)
+
+Ook de "boven nieuw stad" (e304) is een wijk, maar die wordt genoemd in verband met het beeld. We kunnen die als NEAR beschouwen? Het beeld (e302) is op het Karelsplein. We kunnen het als viewed_artifacts toevoegen aan het sub-event van Karelsplein: marmeren beeld (e302). Ook de standbeelden (e307) zijn genoemd maar niet gezien? "op eenige der overige pleinen stonden weleer ook standbeelden van andere landgraven welke de Franschen alle hebben doen opmarscheren behalven alleen het hier boven gemelde." Dus die zijn er niet meer, dus NO_REL.
+
+Nu de toponym_relations: we moeten alle E53_Place en E18_Physical_Thing entiteiten classificeren. Lijst van entiteiten in de tekst (ik maak een lijst op basis van de gemarkeerde mentions):
+
+E53_Place: e2 (Cassel), e5 (Paderborn), e8 (Warburg), e11 (Paderborn), e12 (Cassel), e17 (Paderborn), e19 (Paderborn), e21 (Dornhagen), e22 (Grondsteinheim), e27 (Lichtenau), e28 (Neuhaus), e29 (Paderborn), e30 (Cassel), e34 (Paderborn), e52 (Kleinenberg), e53 (uitgestrekt bosch), e54 (Hardehauserwoud), e58 (Warburg), e60 (Ossendorf), e62 (Ocksendorf), e63 (Ossendorf), e64 (Ossen), e65 (Ocksendorf), e70 (Warburg), e76 (Cassel), e77 (Warburg), e82 (Warburg), e84 (Dalheim), e88 (Warburg), e89 (Ehrings), e90 (Libenau), e92 (Ober), e93 (Nider Lichtingen), e94 (Hessisch grondgebied), e96 (West-Uffelen), e97 (Cassel), e99 (Cassel), e100 (Meinbids), e101 (Kalken), e103 (Cassel), e108 (Cassel), e109 (Cassel), e112 (Cassel), e113 (Cassel), e114 (Cassel), e117 (Parys), e119 (eerste vertrek), e122 (houtbibliotheek), e124 (Groningen), e127 (Tweede Kamer), e132 (derde Kamer), e135 (diergaarde), e143 (galery), e144 (vestibule), e146 (Frederikplein), e148 (Parys), e154 (Tivoli), e157 (zaalen), e160 (kamer), e164 (vertrek), e170 (kamer), e173 (kamer), e176 (vertrek), e183 (laatste kamer), e185 (twee kamers), e189 (Heilige Land), e190 (laatste zaal), e194 (boekery), e196 (locaal), e210 (Scheveningen), e212 (Parys), e213 (gallery), e214 (2 verdiepingen), e215 (ruines van de schildergallery), e216 (danszaal), e219 (Parys), e222 (Cassel), e227 (gallery), e231 (vierkant vertrek), e246 (Aue), e247 (Aue-Garten), e248 (lange linden allee), e255 (galery), e257 (galery), e267 (tombes), e277 (loge), e278 (toneel), e285 (Cassel), e286 (Göttingen), e287 (Cassel), e288 (Fulda), e291 (Cassel), e292 (Leipsicher plein), e294 (paradeplaats), e295 (Kasern plaats), e297 (4 bovenkamers), e298 (Frederiksplein), e299 (dubbele linden allee), e300 (Koningsplein), e301 (Karelsplein), e304 (boven nieuw stad), e305 (Franryk), e308 (Cassel), e309 (Koningsstraat), e310 (Bellevue straat), e311 (boven nieuwstad).
+
+E18_Physical_Thing: e18 (Hoxenberg), e20 (7 bergen), e48 (hooge bergen), e49 (bergen), e55 (klooster), e56 (Desenberg), e61 (posthuis), e80 (Gasthofe Desenburg), e85 (Desenberg), e86 (Desenberg), e104 (Hercules), e105 (octogoon), e106 (Wilhelmhohe), e111 (logement de Kurfürst), e115 (Museum Fridericianum), e118 (museum), e123 (Academiesche boekery), e145 (geheele gebouw), e153 (Palazo di Maecenate), e155 (Bagno della nimfa Egeria), e158 (gebouw voor de vergadering der standen), e174 (vesting Rheinfels), e186 (breede trap), e193 (museum), e195 (zelve gebouw), e203 (paleis Bellevue), e223 (paleis Belle vue), e224 (logement de Keurvorst), e228 (marmeren bad), e229 (Orangerie), e230 (gebouw), e232 (vloeren), e233 (muren), e235 (het bad), e236 (acht Corintische pylaren), e237 (koepel), e242 (schoone gebouw), e245 (gebouw), e249 (vyver), e250 (kerken), e251 (Roomsche kerk), e252 (logement), e253 (ronden koepel), e254 (kolommen), e258 (colommen), e259 (koepelvormige dak), e260 (marmeren hoogaltaar), e261 (drie circelvormige trappen), e262 (de koepel), e264 (kerk), e265 (Brüder), e266 (Domkerk), e272 (Kweekschool voor onderwyzers), e276 (Comedie), e283 (observatorium), e284 (Wilhelms Brücke), e289 (Wilhelmsbrug), e293 (Leipsicher poort), e296 (coffyhuis), e302 (marmeren beeld van den landgraaf Karel), e307 (standbeelden van andere landgraven), e312 (Wilhelmshöhe).
+
+We moeten voor elk bepalen of de reiziger er IN, NEAR, THRU, TO, FROM, of NO_REL was. Voor de reis: Paderborn (e17) is FROM, Lichtenau (e27) is TO (eerste translocatie), Ossendorf (e60) is TO (tweede), Warburg (e70) is TO (derde), West-Uffelen (e96) is TO (vijfde), Cassel (e109) is TO (zevende). Ook via_points: Hoxenberg (e18) THRU, 7 bergen (e20) THRU, Dalheim (e84) THRU, Ehrings (e89) THRU, Libenau (e90) THRU, Ober (e92) THRU, Nider Lichtingen (e93) THRU, Meinbids (e100) THRU, Kalken (e101) THRU. Near_places: Dornhagen (e21) NEAR, Grondsteinheim (e22) NEAR, Desenberg (e85) NEAR, Hercules (e104) NEAR, octogoon (e105) NEAR, Wilhelmhohe (e106) NEAR. Ook de bergen (e48, e49) zijn THRU? "dan eens op zeer hooge bergen zynde" - dat is tijdens de reis, dus THRU. Ook Kleinenberg (e52) is THRU? "Na Kleinenberg gepasseerd te zyn" - THRU. Het bosch (e53) en Hardehauserwoud (e54) zijn THRU? "kwamen wy in een uitgestrekt bosch" - THRU. Het klooster (e55) is NEAR? "naar een klooster aan het eind van hetzelve gelegen" - NEAR. Desenberg (e56) is NEAR? "zagen wy de eerbiedwekkende kruin van den Desenberg" - NEAR. Ook de posthuis (e61) in Ossendorf? Ze waren in Ossendorf, dus IN? Ze waren in het posthuis? "de Kastelein uit het posthuis toonde zich zeer gebelgd" - ze waren in het posthuis, dus IN. Gasthofe Desenburg (e80) is IN (ze logeerden er). Logement de Kurfürst (e111) is IN.
+
+Voor de bezoeken: Museum Fridericianum (e115) is IN, alle kamers zijn IN, bibliotheek (e194) is IN, paleis Bellevue (e203) is IN, marmeren bad (e228) is IN, Orangerie (e229) is IN? Ze gingen naar het marmeren bad voorin de Orangerie, dus ze waren in de Orangerie? Het bad is een deel, dus IN. Kerken: Roomsche kerk (e251) IN, Brüder (e265) IN, Domkerk (e266) IN, Kweekschool (e272) IN, Comedie (e276) IN. Pleinen: Leipsicher plein (e292) IN (ze wandelden er), paradeplaats (e294) IN, etc. Wilhelmsbrug (e289) IN. Straten: Koningsstraat (e309) IN, Bellevue straat (e310) IN. Ook de Fulda (e288) is THRU? "de Fulda doorsnydt dezelve" - dat is een rivier, maar ze zijn in de stad, dus NEAR? Ze noemen het, maar niet dat ze er langs liepen. We kunnen NO_REL? Laten we voorzichtig zijn: "de Fulda doorsnydt dezelve" - dat is een beschrijving, geen bezoek. Dus NO_REL.
+
+Andere plaatsen die alleen genoemd worden: Parys (e117, e148, e212, e219) - NO_REL, Neuhaus (e28) - NO_REL, Groningen (e124) - NO_REL, Tivoli (e154) - NO_REL, Heilige Land (e189) - NO_REL, Scheveningen (e210) - NO_REL, Göttingen (e286) - NO_REL (toekomstig), Franryk (e305) - NO_REL, etc.
+
+Ook de "diergaarde" (e135) is genoemd in het museum: "dit dier hier in de diergaarde geleeft" - dat is een verwijzing, niet bezocht. NO_REL.
+
+De "Academiesche boekery" (e123) te Groningen - NO_REL.
+
+De "boven nieuw stad" (e304) is een wijk, ze waren er? "deeze zoogenaamde boven nieuw stad voor de uit Franryk gevlugte protestanten heeft laten aanleggen" - ze zijn er waarschijnlijk geweest, want ze noemen het Karelsplein erin. Dus IN.
+
+We moeten ook de "4 bovenkamers" (e297) van het coffyhuis - die zijn NEAR? Ze worden genoemd als onderdeel van het coffyhuis, maar niet bezocht. NEAR.
+
+Nu de toponym_relations: we moeten voor elke entiteit een categorie toewijzen. Laten we een lijst maken van alle entiteiten die in events voorkomen (moved_from, moved_to, took_place_at, on_or_within, via_points, near_places) en die krijgen de corresponderende categorie. Entiteiten die niet in events voorkomen, krijgen NO_REL.
+
+We moeten ook de citations toevoegen voor elke event.
+
+Laten we nu de JSON structuur opbouwen. We beginnen met letter_id: "BRF0003" (aangezien de tekst uit Brief 3 lijkt? In de opgave staat "letter_id": "BRF0003" in het voorbeeld, dus we gebruiken dat.
+
+We maken een tour_group met id "TG" en label "Tour Group Brief 3".
+
+Nu de events in chronologische volgorde. We nummeren ze RS0001, RS0002, etc.
+
+Event 1: Translocation Paderborn->Lichtenau. ID: RS0001.
+- moved_from: e17
+- moved_to: e27
+- mode_of_transportation: e16 (Extrapost)
+- time_span: [e14, e15, e26] (Donderdag, 1 uur, 3½ uur)
+- via_points: [e18, e20] (Hoxenberg, 7 bergen)
+- near_places: [e21, e22] (Dornhagen, Grondsteinheim)
+- sub_events: [RS0001.RS0001, RS0001.RS0002] (stop bij Dornhagen, stop in Lichtenau)
+- citations: voor moved_from, moved_to, mode, time_span, via_points, near_places.
+
+Sub-event RS0001.RS0001: Stay bij Dornhagen/Grondsteinheim. type: stay. label: "Stilstand bij Dornhagen en Grondsteinheim". took_place_at: null? We kunnen geen locatie geven. We kunnen het weglaten. time_span: [e23] (langen tyd). falls_within: "RS0001". citations: [{"mention_id": "e23", "role": "time_span"}].
+
+Sub-event RS0001.RS0002: Stay in Lichtenau. type: stay. label: "Oponthoud in Lichtenau". took_place_at: e27. time_span: [e31] (vijf vieren deel uur). falls_within: "RS0001". citations: [{"mention_id": "e27", "role": "took_place_at"}, {"mention_id": "e31", "role": "time_span"}].
+
+Event 2: Translocation Lichtenau->Ossendorf. ID: RS0002.
+- moved_from: e27
+- moved_to: e60
+- mode_of_transportation: e43 (wagen)
+- time_span: [e42, e59] (5 uur, 8 uur)
+- via_points: [] (geen expliciete via_points tussen Lichtenau en Ossendorf? Er is geen vermelding van tussenliggende plaatsen. Alleen "onder eene gestadige regen kwamen wy om 8 uur te Ossendorf" - geen via_points)
+- near_places: [] (geen)
+- sub_events: [RS0002.RS0001] (stop in Ossendorf)
+- citations: moved_from, moved_to, mode, time_span.
+
+Sub-event RS0002.RS0001: Stay in Ossendorf. type: stay. label: "Oponthoud in Ossendorf". took_place_at: e60. time_span: null. falls_within: "RS0002". citations: [{"mention_id": "e60", "role": "took_place_at"}].
+
+Event 3: Translocation Ossendorf->Warburg te voet. ID: RS0003.
+- moved_from: e60
+- moved_to: e70
+- mode_of_transportation: e72 (wandelden)
+- time_span: [e69, e71] (avond, groot uur)
+- via_points: []
+- near_places: []
+- sub_events: []
+- citations: moved_from, moved_to, mode, time_span.
+
+Event 4: Stay in Warburg. ID: RS0004.
+- type: stay
+- took_place_at: e70
+- on_or_within: e80 (Gasthofe Desenburg)
+- time_span: [e7] (dien nagt)
+- falls_within: null
+- sub_events: []
+- citations: [{"mention_id": "e70", "role": "took_place_at"}, {"mention_id": "e80", "role": "on_or_within"}, {"mention_id": "e7", "role": "time_span"}]
+
+Event 5: Translocation Warburg->West-Uffelen. ID: RS0005.
+- moved_from: e82
+- moved_to: e96
+- mode_of_transportation: e79 (zeer goed rytuig en een span beste paarden)
+- time_span: [e81] (de volgende morgen)
+- via_points: [e84, e89, e90, e92, e93] (Dalheim, Ehrings, Libenau, Ober, Nider Lichtingen)
+- near_places: [e85] (Desenberg)
+- sub_events: []
+- citations: moved_from, moved_to, mode, time_span, via_points, near_places.
+
+Event 6: Stay in West-Uffelen. ID: RS0006.
+- type: stay
+- took_place_at: e96
+- time_span: null
+- falls_within: null (apart event)
+- sub_events: []
+- citations: [{"mention_id": "e96", "role": "took_place_at"}]
+
+Event 7: Translocation West-Uffelen->Cassel. ID: RS0007.
+- moved_from: e96
+- moved_to: e109
+- mode_of_transportation: e98 (rytuig)
+- time_span: [e110] (5 uur)
+- via_points: [e100, e101] (Meinbids, Kalken)
+- near_places: [e104, e105, e106] (Hercules, octogoon, Wilhelmhohe)
+- sub_events: []
+- citations: moved_from, moved_to, mode, time_span, via_points, near_places.
+
+Event 8: Stay in Cassel (intrek logement). ID: RS0008.
+- type: stay
+- took_place_at: e109
+- on_or_within: e111
+- time_span: [e110] (5 uur, zelfde als aankomst)
+- falls_within: null
+- sub_events: []
+- citations: [{"mention_id": "e109", "role": "took_place_at"}, {"mention_id": "e111", "role": "on_or_within"}, {"mention_id": "e110", "role": "time_span"}]
+
+Event 9: indoor_tour Museum Fridericianum. ID: RS0009.
+- type: indoor_tour
+- took_place_at: e109 (Cassel)
+- on_or_within: e115 (Museum Fridericianum)
+- time_span: null
+- falls_within: null
+- sub_events: [RS0009.RS0001, RS0009.RS0002, RS0009.RS0003, RS0009.RS0004, RS0009.RS0005, RS0009.RS0006, RS0009.RS0007, RS0009.RS0008, RS0009.RS0009, RS0009.RS0010, RS0009.RS0011, RS0009.RS0012] (12 sub-events: 11 kamers + bibliotheek)
+- citations: [{"mention_id": "e109", "role": "took_place_at"}, {"mention_id": "e115", "role": "on_or_within"}]
+
+Nu de sub-events voor het museum. We maken ze in volgorde:
+
+RS0009.RS0001: Eerste vertrek. label: "Eerste vertrek: vogeleyeren en houtbibliotheek". took_place_at: e119. falls_within: "RS0009". viewed_artifacts: [e120, e122, e125, e126]. sections: [{"room": "e119", "building": "e115"}]. citations: [{"mention_id": "e119", "role": "took_place_at"}, {"mention_id": "e120", "role": "viewed_artifacts"}, ...]
+
+RS0009.RS0002: Tweede Kamer. label: "Tweede Kamer: opgezette vogels". took_place_at: e127. viewed_artifacts: [e128, e129, e130]. sections: [{"room": "e127", "building": "e115"}].
+
+RS0009.RS0003: Derde Kamer. label: "Derde Kamer: viervoetige dieren". took_place_at: e132. viewed_artifacts: [e133, e134, e136, e137, e138, e139, e140, e141, e142]. sections: [{"room": "e132", "building": "e115"}].
+
+RS0009.RS0004: Galery/vestibule. label: "Galery met antiquen". took_place_at: e143. viewed_artifacts: [e147, e149, e150, e151, e152, e156]. sections: [{"room": "e143", "building": "e115"}].
+
+RS0009.RS0005: Kamer met versteeningen. label: "Kamer met versteeningen, mineralen en schelpen". took_place_at: e160. viewed_artifacts: [e161, e162, e163]. sections: [{"room": "e160", "building": "e115"}].
+
+RS0009.RS0006: Vertrek met oude penningen. label: "Vertrek met oude penningen en edelgesteenten". took_place_at: e164. viewed_artifacts: [e165, e166, e167, e168, e169]. sections: [{"room": "e164", "building": "e115"}].
+
+RS0009.RS0007: Kamer met pretiosa. label: "Kamer met pretiosa en barnsteen". took_place_at: e170. viewed_artifacts: [e171, e172, e175]. sections: [{"room": "e170", "building": "e115"}].
+
+RS0009.RS0008: Vertrek met klokken. label: "Vertrek met klokken en pendules". took_place_at: e176. viewed_artifacts: [e177, e178, e179, e181, e182]. sections: [{"room": "e176", "building": "e115"}].
+
+RS0009.RS0009: Laatste kamer beneden. label: "Laatste kamer beneden: mosaiek". took_place_at: e183. viewed_artifacts: [e184]. sections: [{"room": "e183", "building": "e115"}].
+
+RS0009.RS0010: Eerste kamer boven (wapentuig). label: "Kamer met oude wapentuigen". took_place_at: e185 (aangezien e185 de twee kamers is, maar we gebruiken het voor deze). viewed_artifacts: [e187, e188]. sections: [{"room": "e185", "building": "e115"}].
+
+RS0009.RS0011: Laatste zaal. label: "Laatste zaal met landgraven in was". took_place_at: e190. viewed_artifacts: [e191, e192]. sections: [{"room": "e190", "building": "e115"}].
+
+RS0009.RS0012: Bibliotheek. label: "Bibliotheek in hetzelfde gebouw". took_place_at: e194. on_or_within: e115? De bibliotheek is een E53_Place, dus we gebruiken took_place_at: e194. viewed_artifacts: [e197, e198, e199, e200, e201]. sections: [{"room": "e194", "building": "e115"}]. falls_within: "RS0009".
+
+Event 10: indoor_tour Paleis Bellevue. ID: RS0010.
+- type: indoor_tour
+- took_place_at: e109
+- on_or_within: e203
+- time_span: null
+- falls_within: null
+- sub_events: []
+- viewed_artifacts: [e204, e205, e206, e207, e209, e211, e218, e220, e221, e225, e226, e234, e240, e243] (we moeten alle genoemde artifacts toevoegen)
+- citations: [{"mention_id": "e109", "role": "took_place_at"}, {"mention_id": "e203", "role": "on_or_within"}, {"mention_id": "e204", "role": "viewed_artifacts"}, ...]
+
+Event 11: indoor_tour Marmeren bad. ID: RS0011.
+- type: indoor_tour
+- took_place_at: e109
+- on_or_within: e228
+- time_span: null
+- falls_within: null
+- sub_events: [RS0011.RS0001]
+- citations: [{"mention_id": "e109", "role": "took_place_at"}, {"mention_id": "e228", "role": "on_or_within"}]
+
+Sub-event RS0011.RS0001: Het badvertrek. label: "Het marmeren badvertrek". took_place_at: e231. on_or_within: e228. viewed_artifacts: [e234, e240, e243]. sections: [{"room": "e231", "building": "e228"}]. falls_within: "RS0011". citations: [{"mention_id": "e231", "role": "took_place_at"}, {"mention_id": "e234", "role": "viewed_artifacts"}, ...]
+
+Event 12: outdoor_tour Aue-Garten. ID: RS0012.
+- type: outdoor_tour
+- took_place_at: e109
+- time_span: null
+- falls_within: null
+- sub_events: [RS0012.RS0001, RS0012.RS0002]
+- citations: [{"mention_id": "e109", "role": "took_place_at"}]
+
+Sub-event RS0012.RS0001: Linden allee. label: "Lange linden allee". took_place_at: e248. falls_within: "RS0012". citations: [{"mention_id": "e248", "role": "took_place_at"}]
+
+Sub-event RS0012.RS0002: Vyver. label: "Grote vyver". took_place_at: e249. falls_within: "RS0012". citations: [{"mention_id": "e249", "role": "took_place_at"}]
+
+Event 13: indoor_tour Roomsche kerk. ID: RS0013.
+- type: indoor_tour
+- took_place_at: e109
+- on_or_within: e251
+- time_span: null
+- falls_within: null
+- sub_events: [] (geen sub-events, alleen viewed_artifacts)
+- viewed_artifacts: [e256, e260, e263] (orgel, hoogaltaar, schilderyen)
+- citations: [{"mention_id": "e109", "role": "took_place_at"}, {"mention_id": "e251", "role": "on_or_within"}, {"mention_id": "e256", "role": "viewed_artifacts"}, ...]
+
+Event 14: indoor_tour Brüder kerk. ID: RS0014.
+- type: indoor_tour
+- took_place_at: e109
+- on_or_within: e265
+- time_span: null
+- falls_within: null
+- sub_events: []
+- viewed_artifacts: []
+- citations: [{"mention_id": "e109", "role": "took_place_at"}, {"mention_id": "e265", "role": "on_or_within"}]
+
+Event 15: indoor_tour Domkerk. ID: RS0015.
+- type: indoor_tour
+- took_place_at: e109
+- on_or_within: e266
+- time_span: null
+- falls_within: null
+- sub_events: []
+- viewed_artifacts: [e267, e268, e270, e271] (tombes, schilden, opschrift, zevende schild)
+- citations: [{"mention_id": "e109", "role": "took_place_at"}, {"mention_id": "e266", "role": "on_or_within"}, {"mention_id": "e267", "role": "viewed_artifacts"}, ...]
+
+Event 16: indoor_tour Kweekschool. ID: RS0016.
+- type: indoor_tour
+- took_place_at: e109
+- on_or_within: e272
+- time_span: null
+- falls_within: null
+- sub_events: []
+- viewed_artifacts: []
+- citations: [{"mention_id": "e109", "role": "took_place_at"}, {"mention_id": "e272", "role": "on_or_within"}]
+
+Event 17: indoor_tour Comedie. ID: RS0017.
+- type: indoor_tour
+- took_place_at: e109
+- on_or_within: e276
+- time_span: null
+- falls_within: null
+- sub_events: []
+- viewed_artifacts: [] (loge en toneel zijn E53_Place, geen artifacts)
+- citations: [{"mention_id": "e109", "role": "took_place_at"}, {"mention_id": "e276", "role": "on_or_within"}]
+
+Event 18: outdoor_tour Stadswandeling. ID: RS0018.
+- type: outdoor_tour
+- took_place_at: e109
+- time_span: null
+- falls_within: null
+- sub_events: [RS0018.RS0001, RS0018.RS0002, RS0018.RS0003, RS0018.RS0004, RS0018.RS0005, RS0018.RS0006, RS0018.RS0007, RS0018.RS0008, RS0018.RS0009]
+- citations: [{"mention_id": "e109", "role": "took_place_at"}]
+
+Sub-events voor de pleinen en straten. Elk sub-event heeft took_place_at het plein/straat. Geen viewed_artifacts, behalve voor Karelsplein: het marmeren beeld (e302) is een E18_Physical_Thing, dus viewed_artifacts. Ook de standbeelden (e307) zijn NO_REL.
+
+RS0018.RS0001: Leipsicher plein. took_place_at: e292.
+RS0018.RS0002: paradeplaats. took_place_at: e294.
+RS0018.RS0003: Kasern plaats. took_place_at: e295.
+RS0018.RS0004: Frederiksplein. took_place_at: e298.
+RS0018.RS0005: Koningsplein. took_place_at: e300.
+RS0018.RS0006: Karelsplein. took_place_at: e301. viewed_artifacts: [e302] (marmeren beeld).
+RS0018.RS0007: Wilhelmsbrug. took_place_at: e289.
+RS0018.RS0008: Koningsstraat. took_place_at: e309.
+RS0018.RS0009: Bellevue straat. took_place_at: e310.
+
+Nu de toponym_relations. We moeten alle E53_Place en E18_Physical_Thing entiteiten uit de tekst een categorie geven. Laten we een lijst maken van alle entiteiten die in events voorkomen (als moved_from, moved_to, took_place_at, on_or_within, via_points, near_places) en die krijgen de corresponderende categorie. Daarnaast zijn er entiteiten die alleen genoemd worden (NO_REL). We moeten ook entiteiten die in sub-events voorkomen (took_place_at van sub-events) meenemen.
+
+Lijst van entiteiten in events (inclusief sub-events):
+
+- e17: moved_from in RS0001 -> FROM
+- e27: moved_to in RS0001, took_place_at in RS0001.RS0002 -> TO (en IN voor de stay? Maar de stay is in Lichtenau, dus IN. Maar de translocatie heeft moved_to, dus TO. De stay heeft took_place_at, dus IN. Welke categorie? De entiteit e27 is zowel TO als IN. In de toponym_relations moet één categorie. De instructie zegt: "Elke entiteit krijgt precies één categorie." Dus we moeten kiezen. In de voorbeelden hadden via_points THRU, maar als een plaats ook als took_place_at voorkomt, dan is het IN. Hier is e27 de plaats Lichtenau. In de translocatie is het de bestemming (TO), maar daarna hebben ze er een stay (IN). Dus de reiziger was er IN. De categorie moet IN zijn, omdat de stay de dominante relatie is? Of TO? In de voorbeelden hadden we voor Warburg: e8 was TO in de translocatie, maar ook IN in de stay? In het voorbeeld "Rit van Cassel naar Göttingen" hadden ze via_points en sub-events, maar de via_points waren THRU. Hier is Lichtenau een bestemming en ook een stop. Ik denk dat we de categorie moeten baseren op de laatste of belangrijkste relatie. De instructie zegt: "Classificeer ELK toponiem volgens één van de zes ruimtelijke relatiecategorieën." Het moet de relatie beschrijven van de verteller tot die plaats in de context van de tekst. In de tekst is de verteller in Lichtenau geweest (hij was er binnen), dus IN. Ook al was het een bestemming, hij arriveerde er en verbleef er. Dus IN. Hetzelfde voor Ossendorf, Warburg, West-Uffelen, Cassel. Dus we geven IN voor plaatsen waar de verteller daadwerkelijk was. Voor via_points geven we THRU, voor near_places NEAR, voor moved_from FROM, voor moved_to TO als de plaats alleen als bestemming wordt genoemd zonder verblijf? Maar hier zijn alle bestemmingen ook verblijfplaatsen. Dus we moeten consistent zijn: als de verteller er was (IN), dan IN. Alleen als de plaats alleen als startpunt wordt genoemd (Paderborn) dan FROM. Paderborn is FROM omdat ze er vertrokken, maar ze waren er ook? In de tekst waren ze in Paderborn voor vertrek, dus ze waren er IN. Maar de categorie FROM wordt gebruikt voor de startlocatie van een translocatie. In de voorbeelden hadden we voor Cassel: e3 was FROM in de translocatie, maar ook IN? In het voorbeeld "Rit van Cassel naar Göttingen" had Cassel (e3) categorie FROM, en Göttingen (e8) TO. Maar Cassel was ook de plaats waar ze verbleven? In die tekst was het vertrek uit Cassel, dus FROM. Hier is Paderborn de startplaats, dus FROM. Maar de reiziger was in Paderborn voor vertrek, dus hij was er IN. Toch is de categorie FROM omdat de relatie "vertrek uit" is. In de instructie staat: "FROM: De verteller VERTREKT UIT een locatie waar hij WAS." Dus hij was er, maar de relatie is FROM. Dus we moeten FROM gebruiken voor startpunten, TO voor eindpunten, IN voor plaatsen waar hij stationair was (tijdens een stay of tour). Dus voor Lichtenau: hij arriveerde er (TO) en verbleef er (IN). Welke is primair? In de tekst is de translocatie de beweging, en de stay is een sub-event. De categorie moet de relatie weergeven in de context van het hele verhaal. Ik denk dat we de categorie moeten baseren op de rol in het event waar de entiteit het meest prominent is. In de voorbeelden hadden we voor Warburg: e8 was TO in de translocatie, maar ook IN in de stay? In het voorbeeld "Rit van Cassel naar Göttingen" hadden ze via_points en sub-events, maar de via_points waren THRU. Voor Warburg was het een via_point? In dat voorbeeld was Warburg een via_point (THRU) en ook een stop (IN). In de toponym_relations stond e4: "IN" voor Munden? Laten we het voorbeeld bekijken: "Te Munden hielden wy ons een oogenblik op" - Munden was een via_point? In de analyse hadden ze e4 als IN? In het voorbeeld: "toponym_relations": {"e3": "FROM", "e4": "IN", "e5": "THRU", "e6": "IN", "e8": "TO"}. Daar was e4 (Munden) een via_point? In de translocatie hadden ze via_points: ["e4", "e5", "e6"] en sub-events voor stops. e4 was een via_point en ook een stop, en kreeg categorie IN. Dus voor een plaats die zowel via_point als stop is, wordt IN gebruikt. Voor e5 (Dransfeld) was het THRU (alleen gepasseerd). Dus de regel: als de verteller er stopt (stay), dan IN; als alleen gepasseerd, dan THRU. Voor Lichtenau: ze stopten er (stay), dus IN. Voor Ossendorf: ook stop, dus IN. Voor Warburg: overnachting, IN. Voor West-Uffelen: stop om te eten, IN. Voor Cassel: aankomst en verblijf, IN. Voor Paderborn: vertrek, FROM. Voor de via_points die alleen gepasseerd zijn (Dalheim, Ehrings, etc.) zijn THRU. Voor near_places: NEAR.
+
+Dus we moeten voor elke entiteit bepalen of de verteller er was (IN), er doorheen ging (THRU), er vandaan kwam (FROM), ernaartoe ging (TO) maar niet bleef? In ons geval zijn alle bestemmingen ook stops, dus TO wordt eigenlijk IN. Maar in de translocatie is moved_to een bestemming, maar als er een stay is, dan is het IN. In de toponym_relations geven we IN. Voor Paderborn is het FROM omdat ze vertrokken, maar ze waren er ook. Toch FROM.
+
+Laten we de categorieën toewijzen:
+
+- e17 (Paderborn): FROM (vertrek)
+- e27 (Lichtenau): IN (stop)
+- e60 (Ossendorf): IN (stop)
+- e70 (Warburg): IN (overnachting)
+- e82 (Warburg): IN (zelfde plaats, maar andere mention? e82 is ook Warburg, dus IN)
+- e96 (West-Uffelen): IN (stop)
+- e109 (Cassel): IN (aankomst en verblijf)
+- e18 (Hoxenberg): THRU (gepasseerd)
+- e20 (7 bergen): THRU
+- e21 (Dornhagen): NEAR
+- e22 (Grondsteinheim): NEAR
+- e84 (Dalheim): THRU
+- e89 (Ehrings): THRU
+- e90 (Libenau): THRU
+- e92 (Ober): THRU
+- e93 (Nider Lichtingen): THRU
+- e85 (Desenberg): NEAR
+- e100 (Meinbids): THRU
+- e101 (Kalken): THRU
+- e104 (Hercules): NEAR
+- e105 (octogoon): NEAR
+- e106 (Wilhelmhohe): NEAR
+- e80 (Gasthofe Desenburg): IN (ze logeerden er)
+- e111 (logement de Kurfürst): IN
+- e115 (Museum Fridericianum): IN
+- e119, e127, e132, e143, e160, e164, e170, e176, e183, e185, e190, e194: IN (kamers en bibliotheek)
+- e203 (paleis Bellevue): IN
+- e228 (marmeren bad): IN
+- e231 (badvertrek): IN
+- e248 (linden allee): IN (outdoor)
+- e249 (vyver): IN
+- e251 (Roomsche kerk): IN
+- e265 (Brüder): IN
+- e266 (Domkerk): IN
+- e272 (Kweekschool): IN
+- e276 (Comedie): IN
+- e292, e294, e295, e298, e300, e301, e289, e309, e310: IN (pleinen, brug, straten)
+- e302 (marmeren beeld): IN? Het is een E18_Physical_Thing, maar het staat op het plein, dus de verteller was erbij, dus IN? In de toponym_relations voor E18_Physical_Thing: als de verteller er binnen was (gebouw) of dichtbij (beeld), dan IN of NEAR. Het beeld is op het plein, dus de verteller was er dichtbij, maar niet binnen. In de tekst: "het daarop geplaatste marmeren beeld" - ze waren op het plein, dus NEAR? Of IN? Het beeld is een object, geen plaats. In de toponym_relations worden E18_Physical_Thing ook geclassificeerd. In de voorbeelden hadden we voor "paleis" (e5) NEAR. Dus voor een beeld op een plein, als de verteller er langs loopt, is het NEAR. Maar ze waren op het plein, dus het beeld is in de buurt. We geven NEAR. Echter, in de sub-event van Karelsplein hebben we viewed_artifacts: e302. Dat betekent dat ze het beeld bekeken. Dus de relatie is NEAR (ze waren niet binnenin). Dus NEAR.
+- e307 (standbeelden): NO_REL (niet gezien)
+- e48 (hooge bergen): THRU (tijdens reis)
+- e49 (bergen): THRU
+- e52 (Kleinenberg): THRU (gepasseerd)
+- e53 (uitgestrekt bosch): THRU
+- e54 (Hardehauserwoud): THRU
+- e55 (klooster): NEAR (zagen het)
+- e56 (Desenberg): NEAR (zagen)
+- e61 (posthuis): IN (in Ossendorf)
+- e123 (Academiesche boekery): NO_REL (Groningen)
+- e124 (Groningen): NO_REL
+- e135 (diergaarde): NO_REL
+- e145 (geheele gebouw): IN? Het is het museumgebouw, dus IN
+- e146 (Frederikplein): IN? Het is een plein, maar in de tekst wordt het genoemd als onderdeel van het museum? "aan het schoone Frederikplein uitkomt" - dat is een verwijzing, niet bezocht? Ze waren in het museum, dus het plein is buiten. NEAR? Laten we voorzichtig zijn: "hetgeen het eigenlyke vestibule van het geheele gebouw is en aan het schoone Frederikplein uitkomt" - ze waren in het vestibule, dus het plein is zichtbaar, dus NEAR. We geven NEAR.
+- e148 (Parys): NO_REL
+- e153 (Palazo di Maecenate): NO_REL (kurk model)
+- e154 (Tivoli): NO_REL
+- e155 (Bagno della nimfa Egeria): NO_REL
+- e157 (zaalen): IN? "Agter deeze zaalen" - verwijzing, niet bezocht? Ze waren in de galery, dus de zaalen zijn achter, NEAR? Laten we NO_REL.
+- e158 (gebouw voor de vergadering der standen): IN? Ze waren er? "is door Hieronymus ... een schoon gebouw ... in hetzelve was een troon" - ze hebben het gezien? "volgens het getuigenis van onzen conducteur, wordt geen gebruik meer van dit gedeelte gemaakt." Ze zijn er waarschijnlijk geweest, want ze zagen de troon. Dus IN.
+- e174 (vesting Rheinfels): NEAR? Het is een mozaiek in de kamer, dus viewed_artifacts, geen plaats. Het is E18_Physical_Thing, maar als mozaiek is het een object. In de toponym_relations moet het als E18_Physical_Thing een categorie krijgen. Het is in de kamer, dus de verteller was er dichtbij? Het is een object, dus NEAR? Of IN? Het is in de kamer, dus de verteller was in dezelfde ruimte, dus IN? In de voorbeelden hadden we voor "paleis" NEAR als het van buiten werd gezien. Hier is het een object in een kamer, dus de verteller was er binnen, dus IN. Maar het is een E18_Physical_Thing, geen E53_Place. In de toponym_relations worden E18_Physical_Thing ook geclassificeerd. Als de verteller er binnen was (gebouw), dan IN. Voor een object in een kamer, is de relatie IN? Het object is onderdeel van de kamer. Ik denk dat we IN kunnen geven, omdat de verteller in dezelfde ruimte was. Laten we het IN geven.
+- e186 (breede trap): IN (ze gingen erop)
+- e193 (museum): IN (zelfde als e115)
+- e195 (zelve gebouw): IN
+- e196 (locaal): IN (bibliotheekruimte)
+- e210 (Scheveningen): NO_REL
+- e212 (Parys): NO_REL
+- e213 (gallery): IN (in paleis Bellevue)
+- e214 (2 verdiepingen): IN? Het is een verdeling, NEAR?
+- e215 (ruines van de schildergallery): NO_REL (historisch)
+- e216 (danszaal): NO_REL (historisch)
+- e219 (Parys): NO_REL
+- e222 (Cassel): IN (zelfde)
+- e227 (gallery): IN (in paleis)
+- e229 (Orangerie): IN (ze waren erin? Het marmeren bad is voorin de Orangerie, dus ze waren in de Orangerie? Ja, IN)
+- e230 (gebouw): IN (marmeren bad)
+- e232 (vloeren): IN
+- e233 (muren): IN
+- e235 (het bad): IN
+- e236 (pylaren): IN
+- e237 (koepel): IN
+- e242 (schoone gebouw): IN
+- e245 (gebouw): IN
+- e252 (logement): IN (het logement de Kurfürst)
+- e253 (ronden koepel): IN (kerk)
+- e254 (kolommen): IN
+- e255 (galery): IN
+- e257 (galery): IN
+- e258 (colommen): IN
+- e259 (koepelvormige dak): IN
+- e260 (hoogaltaar): IN
+- e261 (trappen): IN
+- e262 (de koepel): IN
+- e264 (kerk): IN
+- e267 (tombes): IN (in Domkerk)
+- e277 (loge): IN (in Comedie)
+- e278 (toneel): IN
+- e283 (observatorium): NO_REL (niet bezocht)
+- e284 (Wilhelms Brücke): IN (zelfde als e289)
+- e285 (Cassel): IN
+- e286 (Göttingen): NO_REL (toekomstig)
+- e287 (Cassel): IN
+- e288 (Fulda): NO_REL (alleen genoemd)
+- e291 (Cassel): IN
+- e293 (Leipsicher poort): IN? Ze zijn door de poort? "even binnen de Leipsicher poort" - dus ze waren er, IN
+- e296 (coffyhuis): NEAR? Ze hebben het niet bezocht, alleen genoemd. NEAR
+- e297 (4 bovenkamers): NEAR (onderdeel van coffyhuis)
+- e299 (dubbele linden allee): IN? Het is een laan op het Frederiksplein, dus IN
+- e304 (boven nieuw stad): IN (wijk)
+- e305 (Franryk): NO_REL
+- e308 (Cassel): IN
+- e311 (boven nieuwstad): IN
+- e312 (Wilhelmshöhe): NO_REL (toekomstig)
+
+We moeten ook de entiteiten die in de tekst voorkomen maar niet in events, zoals e2, e5, e8, e11, e12, e19, e28, e29, e30, e34, e58, e62, e63, e64, e65, e76, e77, e88, e97, e99, e103, e108, e112, e113, e114, e117, e124, etc. Deze zijn NO_REL, tenzij ze in een event voorkomen. Bijvoorbeeld e2 (Cassel) is de aanhef, NO_REL. e5 (Paderborn) is NO_REL (eerste vermelding). e8 (Warburg) is NO_REL (eerste vermelding). e11 (Paderborn) NO_REL. e12 (Cassel) NO_REL. e19 (Paderborn) NO_REL. e28 (Neuhaus) NO_REL. e29 (Paderborn) NO_REL. e30 (Cassel) NO_REL. e34 (Paderborn) NO_REL. e58 (Warburg) NO_REL. e62 (Ocksendorf) NO_REL. e63 (Ossendorf) NO_REL. e64 (Ossen) NO_REL. e65 (Ocksendorf) NO_REL. e76 (Cassel) NO_REL. e77 (Warburg) NO_REL. e88 (Warburg) NO_REL. e97 (Cassel) NO_REL. e99 (Cassel) NO_REL. e103 (Cassel) NO_REL. e108 (Cassel) NO_REL. e112 (Cassel) NO_REL. e113 (Cassel) NO_REL. e114 (Cassel) NO_REL. e117 (Parys) NO_REL. e124 (Groningen) NO_REL. etc.
+
+Nu moeten we de toponym_relations dictionary vullen met alle entiteiten die een categorie hebben. We moeten ook de entiteiten die in sub-events voorkomen (kamers) toevoegen.
+
+Laten we een complete lijst maken van alle E53_Place en E18_Physical_Thing mention_id's in de tekst. Ik zie dat er veel zijn. We moeten ze allemaal opnemen. Laten we de lijst uit de tekst halen:
+
+E53_Place: e2, e5, e8, e11, e12, e17, e19, e21, e22, e27, e28, e29, e30, e34, e52, e53, e54, e58, e60, e62, e63, e64, e65, e70, e76, e77, e82, e84, e88, e89, e90, e92, e93, e94, e96, e97, e99, e100, e101, e103, e108, e109, e112, e113, e114, e117, e119, e122, e124, e127, e132, e135, e143, e144, e146, e148, e154, e157, e160, e164, e170, e173, e176, e183, e185, e189, e190, e194, e196, e210, e212, e213, e214, e215, e216, e219, e222, e227, e231, e246, e247, e248, e255, e257, e267, e277, e278, e285, e286, e287, e288, e291, e292, e294, e295, e297, e298, e299, e300, e301, e304, e305, e308, e309, e310, e311
+
+E18_Physical_Thing: e18, e20, e48, e49, e55, e56, e61, e80, e85, e86, e104, e105, e106, e111, e115, e118, e123, e145, e153, e155, e158, e174, e186, e193, e195, e203, e223, e224, e228, e229, e230, e232, e233, e235, e236, e237, e242, e245, e249, e250, e251, e252, e253, e254, e258, e259, e260, e261, e262, e264, e265, e266, e272, e276, e283, e284, e289, e293, e296, e302, e307, e312
+
+We moeten voor elk een categorie toewijzen. Laten we de categorieën bepalen op basis van de events.
+
+Ik zal een mapping maken:
+
+- e2: NO_REL (aanhef)
+- e5: NO_REL
+- e8: NO_REL
+- e11: NO_REL
+- e12: NO_REL
+- e17: FROM (vertrek)
+- e18: THRU (via_point)
+- e19: NO_REL
+- e20: THRU
+- e21: NEAR
+- e22: NEAR
+- e27: IN (stop)
+- e28: NO_REL
+- e29: NO_REL
+- e30: NO_REL
+- e34: NO_REL
+- e48: THRU (tijdens reis)
+- e49: THRU
+- e52: THRU (gepasseerd)
+- e53: THRU (bosch)
+- e54: THRU (woud)
+- e55: NEAR (klooster gezien)
+- e56: NEAR (Desenberg gezien)
+- e58: NO_REL
+- e60: IN (stop)
+- e61: IN (posthuis)
+- e62: NO_REL
+- e63: NO_REL
+- e64: NO_REL
+- e65: NO_REL
+- e70: IN (overnachting)
+- e76: NO_REL
+- e77: NO_REL
+- e80: IN (Gasthofe)
+- e82: IN (Warburg, zelfde als e70? e82 is ook Warburg, maar andere mention. We geven IN)
+- e84: THRU
+- e85: NEAR
+- e86: NEAR (Desenberg, zelfde als e85)
+- e88: NO_REL
+- e89: THRU
+- e90: THRU
+- e92: THRU
+- e93: THRU
+- e94: THRU? "Hessisch grondgebied" is een gebied, ze reden erdoor, THRU
+- e96: IN (stop)
+- e97: NO_REL
+- e99: NO_REL
+- e100: THRU
+- e101: THRU
+- e103: NO_REL
+- e104: NEAR
+- e105: NEAR
+- e106: NEAR
+- e108: NO_REL
+- e109: IN (Cassel)
+- e111: IN (logement)
+- e112: NO_REL
+- e113: NO_REL
+- e114: NO_REL
+- e115: IN (museum)
+- e117: NO_REL
+- e118: IN (museum, zelfde als e115)
+- e119: IN (eerste vertrek)
+- e122: IN (houtbibliotheek, maar is E53_Place? In de tekst: "de op verscheidene plaatsen beschrevene houtbibliotheek" - het is een collectie, geen plaats. Het is E53_Place? In de markup staat [houtbibliotheek](E53_Place, e122). Dus het is een plaats. We geven IN.
+- e123: NO_REL (Academiesche boekery in Groningen)
+- e124: NO_REL
+- e127: IN
+- e132: IN
+- e135: NO_REL (diergaarde)
+- e143: IN (galery)
+- e144: IN (vestibule)
+- e145: IN (geheele gebouw)
+- e146: NEAR (Frederikplein, gezien vanuit museum)
+- e148: NO_REL
+- e153: NO_REL (kurk model)
+- e154: NO_REL
+- e155: NO_REL
+- e157: NO_REL (zaalen)
+- e158: IN (gebouw voor standen)
+- e160: IN
+- e164: IN
+- e170: IN
+- e173: IN (kamer, zelfde als e170? e173 is "in het midden der kamer" - verwijzing naar e170, dus IN)
+- e174: IN (vesting Rheinfels als mozaiek, object, maar E18_Physical_Thing, we geven IN omdat het in de kamer is)
+- e176: IN
+- e183: IN
+- e185: IN (twee kamers)
+- e186: IN (trap)
+- e189: NO_REL (Heilige Land)
+- e190: IN
+- e193: IN (museum)
+- e194: IN (bibliotheek)
+- e195: IN (zelve gebouw)
+- e196: IN (locaal)
+- e203: IN (paleis Bellevue)
+- e210: NO_REL
+- e212: NO_REL
+- e213: IN (gallery in paleis)
+- e214: IN? (2 verdiepingen, onderdeel van paleis, IN)
+- e215: NO_REL (ruines)
+- e216: NO_REL (danszaal)
+- e219: NO_REL
+- e222: IN (Cassel)
+- e223: IN (paleis Belle vue, zelfde als e203)
+- e224: IN (logement de Keurvorst, zelfde als e111? e111 is logement de Kurfürst, e224 is logement de Keurvorst, waarschijnlijk hetzelfde. We geven IN)
+- e227: IN (gallery)
+- e228: IN (marmeren bad)
+- e229: IN (Orangerie)
+- e230: IN (gebouw)
+- e231: IN (badvertrek)
+- e232: IN (vloeren)
+- e233: IN (muren)
+- e235: IN (het bad)
+- e236: IN (pylaren)
+- e237: IN (koepel)
+- e242: IN (schoone gebouw)
+- e245: IN (gebouw)
+- e246: IN (Aue)
+- e247: IN (Aue-Garten)
+- e248: IN (linden allee)
+- e249: IN (vyver)
+- e250: IN (kerken, algemeen? "de kerken" - ze hebben er meerdere bezocht, dus IN)
+- e251: IN (Roomsche kerk)
+- e252: IN (logement)
+- e253: IN (koepel)
+- e254: IN (kolommen)
+- e255: IN (galery)
+- e257: IN (galery)
+- e258: IN (colommen)
+- e259: IN (dak)
+- e260: IN (hoogaltaar)
+- e261: IN (trappen)
+- e262: IN (koepel)
+- e264: IN (kerk)
+- e265: IN (Brüder)
+- e266: IN (Domkerk)
+- e267: IN (tombes)
+- e272: IN (Kweekschool)
+- e276: IN (Comedie)
+- e277: IN (loge)
+- e278: IN (toneel)
+- e283: NO_REL (observatorium)
+- e284: IN (Wilhelms Brücke, zelfde als e289)
+- e285: IN (Cassel)
+- e286: NO_REL (Göttingen)
+- e287: IN (Cassel)
+- e288: NO_REL (Fulda)
+- e289: IN (Wilhelmsbrug)
+- e291: IN (Cassel)
+- e292: IN (Leipsicher plein)
+- e293: IN (Leipsicher poort)
+- e294: IN (paradeplaats)
+- e295: IN (Kasern plaats)
+- e296: NEAR (coffyhuis)
+- e297: NEAR (4 bovenkamers)
+- e298: IN (Frederiksplein)
+- e299: IN (dubbele linden allee)
+- e300: IN (Koningsplein)
+- e301: IN (Karelsplein)
+- e302: NEAR (marmeren beeld)
+- e304: IN (boven nieuw stad)
+- e305: NO_REL (Franryk)
+- e307: NO_REL (standbeelden)
+- e308: IN (Cassel)
+- e309: IN (Koningsstraat)
+- e310: IN (Bellevue straat)
+- e311: IN (boven nieuwstad)
+- e312: NO_REL (Wilhelmshöhe)
+
+We moeten ook e86 (Desenberg) NEAR, e94 (Hessisch grondgebied) THRU, e173 (kamer) IN, e223 (paleis) IN, e224 (logement) IN, e250 (kerken) IN, e252 (logement) IN, e284 (brug) IN, e293 (poort) IN, e299 (allee) IN.
+
+Nu de toponym_relations dictionary. We moeten alle mention_id's opnemen die in de tekst voorkomen. Laten we een complete lijst maken van alle entiteiten die in de tekst zijn gemarkeerd. Ik zie dat er ook e1, e3, e4, e6, e7, e9, e10, e13, e14, e15, e16, e23, e24, e25, e26, e31, e32, e33, e35, e36, e37, e38, e39, e40, e41, e42, e43, e44, e45, e46, e47, e50, e51, e57, e59, e66, e67, e68, e69, e71, e72, e73, e74, e75, e78, e79, e81, e83, e87, e91, e95, e98, e102, e107, e110, e116, e120, e121, e125, e126, e128, e129, e130, e131, e133, e134, e136, e137, e138, e139, e140, e141, e142, e147, e149, e150, e151, e152, e156, e159, e161, e162, e163, e165, e166, e167, e168, e169, e171, e172, e175, e177, e178, e179, e180, e181, e182, e184, e187, e188, e191, e192, e197, e198, e199, e200, e201, e202, e204, e205, e206, e207, e208, e209, e211, e217, e218, e220, e221, e225, e226, e234, e238, e239, e240, e241, e243, e244, e256, e263, e268, e269, e270, e271, e273, e274, e275, e279, e280, e281, e282, e290, e303, e306. Dit zijn andere typen (Mode_of_Transportation, E52_Time_Span, F2_Expression, E19_Physical_Object, E20_Biological_Object, E31_Document). Die komen niet in toponym_relations. Alleen E53_Place en E18_Physical_Thing.
+
+Dus we moeten alleen de E53_Place en E18_Physical_Thing entiteiten opnemen. Laten we de lijst van die entiteiten uit de tekst halen op basis van de markup. Ik zal de tekst scannen op [entiteit](LABEL, mention_id) met LABEL E53_Place of E18_Physical_Thing.
+
+Uit de tekst:
+
+- [Cassel](E53_Place, e2)
+- [Paderborn](E53_Place, e5)
+- [Warburg](E53_Place, e8)
+- [Paderborn](E53_Place, e11)
+- [Cassel](E53_Place, e12)
+- [Paderborn](E53_Place, e17)
+- [Hoxenberg](E18_Physical_Thing, e18)
+- [Paderborn](E53_Place, e19)
+- [7 bergen](E18_Physical_Thing, e20)
+- [Dornhagen](E53_Place, e21)
+- [Grondsteinheim](E53_Place, e22)
+- [Lichtenau](E53_Place, e27)
+- [Neuhaus](E53_Place, e28)
+- [Paderborn](E53_Place, e29)
+- [Cassel](E53_Place, e30)
+- [Paderborn](E53_Place, e34)
+- [hooge bergen](E18_Physical_Thing, e48)
+- [bergen](E18_Physical_Thing, e49)
+- [Kleinenberg](E53_Place, e52)
+- [uitgestrekt bosch](E53_Place, e53)
+- [Hardehauserwoud](E53_Place, e54)
+- [klooster](E18_Physical_Thing, e55)
+- [Desenberg](E18_Physical_Thing, e56)
+- [Warburg](E53_Place, e58)
+- [Ossendorf](E53_Place, e60)
+- [posthuis](E18_Physical_Thing, e61)
+- [Ocksendorf](E53_Place, e62)
+- [Ossendorf](E53_Place, e63)
+- [Ossen](E53_Place, e64)
+- [Ocksendorf](E53_Place, e65)
+- [Warburg](E53_Place, e70)
+- [Cassel](E53_Place, e76)
+- [Warburg](E53_Place, e77)
+- [Gasthofe Desenburg](E18_Physical_Thing, e80)
+- [Warburg](E53_Place, e82)
+- [Dalheim](E53_Place, e84)
+- [Desenberg](E18_Physical_Thing, e85)
+- [Desenberg](E18_Physical_Thing, e86)
+- [Warburg](E53_Place, e88)
+- [Ehrings](E53_Place, e89)
+- [Libenau](E53_Place, e90)
+- [Ober](E53_Place, e92)
+- [Nider Lichtingen](E53_Place, e93)
+- [Hessisch grondgebied](E53_Place, e94)
+- [West-Uffelen](E53_Place, e96)
+- [Cassel](E53_Place, e97)
+- [Cassel](E53_Place, e99)
+- [Meinbids](E53_Place, e100)
+- [Kalken](E53_Place, e101)
+- [Cassel](E53_Place, e103)
+- [Hercules](E18_Physical_Thing, e104)
+- [octogoon](E18_Physical_Thing, e105)
+- [Wilhelmhohe](E18_Physical_Thing, e106)
+- [Cassel](E53_Place, e108)
+- [Cassel](E53_Place, e109)
+- [logement de Kurfürst](E18_Physical_Thing, e111)
+- [Cassel](E53_Place, e112)
+- [Cassel](E53_Place, e113)
+- [Cassel](E53_Place, e114)
+- [Museum Fridericianum](E18_Physical_Thing, e115)
+- [Parys](E53_Place, e117)
+- [museum](E18_Physical_Thing, e118)
+- [het eerste vertrek](E53_Place, e119)
+- [houtbibliotheek](E53_Place, e122)
+- [Academiesche boekery](E18_Physical_Thing, e123)
+- [Groningen](E53_Place, e124)
+- [Tweede Kamer](E53_Place, e127)
+- [derde Kamer](E53_Place, e132)
+- [diergaarde](E53_Place, e135)
+- [galery door eene ry van zuilen ondersteund](E53_Place, e143)
+- [vestibule](E53_Place, e144)
+- [geheele gebouw](E18_Physical_Thing, e145)
+- [Frederikplein](E53_Place, e146)
+- [Parys](E53_Place, e148)
+- [Palazo di Maecenate](E18_Physical_Thing, e153)
+- [Tivoli](E53_Place, e154)
+- [Bagno della nimfa Egeria](E18_Physical_Thing, e155)
+- [zaalen](E53_Place, e157)
+- [gebouw voor de vergadering der standen](E18_Physical_Thing, e158)
+- [kamer](E53_Place, e160)
+- [vertrek](E53_Place, e164)
+- [kamer](E53_Place, e170)
+- [kamer](E53_Place, e173)
+- [vesting Rheinfels](E18_Physical_Thing, e174)
+- [vertrek](E53_Place, e176)
+- [laatste kamer](E53_Place, e183)
+- [twee kamers](E53_Place, e185)
+- [breede trap](E18_Physical_Thing, e186)
+- [Heilige Land](E53_Place, e189)
+- [laatste zaal](E53_Place, e190)
+- [museum](E18_Physical_Thing, e193)
+- [boekery](E53_Place, e194)
+- [zelve gebouw](E18_Physical_Thing, e195)
+- [locaal](E53_Place, e196)
+- [paleis Bellevue](E18_Physical_Thing, e203)
+- [Scheveningen](E53_Place, e210)
+- [Parys](E53_Place, e212)
+- [gallery](E53_Place, e213)
+- [2 verdiepingen](E53_Place, e214)
+- [ruines van de schildergallery](E53_Place, e215)
+- [danszaal](E53_Place, e216)
+- [Parys](E53_Place, e219)
+- [Cassel](E53_Place, e222)
+- [paleis Belle vue](E18_Physical_Thing, e223)
+- [logement de Keurvorst](E18_Physical_Thing, e224)
+- [gallery](E53_Place, e227)
+- [marmeren bad](E18_Physical_Thing, e228)
+- [Orangerie](E18_Physical_Thing, e229)
+- [gebouw](E18_Physical_Thing, e230)
+- [vierkant vertrek](E53_Place, e231)
+- [vloeren](E18_Physical_Thing, e232)
+- [muren](E18_Physical_Thing, e233)
+- [het bad](E18_Physical_Thing, e235)
+- [acht Corintische pylaren](E18_Physical_Thing, e236)
+- [koepel](E18_Physical_Thing, e237)
+- [schoone gebouw](E18_Physical_Thing, e242)
+- [gebouw](E18_Physical_Thing, e245)
+- [Aue](E53_Place, e246)
+- [Aue-Garten](E53_Place, e247)
+- [lange linden allee](E53_Place, e248)
+- [vyver](E18_Physical_Thing, e249)
+- [kerken](E18_Physical_Thing, e250)
+- [Roomsche kerk](E18_Physical_Thing, e251)
+- [logement](E18_Physical_Thing, e252)
+- [ronden koepel](E18_Physical_Thing, e253)
+- [kolommen](E18_Physical_Thing, e254)
+- [galery](E53_Place, e255)
+- [galery](E53_Place, e257)
+- [colommen](E18_Physical_Thing, e258)
+- [koepelvormige dak](E18_Physical_Thing, e259)
+- [marmeren hoogaltaar](E18_Physical_Thing, e260)
+- [drie circelvormige trappen](E18_Physical_Thing, e261)
+- [de koepel](E18_Physical_Thing, e262)
+- [kerk](E18_Physical_Thing, e264)
+- [Brüder](E18_Physical_Thing, e265)
+- [Domkerk](E18_Physical_Thing, e266)
+- [tombes](E53_Place, e267)
+- [Kweekschool voor onderwyzers](E18_Physical_Thing, e272)
+- [Comedie](E18_Physical_Thing, e276)
+- [loge](E53_Place, e277)
+- [toneel](E53_Place, e278)
+- [observatorium](E18_Physical_Thing, e283)
+- [Wilhelms Brücke](E18_Physical_Thing, e284)
+- [Cassel](E53_Place, e285)
+- [Göttingen](E53_Place, e286)
+- [Cassel](E53_Place, e287)
+- [Fulda](E53_Place, e288)
+- [Wilhelmsbrug](E18_Physical_Thing, e289)
+- [Cassel](E53_Place, e291)
+- [Leipsicher plein](E53_Place, e292)
+- [Leipsicher poort](E18_Physical_Thing, e293)
+- [paradeplaats](E53_Place, e294)
+- [Kasern plaats](E53_Place, e295)
+- [coffyhuis](E18_Physical_Thing, e296)
+- [4 bovenkamers](E53_Place, e297)
+- [Frederiksplein](E53_Place, e298)
+- [dubbele linden allee](E53_Place, e299)
+- [Koningsplein](E53_Place, e300)
+- [Karelsplein](E53_Place, e301)
+- [marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)
+- [boven nieuw stad](E53_Place, e304)
+- [Franryk](E53_Place, e305)
+- [standbeelden van andere landgraven](E18_Physical_Thing, e307)
+- [Cassel](E53_Place, e308)
+- [Koningsstraat](E53_Place, e309)
+- [Bellevue straat](E53_Place, e310)
+- [boven nieuwstad](E53_Place, e311)
+- [Wilhelmshöhe](E18_Physical_Thing, e312)
+
+Dit zijn alle E53_Place en E18_Physical_Thing entiteiten. We moeten ze allemaal in toponym_relations zetten. Laten we de categorieën toewijzen zoals hierboven.
+
+Nu de JSON output. We moeten de events in volgorde zetten. Let op: de sub-events moeten ook in de events array staan. We hebben veel sub-events. We moeten ze allemaal toevoegen.
+
+We moeten ook de citations voor elk event correct invullen. Voor de sub-events van het museum moeten we voor elke viewed_artifacts een citation toevoegen. Dat zijn er veel. We moeten de mention_id's van de artifacts gebruiken.
+
+Laten we de JSON structuur opbouwen. We beginnen met letter_id en tour_group.
+
+Ik zal de JSON genereren in mijn antwoord.

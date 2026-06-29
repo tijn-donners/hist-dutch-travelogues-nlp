@@ -1,0 +1,46 @@
+De gebruiker vraagt me om een 19e-eeuws Nederlands reisverslag te analyseren volgens de Academic Tourism Ontology (ATO), gebaseerd op CIDOC CRM. Ik moet alle reisevenementen extraheren en hun relaties modelleren in JSON-formaat.
+
+Dit is een zeer complexe taak met veel specifieke regels. Laat me de tekst zorgvuldig analyseren en alle evenementen identificeren.
+
+De tekst is een brief van een Groningse student die in 1816 door Duitsland reist, specifiek van Paderborn naar Cassel.
+
+Laat me de belangrijkste evenementen identificeren:
+
+1. **Translocatie van Paderborn naar Cassel** (met meerdere stops)
+   - Vertrek uit Paderborn op Donderdag den 4 om 1 uur met Extrapost (e13, e14, e15, e16, e17)
+   - Stop in Lichtenau (e27) - eerste station
+   - Stop in Ossendorf (e60) - tweede station
+   - Wandeling naar Warburg (e70) - overnachting
+   - Vertrek uit Warburg de volgende morgen (e81, e82)
+   - Stop in West-Uffelen (e96) - derde station
+   - Aankomst in Cassel om 5 uur (e103, e110)
+
+2. **Bezoek aan Museum Fridericianum** (e115/e118/e193)
+   - Meerdere kamers met verschillende collecties
+   - Dit moet sub-events krijgen voor elke kamer
+
+3. **Bezoek aan de bibliotheek** (e194) in hetzelfde gebouw (e195)
+
+4. **Bezoek aan paleis Bellevue** (e203/e223) met schilderijencollectie
+
+5. **Bezoek aan marmeren bad** (e228) in de Orangerie (e229)
+   
+6. **Bezoek aan kerken**: Roomsche kerk (e251), Brüder (e265), Domkerk (e266)
+
+7. **Bezoek aan Kweekschool voor onderwijzers** (e272)
+
+8. **Bezoek aan Comedie** (e276)
+
+9. **Verblijf in logement de Kurfürst** (e111/e224)
+
+10. **Wandelingen in Aue-Garten** (e247)
+
+Nu moet ik alle toponiemen classificeren volgens de ruimtelijke relaties (IN, NEAR, THRU, TO, FROM, NO_REL) en ervoor zorgen dat elke entiteit consistent is met de event-roles.
+
+Ik zie dat de student meerdere locaties bezoekt in Cassel, waaronder religieuze gebouwen, onderwijsinstellingen en accommodatie. De classificatie van elke locatie moet overeenkomen met hoe de reiziger er daadwerkelijk mee omging - of hij er binnen was, er doorheen ging, of er slechts naar verwees.
+
+De translocatie van Paderborn naar Cassel omvat meerdere tussenstops en vervoermiddelen, waarbij sommige locaties als via_points fungeren en andere als daadwerkelijke verblijfplaatsen. De overnachting in Warburg en de maaltijd in West-Uffelen zijn belangrijke stay-events binnen deze reis.
+
+In Cassel zelf volgt een reeks indoor_tours door verschillende culturele instellingen - het museum met zijn vele kamers vereist sub-events per ruimte, de bibliotheek als apart bezoek, en paleis Bellevue voor de schilderijencollectie. Daarnaast zijn er bezoeken aan het marmeren bad, drie kerken, de kweekschool en de comedie, plus een outdoor_tour door de Aue-Garten. Het verblijf in logement de Kurfürst vormt een stay-event dat als uitvalsbasis dient.
+
+De classificatie van toponiemen moet precies aansluiten bij hun rol in de events: vertrekpunten als FROM, bestemmingen als TO, tussenstops als IN of THRU afhankelijk van of er daadwerkelijk gestopt werd, en bezienswaardigheden als IN wanneer ze bezocht worden. Sommige locaties zoals Parys en Groningen komen alleen ter sprake zonder dat de reiziger er fysiek aanwezig was - die krijgen NO_REL.

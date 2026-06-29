@@ -14,6 +14,7 @@ import csv
 import json
 import os
 import re as _re
+import sys
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -24,6 +25,18 @@ from rdflib.namespace import RDF
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
+def _cli_flag_passed(flag, argv=None):
+    """True if ``flag`` was given on the CLI.
+
+    Handles both the space form (``--flag value``) and the equals form
+    (``--flag=value``); the bare ``"--flag" not in sys.argv`` check misses the
+    latter and lets auto-detection silently overwrite an explicit value.
+    """
+    if argv is None:
+        argv = sys.argv
+    return any(a == flag or a.startswith(flag + "=") for a in argv)
+
 
 def load_gold_standard(csv_path):
     """Load gold standard CSV, return list of E53/E18 rows with visited_type."""
@@ -61,10 +74,34 @@ def load_mention_map(path):
     return result
 
 
+def _normalize_toponym_relations(data):
+    """Coerce a list-shaped ``toponym_relations`` (an LLM variant) to a dict.
+
+    The prompt asks for an object ``{"e3": "FROM", ...}`` but models sometimes
+    return an array of objects ``[{"mention_id": "e3", "category": "FROM"}]``.
+    Downstream code calls ``.items()`` on it, which would raise
+    ``AttributeError`` on a list. Normalise once at the load boundary.
+    """
+    tr = data.get("toponym_relations")
+    if isinstance(tr, list):
+        d = {}
+        for item in tr:
+            if isinstance(item, dict):
+                mid = item.get("mention_id")
+                cat = item.get("category")
+                if mid and cat:
+                    d[mid] = cat
+        data["toponym_relations"] = d
+    elif tr is None:
+        data["toponym_relations"] = {}
+    return data
+
+
 def load_events(path):
-    """Load RE events JSON."""
+    """Load RE events JSON, normalising ``toponym_relations`` to a dict."""
     with open(path, encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+    return _normalize_toponym_relations(data)
 
 
 def derive_binary_from_rdf(rdf_path, mention_map, letter_id="BRF0003"):
@@ -74,8 +111,13 @@ def derive_binary_from_rdf(rdf_path, mention_map, letter_id="BRF0003"):
     P7_took_place_at, P26_moved_to, or P27_moved_from triple in the RDF.
     Otherwise it's 'non-visited'.
 
-    Returns dict: mention_id → True (visited) / False (non-visited).
-    Only includes mention_ids that map to E53_Place or E18_Physical_Thing.
+    Returns (mention_visited, loc_visited, loc_map):
+      mention_visited: mention_id -> True/False (per-citation, dedup-consistent).
+      loc_visited:     LOC uri -> True/False (per-place, authoritative — a LOC is
+                       visited iff it is the object of a visit-property triple).
+      loc_map:         mention_id -> LOC uri (the RDF's own dedup partition; all
+                       mentions sharing a KB id collapse onto the same LOC).
+    Only mention_ids that map to E53_Place/E18_Physical_Thing are included.
     """
     g = Graph()
     g.parse(rdf_path, format="turtle")
@@ -104,32 +146,36 @@ def derive_binary_from_rdf(rdf_path, mention_map, letter_id="BRF0003"):
     # 2. Determine which LOC entities are visited
     visited_locs = set()
     for loc in loc_entities:
-        for prop in VISIT_PROPS:
-            if (loc, None, None) in g.triples((None, prop, loc)):
-                # Check if loc is the object of this property
-                pass
-        # Actually check properly:
+        # A LOC is visited if it is the object of any visit property triple.
         for s, p, o in g.triples((None, None, loc)):
             if p in VISIT_PROPS:
                 visited_locs.add(loc)
                 break
 
-    # 3. Map LOC entities → mention_ids via P129i_is_subject_of
-    #    LOC.Paderborn has: P129i_is_subject_of ato:CT.BRF0003.e5, ato:CT.BRF0003.e11, ...
+    # 3. Map LOC entities → mention_ids via P67i_is_referred_to_by
+    #    LOC.Paderborn has: P67i_is_referred_to_by ato:CT.BRF0003.e5, ato:CT.BRF0003.e11, ...
     #    The CT URI contains the mention_id (e.g. e5)
-    mention_visited = {}
+    mention_visited = {}   # mention_id -> visited (per-citation, dedup-consistent)
+    loc_map = {}           # mention_id -> LOC uri (the RDF's own dedup partition)
     ct_prefix = str(ATO) + f"CT.{letter_id}."
     for loc in loc_entities:
         is_visited = loc in visited_locs
-        for ct_entity in g.objects(loc, CRM + "P129i_is_subject_of"):
+        for ct_entity in g.objects(loc, CRM + "P67i_is_referred_to_by"):
             ct_str = str(ct_entity)
             if ct_str.startswith(ct_prefix):
                 mid = ct_str[len(ct_prefix):]
                 # Only include if it's an E53/E18 in the mention map
                 if mid in mention_map and mention_map[mid]["label"] in ("E53_Place", "E18_Physical_Thing"):
                     mention_visited[mid] = is_visited
+                    loc_map[mid] = str(loc)
 
-    return mention_visited
+    # Per-LOC visited verdict (authoritative): a LOC is visited iff it is the
+    # object of a visit-property triple. This is the granularity the RDF can
+    # actually express — one deduped LOC per place — so the binary RDF metric
+    # is scored per-place against this, not per-citation.
+    loc_visited = {str(loc): (loc in visited_locs) for loc in loc_entities}
+
+    return mention_visited, loc_visited, loc_map
 
 
 def derive_predictions(events_data, mention_map):
@@ -343,6 +389,66 @@ def evaluate_binary_rdf(gold_entities, mention_map, rdf_visited):
     }
 
 
+def evaluate_binary_rdf_per_place(gold_entities, mention_map, loc_visited, loc_map):
+    """Per-place (LOC-level) binary visited vs non-visited from the RDF.
+
+    The RDF deduplicates mentions of the same place into a single LOC entity,
+    so scoring it per-citation double-counts a place that is mentioned twice.
+    This collapses matched gold mentions onto the RDF's own LOC partition
+    (``loc_map``) and scores one binary verdict per place:
+
+      * gold-LOC visited   = any member mention's ``visited_type`` is a
+                              visited category (THRU/TO/FROM/IN/NEAR).
+      * RDF-LOC visited     = ``loc_visited[LOC]`` — the LOC is the object of
+                              a visit-property triple in the RDF.
+
+    ``total`` is the number of gold-anchored LOCs in the universe (one per
+    distinct place that has ≥1 matched gold mention). ``dropped`` counts
+    matched gold mentions whose mention_id has no LOC in the RDF (no CT/LOC
+    was generated for them) and are therefore excluded from the per-place
+    universe.
+    """
+    visited_cats = {"THRU", "TO", "FROM", "IN", "NEAR"}
+    matches = match_gold_to_mention(gold_entities, mention_map)
+
+    loc_gold_types = {}   # LOC uri -> list of member gold visited_types
+    dropped = 0
+    for g, mid in matches:
+        loc = loc_map.get(mid)
+        if loc is None:
+            dropped += 1
+            continue
+        loc_gold_types.setdefault(loc, []).append(g["visited_type"])
+
+    tp = fp = fn = tn = 0
+    for loc, types in loc_gold_types.items():
+        gold_visited = any(t in visited_cats for t in types)
+        pred_visited = loc_visited.get(loc, False)
+        if gold_visited and pred_visited:
+            tp += 1
+        elif not gold_visited and pred_visited:
+            fp += 1
+        elif gold_visited and not pred_visited:
+            fn += 1
+        else:
+            tn += 1
+
+    p = tp / (tp + fp) if (tp + fp) > 0 else 0
+    r = tp / (tp + fn) if (tp + fn) > 0 else 0
+    f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0
+    acc = (tp + tn) / len(loc_gold_types) if loc_gold_types else 0
+
+    return {
+        "tp": tp, "fp": fp, "fn": fn, "tn": tn,
+        "precision": round(p, 3),
+        "recall": round(r, 3),
+        "f1": round(f1, 3),
+        "accuracy": round(acc, 3),
+        "total": len(loc_gold_types),
+        "dropped": dropped,
+    }
+
+
 # ---------------------------------------------------------------------------
 # Confusion matrix helper
 # ---------------------------------------------------------------------------
@@ -433,8 +539,16 @@ def find_matching_files(ttl_path):
 SCORES_DIR = Path(__file__).resolve().parent / "re-evaluation"
 
 
-def write_scores_csv(meta, fine_results, fine_summary, bin_results, rdf_bin_results, rdf_visited):
-    """Append one row to scores.csv, creating the file with header if needed."""
+def write_scores_csv(meta, fine_results, fine_summary, bin_results, rdf_bin_results):
+    """Append one row to scores.csv, creating the file with header if needed.
+
+    The ``binary_rdf_*`` and ``rdf_entities``/``rdf_dropped`` columns come from
+    the **per-place (LOC-level)** RDF binary evaluation: the RDF deduplicates
+    mentions of the same place into one LOC, so the metric is scored per place,
+    not per citation. ``rdf_entities`` is the number of gold-anchored LOCs in
+    the universe and ``rdf_dropped`` is the count of matched gold mentions with
+    no LOC in the RDF.
+    """
     SCORES_DIR.mkdir(parents=True, exist_ok=True)
     path = SCORES_DIR / "scores.csv"
 
@@ -455,17 +569,17 @@ def write_scores_csv(meta, fine_results, fine_summary, bin_results, rdf_bin_resu
         "in_f1": fine_results["IN"]["f1"],
         "near_f1": fine_results["NEAR"]["f1"],
         "no_rel_f1": fine_results["NO_REL"]["f1"],
-        # Binary JSON
+        # Binary JSON (per-citation, from the LLM toponym_relations)
         "binary_json_p": bin_results["precision"],
         "binary_json_r": bin_results["recall"],
         "binary_json_f1": bin_results["f1"],
         "binary_json_accuracy": bin_results["accuracy"],
-        # Binary RDF
+        # Binary RDF (per-place / LOC-level — the RDF's own dedup granularity)
         "binary_rdf_p": rdf_bin_results["precision"],
         "binary_rdf_r": rdf_bin_results["recall"],
         "binary_rdf_f1": rdf_bin_results["f1"],
         "binary_rdf_accuracy": rdf_bin_results["accuracy"],
-        "rdf_entities": len(rdf_visited),
+        "rdf_entities": rdf_bin_results["total"],
         "rdf_dropped": rdf_bin_results.get("dropped", 0),
     }
 
@@ -549,7 +663,10 @@ if __name__ == "__main__":
     parser.add_argument("--duration", type=float, default=0.0,
                         help="Duration in seconds")
     parser.add_argument("--think", default=None,
-                        help="Thinking mode (overrides auto-detect from metadata)")
+                        choices=["true", "false", "low", "medium", "high", "default"],
+                        help="Thinking mode (overrides auto-detect from metadata). "
+                             "'default' means the --think flag was not passed at "
+                             "extraction time (model default).")
     parser.add_argument("--gold", default=None,
                         help="Path to gold standard CSV (default: alongside this script)")
     parser.add_argument("--events", default=None,
@@ -575,18 +692,27 @@ if __name__ == "__main__":
             args.mention_map = mm
 
     # Auto-detect model and temperature from filename if not explicitly set
-    import sys as _sys
-    if "--model" not in _sys.argv or "--temperature" not in _sys.argv or "--think" not in _sys.argv:
+    if (not _cli_flag_passed("--model") or not _cli_flag_passed("--temperature")
+            or not _cli_flag_passed("--think")):
         detected_model, detected_temp, detected_think = extract_model_from_filename(args.rdf)
-        if detected_model and "--model" not in _sys.argv:
+        if detected_model and not _cli_flag_passed("--model"):
             args.model = detected_model
-        if detected_temp is not None and "--temperature" not in _sys.argv:
+        if detected_temp is not None and not _cli_flag_passed("--temperature"):
             args.temperature = detected_temp
-        if detected_think is not None and "--think" not in _sys.argv:
+        if detected_think is not None and not _cli_flag_passed("--think"):
             args.think = detected_think
 
+    # Auto-detect source text from the TTL filename if not explicitly set
+    if not _cli_flag_passed("--source-text"):
+        _base = Path(args.rdf).stem
+        if _base.endswith("_events"):
+            _base = _base[:-7]
+        _src = _base.split("__")[0]
+        if _src:
+            args.source_text = _src
+
     # Auto-detect duration from metadata JSON if not explicitly set
-    if "--duration" not in _sys.argv and args.events:
+    if not _cli_flag_passed("--duration") and args.events:
         meta_path = Path(args.events).with_suffix(".meta.json")
         if meta_path.exists():
             try:
@@ -665,16 +791,18 @@ if __name__ == "__main__":
     print(f"{'Accuracy':>15}  {bin_results['accuracy']:>6.3f}")
     print(f"{'Total':>15}  {bin_results['total']:>6}")
 
-    # --- Binary evaluation (from RDF) ---
+    # --- Binary evaluation (from RDF, per-place / LOC-level) ---
     print("\n" + "-" * 60)
-    print("2b. Binary classification — from RDF/TTL")
+    print("2b. Binary classification — from RDF/TTL (per-place / LOC-level)")
     print("-" * 60)
-    rdf_visited = derive_binary_from_rdf(args.rdf, mention_map)
-    print(f"\nRDF LOC entities mapped to mention_ids: {len(rdf_visited)}")
-    rdf_visited_count = sum(1 for v in rdf_visited.values() if v)
-    rdf_nonvisited_count = sum(1 for v in rdf_visited.values() if not v)
-    print(f"  Visited: {rdf_visited_count}, Non-visited: {rdf_nonvisited_count}")
-    rdf_bin_results = evaluate_binary_rdf(gold, mention_map, rdf_visited)
+    rdf_visited, loc_visited, loc_map = derive_binary_from_rdf(args.rdf, mention_map)
+    print(f"\nRDF LOC entities (places): {len(loc_visited)}  "
+          f"(visited: {sum(1 for v in loc_visited.values() if v)}, "
+          f"non-visited: {sum(1 for v in loc_visited.values() if not v)})")
+    print(f"RDF citations mapped to a LOC: {len(loc_map)}")
+    # Per-place (LOC-level): score the RDF at its natural granularity (one
+    # deduped LOC per place) instead of double-counting repeated mentions.
+    rdf_bin_results = evaluate_binary_rdf_per_place(gold, mention_map, loc_visited, loc_map)
     print(f"\n{'Metric':>15}  {'Value':>6}")
     print(f"{'':>15}  {'-'*6}")
     print(f"{'TP':>15}  {rdf_bin_results['tp']:>6}")
@@ -685,10 +813,10 @@ if __name__ == "__main__":
     print(f"{'Recall':>15}  {rdf_bin_results['recall']:>6.3f}")
     print(f"{'F1':>15}  {rdf_bin_results['f1']:>6.3f}")
     print(f"{'Accuracy':>15}  {rdf_bin_results['accuracy']:>6.3f}")
-    print(f"{'Total':>15}  {rdf_bin_results['total']:>6}")
+    print(f"{'LOCs':>15}  {rdf_bin_results['total']:>6}")
     if rdf_bin_results.get("dropped", 0):
         print(f"{'Dropped':>15}  {rdf_bin_results['dropped']:>6}  "
-              f"(in gold but missing from RDF)")
+              f"(matched gold mentions with no LOC in the RDF)")
 
     # --- Write scores.csv + metadata ---
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -701,9 +829,14 @@ if __name__ == "__main__":
             try:
                 with open(meta_path) as f:
                     re_meta = json.load(f)
-                think_mode = re_meta.get("think_mode", "")
+                think_mode = re_meta.get("think_mode") or ""
             except (json.JSONDecodeError, OSError):
                 pass
+    # Normalise the "not passed" state to "default" so scores.csv is consistent
+    # regardless of whether the value came from filename auto-detect, the meta
+    # JSON, or nowhere at all.
+    if not think_mode:
+        think_mode = "default"
 
     meta = {
         "source_text": args.source_text,
@@ -715,7 +848,7 @@ if __name__ == "__main__":
         "duration_seconds": args.duration,
     }
     write_scores_csv(meta, fine_results, fine_summary,
-                     bin_results, rdf_bin_results, rdf_visited)
+                     bin_results, rdf_bin_results)
     write_metadata_json(meta)
 
     print("\n" + "=" * 60)

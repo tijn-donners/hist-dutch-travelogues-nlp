@@ -1620,7 +1620,9 @@
 <https://astrea.linkeddata.es/shapes#d36f4a3bd21b9fa81d0edb6fe59dd9cc>
         a            sh:PropertyShape ;
         rdfs:label   "é assunto de"@pt , "est le sujet de"@fr , "είναι θέμα του/της"@el , "is subject of"@en , "wird behandelt in"@de , "是主题"@zh , "является предметом для"@ru ;
-        sh:class     cidoc-crm:E89_Propositional_Object ;
+        # Hand-edited: P129i_is_subject_of points at the letter (lrmoo:F2_Expression)
+        # per ATO_paper.txt §5 (not E89_Propositional_Object).
+        sh:class     lrmoo:F2_Expression ;
         sh:name      "é assunto de"@pt , "является предметом для"@ru , "is subject of"@en , "είναι θέμα του/της"@el , "est le sujet de"@fr , "wird behandelt in"@de , "是主题"@zh ;
         sh:nodeKind  sh:BlankNodeOrIRI ;
         sh:path      cidoc-crm:P129i_is_subject_of .
@@ -1981,7 +1983,10 @@
 
 <https://astrea.linkeddata.es/shapes#dac888649003ca01c5619b19e65ae581>
         a            sh:PropertyShape ;
-        sh:class     cidoc-crm:E89_Propositional_Object ;
+        # Hand-edited: citations (ato:CT.*) are typed lrmoo:F2_Expression per
+        # ATO_paper.txt §5, not E89_Propositional_Object. Astrea regeneration
+        # follow-up: repost ATO.rdf with `conveys rdfs:range lrmoo:F2_Expression`.
+        sh:class     lrmoo:F2_Expression ;
         sh:nodeKind  sh:BlankNodeOrIRI ;
         sh:path      academictourism:conveys .
 
@@ -4226,7 +4231,9 @@
 <https://astrea.linkeddata.es/shapes#80008085b85c9a8924d1a253d0590a99>
         a            sh:PropertyShape ;
         rdfs:label   "被涉及"@zh , "имеет ссылку на себя от"@ru , "is referred to by"@en , "αναφέρεται από"@el , "fait l'objet d'un renvoi par"@fr , "wird angeführt von"@de , "é referenciado por"@pt ;
-        sh:class     cidoc-crm:E89_Propositional_Object ;
+        # Hand-edited: P67i_is_referred_to_by points at CT.* citations, typed
+        # lrmoo:F2_Expression per ATO_paper.txt §5 (not E89_Propositional_Object).
+        sh:class     lrmoo:F2_Expression ;
         sh:name      "é referenciado por"@pt , "αναφέρεται από"@el , "被涉及"@zh , "fait l'objet d'un renvoi par"@fr , "is referred to by"@en , "wird angeführt von"@de , "имеет ссылку на себя от"@ru ;
         sh:nodeKind  sh:BlankNodeOrIRI ;
         sh:path      cidoc-crm:P67i_is_referred_to_by .

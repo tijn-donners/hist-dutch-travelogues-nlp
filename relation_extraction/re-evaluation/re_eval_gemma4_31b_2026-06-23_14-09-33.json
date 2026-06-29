@@ -1,9 +1,0 @@
-{
-  "source_text": "1816_third_letter",
-  "model": "gemma4_31b",
-  "temperature": 0.7,
-  "think_mode": null,
-  "inference_type": "cloud",
-  "datetime": "2026-06-23 14:09:33",
-  "duration_seconds": 204.9
-}

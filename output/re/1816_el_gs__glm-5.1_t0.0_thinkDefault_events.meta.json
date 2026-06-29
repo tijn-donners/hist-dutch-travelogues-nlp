@@ -1,0 +1,1599 @@
+{
+  "model": "glm-5.1",
+  "temperature": 0.0,
+  "think_mode": "default",
+  "source_text": "1816_el_gs_el",
+  "datetime": "2026-06-28 22:51:47",
+  "duration_seconds": 620.6,
+  "num_api_failures": 0,
+  "num_retries": 2,
+  "prompt_length_chars": 56614,
+  "response_length_chars": 36523,
+  "num_events": 52,
+  "num_toponym_relations": 110,
+  "num_entities": 313,
+  "rdf_triples": 4495,
+  "validation": {
+    "summary": {
+      "num_toponym_relations": 110,
+      "num_validation_issues": 68,
+      "category_counts": {
+        "IN": 76,
+        "FROM": 3,
+        "NEAR": 12,
+        "THRU": 14,
+        "TO": 5
+      },
+      "num_visited": 110,
+      "num_no_rel": 0,
+      "num_unassigned_near": 1
+    },
+    "validation_issues": [
+      "toponym_relations: E53/E18 entity 'e11' ('Paderborn') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e12' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e18' ('Hoxenberg') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e28' ('Neuhaus') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e29' ('Paderborn') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e30' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e34' ('Paderborn') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e58' ('Warburg') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e61' ('posthuis') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e62' ('Ocksendorf') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e63' ('Ossendorf') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e76' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e80' ('Gasthofe Desenburg') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e86' ('Desenberg') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e97' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e99' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e103' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e108' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e112' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e113' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e114' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e115' ('Museum Fridericianum') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e117' ('Parys') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e123' ('Academiesche boekery') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e124' ('Groningen') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e135' ('diergaarde') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e145' ('geheele gebouw') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e146' ('Frederikplein') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e148' ('Parys') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e153' ('Palazo di Maecenate') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e154' ('Tivoli') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e155' ('Bagno della nimfa Egeria') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e174' ('vesting Rheinfels') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e189' ('Heilige Land') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e210' ('Scheveningen') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e212' ('Parys') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e214' ('2 verdiepingen') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e215' ('de ruines van de schildergallery') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e216' ('danszaal') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e219' ('Parys') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e222' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e224' ('logement de Keurvorst') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e230' ('gebouw') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e242' ('schoone gebouw') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e250' ('kerken') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e252' ('logement') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e283' ('observatorium') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e284' ('Wilhelms Br\u00fccke') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e285' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e286' ('G\u00f6ttingen') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e287' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e291' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e293' ('Leipsicher poort') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e302' ('marmeren beeld van den landgraaf Karel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e305' ('Franryk') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e307' ('standbeelden van andere landgraven') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e308' ('Cassel') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e312' ('Wilhelmsh\u00f6he') missing from toponym_relations",
+      "toponym_relations: E53/E18 entity 'e313' ('G\u00f6ttingen') missing from toponym_relations",
+      "toponym_relations: 'e27' category 'TO' inconsistent with event role 'took_place_at' (expected 'IN')",
+      "toponym_relations: 'e27' category 'TO' inconsistent with event role 'moved_from' (expected 'FROM')",
+      "toponym_relations: 'e60' category 'TO' inconsistent with event role 'took_place_at' (expected 'IN')",
+      "toponym_relations: 'e60' category 'TO' inconsistent with event role 'moved_from' (expected 'FROM')",
+      "toponym_relations: 'e49' category 'THRU' inconsistent with event role 'near_places' (expected 'NEAR')",
+      "toponym_relations: 'e70' category 'TO' inconsistent with event role 'took_place_at' (expected 'IN')",
+      "toponym_relations: 'e96' category 'TO' inconsistent with event role 'took_place_at' (expected 'IN')",
+      "toponym_relations: 'e96' category 'TO' inconsistent with event role 'moved_from' (expected 'FROM')",
+      "toponym_relations: 'e109' category 'TO' inconsistent with event role 'took_place_at' (expected 'IN')"
+    ],
+    "toponym_role_usage": [
+      {
+        "mention_id": "e2",
+        "text": "Cassel",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012",
+          "RS0014",
+          "RS0015",
+          "RS0017",
+          "RS0018",
+          "RS0019",
+          "RS0020",
+          "RS0021",
+          "RS0022"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e5",
+        "text": "Paderborn",
+        "label": "E53_Place",
+        "category": "FROM",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e8",
+        "text": "Warburg",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e17",
+        "text": "Paderborn",
+        "label": "E53_Place",
+        "category": "FROM",
+        "roles_in_events": [
+          "moved_from"
+        ],
+        "referencing_events": [
+          "RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e19",
+        "text": "Paderborn",
+        "label": "E53_Place",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e20",
+        "text": "7 bergen",
+        "label": "E18_Physical_Thing",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e21",
+        "text": "Dornhagen",
+        "label": "E53_Place",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e22",
+        "text": "Grondsteinheim",
+        "label": "E53_Place",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e27",
+        "text": "Lichtenau",
+        "label": "E53_Place",
+        "category": "TO",
+        "roles_in_events": [
+          "moved_from",
+          "moved_to",
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0001",
+          "RS0002",
+          "RS0003"
+        ],
+        "consistent": false,
+        "role_mismatches": [
+          {
+            "role": "moved_from",
+            "expected": "FROM",
+            "actual": "TO"
+          },
+          {
+            "role": "took_place_at",
+            "expected": "IN",
+            "actual": "TO"
+          }
+        ]
+      },
+      {
+        "mention_id": "e48",
+        "text": "hooge bergen",
+        "label": "E18_Physical_Thing",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0003"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e49",
+        "text": "bergen",
+        "label": "E18_Physical_Thing",
+        "category": "THRU",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0003"
+        ],
+        "consistent": false,
+        "role_mismatches": [
+          {
+            "role": "near_places",
+            "expected": "NEAR",
+            "actual": "THRU"
+          }
+        ]
+      },
+      {
+        "mention_id": "e52",
+        "text": "Kleinenberg",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0003"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e53",
+        "text": "uitgestrekt bosch",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0003"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e54",
+        "text": "Hardehauserwoud",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0003"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e55",
+        "text": "klooster",
+        "label": "E18_Physical_Thing",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0003"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e56",
+        "text": "Desenberg",
+        "label": "E18_Physical_Thing",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0003"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e60",
+        "text": "Ossendorf",
+        "label": "E53_Place",
+        "category": "TO",
+        "roles_in_events": [
+          "moved_from",
+          "moved_to",
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0003",
+          "RS0004",
+          "RS0005"
+        ],
+        "consistent": false,
+        "role_mismatches": [
+          {
+            "role": "moved_from",
+            "expected": "FROM",
+            "actual": "TO"
+          },
+          {
+            "role": "took_place_at",
+            "expected": "IN",
+            "actual": "TO"
+          }
+        ]
+      },
+      {
+        "mention_id": "e64",
+        "text": "Ossen",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e65",
+        "text": "Ocksendorf",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e70",
+        "text": "Warburg",
+        "label": "E53_Place",
+        "category": "TO",
+        "roles_in_events": [
+          "moved_to",
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0005",
+          "RS0007"
+        ],
+        "consistent": false,
+        "role_mismatches": [
+          {
+            "role": "took_place_at",
+            "expected": "IN",
+            "actual": "TO"
+          }
+        ]
+      },
+      {
+        "mention_id": "e77",
+        "text": "Warburg",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0006"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e82",
+        "text": "Warburg",
+        "label": "E53_Place",
+        "category": "FROM",
+        "roles_in_events": [
+          "moved_from"
+        ],
+        "referencing_events": [
+          "RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e84",
+        "text": "Dalheim",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e85",
+        "text": "Desenberg",
+        "label": "E18_Physical_Thing",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e88",
+        "text": "Warburg",
+        "label": "E53_Place",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e89",
+        "text": "Ehrings",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e90",
+        "text": "Libenau",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e92",
+        "text": "Ober",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e93",
+        "text": "Nider Lichtingen",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e94",
+        "text": "Hessisch grondgebied",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e96",
+        "text": "West-Uffelen",
+        "label": "E53_Place",
+        "category": "TO",
+        "roles_in_events": [
+          "moved_from",
+          "moved_to",
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0008",
+          "RS0009",
+          "RS0010"
+        ],
+        "consistent": false,
+        "role_mismatches": [
+          {
+            "role": "moved_from",
+            "expected": "FROM",
+            "actual": "TO"
+          },
+          {
+            "role": "took_place_at",
+            "expected": "IN",
+            "actual": "TO"
+          }
+        ]
+      },
+      {
+        "mention_id": "e100",
+        "text": "Meinbids",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0010"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e101",
+        "text": "Kalken",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0010"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e104",
+        "text": "Hercules",
+        "label": "E18_Physical_Thing",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0010"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e105",
+        "text": "octogoon",
+        "label": "E18_Physical_Thing",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0010"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e106",
+        "text": "Wilhelmhohe",
+        "label": "E18_Physical_Thing",
+        "category": "NEAR",
+        "roles_in_events": [
+          "near_places"
+        ],
+        "referencing_events": [
+          "RS0010"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e109",
+        "text": "Cassel",
+        "label": "E53_Place",
+        "category": "TO",
+        "roles_in_events": [
+          "moved_to",
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0010",
+          "RS0011"
+        ],
+        "consistent": false,
+        "role_mismatches": [
+          {
+            "role": "took_place_at",
+            "expected": "IN",
+            "actual": "TO"
+          }
+        ]
+      },
+      {
+        "mention_id": "e111",
+        "text": "logement de Kurf\u00fcrst",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0011"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e118",
+        "text": "museum",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0012"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e119",
+        "text": "het eerste vertrek",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e122",
+        "text": "houtbibliotheek",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e127",
+        "text": "Tweede Kamer",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0002"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e132",
+        "text": "derde Kamer",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0003"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e143",
+        "text": "galery door eene ry van zuilen ondersteund",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0004"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e144",
+        "text": "vestibule",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e157",
+        "text": "zaalen",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0005"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e158",
+        "text": "gebouw voor de vergadering der standen",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0012.RS0005"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e160",
+        "text": "kamer",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0006"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e164",
+        "text": "vertrek",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0007"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e170",
+        "text": "kamer",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e173",
+        "text": "kamer",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0009"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e176",
+        "text": "vertrek",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0010"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e183",
+        "text": "laatste kamer",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0011"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e185",
+        "text": "twee kamers",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0012"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e186",
+        "text": "breede trap",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e190",
+        "text": "laatste zaal",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0012.RS0013"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e193",
+        "text": "museum",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e194",
+        "text": "boekery",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0013"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e195",
+        "text": "gebouw",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0013"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e196",
+        "text": "locaal",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e203",
+        "text": "paleis Bellevue",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0014"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e213",
+        "text": "gallery",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0014.RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e223",
+        "text": "paleis Belle vue",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0014.RS0002"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e227",
+        "text": "gallery",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e228",
+        "text": "marmeren bad",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0015"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e229",
+        "text": "Orangerie",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e231",
+        "text": "vierkant vertrek",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0015.RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e232",
+        "text": "vloeren",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e233",
+        "text": "muren",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e235",
+        "text": "Het bad",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e236",
+        "text": "acht Corintische pylaren",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e237",
+        "text": "koepel",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e245",
+        "text": "gebouw",
+        "label": "E18_Physical_Thing",
+        "category": "NEAR",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e246",
+        "text": "Aue",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e247",
+        "text": "Aue-Garten",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0016",
+          "RS0016.RS0002"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e248",
+        "text": "lange linden allee",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0016.RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e249",
+        "text": "vyver",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0016.RS0002"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e251",
+        "text": "Roomsche kerk",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0017"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e253",
+        "text": "ronden koepel",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e254",
+        "text": "kolommen",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e255",
+        "text": "galery",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0017.RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e257",
+        "text": "galery",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e258",
+        "text": "colommen",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e259",
+        "text": "koepelvormige dak",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e260",
+        "text": "marmeren hoogaltaar",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e261",
+        "text": "drie circelvormige trappen",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e262",
+        "text": "de koepel",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0017.RS0002"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e264",
+        "text": "kerk",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e265",
+        "text": "Br\u00fcder",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0018"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e266",
+        "text": "Domkerk",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0019"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e267",
+        "text": "tombes",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0019.RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e272",
+        "text": "Kweekschool voor onderwyzers",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0020"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e276",
+        "text": "Comedie",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0021"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e277",
+        "text": "loge",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0021.RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e278",
+        "text": "toneel",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e288",
+        "text": "Fulda",
+        "label": "E53_Place",
+        "category": "THRU",
+        "roles_in_events": [
+          "via_points"
+        ],
+        "referencing_events": [
+          "RS0022"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e289",
+        "text": "Wilhelmsbrug",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0022.RS0001"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e292",
+        "text": "Leipsicher plein",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0022.RS0002"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e294",
+        "text": "paradeplaats",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0022.RS0003"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e295",
+        "text": "Kasern plaats",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0022.RS0004"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e296",
+        "text": "coffyhuis",
+        "label": "E18_Physical_Thing",
+        "category": "IN",
+        "roles_in_events": [
+          "on_or_within"
+        ],
+        "referencing_events": [
+          "RS0022.RS0004"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e297",
+        "text": "4 bovenkamers",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e298",
+        "text": "Frederiksplein",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0022.RS0005"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e299",
+        "text": "dubbele linden allee",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e300",
+        "text": "Koningsplein",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0022.RS0006"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e301",
+        "text": "Karelsplein",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0022.RS0007"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e304",
+        "text": "boven nieuw stad",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e309",
+        "text": "Konings",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [
+          "took_place_at"
+        ],
+        "referencing_events": [
+          "RS0022.RS0008"
+        ],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e310",
+        "text": "Bellevue straat",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      },
+      {
+        "mention_id": "e311",
+        "text": "boven nieuwstad",
+        "label": "E53_Place",
+        "category": "IN",
+        "roles_in_events": [],
+        "referencing_events": [],
+        "consistent": true,
+        "role_mismatches": []
+      }
+    ],
+    "unassigned_near": [
+      "e245"
+    ],
+    "mentioned_only_discrepancy": {
+      "extra": [],
+      "missing": []
+    }
+  }
+}

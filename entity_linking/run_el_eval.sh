@@ -17,7 +17,7 @@ PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # ── Defaults ─────────────────────────────────────────────────────────────────
 INPUT_FILE=""
-MODEL="mistral-large-3:675b"
+MODEL="gemma4:31b"
 TEMPERATURE=0.0
 TOP_K=3
 # Think mode (controls reasoning/thinking token budget for thinking models):

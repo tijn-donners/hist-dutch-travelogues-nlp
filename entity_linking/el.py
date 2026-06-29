@@ -39,6 +39,11 @@ from el_candidates import generate_candidates, clear_cache
 from el_reranker import rerank_candidates
 from el_selector import select_candidate
 
+# ollama_utils lives at the repo root (el_candidates already adds it to
+# sys.path, but be explicit so this module works standalone too).
+sys.path.insert(0, str(ROOT_DIR))
+from ollama_utils import resolve_ollama_host
+
 # ── Configuration ──────────────────────────────────────────────────────────
 
 NER_RESULTS_DIR = ROOT_DIR / "ner" / "ner-output"
@@ -46,12 +51,12 @@ EL_OUTPUT_DIR = ROOT_DIR / "entity_linking" / "el-results"
 MODEL_NAME = "gemma4:31b"
 TOP_K_RERANK = 3
 
-if os.environ.get("OLLAMA_API_KEY"):
-    OLLAMA_URL = "https://ollama.com"
-    OLLAMA_HEADERS = {"Authorization": f"Bearer {os.environ['OLLAMA_API_KEY']}"}
-else:
-    OLLAMA_URL = "http://localhost:11434"
-    OLLAMA_HEADERS = None
+# Ollama host: resolves the --host CLI flag / OLLAMA_HOST env var. Default is
+# the auto-switch (cloud when OLLAMA_API_KEY is set, else http://localhost:11434);
+# a verbatim URL like http://localhost:1344 is accepted too. main() overrides
+# these from args.host. See ollama_utils.resolve_ollama_host.
+OLLAMA_URL, _OLLAMA_KEY = resolve_ollama_host(os.environ.get("OLLAMA_HOST"))
+OLLAMA_HEADERS = {"Authorization": f"Bearer {_OLLAMA_KEY}"} if _OLLAMA_KEY else None
 
 
 # ── File selection ─────────────────────────────────────────────────────────
@@ -396,12 +401,23 @@ def main():
                              "thinking models that over-think on simple tasks.")
     parser.add_argument("--input", type=str, default=None,
                         help="Path to input .spacy file (skip interactive selection)")
+    parser.add_argument("--host", default=os.environ.get("OLLAMA_HOST"),
+                        help="Ollama host: 'cloud', 'localhost', or a verbatim URL "
+                             "(e.g. http://localhost:1344). Default: auto-switch "
+                             "(cloud when OLLAMA_API_KEY is set, else localhost:11434). "
+                             "Overrides OLLAMA_HOST env var.")
     args = parser.parse_args()
 
     model_name = args.model
     temperature = args.temperature
     top_k = args.top_k
     think = _parse_think_arg(args.think)
+
+    # Override the module-level Ollama URL/headers from --host (or OLLAMA_HOST).
+    global OLLAMA_URL, OLLAMA_HEADERS
+    if args.host is not None:
+        OLLAMA_URL, _key = resolve_ollama_host(args.host)
+        OLLAMA_HEADERS = {"Authorization": f"Bearer {_key}"} if _key else None
 
     if args.input:
         # Resolve relative to project root (cwd is entity_linking/ after the

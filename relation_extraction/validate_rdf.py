@@ -28,7 +28,7 @@ E9 = URIRef(CIDOC + "E9_Move")
 E18 = URIRef(CIDOC + "E18_Physical_Thing")
 E19 = URIRef(CIDOC + "E19_Physical_Object")
 E20 = URIRef(CIDOC + "E20_Biological_Object")
-E22 = URIRef(CIDOC + "E22_Human_Made_Object")
+E22 = URIRef(CIDOC + "E22_Human-Made_Object")
 E52 = URIRef(CIDOC + "E52_Time-Span")
 E53 = URIRef(CIDOC + "E53_Place")
 E55 = URIRef(CIDOC + "E55_Type")
@@ -50,6 +50,7 @@ P26 = URIRef(CIDOC + "P26_moved_to")
 P27 = URIRef(CIDOC + "P27_moved_from")
 P59 = URIRef(CIDOC + "P59_has_section")
 P67 = URIRef(CIDOC + "P67_refers_to")
+P67i = URIRef(CIDOC + "P67i_is_referred_to_by")
 P101 = URIRef(CIDOC + "P101_had_as_general_use")
 P129 = URIRef(CIDOC + "P129_is_about")
 P182 = URIRef(CIDOC + "P182_ends_before_or_with_the_start_of")
@@ -139,10 +140,20 @@ def validate(ttl_path):
             errors.append(f"Duplicate event ID: {key}")
         seen[key] = True
 
-    # --- 8. P67 targets should not also be visited (P7/P26/P27) ---
-    p67_targets = set(g.objects(None, P67))
+    # --- 8. Letter-level P67 targets should not also be visited (P7/P26/P27) ---
+    # NB: per-mention CT.* citations are also typed F2_Expression and carry their
+    # own P67_refers_to to the entity (per ATO_paper §5), so a global
+    # g.objects(None, P67) would include every visited place via its CT. We scope
+    # this rule to the *letter's* P67 objects only (the "mentioned-only" set),
+    # matching query_route's mentioned_toponyms. The letter is the F2_Expression
+    # subject whose URI has no "."-segment after the ato: prefix (CT.*/ART.* do).
+    letter_uris = {s for s in g.subjects(RDF.type, F2)
+                   if str(s).startswith(ATO) and "." not in str(s)[len(ATO):]}
+    letter_p67 = set()
+    for lu in letter_uris:
+        letter_p67 |= set(g.objects(lu, P67))
     visited_targets = set(g.objects(None, P7)) | set(g.objects(None, P26)) | set(g.objects(None, P27))
-    confused = p67_targets & visited_targets
+    confused = letter_p67 & visited_targets
     if confused:
         errors.append(f"Places both mentioned (P67) and visited (P7/P26/P27): {[_short(p) for p in confused]}")
 
@@ -201,10 +212,14 @@ def validate(ttl_path):
     # --- 16. P16_used_specific_object range=E22_Human-made_Object ---
     for s, o in g.subject_objects(P16):
         if (o, RDF.type, E22) not in g:
-            warnings.append(f"P16 target {_short(o)} (from {_short(s)}) not typed as E22_Human_Made_Object")
+            warnings.append(f"P16 target {_short(o)} (from {_short(s)}) not typed as E22_Human-Made_Object")
 
     # --- 17. Letter (F2_Expression) should have P129_is_about → journey ---
-    letters = set(g.subjects(RDF.type, F2))
+    # NB: per-mention CT.* citations and artworks are also F2_Expression but have
+    # no P129_is_about; restrict the focus set to the letter (F2 subject whose
+    # URI has no "."-segment after the ato: prefix).
+    letters = {s for s in g.subjects(RDF.type, F2)
+               if str(s).startswith(ATO) and "." not in str(s)[len(ATO):]}
     for letter in letters:
         if (letter, P129, None) not in g:
             warnings.append(f"Letter {_short(letter)} missing P129_is_about (journey subject)")

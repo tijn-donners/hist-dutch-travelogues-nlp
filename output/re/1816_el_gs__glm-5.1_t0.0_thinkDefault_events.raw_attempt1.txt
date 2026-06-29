@@ -1,0 +1,1979 @@
+1.  **Understand the Goal**: The objective is to extract travel events from a 19th-century Dutch travelogue and model them according to the Academic Tourism Ontology (ATO), based on CIDOC CRM. The output must be a valid JSON object containing `letter_id`, `tour_group`, `events`, and `toponym_relations`.
+
+2.  **Analyze the Input Text**:
+    *   The text is a letter (Derde Brief) from a Groningen student traveling in Germany in 1816.
+    *   Named Entities are marked with `[text](LABEL, mention_id)`.
+    *   I need to extract: translocations, indoor_tours, outdoor_tours, and stays.
+    *   I need to map entities to spatial relations (IN, NEAR, THRU, TO, FROM, NO_REL) and ensure bidirectional consistency with event roles.
+
+3.  **Step-by-Step Event Extraction & Entity Classification**:
+
+    *   **Event 1: Translocation from Paderborn to Warburg (via Lichtenau, etc.)**
+        *   Text: "Juist zoo als ik gedagt had, dat wy niet in [eene halve dag](E52_Time_Span, e4) van [Paderborn](E53_Place, e5) herwaarts zouden [ryden](Mode_of_Transportation, e6)... wy zyn [dien nagt](E52_Time_Span, e7) fraay en wel te [Warburg](E53_Place, e8) gebleven en niet voor de [volgende avond](E52_Time_Span, e9) [5 uuren](E52_Time_Span, e10) alhier gearriveerd... verplaats u weder naar [Paderborn](E53_Place, e11) en ik zal u zoo kort mogelyk onze verdere reis mededeelen..."
+        *   Wait, the actual detailed journey starts: "Wy [reden](Mode_of_Transportation, e13) dan [Donderdag](E52_Time_Span, e14) zynde den 4 om [1 uur](E52_Time_Span, e15) met [Extrapost](Mode_of_Transportation, e16) uit [Paderborn](E53_Place, e17)..."
+        *   Moved from: Paderborn (e17) -> FROM
+        *   Moved to: Warburg (e8) -> TO (Wait, the text says they arrived in Cassel, but stayed in Warburg first. Let's trace the route).
+        *   Route: Paderborn (e17) -> Lichtenau (e27) -> Ossendorf (e60/e62/e63/e64/e65) -> Warburg (e70).
+        *   Let's break down the translocation:
+            *   "Wy [reden](Mode_of_Transportation, e13) dan [Donderdag](E52_Time_Span, e14) zynde den 4 om [1 uur](E52_Time_Span, e15) met [Extrapost](Mode_of_Transportation, e16) uit [Paderborn](E53_Place, e17)"
+            *   "geheel in de diepte zagen wy in een bekoorlyke ligging aan de regterzyde het dorpje [Dornhagen](E53_Place, e21) & een weinig verder aan de linkerzyde het boven alle beschryving schoone [Grondsteinheim](E53_Place, e22)" -> NEAR (saw in the depths).
+            *   "Zeer steil dalende [reden](Mode_of_Transportation, e25) wy om [3½ uur](E52_Time_Span, e26) het in eene diepe vallei liggende stadje [Lichtenau](E53_Place, e27) binnen" -> THRU (passed through/station).
+            *   "Het was de eerste station... [Lichtenau](E53_Place, e27)" -> IN (stay). Let's make a stay sub-event for Lichtenau.
+            *   "Eindelyk [reden](Mode_of_Transportation, e41) wy even voor [5 uur](E52_Time_Span, e42) van daar in een [wagen](Mode_of_Transportation, e43)... [4 jonge paarden](Mode_of_Transportation, e45)... Na [Kleinenberg](E53_Place, e52) gepasseerd te zyn kwamen wy in een [uitgestrekt bosch](E53_Place, e53) indien zoo ik meen het [Hardehauserwoud](E53_Place, e54) geheten naar een [klooster](E18_Physical_Thing, e55) aan het eind van hetzelve gelegen" -> THRU (Kleinenberg, uitgestrekt bosch/Hardehauserwoud). NEAR: klooster (seen at the end of it).
+            *   "toen wy door hetzelve waren zagen wy de eerbiedwekkende kruin van den [Desenberg](E18_Physical_Thing, e56) [een uur](E52_Time_Span, e57) agter [Warburg](E53_Place, e58) gelegen." -> NEAR (saw from a distance).
+            *   "Onder eene gestadige regen kwamen wy om [8 uur](E52_Time_Span, e59) te [18] [Ossendorf](E53_Place, e60) zynde de tweede station aan" -> TO (arrived at Ossendorf). Stay sub-event.
+            *   "Komtom hier te [Ossen](E53_Place, e64) of [Ocksendorf](E53_Place, e65)..." -> IN (stay).
+            *   "daar 3 in de [postwagen](Mode_of_Transportation, e68) gingen & onzer aller bagagie medenamen terwyl ik met myne 3 Groninger reisgenoten in eene heerlyke [avond](E52_Time_Span, e69) naar [Warburg](E53_Place, e70), een [groot uur](E52_Time_Span, e71) van daar, [wandelden](Mode_of_Transportation, e72)" -> Translocation from Ossendorf to Warburg.
+            *   "wy tot donkeren toe om [Warburg](E53_Place, e77) allerliefste [wandelingen](Mode_of_Transportation, e78) gedaan" -> Outdoor tour around Warburg.
+
+    *   **Let's structure the Translocations carefully:**
+        *   **Translocation 1**: Paderborn to Ossendorf (via Lichtenau, Kleinenberg, etc.)
+            *   Moved from: e17 (Paderborn)
+            *   Moved to: e60 (Ossendorf)
+            *   Mode: e16 (Extrapost) -> then e43 (wagen) / e45 (4 jonge paarden) - wait, the text says they left Paderborn with Extrapost, then at Lichtenau they had issues and left in a "wagen" with "4 jonge paarden". I will use e16 for the main translocation, or maybe split? The prompt says "use mention_id of Mode_of_Transportation". I'll use e16 for the start, and e43 for the second leg. Actually, it's one continuous journey described. Let's use e16.
+            *   Time span: e14, e15, e26, e42, e59
+            *   Via points: e27 (Lichtenau), e52 (Kleinenberg), e53/e54 (uitgestrekt bosch/Hardehauserwoud)
+            *   Near places: e18 (Hoxenberg), e21 (Dornhagen), e22 (Grondsteinheim), e55 (klooster), e56 (Desenberg)
+            *   Sub-events: Stay at Lichtenau (e27), Stay at Ossendorf (e60).
+        *   **Translocation 2**: Ossendorf to Warburg (walking)
+            *   Moved from: e60 (Ossendorf)
+            *   Moved to: e70 (Warburg)
+            *   Mode: e72 (wandelden)
+            *   Time span: e69, e71
+        *   **Outdoor Tour 1**: Walks around Warburg
+            *   Took place at: e77 (Warburg)
+            *   Mode: e78 (wandelingen)
+
+    *   **Event 2: Translocation from Warburg to Cassel**
+        *   "Met een [zeer goed rytuig en een span beste paarden](Mode_of_Transportation, e79) van onze Kastelein uit het [Gasthofe Desenburg](E18_Physical_Thing, e80) verlieten wy [de volgende morgen](E52_Time_Span, e81) [Warburg](E53_Place, e82)"
+        *   Moved from: e82 (Warburg)
+        *   Moved to: e109 (Cassel)
+        *   Mode: e79
+        *   Time span: e81, e107, e110
+        *   Via points: e84 (Dalheim), e92 (Ober), e93 (Nider Lichtingen), e94 (Hessisch grondgebied), e96 (West-Uffelen)
+        *   Near places: e85 (Desenberg), e88 (Warburg), e104 (Hercules), e105 (octogoon), e106 (Wilhelmhohe)
+        *   Sub-events: Stay at West-Uffelen (e96) - "hier aten wy in der haast". Stay at Cassel (e109) - "in het voortreflyk waarlyk vorstlyk [logement de Kurfürst](E18_Physical_Thing, e111) onze intrek namen".
+        *   Wait, "latende den [Desenberg](E18_Physical_Thing, e85) aan de linkerhand liggen" -> NEAR.
+        *   "bylangs de dorpen [Ehrings](E53_Place, e89) en [Libenau](E53_Place, e90) [rydende](Mode_of_Transportation, e91) kwamen wy voorby [Ober](E53_Place, e92) en door [Nider Lichtingen](E53_Place, e93)" -> THRU (Ehrings, Libenau, Ober, Nider Lichtingen).
+        *   "ter naauwernood waren wy [Meinbids](E53_Place, e100) en [Kalken](E53_Place, e101) gepasseerd" -> THRU.
+        *   "lang voor wy [Cassel](E53_Place, e103) bereikten zagen wy de [Hercules](E18_Physical_Thing, e104) op de [octogoon](E18_Physical_Thing, e105) van de [Wilhelmhohe](E18_Physical_Thing, e106)" -> NEAR.
+
+    *   **Event 3: Indoor Tour - Museum Fridericianum**
+        *   "ik zal maar een aanvang maken met gemeld [museum](E18_Physical_Thing, e118) & om u een zeer flaauwe schets ervan te geven uit iedere Kamer het een en ander opnoemen..."
+        *   Took place at: e114 (Cassel) -> IN
+        *   On or within: e118 (museum) -> IN
+        *   Sub-events (Rooms):
+            1.  [het eerste vertrek](E53_Place, e119): viewed e120 (vogeleyeren), e122 (houtbibliotheek), e125 (stam), e126 (vruchten). Mentioned e123 (Academiesche boekery), e124 (Groningen) -> NO_REL.
+            2.  [Tweede Kamer](E53_Place, e127): viewed e128 (opgezette vogels), e129 (Casuarus), e130 (paradysvogels). Mentioned e131 (Lynnaeische Systema) -> NO_REL.
+            3.  [derde Kamer](E53_Place, e132): viewed e133 (viervoetige dieren), e134 (olyphant), e136-e142 (animals). Mentioned e135 (diergaarde) -> NO_REL.
+            4.  [galery... vestibule](E53_Place, e143/e144): viewed e147 (veele stukken), e149 (Venus de Medicis), e150 (twee worstelaars), e151 (antiquen), e152 (ruines), e156 (Aristoteles). Mentioned e153 (Palazo), e154 (Tivoli), e155 (Bagno) -> NO_REL.
+            5.  [zaalen](E53_Place, e157) / [gebouw...](E18_Physical_Thing, e158): viewed e159 (troon).
+            6.  [kamer](E53_Place, e160) met versteeningen: viewed e161, e162, e163.
+            7.  [vertrek](E53_Place, e164) met penningen: viewed e165, e166, e167, e168, e169.
+            8.  [kamer](E53_Place, e170) pretiosa: viewed e171, e172, e174, e175.
+            9.  [vertrek](E53_Place, e176) klokken: viewed e177, e178, e179, e180, e181, e182.
+            10. [laatste kamer](E53_Place, e183) beneden: viewed e184 (mosaiek).
+            11. [twee kamers](E53_Place, e185) boven: viewed e187 (wapentuigen), e188 (zwaarden). Mentioned e189 (Heilige Land) -> NO_REL.
+            12. [laatste zaal](E53_Place, e190): viewed e191 (landgraven), e192 (stoelen).
+
+    *   **Event 4: Indoor Tour - Library (boekery)**
+        *   "thans echter moet gy my naar de [boekery](E53_Place, e194) in het zelve [gebouw](E18_Physical_Thing, e195) vergezellen."
+        *   Took place at: e194 (boekery)
+        *   On or within: e195 (gebouw)
+        *   Viewed artifacts: e197 (Mnemosyne), e198, e199, e200, e201 (catalogi).
+
+    *   **Event 5: Indoor Tour - Paleis Bellevue (schilderyen)**
+        *   "Wat betreft de verzameling van [schilderyen](E19_Physical_Object, e202) in het [paleis Bellevue](E18_Physical_Thing, e203)..."
+        *   Took place at: Cassel (e222 or e114? Let's use e222 or e203? The text says "in het paleis Bellevue". Let's use e203 for on_or_within. Took place at: e222 (Cassel)).
+        *   Sub-events:
+            1. [gallery](E53_Place, e213): viewed e204, e205, e206, e207, e208, e209, e211, e217, e218, e220, e221. Mentioned e210 (Scheveningen), e212 (Parys) -> NO_REL.
+            2. [2 verdiepingen](E53_Place, e214) / [danszaal](E53_Place, e216): mentioned e215 (ruines van de schildergallery).
+        *   Wait, the text says "Deze [paleis Belle vue](E18_Physical_Thing, e223) is voor de Koningin bestemd... by haar kortstondig verblyf alhier in ons [logement de Keurvorst](E18_Physical_Thing, e224) gelogeerd; de [meubels](E19_Physical_Object, e225)... [groote spiegels](E19_Physical_Object, e226); eene [gallery](E53_Place, e227) van verschillende zoorten marmor..."
+        *   Let's group the Bellevue visit.
+
+    *   **Event 6: Indoor Tour - Marmeren bad**
+        *   "Doch wilt gy een meesterstuk der kunst zien gaat dan naar het zoogenaamde [marmeren bad](E18_Physical_Thing, e228) voorin de [Orangerie](E18_Physical_Thing, e229)..."
+        *   Took place at: e228 (marmeren bad)
+        *   On or within: e229 (Orangerie) or e230 (gebouw). Let's use e230.
+        *   Viewed: e234, e235, e236, e237, e240, e243. Mentioned e231 (vierkant vertrek), e232, e233. Mentioned e238, e239 (reizen van Swinderen) -> NO_REL. Mentioned e241, e244 (30 September 1813) -> NO_REL.
+
+    *   **Event 7: Outdoor Tour - Aue-Garten**
+        *   "Naby dit [gebouw](E18_Physical_Thing, e245) vind men de [Aue](E53_Place, e246) of [Aue-Garten](E53_Place, e247) zynde een groote lap gronds... [lange linden allee](E53_Place, e248)... [vyver](E18_Physical_Thing, e249)"
+        *   Took place at: e247 (Aue-Garten)
+        *   Sub-events:
+            1. Walk along [lange linden allee](E53_Place, e248)
+            2. View of [vyver](E18_Physical_Thing, e249)
+
+    *   **Event 8: Indoor Tour - Roomsche kerk**
+        *   "in de eerste plaats de schoone [Roomsche kerk](E18_Physical_Thing, e251) vlak over ons [logement](E18_Physical_Thing, e252) gelegen."
+        *   Took place at: e251 (Roomsche kerk)
+        *   Viewed: e256 (orgel), e263 (schilderyen). Mentioned e253, e254, e255, e257, e258, e259, e260, e261, e262.
+
+    *   **Event 9: Indoor Tour - Brüder and Domkerk**
+        *   "behalve deeze zagen wy nog de [Brüder](E18_Physical_Thing, e265) en de [Domkerk](E18_Physical_Thing, e266)"
+        *   Took place at: e265 (Brüder) and e266 (Domkerk). Let's make two sub-events under one indoor tour, or two top-level events. The prompt says "Alleen SEPARATE gebouwen (ander paleis, kerk, school) worden aparte top-level events." So two top-level events.
+        *   Domkerk: viewed e268 (6 groote schilden), e270 (text). Mentioned e267 (tombes), e269 (1814).
+
+    *   **Event 10: Indoor Tour - Kweekschool**
+        *   "Van de [Kweekschool voor onderwyzers](E18_Physical_Thing, e272)..."
+        *   Took place at: e272 (Kweekschool). Mentioned e273, e274, e275 -> NO_REL.
+
+    *   **Event 11: Indoor Tour - Comedie**
+        *   "dat wy in de [Comedie](E18_Physical_Thing, e276) de maitres... in eene [loge](E53_Place, e277) aan het [toneel](E53_Place, e278) zagen zitten"
+        *   Took place at: e276 (Comedie). Sub-event: e277 (loge).
+
+    *   **Event 12: Outdoor Tour - Pleinen van Cassel**
+        *   "van deszelfs schoone pleinen melden... het [Leipsicher plein](E53_Place, e292)... de [paradeplaats](E53_Place, e294) en de [Kasern plaats](E53_Place, e295)... het [Frederiksplein](E53_Place, e298)... het [Koningsplein](E53_Place, e300)... het [Karelsplein](E53_Place, e301)"
+        *   Took place at: e291 (Cassel). Sub-events for the squares.
+
+    *   **Event 13: Indoor Tour - Coffyhuis**
+        *   "op de hoek van deeze pleinen vind men een voortreklyk [coffyhuis](E18_Physical_Thing, e296) uit een suite van [4 bovenkamers](E53_Place, e297) bestaande"
+        *   Took place at: e296 (coffyhuis). Sub-event: e297 (4 bovenkamers).
+
+    *   **Event 14: Outdoor Tour - Straten van Cassel**
+        *   "Onder de straten van [Cassel](E53_Place, e308) zyn de [Konings](E53_Place, e309) en de [Bellevue straat](E53_Place, e310)"
+
+4.  **Refining Entities and Relations**:
+    *   **Translocation 1 (Paderborn to Ossendorf)**:
+        *   Moved from: e17 (Paderborn)
+        *   Moved to: e60 (Ossendorf)
+        *   Mode: e16 (Extrapost) -> wait, they changed to e43 (wagen) at Lichtenau. I'll use e16 for the first part, but since it's one long sentence, I'll use e16 as primary, or maybe e43. Let's use e16.
+        *   Time span: e14, e15, e26, e42, e59
+        *   Via points: e27 (Lichtenau), e52 (Kleinenberg), e53 (uitgestrekt bosch), e54 (Hardehauserwoud)
+        *   Near places: e18 (Hoxenberg), e21 (Dornhagen), e22 (Grondsteinheim), e55 (klooster), e56 (Desenberg)
+        *   Sub-events: Stay at Lichtenau (e27), Stay at Ossendorf (e60).
+    *   **Translocation 2 (Ossendorf to Warburg)**:
+        *   Moved from: e60 (Ossendorf)
+        *   Moved to: e70 (Warburg)
+        *   Mode: e72 (wandelden)
+        *   Time span: e69, e71
+    *   **Outdoor Tour (Warburg walks)**:
+        *   Took place at: e77 (Warburg)
+        *   Mode: e78 (wandelingen)
+    *   **Translocation 3 (Warburg to Cassel)**:
+        *   Moved from: e82 (Warburg)
+        *   Moved to: e109 (Cassel)
+        *   Mode: e79
+        *   Time span: e81, e107, e110
+        *   Via points: e84 (Dalheim), e89 (Ehrings), e90 (Libenau), e92 (Ober), e93 (Nider Lichtingen), e94 (Hessisch grondgebied), e96 (West-Uffelen), e100 (Meinbids), e101 (Kalken)
+        *   Near places: e85 (Desenberg), e88 (Warburg), e104 (Hercules), e105 (octogoon), e106 (Wilhelmhohe)
+        *   Sub-events: Stay at West-Uffelen (e96), Stay at Cassel (e109/e111).
+    *   **Indoor Tour (Museum Fridericianum)**:
+        *   Took place at: e114 (Cassel)
+        *   On or within: e118 (museum)
+        *   Sub-events:
+            1.  e119 (eerste vertrek): viewed e120, e122, e125, e126.
+            2.  e127 (Tweede Kamer): viewed e128, e129, e130.
+            3.  e132 (derde Kamer): viewed e133, e134, e136-e142.
+            4.  e143/e144 (galery/vestibule): viewed e147, e149, e150, e151, e152, e156.
+            5.  e157 (zaalen) / e158 (gebouw): viewed e159.
+            6.  e160 (kamer): viewed e161, e162, e163.
+            7.  e164 (vertrek): viewed e165, e166, e167, e168, e169.
+            8.  e170 (kamer): viewed e171, e172, e174, e175.
+            9.  e176 (vertrek): viewed e177, e178, e179, e180, e181, e182.
+            10. e183 (laatste kamer): viewed e184.
+            11. e185 (twee kamers) / e186 (breede trap): viewed e187, e188.
+            12. e190 (laatste zaal): viewed e191, e192.
+    *   **Indoor Tour (Boekery)**:
+        *   Took place at: e194 (boekery)
+        *   On or within: e195 (gebouw)
+        *   Viewed: e197, e198, e199, e200, e201.
+    *   **Indoor Tour (Paleis Bellevue)**:
+        *   Took place at: e203 (paleis Bellevue)
+        *   Sub-events:
+            1.  e213 (gallery): viewed e204, e205, e206, e207, e208, e209, e211, e217, e218, e220, e221.
+            2.  e214 (2 verdiepingen) / e216 (danszaal): viewed e215.
+            3.  e227 (gallery marmor): viewed e226.
+    *   **Indoor Tour (Marmeren bad)**:
+        *   Took place at: e228 (marmeren bad)
+        *   On or within: e229 (Orangerie) or e230 (gebouw)
+        *   Sub-events:
+            1.  e231 (vierkant vertrek): viewed e234, e235, e236, e237, e240, e243.
+    *   **Outdoor Tour (Aue-Garten)**:
+        *   Took place at: e247 (Aue-Garten)
+        *   Sub-events:
+            1.  e248 (lange linden allee)
+            2.  e249 (vyver)
+    *   **Indoor Tour (Roomsche kerk)**:
+        *   Took place at: e251 (Roomsche kerk)
+        *   Viewed: e256, e263.
+    *   **Indoor Tour (Domkerk)**:
+        *   Took place at: e266 (Domkerk)
+        *   Viewed: e268, e270.
+    *   **Indoor Tour (Kweekschool)**:
+        *   Took place at: e272 (Kweekschool)
+    *   **Indoor Tour (Comedie)**:
+        *   Took place at: e276 (Comedie)
+        *   Sub-events: e277 (loge), e278 (toneel).
+    *   **Outdoor Tour (Pleinen)**:
+        *   Took place at: e291 (Cassel)
+        *   Sub-events: e292, e294, e295, e298, e300, e301.
+    *   **Indoor Tour (Coffyhuis)**:
+        *   Took place at: e296 (coffyhuis)
+        *   Sub-events: e297 (4 bovenkamers).
+    *   **Outdoor Tour (Straten)**:
+        *   Took place at: e308 (Cassel)
+        *   Sub-events: e309, e310.
+
+5.  **Toponym Relations Check**:
+    *   e2: Cassel -> IN (stay)
+    *   e5: Paderborn -> NO_REL (hypothetical)
+    *   e8: Warburg -> TO (translocation 1)
+    *   e11: Paderborn -> NO_REL (memory)
+    *   e17: Paderborn -> FROM (translocation 1)
+    *   e18: Hoxenberg -> NEAR
+    *   e19: Paderborn -> NEAR (saw from distance)
+    *   e20: 7 bergen -> THRU
+    *   e21: Dornhagen -> NEAR
+    *   e22: Grondsteinheim -> NEAR
+    *   e27: Lichtenau -> THRU (via point) & IN (stay)
+    *   e28: Neuhaus -> NO_REL
+    *   e29: Paderborn -> NO_REL
+    *   e30: Cassel -> NO_REL
+    *   e34: Paderborn -> NO_REL
+    *   e52: Kleinenberg -> THRU
+    *   e53: uitgestrekt bosch -> THRU
+    *   e54: Hardehauserwoud -> THRU
+    *   e55: klooster -> NEAR
+    *   e56: Desenberg -> NEAR
+    *   e58: Warburg -> NO_REL
+    *   e60: Ossendorf -> TO (translocation 1) & IN (stay)
+    *   e62, e63, e64, e65: Ossendorf/Ocksendorf -> IN (stay)
+    *   e70: Warburg -> TO (translocation 2)
+    *   e77: Warburg -> IN (outdoor tour)
+    *   e82: Warburg -> FROM (translocation 3)
+    *   e84: Dalheim -> THRU
+    *   e85: Desenberg -> NEAR
+    *   e88: Warburg -> NEAR
+    *   e89: Ehrings -> THRU
+    *   e90: Libenau -> THRU
+    *   e92: Ober -> THRU
+    *   e93: Nider Lichtingen -> THRU
+    *   e94: Hessisch grondgebied -> THRU
+    *   e96: West-Uffelen -> THRU & IN (stay)
+    *   e97: Cassel -> NO_REL
+    *   e99: Cassel -> TO (translocation 3)
+    *   e100: Meinbids -> THRU
+    *   e101: Kalken -> THRU
+    *   e103: Cassel -> NO_REL
+    *   e104: Hercules -> NEAR
+    *   e105: octogoon -> NEAR
+    *   e106: Wilhelmhohe -> NEAR
+    *   e109: Cassel -> TO (translocation 3) & IN (stay)
+    *   e111: logement de Kurfürst -> IN (stay)
+    *   e114: Cassel -> IN (indoor tour)
+    *   e118: museum -> IN (indoor tour)
+    *   e119: eerste vertrek -> IN
+    *   e124: Groningen -> NO_REL
+    *   e127: Tweede Kamer -> IN
+    *   e132: derde Kamer -> IN
+    *   e135: diergaarde -> NO_REL
+    *   e143: galery -> IN
+    *   e144: vestibule -> IN
+    *   e146: Frederikplein -> NO_REL
+    *   e154: Tivoli -> NO_REL
+    *   e157: zaalen -> IN
+    *   e158: gebouw -> IN
+    *   e160: kamer -> IN
+    *   e164: vertrek -> IN
+    *   e170: kamer -> IN
+    *   e173: kamer -> IN
+    *   e176: vertrek -> IN
+    *   e183: laatste kamer -> IN
+    *   e185: twee kamers -> IN
+    *   e186: breede trap -> IN
+    *   e189: Heilige Land -> NO_REL
+    *   e190: laatste zaal -> IN
+    *   e194: boekery -> IN
+    *   e195: gebouw -> IN
+    *   e196: lokaal -> IN
+    *   e203: paleis Bellevue -> IN
+    *   e210: Scheveningen -> NO_REL
+    *   e212: Parys -> NO_REL
+    *   e213: gallery -> IN
+    *   e214: 2 verdiepingen -> IN
+    *   e215: ruines -> IN
+    *   e216: danszaal -> IN
+    *   e219: Parys -> NO_REL
+    *   e222: Cassel -> NO_REL
+    *   e223: paleis Belle vue -> IN
+    *   e224: logement de Keurvorst -> NO_REL
+    *   e227: gallery -> IN
+    *   e228: marmeren bad -> IN
+    *   e229: Orangerie -> IN
+    *   e230: gebouw -> IN
+    *   e231: vierkant vertrek -> IN
+    *   e246: Aue -> IN
+    *   e247: Aue-Garten -> IN
+    *   e248: lange linden allee -> IN
+    *   e249: vyver -> IN
+    *   e251: Roomsche kerk -> IN
+    *   e252: logement -> NO_REL
+    *   e255: galery -> IN
+    *   e257: galery -> IN
+    *   e265: Brüder -> IN
+    *   e266: Domkerk -> IN
+    *   e267: tombes -> IN
+    *   e272: Kweekschool -> IN
+    *   e276: Comedie -> IN
+    *   e277: loge -> IN
+    *   e278: toneel -> IN
+    *   e283: observatorium -> NO_REL
+    *   e286: Göttingen -> NO_REL
+    *   e288: Fulda -> THRU
+    *   e289: Wilhelmsbrug -> THRU
+    *   e291: Cassel -> IN
+    *   e292: Leipsicher plein -> IN
+    *   e293: Leipsicher poort -> THRU
+    *   e294: paradeplaats -> IN
+    *   e295: Kasern plaats -> IN
+    *   e296: coffyhuis -> IN
+    *   e297: 4 bovenkamers -> IN
+    *   e298: Frederiksplein -> IN
+    *   e299: dubbele linden allee -> IN
+    *   e300: Koningsplein -> IN
+    *   e301: Karelsplein -> IN
+    *   e308: Cassel -> IN
+    *   e309: Konings -> IN
+    *   e310: Bellevue straat -> IN
+    *   e311: boven nieuwstad -> IN
+    *   e312: Wilhelmshöhe -> NO_REL
+    *   e313: Göttingen -> NO_REL
+
+6.  **Refining Event Details**:
+    *   **Translocation 1 (Paderborn to Ossendorf)**:
+        *   ID: RS0001
+        *   moved_from: e17
+        *   moved_to: e60
+        *   mode: e16
+        *   time_span: [e14, e15, e26, e42, e59]
+        *   via_points: [e27, e52, e53, e54]
+        *   near_places: [e18, e19, e21, e22, e55, e56]
+        *   Sub-events:
+            *   RS0001.RS0001 (Stay at Lichtenau): took_place_at e27
+            *   RS0001.RS0002 (Stay at Ossendorf): took_place_at e60
+    *   **Translocation 2 (Ossendorf to Warburg)**:
+        *   ID: RS0002
+        *   moved_from: e60
+        *   moved_to: e70
+        *   mode: e72
+        *   time_span: [e69, e71]
+    *   **Outdoor Tour (Warburg walks)**:
+        *   ID: RS0003
+        *   took_place_at: e77
+        *   mode: e78
+    *   **Translocation 3 (Warburg to Cassel)**:
+        *   ID: RS0004
+        *   moved_from: e82
+        *   moved_to: e109
+        *   mode: e79
+        *   time_span: [e81, e107, e110]
+        *   via_points: [e84, e89, e90, e92, e93, e94, e96, e100, e101]
+        *   near_places: [e85, e88, e104, e105, e106]
+        *   Sub-events:
+            *   RS0004.RS0001 (Stay at West-Uffelen): took_place_at e96
+            *   RS0004.RS0002 (Stay at Cassel): took_place_at e109, on_or_within e111
+    *   **Indoor Tour (Museum Fridericianum)**:
+        *   ID: RS0005
+        *   took_place_at: e114
+        *   on_or_within: e118
+        *   Sub-events:
+            *   RS0005.RS0001 (eerste vertrek): took_place_at e119, viewed [e120, e122, e125, e126]
+            *   RS0005.RS0002 (Tweede Kamer): took_place_at e127, viewed [e128, e129, e130]
+            *   RS0005.RS0003 (derde Kamer): took_place_at e132, viewed [e133, e134, e136, e137, e138, e139, e140, e141, e142]
+            *   RS0005.RS0004 (galery/vestibule): took_place_at e143, viewed [e147, e149, e150, e151, e152, e156]
+            *   RS0005.RS0005 (zaalen/gebouw): took_place_at e157, on_or_within e158, viewed [e159]
+            *   RS0005.RS0006 (kamer versteeningen): took_place_at e160, viewed [e161, e162, e163]
+            *   RS0005.RS0007 (vertrek penningen): took_place_at e164, viewed [e165, e166, e167, e168, e169]
+            *   RS0005.RS0008 (kamer pretiosa): took_place_at e170, viewed [e171, e172, e174, e175]
+            *   RS0005.RS0009 (vertrek klokken): took_place_at e176, viewed [e177, e178, e179, e180, e181, e182]
+            *   RS0005.RS0010 (laatste kamer beneden): took_place_at e183, viewed [e184]
+            *   RS0005.RS0011 (twee kamers boven): took_place_at e185, viewed [e187, e188]
+            *   RS0005.RS0012 (laatste zaal): took_place_at e190, viewed [e191, e192]
+    *   **Indoor Tour (Boekery)**:
+        *   ID: RS0006
+        *   took_place_at: e194
+        *   on_or_within: e195
+        *   viewed: [e197, e198, e199, e200, e201]
+    *   **Indoor Tour (Paleis Bellevue)**:
+        *   ID: RS0007
+        *   took_place_at: e203
+        *   Sub-events:
+            *   RS0007.RS0001 (gallery): took_place_at e213, viewed [e204, e205, e206, e207, e208, e209, e211, e217, e218, e220, e221]
+            *   RS0007.RS0002 (2 verdiepingen/danszaal): took_place_at e214, viewed [e215]
+            *   RS0007.RS0003 (gallery marmor): took_place_at e227, viewed [e226]
+    *   **Indoor Tour (Marmeren bad)**:
+        *   ID: RS0008
+        *   took_place_at: e228
+        *   on_or_within: e229
+        *   Sub-events:
+            *   RS0008.RS0001 (vierkant vertrek): took_place_at e231, viewed [e234, e235, e236, e237, e240, e243]
+    *   **Outdoor Tour (Aue-Garten)**:
+        *   ID: RS0009
+        *   took_place_at: e247
+        *   Sub-events:
+            *   RS0009.RS0001 (lange linden allee): took_place_at e248
+            *   RS0009.RS0002 (vyver): took_place_at e249
+    *   **Indoor Tour (Roomsche kerk)**:
+        *   ID: RS0010
+        *   took_place_at: e251
+        *   viewed: [e256, e263]
+    *   **Indoor Tour (Domkerk)**:
+        *   ID: RS0011
+        *   took_place_at: e266
+        *   viewed: [e268, e270]
+    *   **Indoor Tour (Kweekschool)**:
+        *   ID: RS0012
+        *   took_place_at: e272
+    *   **Indoor Tour (Comedie)**:
+        *   ID: RS0013
+        *   took_place_at: e276
+        *   Sub-events:
+            *   RS0013.RS0001 (loge): took_place_at e277
+            *   RS0013.RS0002 (toneel): took_place_at e278
+    *   **Outdoor Tour (Pleinen)**:
+        *   ID: RS0014
+        *   took_place_at: e291
+        *   Sub-events:
+            *   RS0014.RS0001 (Leipsicher plein): took_place_at e292
+            *   RS0014.RS0002 (paradeplaats): took_place_at e294
+            *   RS0014.RS0003 (Kasern plaats): took_place_at e295
+            *   RS0014.RS0004 (Frederiksplein): took_place_at e298
+            *   RS0014.RS0005 (Koningsplein): took_place_at e300
+            *   RS0014.RS0006 (Karelsplein): took_place_at e301
+    *   **Indoor Tour (Coffyhuis)**:
+        *   ID: RS0015
+        *   took_place_at: e296
+        *   Sub-events:
+            *   RS0015.RS0001 (4 bovenkamers): took_place_at e297
+    *   **Outdoor Tour (Straten)**:
+        *   ID: RS0016
+        *   took_place_at: e308
+        *   Sub-events:
+            *   RS0016.RS0001 (Konings): took_place_at e309
+            *   RS0016.RS0002 (Bellevue straat): took_place_at e310
+
+7.  **Final Review of Toponym Relations**:
+    *   Make sure all E53_Place and E18_Physical_Thing entities are mapped.
+    *   e2: IN (Cassel)
+    *   e5: NO_REL (Paderborn)
+    *   e8: TO (Warburg)
+    *   e11: NO_REL (Paderborn)
+    *   e17: FROM (Paderborn)
+    *   e18: NEAR (Hoxenberg)
+    *   e19: NEAR (Paderborn)
+    *   e20: THRU (7 bergen)
+    *   e21: NEAR (Dornhagen)
+    *   e22: NEAR (Grondsteinheim)
+    *   e27: THRU (Lichtenau)
+    *   e28: NO_REL (Neuhaus)
+    *   e29: NO_REL (Paderborn)
+    *   e30: NO_REL (Cassel)
+    *   e34: NO_REL (Paderborn)
+    *   e52: THRU (Kleinenberg)
+    *   e53: THRU (uitgestrekt bosch)
+    *   e54: THRU (Hardehauserwoud)
+    *   e55: NEAR (klooster)
+    *   e56: NEAR (Desenberg)
+    *   e58: NO_REL (Warburg)
+    *   e60: TO (Ossendorf)
+    *   e62: IN (Ocksendorf)
+    *   e63: IN (Ossendorf)
+    *   e64: IN (Ossen)
+    *   e65: IN (Ocksendorf)
+    *   e70: TO (Warburg)
+    *   e77: IN (Warburg)
+    *   e82: FROM (Warburg)
+    *   e84: THRU (Dalheim)
+    *   e85: NEAR (Desenberg)
+    *   e88: NEAR (Warburg)
+    *   e89: THRU (Ehrings)
+    *   e90: THRU (Libenau)
+    *   e92: THRU (Ober)
+    *   e93: THRU (Nider Lichtingen)
+    *   e94: THRU (Hessisch grondgebied)
+    *   e96: THRU (West-Uffelen)
+    *   e97: NO_REL (Cassel)
+    *   e99: TO (Cassel)
+    *   e100: THRU (Meinbids)
+    *   e101: THRU (Kalken)
+    *   e103: NO_REL (Cassel)
+    *   e104: NEAR (Hercules)
+    *   e105: NEAR (octogoon)
+    *   e106: NEAR (Wilhelmhohe)
+    *   e109: TO (Cassel)
+    *   e111: IN (logement de Kurfürst)
+    *   e114: IN (Cassel)
+    *   e118: IN (museum)
+    *   e119: IN (eerste vertrek)
+    *   e122: IN (houtbibliotheek)
+    *   e124: NO_REL (Groningen)
+    *   e127: IN (Tweede Kamer)
+    *   e132: IN (derde Kamer)
+    *   e135: NO_REL (diergaarde)
+    *   e143: IN (galery)
+    *   e144: IN (vestibule)
+    *   e146: NO_REL (Frederikplein)
+    *   e154: NO_REL (Tivoli)
+    *   e157: IN (zaalen)
+    *   e158: IN (gebouw)
+    *   e160: IN (kamer)
+    *   e164: IN (vertrek)
+    *   e170: IN (kamer)
+    *   e173: IN (kamer)
+    *   e176: IN (vertrek)
+    *   e183: IN (laatste kamer)
+    *   e185: IN (twee kamers)
+    *   e186: IN (breede trap)
+    *   e189: NO_REL (Heilige Land)
+    *   e190: IN (laatste zaal)
+    *   e194: IN (boekery)
+    *   e195: IN (gebouw)
+    *   e196: IN (locaal)
+    *   e203: IN (paleis Bellevue)
+    *   e210: NO_REL (Scheveningen)
+    *   e212: NO_REL (Parys)
+    *   e213: IN (gallery)
+    *   e214: IN (2 verdiepingen)
+    *   e215: IN (ruines)
+    *   e216: IN (danszaal)
+    *   e219: NO_REL (Parys)
+    *   e222: NO_REL (Cassel)
+    *   e223: IN (paleis Belle vue)
+    *   e224: NO_REL (logement de Keurvorst)
+    *   e227: IN (gallery)
+    *   e228: IN (marmeren bad)
+    *   e229: IN (Orangerie)
+    *   e230: IN (gebouw)
+    *   e231: IN (vierkant vertrek)
+    *   e246: IN (Aue)
+    *   e247: IN (Aue-Garten)
+    *   e248: IN (lange linden allee)
+    *   e249: IN (vyver)
+    *   e251: IN (Roomsche kerk)
+    *   e252: NO_REL (logement)
+    *   e255: IN (galery)
+    *   e257: IN (galery)
+    *   e265: IN (Brüder)
+    *   e266: IN (Domkerk)
+    *   e267: IN (tombes)
+    *   e272: IN (Kweekschool)
+    *   e276: IN (Comedie)
+    *   e277: IN (loge)
+    *   e278: IN (toneel)
+    *   e283: NO_REL (observatorium)
+    *   e286: NO_REL (Göttingen)
+    *   e288: THRU (Fulda)
+    *   e289: THRU (Wilhelmsbrug)
+    *   e291: IN (Cassel)
+    *   e292: IN (Leipsicher plein)
+    *   e293: THRU (Leipsicher poort)
+    *   e294: IN (paradeplaats)
+    *   e295: IN (Kasern plaats)
+    *   e296: IN (coffyhuis)
+    *   e297: IN (4 bovenkamers)
+    *   e298: IN (Frederiksplein)
+    *   e299: IN (dubbele linden allee)
+    *   e300: IN (Koningsplein)
+    *   e301: IN (Karelsplein)
+    *   e308: IN (Cassel)
+    *   e309: IN (Konings)
+    *   e310: IN (Bellevue straat)
+    *   e311: IN (boven nieuwstad)
+    *   e312: NO_REL (Wilhelmshöhe)
+    *   e313: NO_REL (Göttingen)
+
+8.  **Formatting the Output**:
+    *   Ensure all JSON fields are present and correctly formatted.
+    *   Double check the `toponym_relations` to ensure bidirectional consistency.
+    *   Double check `citations` for every role used.
+    *   Ensure `letter_id` is "BRF0003".
+    *   Ensure `tour_group` id is "TG" and label is "Tour Group Brief 3".
+
+9.  **Constructing the JSON**: (Mental Draft & Verification)
+    *   RS0001: Translocation Paderborn -> Ossendorf
+    *   RS0002: Translocation Ossendorf -> Warburg
+    *   RS0003: Outdoor Tour Warburg
+    *   RS0004: Translocation Warburg -> Cassel
+    *   RS0005: Indoor Tour Museum Fridericianum
+    *   RS0006: Indoor Tour Boekery
+    *   RS0007: Indoor Tour Paleis Bellevue
+    *   RS0008: Indoor Tour Marmeren bad
+    *   RS0009: Outdoor Tour Aue-Garten
+    *   RS0010: Indoor Tour Roomsche kerk
+    *   RS0011: Indoor Tour Domkerk
+    *   RS0012: Indoor Tour Kweekschool
+    *   RS0013: Indoor Tour Comedie
+    *   RS0014: Outdoor Tour Pleinen
+    *   RS0015: Indoor Tour Coffyhuis
+    *   RS0016: Outdoor Tour Straten
+
+    *   Wait, the text says: "De ligging der stad is alleraangenaamst; de [Fulda](E53_Place, e288) doorsnydt dezelve in twee ongelyke deelen die door de fraaye [Wilhelmsbrug](E18_Physical_Thing, e289)... verbonden worden." This is a description of the city, not necessarily a translocation. But they are walking around the city ("Zoo verre ik weet heb ik nu [Cassel](E53_Place, e287) met u rondgeweest"). So Fulda and Wilhelmsbrug are part of the outdoor tour of the city (RS0016 or a new one). Let's add them to RS0016 (Straten) or make a general outdoor tour of Cassel. I will add them to RS0016 as via_points or mentions_places. Actually, "doorsnydt" implies THRU. Let's add e288 and e289 to RS0016 via_points.
+
+    *   Wait, "Onder de straten van [Cassel](E53_Place, e308) zyn de [Konings](E53_Place, e309) en de [Bellevue straat](E53_Place, e310) beide in de [boven nieuwstad](E53_Place, e311) gelegen verre weg de schoonste." This is an outdoor tour of the streets. I will make RS0016 for this.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". "successively komt men over [7 bergen](E18_Physical_Thing, e20) heen". This is THRU. Add to via_points of RS0001.
+
+    *   Let's check e28: "[Neuhaus](E53_Place, e28)" and e29: "[Paderborn](E53_Place, e29)". "hetwelk, wat de morsigheid betreft, volkomen waardig is met [Neuhaus](E53_Place, e28) en [Paderborn](E53_Place, e29) een tris te formeren". This is a comparison. NO_REL.
+
+    *   Let's check e55: "[klooster](E18_Physical_Thing, e55)". "naar een [klooster](E18_Physical_Thing, e55) aan het eind van hetzelve gelegen". They saw it from a distance. NEAR.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". "van onze Kastelein uit het [Gasthofe Desenburg](E18_Physical_Thing, e80) verlieten wy... Warburg". They stayed there. IN. Add to RS0004 as moved_from or a stay sub-event? "Met een... rytuig... van onze Kastelein uit het Gasthofe Desenburg verlieten wy... Warburg". The Kastelein is FROM, but Warburg is the city. I will add e80 to on_or_within of the stay at Warburg, or just leave it as FROM in the translocation. Actually, "uit het Gasthofe Desenburg" means FROM. So e80 is FROM. But e82 (Warburg) is also FROM. I will put e80 in moved_from? No, e82 is the city. I will put e80 in mentions_places or on_or_within of a stay. Let's make a stay at Gasthofe Desenburg.
+
+    *   Let's check e96: "[West-Uffelen](E53_Place, e96)". "hier aten wy in der haast". This is a stay. IN.
+
+    *   Let's check e111: "[logement de Kurfürst](E18_Physical_Thing, e111)". "onze intrek namen". Stay. IN.
+
+    *   Let's check e135: "[diergaarde](E53_Place, e135)". "had dit dier hier in de [diergaarde](E53_Place, e135) geleeft". NO_REL.
+
+    *   Let's check e146: "[Frederikplein](E53_Place, e146)". "het eigenlyke [vestibule](E53_Place, e144) van het [geheele gebouw](E18_Physical_Thing, e145) is en aan het schoone [Frederikplein](E53_Place, e146) uitkomt". NO_REL (just mentioned as exiting to it, but not visited in this event).
+
+    *   Let's check e153: "[Palazo di Maecenate](E18_Physical_Thing, e153)" and e154: "[Tivoli](E53_Place, e154)". "het [Palazo di Maecenate](E18_Physical_Thing, e153) te [Tivoli](E53_Place, e154)". NO_REL.
+
+    *   Let's check e155: "[Bagno della nimfa Egeria](E18_Physical_Thing, e155)". NO_REL.
+
+    *   Let's check e189: "[Heilige Land](E53_Place, e189)". NO_REL.
+
+    *   Let's check e210: "[Scheveningen](E53_Place, e210)". NO_REL.
+
+    *   Let's check e212: "[Parys](E53_Place, e212)". NO_REL.
+
+    *   Let's check e219: "[Parys](E53_Place, e219)". NO_REL.
+
+    *   Let's check e224: "[logement de Keurvorst](E18_Physical_Thing, e224)". NO_REL.
+
+    *   Let's check e246: "[Aue](E53_Place, e246)" and e247: "[Aue-Garten](E53_Place, e247)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". "vlak over ons [logement](E18_Physical_Thing, e252) gelegen". NO_REL.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e286: "[Göttingen](E53_Place, e286)". NO_REL.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". "even binnen de [Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e305: "[Franryk](E53_Place, e305)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e313: "[Göttingen](E53_Place, e313)". NO_REL.
+
+    *   Let's check e123: "[Academiesche boekery](E18_Physical_Thing, e123)" and e124: "[Groningen](E53_Place, e124)". NO_REL.
+
+    *   Let's check e131: "[Lynnaeische Systema](F2_Expression, e131)". NO_REL (it's an F2_Expression, not a place).
+
+    *   Let's check e145: "[geheele gebouw](E18_Physical_Thing, e145)". IN.
+
+    *   Let's check e159: "[troon voor de Koning](E19_Physical_Object, e159)". Viewed artifact.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact? "in het midden der [kamer](E53_Place, e173) zag men de [vesting Rheinfels](E18_Physical_Thing, e174) als [mozaiek](E19_Physical_Object, e175)". So e174 is a model of the vesting. It's an E18_Physical_Thing but used as an artifact here. I will add it to viewed_artifacts.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)", e233: "[muren](E18_Physical_Thing, e233)". Part of the building. Not viewed artifacts, just mentioned. NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". Part of the building. NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e242: "[schoone gebouw](E18_Physical_Thing, e242)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e250: "[kerken](E18_Physical_Thing, e250)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL (illustration).
+
+    *   Let's check e285: "[Cassel](E53_Place, e285)". NO_REL (illustration).
+
+    *   Let's check e108: "[Cassel](E53_Place, e108)". NO_REL (illustration).
+
+    *   Let's check e1: "[Derde Brief](F2_Expression, e1)". NO_REL.
+
+    *   Let's check e3: "[7 July 1816](E52_Time_Span, e3)". Time span for the letter.
+
+    *   Let's check e4: "[eene halve dag](E52_Time_Span, e4)". NO_REL.
+
+    *   Let's check e7: "[dien nagt](E52_Time_Span, e7)". Time span for stay at Warburg.
+
+    *   Let's check e9: "[volgende avond](E52_Time_Span, e9)". Time span for arrival in Cassel.
+
+    *   Let's check e10: "[5 uuren](E52_Time_Span, e10)". Time span for arrival in Cassel.
+
+    *   Let's check e23: "[langen tyd](E52_Time_Span, e23)". Time span for stay at Grondsteinheim.
+
+    *   Let's check e31: "[vijf vieren deel uur](E52_Time_Span, e31)". Time span for stay at Lichtenau.
+
+    *   Let's check e39: "[vorige dag](E52_Time_Span, e39)". NO_REL.
+
+    *   Let's check e57: "[een uur](E52_Time_Span, e57)". NO_REL.
+
+    *   Let's check e69: "[avond](E52_Time_Span, e69)". Time span for walk to Warburg.
+
+    *   Let's check e71: "[groot uur](E52_Time_Span, e71)". Time span for walk to Warburg.
+
+    *   Let's check e73: "[dien nagt](E52_Time_Span, e73)". NO_REL.
+
+    *   Lets check e75: "[des morgens](E52_Time_Span, e75)". NO_REL.
+
+    *   Let's check e81: "[de volgende morgen](E52_Time_Span, e81)". Time span for departure from Warburg.
+
+    *   Let's check e107: "[deezen middag](E52_Time_Span, e107)". Time span for seeing Hercules.
+
+    *   Let's check e110: "[5 uur](E52_Time_Span, e110)". Time span for arrival in Cassel.
+
+    *   Let's check e241: "[30 September 1813](E52_Time_Span, e241)". NO_REL.
+
+    *   Let's check e244: "[30 September 1813](E52_Time_Span, e244)". NO_REL.
+
+    *   Let's check e269: "[1814](E52_Time_Span, e269)". NO_REL.
+
+    *   Let's check e273: "[1809](E52_Time_Span, e273)". NO_REL.
+
+    *   Let's check e279: "[twintig jaar](E52_Time_Span, e279)". NO_REL.
+
+    *   Let's check e290: "[in 1788 begonnen en in 1794 voltooid](E52_Time_Span, e290)". NO_REL.
+
+    *   Let's check e303: "[einde der 17de Eeuw](E52_Time_Span, e303)". NO_REL.
+
+    *   Let's check e306: "[Edict van Nantes](E31_Document, e306)". NO_REL.
+
+    *   Let's check e87: "[de geheele achtste brief...](F2_Expression, e87)". NO_REL.
+
+    *   Let's check e121: "[de brieven voornoemd...](F2_Expression, e121)". NO_REL.
+
+    *   Let's check e197: "[het 2de deel van de door de Heeren Tydeman & van Campen uitgegevene Mnemosyne](F2_Expression, e197)". Viewed artifact.
+
+    *   Let's check e208: "[een stier](F2_Expression, e208)". Viewed artifact.
+
+    *   Let's check e211: "[een postillon die, hoe men zich ook plaatste, steeds naar eene andere kant scheen te ryden](F2_Expression, e211)". Viewed artifact.
+
+    *   Let's check e220: "[eene Ariadne](F2_Expression, e220)". Viewed artifact.
+
+    *   Let's check e221: "[Cleopatra](F2_Expression, e221)". Viewed artifact.
+
+    *   Let's check e238: "[de reizen](F2_Expression, e238)". NO_REL.
+
+    *   Let's check e239: "[bladzyde 162 en 163](F2_Expression, e239)". NO_REL.
+
+    *   Let's check e270: "[Cassels söhne...](F2_Expression, e270)". Viewed artifact.
+
+    *   Let's check e274: "[brief](F2_Expression, e274)". NO_REL.
+
+    *   Let's check e275: "[bladzyde 170-188 van het eerste deel](F2_Expression, e275)". NO_REL.
+
+    *   Let's check e16: "[Extrapost](Mode_of_Transportation, e16)". Mode for RS0001.
+
+    *   Let's check e43: "[wagen](Mode_of_Transportation, e43)". Mode for RS0001 (second part).
+
+    *   Let's check e72: "[wandelden](Mode_of_Transportation, e72)". Mode for RS0002.
+
+    *   Let's check e78: "[wandelingen](Mode_of_Transportation, e78)". Mode for RS0003.
+
+    *   Let's check e79: "[zeer goed rytuig en een span beste paarden](Mode_of_Transportation, e79)". Mode for RS0004.
+
+    *   Let's check e91: "[rydende](Mode_of_Transportation, e91)". Mode for RS0004.
+
+    *   Let's check e6: "[ryden](Mode_of_Transportation, e6)". NO_REL.
+
+    *   Let's check e13: "[reden](Mode_of_Transportation, e13)". Mode for RS0001.
+
+    *   Let's check e24: "[rytuig](Mode_of_Transportation, e24)". NO_REL.
+
+    *   Let's check e25: "[reden](Mode_of_Transportation, e25)". Mode for RS0001.
+
+    *   Let's check e41: "[reden](Mode_of_Transportation, e41)". Mode for RS0001.
+
+    *   Let's check e66: "[Extrapost](Mode_of_Transportation, e66)". NO_REL.
+
+    *   Let's check e67: "[postwagen](Mode_of_Transportation, e67)". NO_REL.
+
+    *   Let's check e68: "[postwagen](Mode_of_Transportation, e68)". NO_REL.
+
+    *   Let's check e74: "[doorgereden](Mode_of_Transportation, e74)". NO_REL.
+
+    *   Let's check e83: "[reden](Mode_of_Transportation, e83)". Mode for RS0004.
+
+    *   Let's check e98: "[rytuig](Mode_of_Transportation, e98)". NO_REL.
+
+    *   Let's check e102: "[wagen](Mode_of_Transportation, e102)". NO_REL.
+
+    *   Let's check e50: "[wagen](Mode_of_Transportation, e50)". NO_REL.
+
+    *   Let's check e47: "[wagen](Mode_of_Transportation, e47)". NO_REL.
+
+    *   Let's check e1: "[Derde Brief](F2_Expression, e1)". NO_REL.
+
+    *   Let's check e44: "[koffers](E19_Physical_Object, e44)". NO_REL.
+
+    *   Let's check e51: "[koffer](E19_Physical_Object, e51)". NO_REL.
+
+    *   Let's check e116: "[schilderyen](E19_Physical_Object, e116)". NO_REL.
+
+    *   Let's check e117: "[Parys](E53_Place, e117)". NO_REL.
+
+    *   Let's check e240: "[kanon kogel](E19_Physical_Object, e240)". Viewed artifact.
+
+    *   Let's check e243: "[uitgeschotene hoek](E19_Physical_Object, e243)". Viewed artifact.
+
+    *   Let's check e280: "[een groot driekantige hoed](E19_Physical_Object, e280)". NO_REL.
+
+    *   Let's check e281: "[vervaarlyke stokken](E19_Physical_Object, e281)". NO_REL.
+
+    *   Let's check e282: "[zwane ey](E20_Biological_Object, e282)". NO_REL.
+
+    *   Let's check e225: "[meubels](E19_Physical_Object, e225)". Viewed artifact.
+
+    *   Let's check e226: "[groote spiegels](E19_Physical_Object, e226)". Viewed artifact.
+
+    *   Let's check e234: "[vercierselen](E19_Physical_Object, e234)". Viewed artifact.
+
+    *   Let's check e256: "[orgel](E19_Physical_Object, e256)". Viewed artifact.
+
+    *   Let's check e263: "[schilderyen](E19_Physical_Object, e263)". Viewed artifact.
+
+    *   Let's check e268: "[6 groote schilden](E19_Physical_Object, e268)". Viewed artifact.
+
+    *   Let's check e271: "[zevende schild](E19_Physical_Object, e271)". Viewed artifact.
+
+    *   Let's check e159: "[troon voor de Koning](E19_Physical_Object, e159)". Viewed artifact.
+
+    *   Let's check e161: "[versteeningen](E19_Physical_Object, e161)". Viewed artifact.
+
+    *   Let's check e162: "[mineralen](E19_Physical_Object, e162)". Viewed artifact.
+
+    *   Let's check e165: "[oude penningen](E19_Physical_Object, e165)". Viewed artifact.
+
+    *   Let's check e166: "[kleine beeldjes](E19_Physical_Object, e166)". Viewed artifact.
+
+    *   Let's check e167: "[antiquiteiten](E19_Physical_Object, e167)". Viewed artifact.
+
+    *   Let's check e168: "[groote verzameling van edelgesteenten](E19_Physical_Object, e168)". Viewed artifact.
+
+    *   Let's check e169: "[Onyx](E19_Physical_Object, e169)". Viewed artifact.
+
+    *   Let's check e171: "[pretiosa](E19_Physical_Object, e171)". Viewed artifact.
+
+    *   Let's check e172: "[dingen uit barnsteen gemaakt](E19_Physical_Object, e172)". Viewed artifact.
+
+    *   Let's check e175: "[mozaiek](E19_Physical_Object, e175)". Viewed artifact.
+
+    *   Let's check e177: "[klokken](E19_Physical_Object, e177)". Viewed artifact.
+
+    *   Let's check e178: "[pendules](E19_Physical_Object, e178)". Viewed artifact.
+
+    *   Let's check e179: "[horlogies](E19_Physical_Object, e179)". Viewed artifact.
+
+    *   Let's check e180: "[klokken](E19_Physical_Object, e180)". Viewed artifact.
+
+    *   Let's check e181: "[schilderyen](E19_Physical_Object, e181)". Viewed artifact.
+
+    *   Let's check e182: "[beeld waarin een uurwerk schoot op zekere tyden een pistool af](E19_Physical_Object, e182)". Viewed artifact.
+
+    *   Let's check e184: "[mosaiek](E19_Physical_Object, e184)". Viewed artifact.
+
+    *   Let's check e187: "[oude wapentuigen gevuld een vyftigtal bogen](E19_Physical_Object, e187)". Viewed artifact.
+
+    *   Let's check e188: "[zwaarden](E19_Physical_Object, e188)". Viewed artifact.
+
+    *   Let's check e191: "[19 landgraven & landgravinnen](E19_Physical_Object, e191)". Viewed artifact.
+
+    *   Let's check e192: "[stoelen](E19_Physical_Object, e192)". Viewed artifact.
+
+    *   Let's check e202: "[schilderyen](E19_Physical_Object, e202)". Viewed artifact.
+
+    *   Let's check e204: "[schoone stukken](E19_Physical_Object, e204)". Viewed artifact.
+
+    *   Let's check e205: "[schoone stukken](E19_Physical_Object, e205)". Viewed artifact.
+
+    *   Let's check e206: "[stuk](E19_Physical_Object, e206)". Viewed artifact.
+
+    *   Let's check e207: "[een groot stuk](E19_Physical_Object, e207)". Viewed artifact.
+
+    *   Let's check e209: "[een klein strandgezicht](E19_Physical_Object, e209)". Viewed artifact.
+
+    *   Let's check e217: "[schilderyen](E19_Physical_Object, e217)". Viewed artifact.
+
+    *   Let's check e218: "[eene Cleopatra](E19_Physical_Object, e218)". Viewed artifact.
+
+    *   Let's check e120: "[vogeleyeren](E20_Biological_Object, e120)". Viewed artifact.
+
+    *   Let's check e125: "[stam van eene lauwrierboom](E20_Biological_Object, e125)". Viewed artifact.
+
+    *   Let's check e126: "[in was geboetseerde vruchten](E20_Biological_Object, e126)". Viewed artifact.
+
+    *   Let's check e128: "[opgezette vogels](E20_Biological_Object, e128)". Viewed artifact.
+
+    *   Let's check e129: "[Casuarus](E20_Biological_Object, e129)". Viewed artifact.
+
+    *   Let's check e130: "[paradysvogels](E20_Biological_Object, e130)". Viewed artifact.
+
+    *   Let's check e133: "[viervoetige dieren](E20_Biological_Object, e133)". Viewed artifact.
+
+    *   Let's check e134: "[opgezette en een gesceletteerde olyphant](E20_Biological_Object, e134)". Viewed artifact.
+
+    *   Let's check e136: "[leeuw](E20_Biological_Object, e136)". Viewed artifact.
+
+    *   Let's check e137: "[tyger](E20_Biological_Object, e137)". Viewed artifact.
+
+    *   Let's check e138: "[Kaapsche ezel](E20_Biological_Object, e138)". Viewed artifact.
+
+    *   Let's check e139: "[luipaard](E20_Biological_Object, e139)". Viewed artifact.
+
+    *   Let's check e140: "[drommedaris](E20_Biological_Object, e140)". Viewed artifact.
+
+    *   Let's check e141: "[wild zwyn](E20_Biological_Object, e141)". Viewed artifact.
+
+    *   Let's check e142: "[rendier](E20_Biological_Object, e142)". Viewed artifact.
+
+    *   Let's check e163: "[schelpen](E20_Biological_Object, e163)". Viewed artifact.
+
+    *   Let's check e198: "[catalogus](E31_Document, e198)". Viewed artifact.
+
+    *   Let's check e199: "[reaal catalogue](E31_Document, e199)". Viewed artifact.
+
+    *   Let's check e200: "[reaal catalogus](E31_Document, e200)". Viewed artifact.
+
+    *   Let's check e201: "[reaal catalogus](E31_Document, e201)". Viewed artifact.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". Viewed artifact.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". Viewed artifact.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". Viewed artifact.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". Viewed artifact.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". Viewed artifact.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". Viewed artifact.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e55: "[klooster](E18_Physical_Thing, e55)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e111: "[logement de Kurfürst](E18_Physical_Thing, e111)". IN.
+
+    *   Let's check e118: "[museum](E18_Physical_Thing, e118)". IN.
+
+    *   Let's check e123: "[Academiesche boekery](E18_Physical_Thing, e123)". NO_REL.
+
+    *   Let's check e145: "[geheele gebouw](E18_Physical_Thing, e145)". IN.
+
+    *   Let's check e153: "[Palazo di Maecenate](E18_Physical_Thing, e153)". NO_REL.
+
+    *   Let's check e155: "[Bagno della nimfa Egeria](E18_Physical_Thing, e155)". NO_REL.
+
+    *   Let's check e158: "[gebouw voor de vergadering der standen](E18_Physical_Thing, e158)". IN.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e195: "[gebouw](E18_Physical_Thing, e195)". IN.
+
+    *   Let's check e203: "[paleis Bellevue](E18_Physical_Thing, e203)". IN.
+
+    *   Let's check e223: "[paleis Belle vue](E18_Physical_Thing, e223)". IN.
+
+    *   Let's check e224: "[logement de Keurvorst](E18_Physical_Thing, e224)". NO_REL.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let's check e254: "[kolommen](E18_Physical_Thing, e254)". NO_REL.
+
+    *   Let's check e258: "[colommen](E18_Physical_Thing, e258)". NO_REL.
+
+    *   Let's check e259: "[koepelvormige dak](E18_Physical_Thing, e259)". NO_REL.
+
+    *   Let's check e260: "[marmeren hoogaltaar](E18_Physical_Thing, e260)". NO_REL.
+
+    *   Let's check e261: "[drie circelvormige trappen](E18_Physical_Thing, e261)". NO_REL.
+
+    *   Let's check e262: "[de koepel](E18_Physical_Thing, e262)". NO_REL.
+
+    *   Let's check e264: "[kerk](E18_Physical_Thing, e264)". NO_REL.
+
+    *   Let's check e265: "[Brüder](E18_Physical_Thing, e265)". IN.
+
+    *   Let's check e266: "[Domkerk](E18_Physical_Thing, e266)". IN.
+
+    *   Let's check e272: "[Kweekschool voor onderwyzers](E18_Physical_Thing, e272)". IN.
+
+    *   Let's check e276: "[Comedie](E18_Physical_Thing, e276)". IN.
+
+    *   Let's check e283: "[observatorium](E18_Physical_Thing, e283)". NO_REL.
+
+    *   Let's check e284: "[Wilhelms Brücke](E18_Physical_Thing, e284)". NO_REL.
+
+    *   Let's check e289: "[Wilhelmsbrug](E18_Physical_Thing, e289)". THRU.
+
+    *   Let's check e293: "[Leipsicher poort](E18_Physical_Thing, e293)". THRU.
+
+    *   Let's check e296: "[coffyhuis](E18_Physical_Thing, e296)". IN.
+
+    *   Let's check e302: "[marmeren beeld van den landgraaf Karel](E18_Physical_Thing, e302)". Viewed artifact.
+
+    *   Let's check e307: "[standbeelden van andere landgraven](E18_Physical_Thing, e307)". NO_REL.
+
+    *   Let's check e312: "[Wilhelmshöhe](E18_Physical_Thing, e312)". NO_REL.
+
+    *   Let's check e80: "[Gasthofe Desenburg](E18_Physical_Thing, e80)". IN.
+
+    *   Let's check e18: "[Hoxenberg](E18_Physical_Thing, e18)". NEAR.
+
+    *   Let's check e20: "[7 bergen](E18_Physical_Thing, e20)". THRU.
+
+    *   Let's check e56: "[Desenberg](E18_Physical_Thing, e56)". NEAR.
+
+    *   Let's check e61: "[posthuis](E18_Physical_Thing, e61)". IN.
+
+    *   Let's check e85: "[Desenberg](E18_Physical_Thing, e85)". NEAR.
+
+    *   Let's check e104: "[Hercules](E18_Physical_Thing, e104)". NEAR.
+
+    *   Let's check e105: "[octogoon](E18_Physical_Thing, e105)". NEAR.
+
+    *   Let's check e106: "[Wilhelmhohe](E18_Physical_Thing, e106)". NEAR.
+
+    *   Let's check e174: "[vesting Rheinfels](E18_Physical_Thing, e174)". Viewed artifact.
+
+    *   Let's check e186: "[breede trap](E18_Physical_Thing, e186)". IN.
+
+    *   Let's check e228: "[marmeren bad](E18_Physical_Thing, e228)". IN.
+
+    *   Let's check e229: "[Orangerie](E18_Physical_Thing, e229)". IN.
+
+    *   Let's check e230: "[gebouw](E18_Physical_Thing, e230)". IN.
+
+    *   Let's check e232: "[vloeren](E18_Physical_Thing, e232)". NO_REL.
+
+    *   Let's check e233: "[muren](E18_Physical_Thing, e233)". NO_REL.
+
+    *   Let's check e235: "[Het bad](E18_Physical_Thing, e235)". NO_REL.
+
+    *   Let's check e236: "[acht Corintische pylaren](E18_Physical_Thing, e236)". NO_REL.
+
+    *   Let's check e237: "[koepel](E18_Physical_Thing, e237)". NO_REL.
+
+    *   Let's check e245: "[gebouw](E18_Physical_Thing, e245)". NO_REL.
+
+    *   Let's check e249: "[vyver](E18_Physical_Thing, e249)". IN.
+
+    *   Let's check e251: "[Roomsche kerk](E18_Physical_Thing, e251)". IN.
+
+    *   Let's check e252: "[logement](E18_Physical_Thing, e252)". NO_REL.
+
+    *   Let's check e253: "[ronden koepel](E18_Physical_Thing, e253)". NO_REL.
+
+    *   Let

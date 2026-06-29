@@ -10,3 +10,4 @@ pandas
 rapidfuzz
 requests
 python-dotenv
+rdflib
