@@ -1,0 +1,10 @@
+label,strict_f1,relaxed_f1
+E18_Physical_Thing,0.0,0.0
+E19_Physical_Object,0.0,0.0
+E20_Biological_Object,0.0,0.0
+E31_Document,0.0,0.0
+E52_Time_Span,0.278,0.389
+E53_Place,0.497,0.621
+F2_Expression,0.0,0.0
+Mode_of_Transportation,0.0,0.0
+OVERALL,0.231,0.303

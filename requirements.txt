@@ -11,3 +11,4 @@ rapidfuzz
 requests
 python-dotenv
 rdflib
+gliner

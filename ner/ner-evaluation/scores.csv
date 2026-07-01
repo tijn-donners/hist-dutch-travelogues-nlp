@@ -944,3 +944,12 @@ source_text,model,temperature,prompting_method,prompt_language,pages_processed,d
 1816_third_letter.txt,glm-5.1,1.0,fewshot,english,10,1815.2,cloud,0,2026-06-16 12:02:45,F2_Expression,0.1667,0.0769,0.1053,0.6667,0.2857,0.4000,,,
 1816_third_letter.txt,glm-5.1,1.0,fewshot,english,10,1815.2,cloud,0,2026-06-16 12:02:45,Mode_of_Transportation,0.6786,0.6333,0.6552,0.9231,0.8000,0.8571,,,
 1816_third_letter.txt,glm-5.1,1.0,fewshot,english,10,1815.2,cloud,0,2026-06-16 12:02:45,OVERALL,0.6039,0.6943,0.6459,0.8515,0.8921,0.8713,267,86,48
+1816_third_letter.txt,gliner_multi,0.0,zeroshot,dutch,10,20.9,cpu,0,2026-06-30 19:37:19,E18_Physical_Thing,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,,,
+1816_third_letter.txt,gliner_multi,0.0,zeroshot,dutch,10,20.9,cpu,0,2026-06-30 19:37:19,E19_Physical_Object,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,,,
+1816_third_letter.txt,gliner_multi,0.0,zeroshot,dutch,10,20.9,cpu,0,2026-06-30 19:37:19,E20_Biological_Object,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,,,
+1816_third_letter.txt,gliner_multi,0.0,zeroshot,dutch,10,20.9,cpu,0,2026-06-30 19:37:19,E31_Document,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,,,
+1816_third_letter.txt,gliner_multi,0.0,zeroshot,dutch,10,20.9,cpu,0,2026-06-30 19:37:19,E52_Time_Span,0.7143,0.1724,0.2778,1.0000,0.2414,0.3889,,,
+1816_third_letter.txt,gliner_multi,0.0,zeroshot,dutch,10,20.9,cpu,0,2026-06-30 19:37:19,E53_Place,0.9024,0.3426,0.4966,0.9434,0.4630,0.6211,,,
+1816_third_letter.txt,gliner_multi,0.0,zeroshot,dutch,10,20.9,cpu,0,2026-06-30 19:37:19,F2_Expression,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,,,
+1816_third_letter.txt,gliner_multi,0.0,zeroshot,dutch,10,20.9,cpu,0,2026-06-30 19:37:19,Mode_of_Transportation,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,,,
+1816_third_letter.txt,gliner_multi,0.0,zeroshot,dutch,10,20.9,cpu,0,2026-06-30 19:37:19,OVERALL,0.8571,0.1338,0.2314,0.9344,0.1810,0.3032,44,4,271
